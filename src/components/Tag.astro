@@ -1,0 +1,59 @@
+---
+import type { Status } from "./types";
+
+/**
+ * A status, told by border and fill and never by hue alone: draft is dashed (provisional),
+ * proposed is quiet, active is firm, ratified is filled (agreed), superseded and archived
+ * recede, and superseded is struck through (terminal). Mono, small, uppercase.
+ */
+interface Props {
+  status?: Status;
+  class?: string;
+}
+
+const { status = "proposed", class: className } = Astro.props;
+---
+
+<span class:list={["tag", `tag--${status}`, className]}><slot>{status}</slot></span>
+
+<style>
+  @layer components {
+    .tag {
+      display: inline-block;
+      padding: var(--space-2xs) var(--space-xs);
+      border: 1px solid var(--tag-border);
+      border-radius: var(--radius-sm);
+      color: var(--tag-fg);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      line-height: var(--leading-solid);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .tag--draft {
+      border-style: dashed;
+    }
+
+    .tag--active {
+      --tag-fg: var(--color-text);
+      --tag-border: var(--color-muted-strong);
+    }
+
+    .tag--ratified {
+      --tag-fg: var(--tag-strong-fg);
+      --tag-border: var(--tag-strong-bg);
+      background: var(--tag-strong-bg);
+    }
+
+    .tag--superseded {
+      --tag-border: var(--color-line-soft);
+      text-decoration: line-through;
+    }
+
+    .tag--archived {
+      --tag-border: var(--color-line-soft);
+    }
+  }
+</style>

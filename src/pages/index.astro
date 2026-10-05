@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import Lede from "../components/Lede.astro";
+import Pronunciation from "../components/Pronunciation.astro";
+import Section from "../components/Section.astro";
+import SrsMark from "../components/SrsMark.astro";
+import HeroCluster from "../components/diagram/HeroCluster.astro";
+---
+
+<Base>
+  <Section width="wide">
+    <h1 class="sr-only">SemanticOps: SRS, pronounced source</h1>
+    <div class="split">
+      <div class="stack stack--md">
+        <SrsMark variant="halves" size={96} />
+        <Pronunciation size="lg" />
+        <Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>
+      </div>
+      <HeroCluster />
+    </div>
+  </Section>
+</Base>

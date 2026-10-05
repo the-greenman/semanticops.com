@@ -1,0 +1,67 @@
+---
+import Canvas from "./Canvas.astro";
+import Cluster from "./Cluster.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Halves from "./Halves.astro";
+import Link from "./Link.astro";
+
+/**
+ * One source, two readers. The records are written once; a build projects them two
+ * ways, a human site and an agent site. The two readers are the two halves of one disc:
+ * the same dividing line on either side, each half holding a seed of the other.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  source?: string;
+  human?: { name: string; detail: string };
+  agent?: { name: string; detail: string };
+  /** The label on the link from source to readers. */
+  project?: string;
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 6,
+  caption = "One source, projected twice. The human site is free to be visual. The agent site is data.",
+  id = "two-surfaces",
+  source = "one source",
+  human = { name: "Human site", detail: "pages, diagrams, prose" },
+  agent = { name: "Agent site", detail: "llms.txt, JSON, a .srs bundle" },
+  project = "projected",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "One source, two readers";
+const desc = `A cluster of records, labelled ${source}, is projected into one disc made of two halves that each hold a seed of the other. One half is the ${human.name}: ${human.detail}. The other is the ${agent.name}: ${agent.detail}.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 720 380">
+    <Cluster cx={360} cy={86} r={56} />
+    <text class="dg-text dg-text--muted" x={440} y={90} text-anchor="start">{source}</text>
+    <Link x1={360} y1={158} x2={360} y2={216} arrow="end" width={2} label={project} labelAt={0.5} draw delay={0.4} />
+    <Halves cx={360} cy={296} r={72} upper="ink" seed="dot" edge={2} />
+    <text class="dg-text dg-text--caps dg-text--strong" x={262} y={290} text-anchor="end">{human.name}</text>
+    <text class="dg-text dg-text--muted" x={262} y={312} text-anchor="end">{human.detail}</text>
+    <text class="dg-text dg-text--caps dg-text--strong" x={458} y={290} text-anchor="start">{agent.name}</text>
+    <text class="dg-text dg-text--muted" x={458} y={312} text-anchor="start">{agent.detail}</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 500">
+    <Cluster cx={170} cy={64} r={46} />
+    <text class="dg-text dg-text--muted" x={236} y={68} text-anchor="start">{source}</text>
+    <Link x1={170} y1={120} x2={170} y2={168} arrow="end" width={2} label={project} labelAt={0.5} draw delay={0.4} />
+    <Halves cx={170} cy={248} r={64} upper="ink" seed="dot" edge={2} />
+    <Disc cx={20} cy={364} r={9} tone="ink" hollow knockout={0} />
+    <text class="dg-text dg-text--caps dg-text--strong" x={42} y={364} dominant-baseline="central">{human.name}</text>
+    <text class="dg-text dg-text--muted" x={42} y={386} dominant-baseline="central">{human.detail}</text>
+    <Disc cx={20} cy={428} r={9} tone="ink" knockout={0} />
+    <text class="dg-text dg-text--caps dg-text--strong" x={42} y={428} dominant-baseline="central">{agent.name}</text>
+    <text class="dg-text dg-text--muted" x={42} y={450} dominant-baseline="central">{agent.detail}</text>
+  </Canvas>
+</Figure>

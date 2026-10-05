@@ -1,0 +1,54 @@
+---
+import SemanticOpsMark from "../SemanticOpsMark.astro";
+import SrsMark from "../SrsMark.astro";
+
+/**
+ * One mark candidate at the sizes it has to work at, on paper and on ink. Used only by
+ * /styleguide, to let the owner compare candidates side by side.
+ */
+interface Props {
+  mark: "srs" | "semanticops";
+  variant: string;
+  sizes?: number[];
+}
+
+const { mark, variant, sizes = [128, 48, 24, 16] } = Astro.props;
+---
+
+<div class="mark-row">
+  <div class="mark-row__strip">
+    {sizes.map((size) => (mark === "srs" ? <SrsMark variant={variant as "line" | "halves" | "ring"} {size} /> : <SemanticOpsMark variant={variant as "network" | "orbit"} {size} />))}
+  </div>
+  <div class="mark-row__strip" data-surface="ink">
+    {sizes.map((size) => (mark === "srs" ? <SrsMark variant={variant as "line" | "halves" | "ring"} {size} /> : <SemanticOpsMark variant={variant as "network" | "orbit"} {size} />))}
+  </div>
+</div>
+
+<style>
+  @layer components {
+    .mark-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      border: 1px solid var(--color-line);
+    }
+
+    .mark-row__strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .mark-row__strip:first-child {
+      background: var(--color-bg);
+    }
+
+    @media (min-width: 720px) {
+      .mark-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+</style>

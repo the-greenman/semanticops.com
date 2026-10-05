@@ -1,0 +1,106 @@
+---
+/**
+ * The semantic colour table, built from the parsed tokens.css: a live swatch, the
+ * resolved light and dark values, and the measured contrast on each ground. Used only by /styleguide.
+ */
+interface Row {
+  name: string;
+  light: string | undefined;
+  dark: string | undefined;
+  onLight: [string, number | null][];
+  onDark: [string, number | null][];
+  meaning?: string;
+}
+
+interface Props {
+  rows: Row[];
+}
+
+const { rows } = Astro.props;
+const fmt = (list: [string, number | null][]) => list.map(([k, c]) => (c === null ? "" : `${k} ${c.toFixed(1)}`)).filter(Boolean).join(", ");
+---
+
+<div class="colour-table" role="region" aria-label="Semantic colour tokens" tabindex="0">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Token</th>
+        <th scope="col">Live</th>
+        <th scope="col">Light</th>
+        <th scope="col">Dark</th>
+        <th scope="col">Contrast (light)</th>
+        <th scope="col">Contrast (dark)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((r) => (
+          <tr>
+            <th scope="row"><code>{r.name}</code>{r.meaning && <span class="colour-table__meaning">{r.meaning}</span>}</th>
+            <td><span class="colour-table__chip" style={`--swatch:var(${r.name})`}></span></td>
+            <td><code>{r.light}</code></td>
+            <td><code>{r.dark}</code></td>
+            <td><code>{fmt(r.onLight)}</code></td>
+            <td><code>{fmt(r.onDark)}</code></td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  @layer components {
+    .colour-table {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--size-xs);
+    }
+
+    th,
+    td {
+      padding: var(--space-xs) var(--space-sm) var(--space-xs) 0;
+      border-bottom: var(--rule-soft);
+      text-align: left;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    thead th {
+      font-family: var(--font-mono);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--color-muted);
+      border-bottom: var(--rule);
+    }
+
+    tbody th {
+      font-weight: var(--weight-regular);
+    }
+
+    code {
+      font-size: var(--size-xs);
+    }
+
+    .colour-table__meaning {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: var(--size-sm);
+      color: var(--color-muted);
+      white-space: normal;
+    }
+
+    .colour-table__chip {
+      display: block;
+      width: 3rem;
+      height: 1.5rem;
+      border: 1px solid var(--color-line);
+      background: var(--swatch);
+    }
+  }
+</style>

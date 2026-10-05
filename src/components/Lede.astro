@@ -1,0 +1,27 @@
+---
+/**
+ * The standfirst: the larger sentence under a heading that says what the section is
+ * for. One or two sentences. Light weight, capped to a readable measure.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<p class:list={["lede", className]}><slot /></p>
+
+<style>
+  @layer components {
+    .lede {
+      max-width: 38em;
+      margin: 0;
+      font-size: var(--size-standfirst);
+      font-weight: var(--weight-light);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-snug);
+      color: var(--color-text);
+    }
+  }
+</style>

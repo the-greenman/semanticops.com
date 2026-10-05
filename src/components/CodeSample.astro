@@ -1,0 +1,55 @@
+---
+import { Code } from "astro:components";
+import type { ComponentProps } from "astro/types";
+
+/**
+ * A block of code. Highlighted at build time by Shiki's css-variables theme, mapped to
+ * the semantic tokens here, so it follows light, dark and ink with no second theme.
+ * Show real structure: the JSON, the command, the file name. Syntax colour reuses the
+ * diagram meanings (keys in structure, values in field, punctuation muted).
+ */
+interface Props {
+  code: string;
+  lang?: ComponentProps<typeof Code>["lang"];
+  /** A file name or command shown in the mono bar above the code. */
+  filename?: string;
+  class?: string;
+}
+
+const { code, lang = "json", filename, class: className } = Astro.props;
+---
+
+<figure class:list={["codesample", className]}>
+  {filename && <figcaption class="codesample__bar t-label">{filename}</figcaption>}
+  <Code {code} {lang} theme="css-variables" />
+</figure>
+
+<style>
+  @layer components {
+    .codesample {
+      margin: 0;
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-sm);
+      background: var(--code-bg);
+      overflow: hidden;
+    }
+
+    .codesample__bar {
+      padding: var(--space-xs) var(--space-sm);
+      border-bottom: var(--rule-soft);
+    }
+
+    .codesample :global(pre) {
+      margin: 0;
+      padding: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      line-height: var(--leading-snug);
+      tab-size: 2;
+    }
+
+    .codesample :global(code) {
+      font-size: inherit;
+    }
+  }
+</style>

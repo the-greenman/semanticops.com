@@ -1,0 +1,34 @@
+---
+/**
+ * The svg for one diagram layout: role="img" with a title and a description, sized by
+ * its viewBox. Each diagram draws a "wide" and a "narrow" layout; the figure's
+ * container query shows one (diagram.css). "both" is for a diagram that scales as one.
+ */
+interface Props {
+  layout?: "wide" | "narrow" | "both";
+  viewBox: string;
+  /** Unique within the page: the title and description ids derive from it. */
+  id: string;
+  title: string;
+  desc: string;
+}
+
+const { layout = "both", viewBox, id, title, desc } = Astro.props;
+const key = `${id}-${layout}`;
+// Never scale a drawing past 1.25x: past that, labels grow out of proportion to the shapes.
+const width = Number(viewBox.split(/\s+/)[2]);
+const maxWidth = Math.round(width * 1.25);
+---
+
+<svg
+  class:list={["dg", layout !== "both" && `dg--${layout}`]}
+  {viewBox}
+  style={`max-width:${maxWidth}px`}
+  role="img"
+  aria-labelledby={`${key}-title ${key}-desc`}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title id={`${key}-title`}>{title}</title>
+  <desc id={`${key}-desc`}>{desc}</desc>
+  <slot />
+</svg>

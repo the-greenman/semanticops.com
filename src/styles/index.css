@@ -1,0 +1,23 @@
+/* ============================================================================
+   design system entry point
+   ----------------------------------------------------------------------------
+   Every rule lives in a named cascade layer, so order is explicit whatever the
+   import order. Astro scoped <style> blocks are unlayered by default and would beat
+   every layer, so each component wraps its own rules in `@layer components { ... }`
+   (scripts/check-tokens.mjs enforces it).
+
+     tokens      design variables only
+     base        reset, document defaults, type, paper grain, ink surfaces
+     layout      page-level structure
+     components  reusable blocks (shared diagram rules live in diagram.css)
+     theme       optional reskins: re-point tokens first, override components as the escape hatch
+     utilities   single-purpose helpers; always win against components
+   ========================================================================== */
+
+@layer tokens, base, layout, components, theme, utilities;
+
+@import url("./tokens.css") layer(tokens);
+@import url("./tokens-components.css") layer(tokens);
+@import url("./base.css") layer(base);
+@import url("./diagram.css") layer(components);
+@import url("./utilities.css") layer(utilities);

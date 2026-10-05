@@ -1,0 +1,52 @@
+---
+import { arcPath, round } from "./geometry";
+import type { Tone } from "./tones";
+
+/**
+ * A broken ring: thick segments with clean gaps. A boundary is drawn, not solid: a
+ * container or a repository is a declared selection, so its edge is a choice that can
+ * be drawn again. Never close the circle for a container.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  r: number;
+  /** Stroke width of the ring. */
+  width?: number;
+  tone?: Tone;
+  /** Gap centres in degrees, clockwise from 3 o'clock. Defaults to `segments` evenly spaced gaps. */
+  gaps?: number[];
+  /** Gap width in degrees, or one width per entry of `gaps`. */
+  gap?: number | number[];
+  /** Number of evenly spaced segments when `gaps` is not given. */
+  segments?: number;
+  /** Where the first gap falls when `gaps` is not given. */
+  start?: number;
+  /** Animate the segments drawing in. */
+  draw?: boolean;
+  delay?: number;
+}
+
+const { cx, cy, r, width = 8, tone = "structure", gaps, gap = 12, segments = 6, start = -90, draw = false, delay = 0 } = Astro.props;
+
+const widthAt = (i: number) => (Array.isArray(gap) ? (gap[i] ?? gap[gap.length - 1]) : gap);
+const order = (gaps ?? Array.from({ length: segments }, (_, i) => start + (i * 360) / segments))
+  .map((c, i) => ({ c, w: widthAt(i) }))
+  .sort((a, b) => a.c - b.c);
+
+const arcs = order.map((g, i) => {
+  const next = order[(i + 1) % order.length];
+  const from = g.c + g.w / 2;
+  let to = next.c - next.w / 2;
+  if (order.length === 1 || to <= from) to += 360;
+  return { d: arcPath(cx, cy, r, round(from), round(to)), len: round(((to - from) * Math.PI * r) / 180 + width) };
+});
+---
+
+<g class:list={["dg-ring-group", `dg-tone--${tone}`]}>
+  {
+    arcs.map((arc, i) => (
+      <path class:list={["dg-broken", draw && "dg-draw"]} d={arc.d} stroke-width={width} style={draw ? `--dg-len:${arc.len};--dg-delay:${round(delay + i * 0.08)}s` : undefined}></path>
+    ))
+  }
+</g>

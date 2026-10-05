@@ -1,0 +1,37 @@
+---
+import { labelAt, type LabelPosition } from "./geometry";
+import Knockout from "./Knockout.astro";
+
+/**
+ * The target centre: a blue ring, a vermilion fill, a khaki ring and a green dot.
+ * Identity, or the core: the thing everything else is arranged around.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  r: number;
+  knockout?: number;
+  label?: string;
+  labelPosition?: Exclude<LabelPosition, "inside">;
+}
+
+const { cx, cy, r, knockout = 3, label = "", labelPosition = "below" } = Astro.props;
+
+const ring = Math.max(1.5, r * 0.2);
+const place = labelAt(cx, cy, r, labelPosition);
+---
+
+<g class="dg-node dg-target">
+  {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
+  <circle class="dg-inner-ring dg-tone--structure" {cx} {cy} r={r - ring / 2} stroke-width={ring}></circle>
+  <circle class="dg-disc dg-tone--record" {cx} {cy} r={r * 0.64}></circle>
+  <circle class="dg-inner-ring dg-tone--relation" {cx} {cy} r={r * 0.42} stroke-width={Math.max(1, r * 0.09)}></circle>
+  <circle class="dg-dot dg-tone--field" {cx} {cy} r={Math.max(1.2, r * 0.16)}></circle>
+  {
+    label && (
+      <text class="dg-text" x={place.x} y={place.y} text-anchor={place.anchor} dominant-baseline={place.base}>
+        {label}
+      </text>
+    )
+  }
+</g>

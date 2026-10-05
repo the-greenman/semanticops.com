@@ -1,0 +1,40 @@
+---
+import type { Tone } from "./diagram/tones";
+
+/**
+ * The mono label voice: small, uppercase, letter-spaced. Use above a heading to name
+ * what kind of thing follows. With a tone it gains a small dot in that diagram colour,
+ * so a label can say which idea it belongs to (see the colour legend).
+ */
+interface Props {
+  tone?: Tone;
+  as?: "p" | "span" | "div";
+  class?: string;
+}
+
+const { tone, as: Tag = "p", class: className } = Astro.props;
+---
+
+<Tag class:list={["eyebrow", "eyebrow-c", tone && `dg-tone--${tone}`, className]}>
+  {tone && <span class="eyebrow-c__dot" aria-hidden="true"></span>}
+  <slot />
+</Tag>
+
+<style>
+  @layer components {
+    .eyebrow-c {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin: 0;
+    }
+
+    .eyebrow-c__dot {
+      flex: none;
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--dg-tone);
+    }
+  }
+</style>

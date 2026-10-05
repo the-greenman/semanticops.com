@@ -1,0 +1,135 @@
+---
+/**
+ * One row of a token table: name, declared value, and a live sample of what the token
+ * does. The sample reads the token through a local custom property, so no inline style
+ * carries a literal. Used only by /styleguide.
+ */
+interface Props {
+  name: string;
+  value: string;
+  kind?: "size" | "weight" | "tracking" | "leading" | "space" | "radius" | "rule" | "shadow" | "width" | "plain";
+  /** The text a type sample is set in. */
+  text?: string;
+}
+
+const { name, value, kind = "plain", text = "Records are the source" } = Astro.props;
+---
+
+<div class="token-row">
+  <code class="token-row__name">{name}</code>
+  <code class="token-row__value">{value}</code>
+  <div class="token-row__sample" style={`--sample:var(${name})`}>
+    {kind === "size" && <span class="token-row__s token-row__s--size">{text}</span>}
+    {kind === "weight" && <span class="token-row__s token-row__s--weight">{text}</span>}
+    {kind === "tracking" && <span class="token-row__s token-row__s--tracking">{text}</span>}
+    {kind === "leading" && <span class="token-row__s token-row__s--leading">Two lines of text, set to show the leading between them.</span>}
+    {kind === "space" && <span class="token-row__s token-row__s--space"></span>}
+    {kind === "radius" && <span class="token-row__s token-row__s--radius"></span>}
+    {kind === "rule" && <span class="token-row__s token-row__s--rule"></span>}
+    {kind === "shadow" && <span class="token-row__s token-row__s--shadow"></span>}
+    {kind === "width" && <span class="token-row__s token-row__s--width"></span>}
+  </div>
+</div>
+
+<style>
+  @layer components {
+    .token-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-2xs) var(--space-sm);
+      padding: var(--space-xs) 0;
+      border-bottom: var(--rule-soft);
+      align-items: center;
+    }
+
+    .token-row__name {
+      font-size: var(--size-xs);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-strong);
+      overflow-wrap: anywhere;
+    }
+
+    .token-row__value {
+      font-size: var(--size-xs);
+      color: var(--color-muted);
+      overflow-wrap: anywhere;
+    }
+
+    .token-row__sample {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .token-row__s--size {
+      display: block;
+      font-size: var(--sample);
+      line-height: var(--leading-tight);
+      white-space: nowrap;
+    }
+
+    .token-row__s--weight {
+      font-size: var(--size-md);
+      font-weight: var(--sample);
+    }
+
+    .token-row__s--tracking {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      text-transform: uppercase;
+      letter-spacing: var(--sample);
+    }
+
+    .token-row__s--leading {
+      display: block;
+      max-width: 22rem;
+      font-size: var(--size-sm);
+      line-height: var(--sample);
+    }
+
+    .token-row__s--space {
+      display: block;
+      height: 12px;
+      width: var(--sample);
+      max-width: 100%;
+      background: var(--color-text-strong);
+    }
+
+    .token-row__s--radius {
+      display: block;
+      width: 56px;
+      height: 32px;
+      border: 1px solid var(--color-text-strong);
+      border-radius: var(--sample);
+    }
+
+    .token-row__s--rule {
+      display: block;
+      width: 100%;
+      max-width: 14rem;
+      height: 0;
+      border-top: var(--sample);
+    }
+
+    .token-row__s--shadow {
+      display: block;
+      width: 56px;
+      height: 32px;
+      background: var(--color-bg);
+      box-shadow: var(--sample);
+    }
+
+    .token-row__s--width {
+      display: block;
+      height: 8px;
+      width: var(--sample);
+      max-width: 100%;
+      background: var(--color-line);
+    }
+
+    @media (min-width: 720px) {
+      .token-row {
+        grid-template-columns: 13rem 11rem minmax(0, 1fr);
+      }
+    }
+  }
+</style>

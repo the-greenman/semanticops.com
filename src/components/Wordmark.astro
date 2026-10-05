@@ -1,0 +1,54 @@
+---
+/**
+ * The name set as a wordmark. "SemanticOps" holds two weights in one word: Semantic
+ * in regular, Ops in bold. "srs" is lowercase, medium. Sized by `size` (a type token role).
+ */
+interface Props {
+  name?: "semanticops" | "srs";
+  size?: "sm" | "md" | "lg";
+  class?: string;
+}
+
+const { name = "semanticops", size = "md", class: className } = Astro.props;
+---
+
+<span class:list={["wordmark", `wordmark--${size}`, `wordmark--${name}`, className]}>
+  {name === "srs" ? "srs" : <><span class="wordmark__lead">Semantic</span><span class="wordmark__tail">Ops</span></>}
+</span>
+
+<style>
+  @layer components {
+    .wordmark {
+      font-family: var(--font-sans);
+      line-height: var(--leading-solid);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-text-strong);
+      white-space: nowrap;
+    }
+
+    .wordmark--sm {
+      font-size: var(--size-md);
+    }
+
+    .wordmark--md {
+      font-size: var(--size-lg);
+    }
+
+    .wordmark--lg {
+      font-size: var(--size-xl);
+    }
+
+    .wordmark__lead {
+      font-weight: var(--weight-regular);
+    }
+
+    .wordmark__tail,
+    .wordmark--srs {
+      font-weight: var(--weight-bold);
+    }
+
+    .wordmark--srs {
+      font-weight: var(--weight-medium);
+    }
+  }
+</style>

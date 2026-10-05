@@ -1,0 +1,79 @@
+---
+import Glyph from "./diagram/Glyph.astro";
+import type { GlyphKind } from "./types";
+
+/**
+ * A card for one idea of the model: a glyph from the diagram vocabulary, a mono kind
+ * label, a title and a short explanation (the slot). With an href the whole card is the
+ * link. Use it for Field, Type, Record, Relation, Container and the like.
+ */
+interface Props {
+  /** The kind label: "Field", "Record", "Relation". */
+  kind: string;
+  title: string;
+  /** Which glyph of the diagram vocabulary draws it. */
+  glyph?: GlyphKind;
+  href?: string;
+  class?: string;
+}
+
+const { kind, title, glyph = "record", href, class: className } = Astro.props;
+---
+
+<article class:list={["concept-card", href && "concept-card--link", className]}>
+  <div class="concept-card__head">
+    <Glyph kind={glyph} size={28} />
+    <span class="t-label">{kind}</span>
+  </div>
+  <h3 class="concept-card__title">
+    {href ? <a class="concept-card__link" href={href}>{title}</a> : title}
+  </h3>
+  <div class="concept-card__body"><slot /></div>
+</article>
+
+<style>
+  @layer components {
+    .concept-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-sm) var(--space-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .concept-card--link:hover {
+      border-color: var(--card-hover-border);
+    }
+
+    .concept-card__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .concept-card__title {
+      margin: 0;
+      font-size: var(--size-lg);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .concept-card__link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* The whole card is the target. */
+    .concept-card__link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .concept-card__body {
+      color: var(--color-muted-strong);
+      font-size: var(--size-base);
+    }
+  }
+</style>

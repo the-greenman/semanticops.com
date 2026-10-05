@@ -1,0 +1,84 @@
+---
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+
+/**
+ * A relation reads as a sentence: source [type] target. One binary, typed edge between
+ * two things, a claim about knowledge and not control flow. The seven canonical types.
+ * Direction is stored one way only; the reverse is read, never written.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** Each relation type with a plain-words gloss, read as "source [type] target". */
+  relations?: { type: string; gloss: string }[];
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 5,
+  caption = "A relation reads source, type, target. It is a claim about knowledge, not ownership.",
+  id = "relation-sentence",
+  relations = [
+    { type: "contains", gloss: "a group holds a part" },
+    { type: "depends-on", gloss: "needs the target to make sense" },
+    { type: "precedes", gloss: "comes before" },
+    { type: "supersedes", gloss: "replaces, and keeps the original" },
+    { type: "refines", gloss: "adds detail to" },
+    { type: "derived-from", gloss: "was made from" },
+    { type: "evidences", gloss: "is evidence for" },
+  ],
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const n = relations.length;
+const wide = {
+  viewBox: `0 0 720 ${50 + n * 46}`,
+  header: [
+    { text: "source", x: 24, y: 12, anchor: "middle" },
+    { text: "[type]", x: 190, y: 12, anchor: "middle" },
+    { text: "target", x: 356, y: 12, anchor: "middle" },
+    { text: "reads as", x: 400, y: 12, anchor: "start" },
+  ],
+  rows: relations.map((r, i) => ({ ...r, y: 54 + i * 46, sx: 24, tx: 356, at: { x: 400, dy: 0, anchor: "start" } })),
+};
+const narrow = {
+  viewBox: `0 0 340 ${44 + n * 64}`,
+  header: [
+    { text: "source", x: 14, y: 12, anchor: "middle" },
+    { text: "[type]", x: 170, y: 12, anchor: "middle" },
+    { text: "target", x: 326, y: 12, anchor: "middle" },
+  ],
+  rows: relations.map((r, i) => ({ ...r, y: 46 + i * 64, sx: 14, tx: 326, at: { x: 170, dy: 26, anchor: "middle" } })),
+};
+const layouts = [
+  { mode: "wide" as const, ...wide },
+  { mode: "narrow" as const, ...narrow },
+];
+const title = "Relations read as sentences";
+const desc = `Seven rows, each a source record, a labelled arrow and a target record, read as source [type] target. The types are ${relations.map((r) => r.type).join(", ")}.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  {
+    layouts.map((L) => (
+      <Canvas layout={L.mode} {id} {title} {desc} viewBox={L.viewBox}>
+        {L.header.map((h) => <text class="dg-text dg-text--muted dg-text--caps" x={h.x} y={h.y} text-anchor={h.anchor}>{h.text}</text>)}
+        {L.rows.map((r, i) => (
+          <>
+            <Link x1={r.sx} y1={r.y} x2={r.tx} y2={r.y} arrow="end" width={2} inset={13} insetEnd={13} label={r.type} draw delay={i * 0.08} />
+            <Disc cx={r.sx} cy={r.y} r={9} knockout={0} />
+            <Disc cx={r.tx} cy={r.y} r={9} knockout={0} />
+            <text class="dg-text dg-text--muted" x={r.at.x} y={r.y + r.at.dy} text-anchor={r.at.anchor} dominant-baseline="central">{r.gloss}</text>
+          </>
+        ))}
+      </Canvas>
+    ))
+  }
+</Figure>

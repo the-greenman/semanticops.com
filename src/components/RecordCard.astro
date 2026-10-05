@@ -1,0 +1,123 @@
+---
+import Tag from "./Tag.astro";
+import type { Status } from "./types";
+
+/**
+ * A record shown as a thing: an ink header (mono id, title, status) over rows of label
+ * and value. This is srs-web's record card, and it is the key visual of the product:
+ * knowledge arrives as typed fields, not as a wall of prose. The type line reads
+ * namespace/name@version, and required fields carry a marker.
+ */
+interface Props {
+  /** The record's short id. */
+  id: string;
+  /** namespace/name@version of its Type. */
+  type: string;
+  title: string;
+  status?: Status;
+  fields: { label: string; value: string; required?: boolean }[];
+  class?: string;
+}
+
+const { id, type, title, status, fields, class: className } = Astro.props;
+---
+
+<article class:list={["record-card", className]}>
+  <header class="record-card__header" data-surface="ink">
+    <div class="record-card__meta">
+      <span class="record-card__id">{id}</span>
+      <span class="record-card__type">{type}</span>
+    </div>
+    <h3 class="record-card__title">{title}</h3>
+    {status && <Tag status={status} class="record-card__status" />}
+  </header>
+  <dl class="record-card__body">
+    {
+      fields.map((f) => (
+        <div class="record-card__field">
+          <dt class="record-card__label">
+            {f.label}
+            {f.required && (
+              <>
+                <span class="record-card__req" aria-hidden="true">*</span>
+                <span class="sr-only"> (required)</span>
+              </>
+            )}
+          </dt>
+          <dd class="record-card__value">{f.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</article>
+
+<style>
+  @layer components {
+    .record-card {
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .record-card__header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-xs) var(--space-sm);
+      align-items: center;
+      padding: var(--space-sm) var(--space-sm);
+      color: var(--card-header-fg);
+    }
+
+    .record-card__meta {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2xs) var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      letter-spacing: var(--tracking-label);
+      color: var(--card-header-muted);
+    }
+
+    .record-card__title {
+      margin: 0;
+      font-size: var(--size-md);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-snug);
+      color: var(--card-header-fg);
+    }
+
+    .record-card__body {
+      margin: 0;
+    }
+
+    .record-card__field {
+      padding: var(--space-sm);
+      border-bottom: 1px solid var(--card-rule);
+    }
+
+    .record-card__field:last-child {
+      border-bottom: 0;
+    }
+
+    .record-card__label {
+      margin-bottom: var(--space-2xs);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    .record-card__req {
+      margin-left: var(--space-2xs);
+      color: var(--color-text);
+    }
+
+    .record-card__value {
+      margin: 0;
+      font-size: var(--size-base);
+      line-height: var(--leading-body);
+      color: var(--color-text);
+    }
+  }
+</style>

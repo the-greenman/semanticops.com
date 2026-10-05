@@ -1,0 +1,83 @@
+---
+/**
+ * A full-bleed band. The site alternates paper and ink bands; a page band sits on the
+ * white page. An ink band takes the dark scheme locally (everything inside re-resolves
+ * its colours) and carries the toner texture behind its content.
+ */
+interface Props {
+  /** paper: the default ground. ink: a dark band. page: the white page. */
+  variant?: "paper" | "ink" | "page";
+  /** Width of the content column. */
+  width?: "narrow" | "default" | "wide";
+  /** Anchor target. Linked sections clear the sticky header. */
+  id?: string;
+  /** Tighter vertical padding, for a thin band or a demonstration. */
+  compact?: boolean;
+  /** Element to render. */
+  as?: "section" | "div" | "aside";
+  class?: string;
+}
+
+const { variant = "paper", width = "default", id, compact = false, as: Tag = "section", class: className } = Astro.props;
+---
+
+<Tag {id} class:list={["section", `section--${variant}`, compact && "section--compact", className]} data-surface={variant === "paper" ? undefined : variant}>
+  <div class:list={["section__inner", `section__inner--${width}`]}>
+    <slot />
+  </div>
+</Tag>
+
+<style>
+  @layer components {
+    .section {
+      padding: var(--space-lg) var(--space-gutter);
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    .section[id] {
+      scroll-margin-top: var(--header-height);
+    }
+
+    .section--ink {
+      background: transparent;
+    }
+
+    .section--paper + .section--paper,
+    .section--page + .section--page,
+    .section--paper + .section--page,
+    .section--page + .section--paper {
+      border-top: var(--rule);
+    }
+
+    .section--compact {
+      padding-block: var(--space-md);
+    }
+
+    .section__inner {
+      margin-inline: auto;
+    }
+
+    .section__inner--narrow {
+      max-width: var(--width-narrow);
+    }
+
+    .section__inner--default {
+      max-width: var(--width-default);
+    }
+
+    .section__inner--wide {
+      max-width: var(--width-wide);
+    }
+
+    @media (min-width: 720px) {
+      .section {
+        padding-block: var(--space-xl);
+      }
+
+      .section--compact {
+        padding-block: var(--space-md);
+      }
+    }
+  }
+</style>

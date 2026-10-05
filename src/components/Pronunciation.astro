@@ -1,0 +1,83 @@
+---
+import RingNode from "./diagram/RingNode.astro";
+
+/**
+ * The name lockup: "srs", pronounced "source". The o of source is a ring in the record
+ * colour, because records are the source. The ring is decorative; the word is spoken
+ * to assistive tech as plain text.
+ */
+interface Props {
+  /** "lg" for the front door, "md" in running content. */
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const { size = "lg", class: className } = Astro.props;
+---
+
+<div class:list={["pron", `pron--${size}`, className]}>
+  <span class="pron__name">srs</span>
+  <span class="pron__say">
+    <span class="pron__label">pronounced</span>
+    <span class="pron__sound" aria-hidden="true">s<svg class="pron__o" viewBox="0 0 24 24" focusable="false"><RingNode cx={12} cy={12} r={10} tone="record" inner="none" fill="open" knockout={0} /></svg>urce</span>
+    <span class="sr-only">source</span>
+  </span>
+</div>
+
+<style>
+  @layer components {
+    .pron {
+      display: inline-flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .pron__name {
+      font-family: var(--font-sans);
+      font-weight: var(--weight-medium);
+      line-height: var(--leading-solid);
+      letter-spacing: var(--tracking-tight);
+      color: var(--color-text-strong);
+    }
+
+    .pron--lg .pron__name {
+      font-size: var(--size-display);
+    }
+
+    .pron--md .pron__name {
+      font-size: var(--size-xl);
+    }
+
+    .pron__say {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      font-family: var(--font-mono);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .pron__label {
+      font-size: var(--size-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-eyebrow);
+      color: var(--color-muted);
+    }
+
+    .pron__sound {
+      font-size: var(--size-md);
+      color: var(--color-text);
+    }
+
+    .pron--lg .pron__sound {
+      font-size: var(--size-lg);
+    }
+
+    .pron__o {
+      display: inline-block;
+      width: 0.62em;
+      height: 0.62em;
+      margin-inline: 0.03em;
+      vertical-align: -0.04em;
+    }
+  }
+</style>
