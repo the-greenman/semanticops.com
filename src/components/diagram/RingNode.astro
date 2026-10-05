@@ -19,16 +19,19 @@ interface Props {
   knockout?: number;
   label?: string;
   labelPosition?: Exclude<LabelPosition, "inside">;
+  /** Appear by growing from its centre, after `delay` seconds (motion figures only). */
+  pop?: boolean;
+  delay?: number;
   class?: string;
 }
 
-const { cx, cy, r, tone = "field", inner = "dot", fill = "pale", knockout = 3, label = "", labelPosition = "below", class: className } = Astro.props;
+const { cx, cy, r, tone = "field", inner = "dot", fill = "pale", knockout = 3, label = "", labelPosition = "below", pop = false, delay = 0, class: className } = Astro.props;
 
 const w = Math.max(1.5, r * 0.22);
 const place = labelAt(cx, cy, r, labelPosition);
 ---
 
-<g class:list={["dg-node", `dg-tone--${tone}`, className]}>
+<g class:list={["dg-node", `dg-tone--${tone}`, pop && "dg-pop", className]} style={pop ? `transform-origin:${cx}px ${cy}px;--dg-delay:${delay}s` : undefined}>
   {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
   <circle class:list={["dg-ring", fill === "open" && "dg-ring--open"]} {cx} {cy} r={r - w / 2} stroke-width={w}></circle>
   {inner === "dot" && <circle class="dg-dot" {cx} {cy} r={Math.max(1.2, r * 0.3)}></circle>}

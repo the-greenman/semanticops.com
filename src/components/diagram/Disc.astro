@@ -20,16 +20,19 @@ interface Props {
   /** Short label. Pass an empty string for none. */
   label?: string;
   labelPosition?: LabelPosition;
-  /** Extra classes on the group, e.g. "dg-wide-only". */
+  /** Appear by growing from its centre, after `delay` seconds (motion figures only). */
+  pop?: boolean;
+  delay?: number;
+  /** Extra classes on the group. */
   class?: string;
 }
 
-const { cx, cy, r, tone = "record", knockout = 3, hollow = false, label = "", labelPosition = "below", class: className } = Astro.props;
+const { cx, cy, r, tone = "record", knockout = 3, hollow = false, label = "", labelPosition = "below", pop = false, delay = 0, class: className } = Astro.props;
 
 const place = labelAt(cx, cy, r, labelPosition);
 ---
 
-<g class:list={["dg-node", `dg-tone--${tone}`, className]}>
+<g class:list={["dg-node", `dg-tone--${tone}`, pop && "dg-pop", className]} style={pop ? `transform-origin:${cx}px ${cy}px;--dg-delay:${delay}s` : undefined}>
   {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
   <circle class:list={["dg-disc", hollow && "dg-disc--hollow", tone === "note" && "dg-disc--note"]} {cx} {cy} {r}></circle>
   {

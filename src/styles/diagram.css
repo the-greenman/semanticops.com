@@ -8,7 +8,8 @@
      field      a field: a ring-node, a ring around a smaller ring or dot
      relation   a typed edge: a thin line
      note       a note: free text, provisional
-     ink        derived output: rendered, never authoritative
+     ink        the neutral: a part with no idea of its own (an adapter, a client).
+                A hollow ink ring is derived output, rendered and never authoritative.
    A knockout is a stroke in the ground colour where two shapes meet.
    ========================================================================== */
 
@@ -44,13 +45,6 @@
   }
 
   .dg--narrow-only {
-    display: none;
-  }
-}
-
-/* Labels that only fit the wide layout (the hero cluster) */
-@container figure (max-width: 599px) {
-  .dg-wide-only {
     display: none;
   }
 }
@@ -136,13 +130,19 @@
   fill: none;
 }
 
-/* Text: real <text> in the mono voice, sized by the diagram tokens */
+/* Text: real <text> in the mono voice, sized by the diagram tokens. Every label sits on a
+   halo in the ground colour (painted under the glyphs), wide enough to bridge a word space,
+   so the dot grid never shows through a run of text and a label that crosses a line breaks it. */
 .dg-text {
   font-family: var(--font-mono);
   font-size: var(--size-diagram);
   font-weight: var(--weight-regular);
   letter-spacing: var(--tracking-wide);
   fill: var(--dg-text);
+  stroke: var(--figure-ground);
+  stroke-width: var(--dg-halo);
+  stroke-linejoin: round;
+  paint-order: stroke;
 }
 
 .dg-text--muted {
@@ -167,47 +167,62 @@
   fill: var(--color-text-strong);
 }
 
-/* A label that sits over a line breaks the line with a ground-coloured halo. */
-.dg-text--knock {
-  stroke: var(--figure-ground);
-  stroke-width: 6px;
-  stroke-linejoin: round;
-  paint-order: stroke;
-}
-
+/* A label set on a fill (a disc, a note) has no halo: the fill is its ground. */
 .dg-text--on-note {
   font-weight: var(--weight-medium);
   fill: var(--color-on-note);
+  stroke: none;
 }
 
 .dg-text--on-disc {
   fill: var(--figure-ground);
   font-weight: var(--weight-medium);
+  stroke: none;
 }
 
 /* Motion: CSS only, and opt-in per figure (Figure `motion`), because a drawing-in that
    plays on load is wasted on a diagram below the fold. The natural state is the finished
-   drawing, so the animation runs from the start state and a browser without it (or
-   base.css under prefers-reduced-motion) shows the full diagram. --dg-len is the path
-   length in user units, set inline by the primitive that knows it. */
+   drawing, so each animation runs from its start state and a browser without it (or
+   base.css under prefers-reduced-motion) shows the full diagram. The sequence is composed by
+   the primitives through --dg-delay: a boundary draws, then its parts pop in, then the
+   relations draw, then whatever opens. --dg-len is the path length in user units.
+     dg-draw   a line or arc draws from its start; an arrowhead fades in after its line
+     dg-pop    a part appears, growing from its own centre
+     dg-fade   a label appears once its part is there */
 @keyframes dg-draw {
+  /* The offset overshoots by a hair and the gap is twice the length, so no round cap shows
+     at the start of a line that has not begun to draw. */
   from {
-    stroke-dashoffset: var(--dg-len);
+    stroke-dashoffset: calc(var(--dg-len) + 2);
   }
 }
 
-@keyframes dg-open {
+@keyframes dg-pop {
   from {
     opacity: 0;
-    transform: scale(0.15);
+    transform: scale(0.4);
+  }
+}
+
+@keyframes dg-fade {
+  from {
+    opacity: 0;
   }
 }
 
 .figure--motion .dg-draw {
-  stroke-dasharray: var(--dg-len);
-  animation: dg-draw 1.1s ease-out var(--dg-delay) backwards;
+  stroke-dasharray: var(--dg-len) calc(var(--dg-len) * 2);
+  animation: dg-draw 0.6s ease-out var(--dg-delay) backwards;
 }
 
-.figure--motion .dg-open {
-  animation: dg-open 1s cubic-bezier(0.2, 0.7, 0.2, 1) var(--dg-delay) backwards;
+.figure--motion .dg-arrow--late {
+  animation: dg-fade 0.2s ease-out calc(var(--dg-delay) + 0.45s) backwards;
+}
+
+.figure--motion .dg-pop {
+  animation: dg-pop 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) var(--dg-delay) backwards;
+}
+
+.figure--motion .dg-fade {
+  animation: dg-fade 0.3s ease-out var(--dg-delay) backwards;
 }

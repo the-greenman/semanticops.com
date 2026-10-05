@@ -4,8 +4,8 @@ import type { Tone } from "./tones";
 
 /**
  * A relation line between two points, with an optional mono label (the relation type)
- * that breaks the line with a knockout halo. Reads source to target: the arrow, when
- * present, points at the target.
+ * that breaks the line with its halo. Reads source to target: the arrow, when present,
+ * points at the target. When it draws in, the arrowhead appears only after its line.
  */
 interface Props {
   x1: number;
@@ -23,7 +23,7 @@ interface Props {
   /** Shorten the line at each end so it stops at the edge of a node. */
   inset?: number;
   insetEnd?: number;
-  /** Animate the line drawing in, after `delay` seconds. */
+  /** Animate the line drawing in, after `delay` seconds (and its arrowhead fading in after it). */
   draw?: boolean;
   delay?: number;
   class?: string;
@@ -44,7 +44,7 @@ const animate = draw && !dashed;
 const len = round(Math.hypot(b.x - a.x, b.y - a.y) + width);
 ---
 
-<g class:list={["dg-link", `dg-tone--${tone}`, className]}>
+<g class:list={["dg-link", `dg-tone--${tone}`, className]} style={animate ? `--dg-delay:${delay}s` : undefined}>
   <line
     class:list={["dg-line", dashed && "dg-line--dashed", animate && "dg-draw"]}
     x1={a.x}
@@ -52,13 +52,13 @@ const len = round(Math.hypot(b.x - a.x, b.y - a.y) + width);
     x2={b.x}
     y2={b.y}
     stroke-width={width}
-    style={animate ? `--dg-len:${len};--dg-delay:${delay}s` : undefined}
+    style={animate ? `--dg-len:${len}` : undefined}
   ></line>
-  {arrow === "end" && <polygon class="dg-arrow" points={tip(b, ang)}></polygon>}
-  {arrow === "start" && <polygon class="dg-arrow" points={tip(a, ang + Math.PI)}></polygon>}
+  {arrow === "end" && <polygon class:list={["dg-arrow", animate && "dg-arrow--late"]} points={tip(b, ang)}></polygon>}
+  {arrow === "start" && <polygon class:list={["dg-arrow", animate && "dg-arrow--late"]} points={tip(a, ang + Math.PI)}></polygon>}
   {
     label && (
-      <text class="dg-text dg-text--knock dg-text--muted" x={mid.x} y={mid.y} text-anchor="middle" dominant-baseline="central">
+      <text class="dg-text dg-text--muted" x={mid.x} y={mid.y} text-anchor="middle" dominant-baseline="central">
         {label}
       </text>
     )

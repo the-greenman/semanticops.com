@@ -4,4 +4,4 @@
 export type Status = "draft" | "proposed" | "active" | "ratified" | "superseded" | "archived";
 
 /** The ideas of the diagram vocabulary that Glyph can draw. */
-export type GlyphKind = "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+export type GlyphKind = "structure" | "record" | "field" | "relation" | "identity" | "note" | "part" | "derived";

@@ -7,13 +7,15 @@ import Figure from "./Figure.astro";
  * The signature diagram: a repository drawn as a broken ring with six records, thin
  * relation lines between them and a target centre. One record opens into a smaller
  * cluster of its own (its fields), and that into another: layered and drillable,
- * a meaningful surface that can be entered progressively.
+ * a meaningful surface that can be entered progressively. Every record carries its label,
+ * the one that opens included. Wide, the cluster opens to the upper right; narrow, it is
+ * turned so the same record opens downward and the figure stacks.
  */
 interface Props {
   number?: number;
   caption?: string;
   id?: string;
-  /** Six short labels for the records on the ring, clockwise from the top. Shown when there is room. */
+  /** Six short labels for the records on the ring, clockwise from the top (wide layout). */
   labels?: string[];
   grid?: boolean;
   /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
@@ -28,15 +30,16 @@ const {
   grid = true,
   motion = true,
 } = Astro.props;
+
+const title = "A repository that opens into itself";
+const desc = "A broken blue ring holds six vermilion records, joined by thin khaki relation lines, around a target centre. One record opens into a smaller broken ring of green fields, and one of those opens into a smaller ring again.";
 ---
 
 <Figure {number} {caption} {grid} {motion}>
-  <Canvas
-    {id}
-    viewBox="0 0 600 440"
-    title="A repository that opens into itself"
-    desc="A broken blue ring holds six vermilion records, joined by thin khaki relation lines, around a target centre. One record opens into a smaller broken ring of green fields, and one of those opens into a smaller ring again."
-  >
+  <Canvas layout="wide" {id} viewBox="0 0 600 440" {title} {desc}>
     <Cluster cx={200} cy={250} r={132} open={1} levels={2} {labels} />
+  </Canvas>
+  <Canvas layout="narrow" {id} viewBox="0 0 340 436" {title} {desc}>
+    <Cluster cx={170} cy={128} r={84} start={30} open={1} levels={2} {labels} />
   </Canvas>
 </Figure>

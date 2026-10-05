@@ -53,15 +53,16 @@
   /* Shiki's css-variables theme (CodeSample, and markdown code blocks in Prose) reads these. */
   --astro-code-foreground: var(--code-fg);
   --astro-code-background: var(--code-bg);
-  --astro-code-token-constant: var(--color-structure);
-  --astro-code-token-string: var(--color-field);
-  --astro-code-token-string-expression: var(--color-field);
+  /* Code is paper and ink: colour is reserved for the diagram meanings, so syntax is told by tone alone. */
+  --astro-code-token-constant: var(--color-text-strong);
+  --astro-code-token-string: var(--color-text);
+  --astro-code-token-string-expression: var(--color-text);
   --astro-code-token-comment: var(--color-muted);
-  --astro-code-token-keyword: var(--color-record);
+  --astro-code-token-keyword: var(--color-text-strong);
   --astro-code-token-parameter: var(--color-text);
-  --astro-code-token-function: var(--color-structure);
-  --astro-code-token-punctuation: var(--color-muted-strong);
-  --astro-code-token-link: var(--color-structure);
+  --astro-code-token-function: var(--color-text-strong);
+  --astro-code-token-punctuation: var(--color-muted);
+  --astro-code-token-link: var(--color-text);
 
   /* Quote */
   --quote-rule: var(--color-text-strong);
@@ -73,5 +74,6 @@
   --dg-link: var(--color-relation);
   --dg-text: var(--color-text);
   --dg-text-muted: var(--color-muted);
+  --dg-halo: 18px; /* the ground-coloured halo under every label, in user units: wider than a word space */
   --dg-delay: 0s; /* motion start delay; primitives override it inline */
 }

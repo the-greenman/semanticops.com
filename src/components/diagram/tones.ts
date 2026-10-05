@@ -1,6 +1,8 @@
 /**
  * The meaning each diagram colour carries (defined once as semantic tokens, shown as
- * the legend on /styleguide). `ink` is derived output: rendered, never authoritative.
+ * the legend on /styleguide). `ink` is not a meaning but the neutral: a part with no idea
+ * of its own (an adapter, a client). A hollow ink ring is derived output: rendered, never
+ * authoritative.
  */
 export type Tone = "structure" | "record" | "field" | "relation" | "note" | "ink";
 

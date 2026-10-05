@@ -13,15 +13,18 @@ interface Props {
   knockout?: number;
   label?: string;
   labelPosition?: Exclude<LabelPosition, "inside">;
+  /** Appear by growing from its centre, after `delay` seconds (motion figures only). */
+  pop?: boolean;
+  delay?: number;
 }
 
-const { cx, cy, r, knockout = 3, label = "", labelPosition = "below" } = Astro.props;
+const { cx, cy, r, knockout = 3, label = "", labelPosition = "below", pop = false, delay = 0 } = Astro.props;
 
 const ring = Math.max(1.5, r * 0.2);
 const place = labelAt(cx, cy, r, labelPosition);
 ---
 
-<g class="dg-node dg-target">
+<g class:list={["dg-node", "dg-target", pop && "dg-pop"]} style={pop ? `transform-origin:${cx}px ${cy}px;--dg-delay:${delay}s` : undefined}>
   {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
   <circle class="dg-inner-ring dg-tone--structure" {cx} {cy} r={r - ring / 2} stroke-width={ring}></circle>
   <circle class="dg-disc dg-tone--record" {cx} {cy} r={r * 0.64}></circle>
