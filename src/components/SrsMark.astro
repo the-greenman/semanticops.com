@@ -9,7 +9,7 @@ import Halves from "./diagram/Halves.astro";
  * seed of the other.
  *
  * Variants:
- *  - line    the srs-web mark as it ships: a disc with the S-wave drawn through it
+ *  - line    a disc with the S-wave drawn through it, top to bottom (srs-web turned upright)
  *  - halves  the two regions filled, each with a seed of the other
  *  - ring    the halves with ring-node seeds, inside a broken ring (the SemanticOps lockup)
  *
@@ -42,7 +42,7 @@ const { variant = "halves", size = 24, label, class: className } = Astro.props;
     variant === "line" && (
       <>
         <circle class="srs-mark__disc" cx="12" cy="12" r="10.75"></circle>
-        <path class="srs-mark__wave" d="M1.25 12 a5.375 5.375 0 0 1 10.75 0 a5.375 5.375 0 0 0 10.75 0"></path>
+        <path class="srs-mark__wave" d="M12 1.25 a5.375 5.375 0 0 0 0 10.75 a5.375 5.375 0 0 1 0 10.75"></path>
       </>
     )
   }

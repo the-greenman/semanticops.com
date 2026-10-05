@@ -4,17 +4,18 @@ import { round } from "./geometry";
 /**
  * One disc divided by an S-shaped line into two regions, each holding a seed of the
  * other. The line both divides and joins: it is the same line on either side. This is
- * the geometry of the SRS mark (srs-web's SrsMark: M1.25 12 a5.375 5.375 0 0 1 10.75 0
- * a5.375 5.375 0 0 0 10.75 0 in a 24 box) with the two regions filled. The two readers
- * of one source: people and agents. The geometry descends from the taijitu; the site
- * never says so, it only draws it.
+ * the geometry of the SRS mark (in a 24 box: M12 1.25 a5.375 5.375 0 0 0 0 10.75
+ * a5.375 5.375 0 0 1 0 10.75), the line running top to bottom so it reads as an S,
+ * with the two regions filled. The two readers of one source: people on the left,
+ * agents on the right. The geometry descends from the taijitu; the site never says so,
+ * it only draws it.
  */
 interface Props {
   cx: number;
   cy: number;
   r: number;
-  /** Which tone fills the upper region. The lower region takes the other. */
-  upper?: "ink" | "paper";
+  /** Which tone fills the right region. The left region takes the other. */
+  right?: "ink" | "paper";
   /** The seed in each region: a dot, or a ring-node. */
   seed?: "dot" | "ring";
   /** Outline width. Defaults to a tenth of the radius. */
@@ -22,26 +23,28 @@ interface Props {
   class?: string;
 }
 
-const { cx, cy, r, upper = "ink", seed = "dot", edge, class: className } = Astro.props;
+const { cx, cy, r, right = "ink", seed = "dot", edge, class: className } = Astro.props;
 
-const lower = upper === "ink" ? "paper" : "ink";
+const left = right === "ink" ? "paper" : "ink";
 const h = r / 2;
-const left = round(cx - r);
-const right = round(cx + r);
-// Upper region: the big upper arc, then back along the S (reversed): bottom-right bump, then top-left bump.
-const regionUpper = `M${left} ${cy}A${r} ${r} 0 0 1 ${right} ${cy}A${h} ${h} 0 0 1 ${cx} ${cy}A${h} ${h} 0 0 0 ${left} ${cy}Z`;
+const top = round(cy - r);
+const bottom = round(cy + r);
+// The S runs top to bottom, bulging left above the centre and right below it. The right
+// region: the big right arc down, then back up the S (reversed).
+const regionRight = `M${cx} ${top}A${r} ${r} 0 0 1 ${cx} ${bottom}A${h} ${h} 0 0 0 ${cx} ${cy}A${h} ${h} 0 0 1 ${cx} ${top}Z`;
 const w = edge ?? Math.max(0.6, r * 0.1);
 const sr = r * 0.14;
-// The seed of each region sits at the centre of the other's head.
+// Each region's head is a half-radius circle: the right region's at the top, the left's at
+// the bottom. The seed in each head takes the other region's tone.
 const seeds = [
-  { x: cx, y: round(cy - h), tone: lower },
-  { x: cx, y: round(cy + h), tone: upper },
+  { x: cx, y: round(cy - h), tone: left },
+  { x: cx, y: round(cy + h), tone: right },
 ];
 ---
 
 <g class:list={["dg-halves", className]}>
-  <circle class={`dg-half--${lower}`} {cx} {cy} {r}></circle>
-  <path class={`dg-half--${upper}`} d={regionUpper}></path>
+  <circle class={`dg-half--${left}`} {cx} {cy} {r}></circle>
+  <path class={`dg-half--${right}`} d={regionRight}></path>
   {
     seeds.map((s) =>
       seed === "ring" ? (

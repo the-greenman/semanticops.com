@@ -388,10 +388,10 @@ const relationJson = `{
   <!-- MARKS -->
   <Section id="marks">
     <SectionHeader eyebrow="Identity" title="Marks, for the owner to choose">
-      Candidates for the SRS mark and the SemanticOps mark, each at the sizes it has to work at, on paper and on ink. The geometry of the S-wave is the one srs-web ships, so the 16px reading is unchanged.
+      Candidates for the SRS mark and the SemanticOps mark, each at the sizes it has to work at, on paper and on ink. The S-wave runs top to bottom so the dividing line reads as an S, for source. It is the srs-web geometry turned upright.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen layout="stack" title="SrsMark: line" note="The srs-web mark as it ships: a disc with the S-wave drawn through it. Kept for compatibility, and still the clearest at 16px." code={`<SrsMark variant="line" size={24} />`}>
+      <Specimen layout="stack" title="SrsMark: line" note="A disc with the S-wave drawn through it, top to bottom, so it reads as an S. The srs-web mark turned upright, and the clearest at 16px." code={`<SrsMark variant="line" size={24} />`}>
         <MarkRow mark="srs" variant="line" />
       </Specimen>
       <Specimen layout="stack" title="SrsMark: halves (recommended)" note="The same disc and the same line, with the two regions filled and each holding a seed of the other. It reads as one source and two readers, people and agents, and it is the shape the TwoSurfaces diagram explains. Recommended as the primary mark." code={`<SrsMark variant="halves" size={24} />`}>
@@ -472,12 +472,12 @@ const relationJson = `{
           <Disc cx={150} cy={55} r={18} knockout={0} />
         </Canvas>
       </Specimen>
-      <Specimen title="Halves" note="One disc divided by an S-shaped line, each region holding a seed of the other. The geometry of the SRS mark, and the two readers of one source. upper picks which region is ink; seed is dot or ring." code={`<Halves cx={60} cy={60} r={48} upper="ink" seed="dot" />`}>
+      <Specimen title="Halves" note="One disc divided by an S-shaped line, each region holding a seed of the other. The geometry of the SRS mark, and the two readers of one source. right picks which region is ink; seed is dot or ring." code={`<Halves cx={60} cy={60} r={48} right="ink" seed="dot" />`}>
         <Canvas id="sg-halves" viewBox="0 0 460 130" title="Halves" desc="Four discs divided by an S-shaped line: ink above with dot seeds, paper above with dot seeds, and both again with ring seeds.">
-          <Halves cx={60} cy={62} r={48} upper="ink" seed="dot" edge={2} />
-          <Halves cx={170} cy={62} r={48} upper="paper" seed="dot" edge={2} />
-          <Halves cx={280} cy={62} r={48} upper="ink" seed="ring" edge={2} />
-          <Halves cx={390} cy={62} r={48} upper="paper" seed="ring" edge={2} />
+          <Halves cx={60} cy={62} r={48} right="ink" seed="dot" edge={2} />
+          <Halves cx={170} cy={62} r={48} right="paper" seed="dot" edge={2} />
+          <Halves cx={280} cy={62} r={48} right="ink" seed="ring" edge={2} />
+          <Halves cx={390} cy={62} r={48} right="paper" seed="ring" edge={2} />
         </Canvas>
       </Specimen>
       <Specimen title="Cluster" note="A unit of knowledge with its parts: a broken ring, six parts, hairline relations and a target. Self-similar: open one part and it becomes a smaller cluster, which can open again. levels sets how many open; labels names the six parts, and the opened part's label sits beside it, clear of the zoom link." code={`<Cluster cx={160} cy={160} r={110} open={1} levels={2} labels={[...]} />`}>
