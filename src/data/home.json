@@ -232,7 +232,9 @@
         "slug": "one-source-two-readers",
         "title": "One source, two readers",
         "claim": "The same records serve people and agents, each through a surface built for them.",
-        "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source."
+        "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source.",
+        "pole_a": "One source",
+        "pole_b": "Two readers"
       }
     },
     {

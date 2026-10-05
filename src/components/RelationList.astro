@@ -1,0 +1,53 @@
+---
+import Chip from "./Chip.astro";
+
+/**
+ * The relations of a record, read as a sentence: "Depends on" and the things it depends on,
+ * each a chip carrying the relation colour (khaki), linked where the target is on the site.
+ * The label is the data's own reading of the relation type; nothing is written here.
+ */
+interface Props {
+  relations: { label: string; targets: { label: string; href?: string }[] }[];
+  class?: string;
+}
+
+const { relations, class: className } = Astro.props;
+---
+
+<ul class:list={["relation-list", className]}>
+  {
+    relations.map((r) => (
+      <li class="relation-list__item">
+        <span class="t-label">{r.label}</span>
+        <ul class="cluster">
+          {r.targets.map((t) => (
+            <li>
+              <Chip tone="relation" href={t.href}>
+                {t.label}
+              </Chip>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  @layer components {
+    .relation-list {
+      display: grid;
+      gap: var(--space-xs);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .relation-list__item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-xs) var(--space-sm);
+    }
+  }
+</style>

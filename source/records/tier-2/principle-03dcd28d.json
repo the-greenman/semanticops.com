@@ -8,9 +8,11 @@
     "claim": "A definition never changes underneath the records that use it, and records still move through states.",
     "title": "Fixed meaning, changing state",
     "slug": "fixed-meaning-changing-state",
-    "explanation": "Field semantics are immutable and a Record binds to an exact Type version, so what a value means is fixed. State is separate: with the lifecycle extension a Record moves through declared states, such as draft and ratified, without its meaning changing. When meaning must change, the answer is a new version or a successor, never an edit in place."
+    "explanation": "Field semantics are immutable and a Record binds to an exact Type version, so what a value means is fixed. State is separate: with the lifecycle extension a Record moves through declared states, such as draft and ratified, without its meaning changing. When meaning must change, the answer is a new version or a successor, never an edit in place.",
+    "pole_a": "Fixed meaning",
+    "pole_b": "Changing state"
   },
   "createdAt": "2026-10-05T19:18:42.433646730+00:00",
-  "updatedAt": "2026-10-05T19:18:42.433651911+00:00",
+  "updatedAt": "2026-10-05T21:15:36.062196288+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

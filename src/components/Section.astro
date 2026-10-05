@@ -9,7 +9,7 @@ interface Props {
   variant?: "paper" | "ink" | "page";
   /** Width of the content column. */
   width?: "narrow" | "default" | "wide";
-  /** Anchor target. Linked sections clear the sticky header. */
+  /** Anchor target. Every id clears the sticky header (base.css). */
   id?: string;
   /** Tighter vertical padding, for a thin band or a demonstration. */
   compact?: boolean;
@@ -33,10 +33,6 @@ const { variant = "paper", width = "default", id, compact = false, as: Tag = "se
       padding: var(--space-lg) var(--space-gutter);
       background: var(--color-bg);
       color: var(--color-text);
-    }
-
-    .section[id] {
-      scroll-margin-top: var(--header-height);
     }
 
     .section--ink {

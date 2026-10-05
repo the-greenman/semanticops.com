@@ -1,0 +1,40 @@
+---
+import Base from "../layouts/Base.astro";
+import AgentEdition from "../components/AgentEdition.astro";
+import OnThisPage from "../components/OnThisPage.astro";
+import PageLinks from "../components/PageLinks.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PageBands from "../components/page/PageBands.astro";
+import { INDEX_MIN_BANDS, closingSurface, indexOf, toBands } from "../lib/bands";
+import { agentEdition, contentPages, getPage, site } from "../lib/content";
+
+/** One route for every page with its own address: a page added in source/ appears here with no new file. */
+export function getStaticPaths() {
+  return contentPages.map((p) => ({ params: { page: p.key } }));
+}
+
+const page = getPage(Astro.params.page);
+const bands = toBands(page.entries, page.key);
+const index = bands.length >= INDEX_MIN_BANDS ? indexOf(bands) : [];
+const others = contentPages.filter((p) => p.key !== page.key);
+// The closing band takes its ground by the same turn-taking as the bands above it.
+const tail = closingSurface(bands);
+---
+
+<Base title={page.title} description={page.summary}>
+  <Section id={page.record.slug}>
+    <div class="stack stack--md">
+      <SectionHeader level="h1" eyebrow={site.title} title={page.title}>{page.summary}</SectionHeader>
+      {index.length > 0 && <OnThisPage items={index} />}
+      <AgentEdition {...agentEdition(page.key)} />
+    </div>
+  </Section>
+  <PageBands {bands} page={page.key} />
+  <Section variant={tail}>
+    <div class="stack stack--md">
+      <SectionHeader title="Keep reading" />
+      <PageLinks items={others.map((p) => ({ href: p.href, title: p.title, summary: p.summary }))} />
+    </div>
+  </Section>
+</Base>

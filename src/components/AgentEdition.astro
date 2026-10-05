@@ -1,0 +1,50 @@
+---
+import Glyph from "./diagram/Glyph.astro";
+
+/**
+ * The quiet link from a human page to its own data: the same records, as markdown and as
+ * JSON, for an agent. It makes the two-surfaces idea tangible. The hollow ink ring is the
+ * glyph of derived output, because both files are projections of the page's records.
+ */
+interface Props {
+  md: string;
+  json: string;
+  /** The visible label. */
+  label?: string;
+  /** What each link is, said to assistive technology before its path. */
+  context?: { md: string; json: string };
+  class?: string;
+}
+
+const { md, json, label = "Read this page as data", context = { md: "Markdown edition of this page", json: "JSON edition of this page" }, class: className } = Astro.props;
+---
+
+<p class:list={["agent-edition", className]}>
+  <Glyph kind="derived" size={18} />
+  <span class="t-label">{label}</span>
+  <a class="agent-edition__link" href={md}><span class="sr-only">{context.md}: </span>{md}</a>
+  <a class="agent-edition__link" href={json}><span class="sr-only">{context.json}: </span>{json}</a>
+</p>
+
+<style>
+  @layer components {
+    .agent-edition {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2xs) var(--space-sm);
+      margin: 0;
+    }
+
+    .agent-edition__link {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--color-muted-strong);
+      overflow-wrap: anywhere;
+    }
+
+    .agent-edition__link:hover {
+      color: var(--color-text-strong);
+    }
+  }
+</style>

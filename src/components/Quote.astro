@@ -2,11 +2,12 @@
 /**
  * A quotation, set large with a hard rule: for the owner's phrasings, charter
  * sentences and other lines worth quoting faithfully. The attribution is a mono label.
+ * xl is for the one line a page turns on.
  */
 interface Props {
   /** Who or what the words come from. */
   cite?: string;
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "xl";
   class?: string;
 }
 
@@ -42,6 +43,10 @@ const { cite, size = "md", class: className } = Astro.props;
 
     .quote--lg .quote__body {
       font-size: var(--size-h3);
+    }
+
+    .quote--xl .quote__body {
+      font-size: var(--size-h2);
     }
 
     .quote__cite {

@@ -25,6 +25,16 @@
       "fieldId": "2d7d565a-8870-4153-9f43-e09dc539b57e",
       "order": 3,
       "labelMode": "none"
+    },
+    {
+      "fieldId": "70c8895f-3e83-4f8e-aca6-0bb9130d3d88",
+      "order": 4,
+      "visible": false
+    },
+    {
+      "fieldId": "fc120bab-1dbc-438f-8413-d0aa6856f38e",
+      "order": 5,
+      "visible": false
     }
   ],
   "compatibleTypes": [

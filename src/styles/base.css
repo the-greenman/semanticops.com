@@ -134,6 +134,11 @@ hr {
   margin: var(--space-md) 0;
 }
 
+/* A deep link lands clear of the sticky header. */
+[id] {
+  scroll-margin-top: var(--anchor-offset);
+}
+
 img,
 svg {
   max-width: 100%;

@@ -1,0 +1,90 @@
+---
+import CodeSample from "./CodeSample.astro";
+import Prose from "./Prose.astro";
+import RelationList from "./RelationList.astro";
+import SectionHeader from "./SectionHeader.astro";
+import type { GlyphKind } from "./types";
+
+/**
+ * One idea of the model, set as a chapter: a margin column with its number, glyph, title,
+ * one-line summary, relations and a reference link, and beside it the explanation (the slot,
+ * rendered markdown) and a real example as JSON. On a wide screen the margin column stays in
+ * view while the explanation scrolls; below 960px everything stacks. Use it for one concept
+ * per band, where the example is the evidence for the words.
+ */
+interface Props {
+  /** The ordinal, as text: "01". Matches the page index. */
+  number?: string;
+  title: string;
+  /** The one-line summary: the lede. */
+  summary: string;
+  glyph?: GlyphKind;
+  /** Real JSON, trimmed from the specification. Shown verbatim. */
+  example?: string;
+  /** A link to the definition. */
+  reference?: { href: string; text: string };
+  relations?: { label: string; targets: { label: string; href?: string }[] }[];
+  class?: string;
+}
+
+const { number, title, summary, glyph = "part", example, reference, relations = [], class: className } = Astro.props;
+---
+
+<div class:list={["concept", "split", "split--start", className]}>
+  <div class="concept__aside stack stack--md">
+    <SectionHeader eyebrow={number} {glyph} {title}>{summary}</SectionHeader>
+    {relations.length > 0 && <RelationList {relations} />}
+    {
+      reference && (
+        <a class="concept__ref" href={reference.href}>
+          <span class="t-label">Reference</span>
+          <span class="concept__url">{reference.text}</span>
+        </a>
+      )
+    }
+  </div>
+  <div class="concept__main stack stack--md">
+    <Prose><slot /></Prose>
+    {example && <CodeSample filename="Example" lang="json" code={example} />}
+  </div>
+</div>
+
+<style>
+  @layer components {
+    .concept__main {
+      min-width: 0;
+    }
+
+    .concept__aside {
+      min-width: 0;
+    }
+
+    .concept__ref {
+      display: grid;
+      gap: var(--space-2xs);
+      color: var(--color-muted-strong);
+      text-decoration: none;
+    }
+
+    .concept__url {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      overflow-wrap: anywhere;
+      text-decoration: underline;
+      text-decoration-color: var(--color-line);
+      text-underline-offset: 0.18em;
+    }
+
+    .concept__ref:hover .concept__url {
+      color: var(--color-text-strong);
+      text-decoration-color: var(--color-text-strong);
+    }
+
+    @media (min-width: 960px) {
+      .concept__aside {
+        position: sticky;
+        top: var(--anchor-offset);
+      }
+    }
+  }
+</style>

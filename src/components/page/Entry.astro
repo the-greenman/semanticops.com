@@ -1,0 +1,158 @@
+---
+import ConceptCard from "../ConceptCard.astro";
+import ConceptEntry from "../ConceptEntry.astro";
+import PrincipleItem from "../PrincipleItem.astro";
+import ProjectCard from "../ProjectCard.astro";
+import Prose from "../Prose.astro";
+import Quote from "../Quote.astro";
+import SectionHeader from "../SectionHeader.astro";
+import { displayUrl, findConcept, linkTo, pageOf, type Entry, type Relation } from "../../lib/content";
+import { markdown, markdownInline } from "../../lib/markdown";
+import { lookFor, visuals, type Look } from "../../lib/presentation";
+
+/**
+ * One record on a page, drawn by its type and its look (src/lib/presentation.ts). It has no
+ * look of its own: a section is a header and its prose, a concept a chapter, a project a card,
+ * a principle an item, a headline or a pair. A diagram from the look is drawn beneath it.
+ * Every entry carries `id={slug}`: on the band when it opens one (`head`), so the id is never
+ * written twice, and otherwise on its own element (`anchor`). The heading is the band's h2 for a
+ * head and an h3 inside one. Facts are never written here.
+ */
+interface Props {
+  entry: Entry;
+  /** The page key, to resolve relation links. */
+  page: string;
+  look: Look;
+  /** True when this entry opens its band: its heading is the band's h2 and the band carries the id. */
+  head?: boolean;
+  /** The ordinal shown on a concept or a numbered principle. */
+  number?: string;
+  /** The figure number of the look's diagram. */
+  figure?: number;
+}
+
+const { entry, page, look, head = false, number, figure } = Astro.props;
+const Visual = look.visual && visuals[look.visual];
+const level = head ? "h2" : "h3";
+const anchor = head ? undefined : entry.slug;
+
+/** A relation's targets, linked where they are rendered on the site. */
+const linked = (relations: Relation[] = []) =>
+  relations.map((r) => ({ label: r.label, targets: r.targets.map((t) => ({ label: t.label, href: t.slug ? linkTo(t.slug, page) : undefined })) }));
+
+// Markdown fields, rendered once, here.
+const ledeHtml = entry.type === "section" ? await markdownInline(entry.fields.lede) : "";
+const bodyHtml =
+  entry.type === "section" ? (entry.fields.body && look.body !== false ? await markdown(entry.fields.body) : "") : entry.type === "concept" ? await markdown(entry.fields.body) : "";
+const explanationHtml = entry.type === "principle" ? await markdown(entry.fields.explanation) : "";
+// A held pair names its two sides in two fields: shown as a pair only when the look asks and both are set.
+const poles = entry.type === "principle" && look.as === "pair" && entry.fields.pole_a && entry.fields.pole_b ? ([entry.fields.pole_a, entry.fields.pole_b] as [string, string]) : undefined;
+const cards = (look.cards ?? []).flatMap((slug) => findConcept(slug) ?? []);
+---
+
+{
+  entry.type === "section" && (
+    <div class="stack stack--md" id={anchor}>
+      {look.ledeAs === "quote" || bodyHtml ? (
+        <div class="split split--start">
+          {look.ledeAs === "quote" ? (
+            <SectionHeader eyebrow={entry.fields.eyebrow} title={entry.fields.title} {level} />
+          ) : (
+            <SectionHeader eyebrow={entry.fields.eyebrow} title={entry.fields.title} {level}>
+              <Fragment set:html={ledeHtml} />
+            </SectionHeader>
+          )}
+          <div class="stack stack--md">
+            {look.ledeAs === "quote" && (
+              <Quote size="lg">
+                <Fragment set:html={ledeHtml} />
+              </Quote>
+            )}
+            {bodyHtml && (
+              <Prose>
+                <Fragment set:html={bodyHtml} />
+              </Prose>
+            )}
+          </div>
+        </div>
+      ) : (
+        <SectionHeader eyebrow={entry.fields.eyebrow} title={entry.fields.title} {level}>
+          <Fragment set:html={ledeHtml} />
+        </SectionHeader>
+      )}
+      {cards.length > 0 && (
+        <div class="grid grid--lg grid--gap-md">
+          {cards.map((c) => (
+            <ConceptCard id={`${entry.slug}-${c.slug}`} kind={pageOf(c.slug)?.title ?? ""} glyph={lookFor(page, c.slug).glyph ?? "part"} title={c.fields.title} href={linkTo(c.slug, page)}>
+              {c.fields.summary}
+            </ConceptCard>
+          ))}
+        </div>
+      )}
+      {Visual && <Visual number={figure} id={`fig-${entry.slug}`} />}
+    </div>
+  )
+}
+
+{
+  entry.type === "concept" && (
+    <div class="stack stack--md" id={anchor}>
+      <ConceptEntry
+        {number}
+        title={entry.fields.title}
+        summary={entry.fields.summary}
+        glyph={look.glyph}
+        example={entry.fields.example}
+        reference={entry.fields.spec_link ? { href: entry.fields.spec_link, text: displayUrl(entry.fields.spec_link) } : undefined}
+        relations={linked(entry.relations)}
+      >
+        <Fragment set:html={bodyHtml} />
+      </ConceptEntry>
+      {Visual && <Visual number={figure} id={`fig-${entry.slug}`} />}
+    </div>
+  )
+}
+
+{
+  entry.type === "project" && (
+    <ProjectCard
+      id={anchor}
+      {level}
+      name={entry.fields.name}
+      kind={entry.fields.kind}
+      href={entry.fields.repository}
+      tagline={entry.fields.tagline}
+      audience={entry.fields.audience}
+      makes={entry.fields.makes_possible}
+      relations={linked(entry.relations)}
+      tags={[entry.fields.licence]}
+    >
+      {entry.fields.summary}
+    </ProjectCard>
+  )
+}
+
+{
+  entry.type === "principle" && look.as === "headline" && (
+    <div class="split split--start" id={anchor}>
+      <SectionHeader title={entry.fields.title} {level} />
+      <div class="stack stack--md">
+        <Quote size="xl">{entry.fields.claim}</Quote>
+        <Prose>
+          <Fragment set:html={explanationHtml} />
+        </Prose>
+      </div>
+    </div>
+  )
+}
+
+{
+  entry.type === "principle" && look.as !== "headline" && (
+    <>
+      <PrincipleItem id={anchor} {level} {number} title={entry.fields.title} claim={entry.fields.claim} {poles}>
+        <Fragment set:html={explanationHtml} />
+      </PrincipleItem>
+      {Visual && <Visual number={figure} id={`fig-${entry.slug}`} />}
+    </>
+  )
+}

@@ -1,0 +1,58 @@
+---
+import Section from "../Section.astro";
+import Entry from "./Entry.astro";
+import type { Band } from "../../lib/bands";
+
+/**
+ * The body of a page: its bands, in order, as full-bleed sections. Where a band ends and which
+ * ground it sits on were decided once, by toBands (src/lib/bands.ts) and the presentation map;
+ * this only lays them out. A band's items are grouped by form (a grid of project cards, a grid of
+ * principles, a stack of pairs). Figure numbers count up through the page in the order the
+ * diagrams appear.
+ */
+interface Props {
+  /** The page's bands, from toBands. Computed once by the page, which also needs them for its index and its closing band. */
+  bands: Band[];
+  /** The page key. */
+  page: string;
+  /** The number of the first figure on the page: home's hero is FIG. 01, so its next is 2. */
+  figureStart?: number;
+}
+
+const { bands, page, figureStart = 1 } = Astro.props;
+
+// Figure numbers by order of appearance.
+let figure = figureStart;
+const figures = new Map<string, number>();
+const pad = (n: number) => String(n).padStart(2, "0");
+for (const b of bands) {
+  for (const { entry, look } of [{ entry: b.head, look: b.headLook }, ...b.runs.flatMap((r) => r.items)]) if (look.visual) figures.set(entry.slug, figure++);
+}
+---
+
+{
+  bands.map((band) => (
+    <Section variant={band.surface} id={band.head.slug}>
+      <div class="stack stack--md">
+        <Entry entry={band.head} {page} look={band.headLook} head number={band.number} figure={figures.get(band.head.slug)} />
+        {band.runs.map((run) =>
+          run.form === "project" ? (
+            <div class="grid grid--xl grid--gap-md">
+              {run.items.map((i) => <Entry entry={i.entry} {page} look={i.look} />)}
+            </div>
+          ) : run.form === "principle" ? (
+            <div class={run.items.length > 1 ? `grid grid--fit grid--gap-md ${run.items.length % 3 === 0 ? "grid--lg" : "grid--xl"}` : undefined}>
+              {run.items.map((i, n) => (
+                <Entry entry={i.entry} {page} look={i.look} number={run.items.length > 2 ? pad(n + 1) : undefined} />
+              ))}
+            </div>
+          ) : (
+            <div class="stack stack--md">
+              {run.items.map((i) => <Entry entry={i.entry} {page} look={i.look} figure={figures.get(i.entry.slug)} />)}
+            </div>
+          ),
+        )}
+      </div>
+    </Section>
+  ))
+}

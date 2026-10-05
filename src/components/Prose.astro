@@ -83,8 +83,11 @@ const { measure = "text", class: className } = Astro.props;
       background: none;
     }
 
+    /* A wide table scrolls inside the prose, never the page. */
     .prose :global(table) {
-      width: 100%;
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
       border-collapse: collapse;
       font-size: var(--size-sm);
     }

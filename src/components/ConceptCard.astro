@@ -14,13 +14,15 @@ interface Props {
   /** Which glyph of the diagram vocabulary draws it. */
   glyph?: GlyphKind;
   href?: string;
+  /** Anchor target. */
+  id?: string;
   class?: string;
 }
 
-const { kind, title, glyph = "record", href, class: className } = Astro.props;
+const { kind, title, glyph = "record", href, id, class: className } = Astro.props;
 ---
 
-<article class:list={["concept-card", href && "concept-card--link", className]}>
+<article {id} class:list={["concept-card", href && "concept-card--link", className]}>
   <div class="concept-card__head">
     <Glyph kind={glyph} size={28} />
     <span class="t-label">{kind}</span>
@@ -69,6 +71,16 @@ const { kind, title, glyph = "record", href, class: className } = Astro.props;
       content: "";
       position: absolute;
       inset: 0;
+    }
+
+    /* The whole item is the target, so the focus ring is drawn on the overlay and not on the small link text. */
+    .concept-card__link:focus-visible {
+      outline: none;
+    }
+
+    .concept-card__link:focus-visible::after {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
     }
 
     .concept-card__body {

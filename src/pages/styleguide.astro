@@ -1,12 +1,19 @@
 ---
 import Base from "../layouts/Base.astro";
+import type { Entry } from "../lib/content";
+import { toBands } from "../lib/bands";
+import { lookTable } from "../lib/presentation";
+import AgentEdition from "../components/AgentEdition.astro";
 import Button from "../components/Button.astro";
 import Chip from "../components/Chip.astro";
 import CodeSample from "../components/CodeSample.astro";
 import ConceptCard from "../components/ConceptCard.astro";
+import ConceptEntry from "../components/ConceptEntry.astro";
 import Eyebrow from "../components/Eyebrow.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import Legend from "../components/Legend.astro";
+import OnThisPage from "../components/OnThisPage.astro";
+import PageLinks from "../components/PageLinks.astro";
 import Lede from "../components/Lede.astro";
 import Quote from "../components/Quote.astro";
 import Pronunciation from "../components/Pronunciation.astro";
@@ -14,6 +21,7 @@ import Prose from "../components/Prose.astro";
 import PrincipleItem from "../components/PrincipleItem.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import RecordCard from "../components/RecordCard.astro";
+import RelationList from "../components/RelationList.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import SemanticOpsMark from "../components/SemanticOpsMark.astro";
@@ -21,6 +29,7 @@ import SrsMark from "../components/SrsMark.astro";
 import Tag from "../components/Tag.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import Wordmark from "../components/Wordmark.astro";
+import PageBands from "../components/page/PageBands.astro";
 import BrokenRing from "../components/diagram/BrokenRing.astro";
 import Canvas from "../components/diagram/Canvas.astro";
 import CapabilityStack from "../components/diagram/CapabilityStack.astro";
@@ -76,6 +85,7 @@ const toc = [
   ["layout", "Layout"],
   ["content", "Content"],
   ["cards", "Cards"],
+  ["assembly", "Page assembly"],
   ["marks", "Marks"],
   ["primitives", "Diagram primitives"],
   ["diagrams", "Diagrams"],
@@ -97,6 +107,21 @@ const proseSample = `
     <tr><td><code>supersedes</code></td><td>replaces, and keeps the original</td></tr>
   </tbody>
 </table>`;
+
+// The presentation map as a table, and a tiny page of sample entries for PageBands.
+const lookRows = lookTable();
+const demoSection = (slug: string, title: string, eyebrow: string, lede: string, body: string): Entry => ({
+  instanceId: `demo-${slug}`,
+  type: "section",
+  slug,
+  fields: { slug, title, eyebrow, lede, body },
+});
+const demoEntries: Entry[] = [
+  demoSection("demo-first", "A section opens a band", "Page", "Order is the data's order. Paper and page take turns from the band above.", "The entries that follow a section, up to the next one, are its items."),
+  demoSection("demo-second", "The next one takes the other ground", "Paper", "Nothing here chooses a colour.", "A look in the map can ask for ink."),
+  demoSection("demo-ink", "Ink only where the map asks", "Ink", "The map has an ink look for this slug, on this page only.", "The band re-resolves every colour inside it."),
+];
+const demoBands = toBands(demoEntries, "styleguide");
 
 const recordJson = `{
   "instanceId": "7c2e9f41-3b8a-4d6e-a1f0-52c9e8d3b764",
@@ -249,6 +274,29 @@ const relationJson = `{
       <Specimen layout="stack" title="SiteHeader and SiteFooter" note="The header at the top of this page and the footer at the bottom are the live specimens. At 720px and up the header nav is inline. Below that it is a native popover opened by the Menu button: no framework, no script. The footer sits on an ink band and carries the credit, the agent edition link, the repositories and the theme control.">
         <p class="t-muted">Resize the window below 720px to see the menu.</p>
       </Specimen>
+      <Specimen layout="stack" title="OnThisPage" note="An index of a long page: anchor links to its parts, in the page's order. A numbered item shows the same ordinal as the part's own heading; one without a number shows its label alone. It appears in the header of any page with four or more bands. Give a second index on one page its own title, so the two landmarks have different names." code={`<OnThisPage items={[{ href: "#field", label: "Field", number: "01" }]} />`}>
+        <OnThisPage
+          title="Specimen index"
+          items={[
+            { href: "#layout", label: "Sections, header and footer" },
+            { href: "#content", label: "Eyebrow", number: "01" },
+            { href: "#content", label: "Lede", number: "02" },
+            { href: "#cards", label: "Cards", number: "03" },
+          ]}
+        />
+      </Specimen>
+      <Specimen title="AgentEdition" note="The quiet link from a human page to its own data: the same records as markdown and as JSON. Every page carries one, so the two-surfaces idea is something a reader can click. The hollow ring is the glyph of derived output. Each link says what it is to assistive technology, for example Markdown edition of this page, before its path." code={`<AgentEdition md="/agents/model.md" json="/agents/model.json" />`}>
+        <AgentEdition md="/agents/model.md" json="/agents/model.json" />
+      </Specimen>
+      <Specimen layout="stack" title="PageLinks" note="Where to read next: the other pages, each a title and its summary, the whole item a link. The pages come from the data, so a page added to the repository appears here." code={`<PageLinks items={[{ href: "/model", title: "Model", summary: "..." }]} />`}>
+        <PageLinks
+          items={[
+            { href: "#cards", title: "Cards", summary: "Containers for one idea, one record or one project." },
+            { href: "#marks", title: "Marks", summary: "The SRS mark and the SemanticOps mark, at the sizes they have to work at." },
+            { href: "#diagrams", title: "Diagrams", summary: "Six diagrams, each composed from the primitives." },
+          ]}
+        />
+      </Specimen>
       <Specimen title="ThemeToggle" note="Auto follows the system. Light and dark are forced and remembered in localStorage inside try/catch. Dark is the same pair of paper and ink read the other way round, and doubles as the proof that tokens alone can reskin the site.">
         <ThemeToggle />
       </Specimen>
@@ -268,10 +316,11 @@ const relationJson = `{
       <Specimen layout="stack" title="Lede" note="The standfirst under a heading, one or two sentences, light weight, capped to a readable measure." code={`<Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>`}>
         <Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>
       </Specimen>
-      <Specimen layout="stack" title="SectionHeader" note="Eyebrow, heading and lede in one. Every section opens with it, so headings, rhythm and measure never vary by page. level picks h1, h2 or h3." code={`<SectionHeader eyebrow="Model" title="Knowledge with its meaning intact">\n  Typed fields, binary relations, declared containers.\n</SectionHeader>`}>
+      <Specimen layout="stack" title="SectionHeader" note="Eyebrow, heading and lede in one. Every section opens with it, so headings, rhythm and measure never vary by page. level picks h1, h2 or h3. glyph puts a glyph of the diagram vocabulary before the eyebrow, to say what kind of idea the section is about." code={`<SectionHeader eyebrow="Model" title="Knowledge with its meaning intact">\n  Typed fields, binary relations, declared containers.\n</SectionHeader>`}>
         <SectionHeader eyebrow="Model" title="Knowledge with its meaning intact">
           Typed fields, binary relations, declared containers.
         </SectionHeader>
+        <SectionHeader glyph="field" eyebrow="01" title="Field">The atomic, reusable unit of meaning.</SectionHeader>
       </Specimen>
       <Specimen layout="stack" title="Prose" note="Wrapper for rendered markdown HTML. It styles the elements the markdown renderer produces, so no page ever styles its own text." code={`<Prose><Fragment set:html={html} /></Prose>`}>
         <Prose><Fragment set:html={proseSample} /></Prose>
@@ -314,7 +363,8 @@ const relationJson = `{
       <Specimen ink layout="stack" title="CodeSample on ink" note="The same sample on an ink band.">
         <CodeSample filename="relations/3f6a1d90.json" lang="json" code={relationJson} />
       </Specimen>
-      <Specimen layout="stack" title="Quote" note="For the owner's phrasings and charter sentences, quoted faithfully. size md or lg; cite is the mono attribution." code={`<Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>`}>
+      <Specimen layout="stack" title="Quote" note="For the owner's phrasings and charter sentences, quoted faithfully. size md, lg or xl (the one line a page turns on); cite is the mono attribution." code={`<Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>`}>
+        <Quote size="xl">SRS preserves semantic sovereignty through portable data.</Quote>
         <Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>
         <Quote cite="Standing principle">Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.</Quote>
       </Specimen>
@@ -360,17 +410,26 @@ const relationJson = `{
         <ConceptCard kind="Relation" glyph="relation" title="Relation">A typed edge between two things, read source, type, target.</ConceptCard>
         <ConceptCard kind="Container" glyph="structure" title="Container">A declared selection with an ordered outline. Membership is declared, never derived.</ConceptCard>
       </Specimen>
-      <Specimen layout="grid" title="ProjectCard" note="One of the four projects, described as a kind of technology. A mono kind label, the name, what it is, its technologies as chips, and a link. The whole card is the target." code={`<ProjectCard name="srs-rust" kind="Reference engine" href="https://github.com/the-greenman/srs-rust" tags={["Rust", "MIT or Apache-2.0"]}>...</ProjectCard>`}>
+      <Specimen layout="grid" title="ProjectCard" note="One of the four projects, described as a kind of technology. A mono kind label, the name, a tagline, what it is, who it is for and what it makes possible, what it depends on (the relation links sit above the card's own link), its technologies as chips, and a link. All but the kind, name and link are optional. level is h3 in a grid and h2 when the card opens a band. The whole card is the target." code={`<ProjectCard name="srs-rust" kind="Reference engine" href="https://github.com/the-greenman/srs-rust" tagline="..." audience="..." makes="..." relations={[...]} tags={["MIT or Apache-2.0"]}>...</ProjectCard>`}>
         <ProjectCard name="srs" kind="Open standard" href="https://github.com/the-greenman/srs" tags={["JSON Schema", "Apache-2.0"]}>An open, implementation-independent standard for portable semantic documents, authored as its own data.</ProjectCard>
-        <ProjectCard name="srs-rust" kind="Reference engine" href="https://github.com/the-greenman/srs-rust" tags={["Rust", "WASM", "MIT or Apache-2.0"]}>A library-first engine: one core behind a CLI with a stable JSON contract, WASM bindings and an MCP server.</ProjectCard>
+        <ProjectCard
+          name="srs-rust"
+          kind="Reference engine"
+          href="https://github.com/the-greenman/srs-rust"
+          tagline="One core behind a CLI, WebAssembly bindings and an MCP server."
+          audience="Engineers who script, validate or embed SRS."
+          makes="Every client gets the same answer, because the logic exists once."
+          relations={[{ label: "Depends on", targets: [{ label: "srs", href: "#cards" }] }]}
+          tags={["MIT or Apache-2.0"]}
+        >A library-first engine: one core behind a CLI with a stable JSON contract, WASM bindings and an MCP server.</ProjectCard>
         <ProjectCard name="srs-web" kind="Browser editor" href="https://github.com/the-greenman/srs-web" tags={["WASM", "Client-side"]}>Edits SRS repositories entirely in the browser, against storage you own, with an agents panel.</ProjectCard>
         <ProjectCard name="srs-vscode" kind="VS Code extension" href="https://github.com/the-greenman/srs-vscode" tags={["TypeScript"]}>Tree and navigator views, validate on save, preview and a relation graph, over the srs binary.</ProjectCard>
       </Specimen>
-      <Specimen layout="stack" title="PrincipleItem" note="One principle: a number, a one-line statement as the heading, and the explanation. Keep the charter's wording as given." code={`<PrincipleItem number="01" title="Data sovereignty">The people who create knowledge own it.</PrincipleItem>`}>
-        <div>
-          <PrincipleItem number="01" title="Data sovereignty">The people who create knowledge own it.</PrincipleItem>
-          <PrincipleItem number="02" title="Decision sovereignty">Groups decide for themselves.</PrincipleItem>
-          <PrincipleItem number="03" title="Structure describes knowledge, never authority">No engineered control hierarchy. A relation is a claim about knowledge, not control flow.</PrincipleItem>
+      <Specimen layout="stack" title="PrincipleItem" note="One principle: an optional number above a title, its one-sentence statement (claim) and the explanation. Keep the charter's wording as given. It works in a column of any width, so set several in a grid. level is h3 in a list and h2 when the item opens a band." code={`<PrincipleItem number="01" title="Data sovereignty" claim="The people who create knowledge own it.">...</PrincipleItem>`}>
+        <div class="grid grid--fit grid--lg grid--gap-md">
+          <PrincipleItem number="01" title="Data sovereignty" claim="The people who create knowledge own it.">Sovereignty is structural, not aspirational. A repository is a folder of plain JSON files.</PrincipleItem>
+          <PrincipleItem number="02" title="Decision sovereignty" claim="Groups decide for themselves.">SRS records what was decided and why. It never takes the decision.</PrincipleItem>
+          <PrincipleItem number="03" title="No engineered control hierarchy" claim="Structure describes knowledge, never authority.">A relation is a claim about knowledge, not control flow.</PrincipleItem>
         </div>
       </Specimen>
       <Specimen layout="stack" title="FeatureGrid" note="A ruled grid of short parallel points: optional glyph and mono label, a title and a sentence. columns is 2, 3 or 4." code={`<FeatureGrid columns={3} items={[{ eyebrow: "Field", glyph: "field", title: "...", body: "..." }]} />`}>
@@ -381,6 +440,53 @@ const relationJson = `{
             { eyebrow: "Relation", glyph: "relation", title: "Edges are claims", body: "Strictly binary and typed, with one stored direction." },
           ]}
         />
+      </Specimen>
+      <Specimen layout="stack" title="PrincipleItem: held pair" note="With poles, a principle becomes a held pair: two ideas kept without choosing between them, set as two poles either side of one seam, the divided disc that both divides and joins, with the claim and the explanation centred under both. The poles are two fields of the record (pole_a and pole_b), never read out of the title; the title stays the heading's accessible name." code={`<PrincipleItem title="Fixed meaning, changing state" poles={["Fixed meaning", "Changing state"]} claim="...">...</PrincipleItem>`}>
+        <PrincipleItem title="Fixed meaning, changing state" poles={["Fixed meaning", "Changing state"]} claim="A definition never changes underneath the records that use it, and records still move through states.">
+          <p>Field semantics are immutable and a Record binds to an exact Type version, so what a value means is fixed. State is separate.</p>
+        </PrincipleItem>
+        <PrincipleItem title="Declared, never derived" poles={["Declared", "Never derived"]} claim="Membership is declared, never derived.">
+          <p>What a container holds is what it says it holds, in its own ordered list.</p>
+        </PrincipleItem>
+      </Specimen>
+      <Specimen layout="stack" title="RelationList" note="The relations of a record read as a sentence: the relation's own label, and its targets as chips in the relation colour, linked where the target is on the site. Used inside ConceptEntry and ProjectCard." code={`<RelationList relations={[{ label: "Depends on", targets: [{ label: "Field", href: "/model#field" }] }]} />`}>
+        <RelationList relations={[{ label: "Depends on", targets: [{ label: "Field", href: "#cards" }, { label: "Type" }] }]} />
+      </Specimen>
+      <Specimen layout="bare" title="ConceptEntry" note="One idea of the model as a chapter: a margin column with the number, glyph, title, one-line summary, relations and a reference link, beside the explanation (the slot) and a real example as JSON. The margin column stays in view while the explanation scrolls (960px and up); below that everything stacks. One concept per band." code={`<ConceptEntry number="01" glyph="field" title="Field" summary="..." example={json} reference={{ href, text }}>...</ConceptEntry>`}>
+        <ConceptEntry
+          number="05"
+          glyph="record"
+          title="Record and graduation"
+          summary="Knowledge bound to a Type, and how a Note becomes one."
+          example={recordJson}
+          reference={{ href: "#cards", text: "srs.semanticops.com/schema/2.0/record.json" }}
+          relations={[{ label: "Depends on", targets: [{ label: "Type", href: "#cards" }] }]}
+        >
+          <p>A Record is an instance of a Type. <code>typeId</code> and <code>typeVersion</code> select the Type, and <code>fieldValues</code> maps Field names to values.</p>
+          <p>Graduation turns a Note into one or more Records, each linked to its Note by a <code>derived-from</code> relation. The Note is preserved.</p>
+        </ConceptEntry>
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- PAGE ASSEMBLY -->
+  <Section id="assembly">
+    <SectionHeader eyebrow="Pages" title="Page assembly">
+      The pages are the data laid out by components. The assemblers below have no look of their own: every look comes from the presentation map, and every fact from the records.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="stack" title="Presentation map" note="src/lib/presentation.ts is the one place a record's slug is paired with how it is shown: the band surface (paper, page or ink), a diagram, a glyph, a lede set as a quotation, a principle as a headline or a pair. page:slug overrides it for one page. A slug with no entry takes the default of its type. To show a record differently, change one line here and nothing else." code={`"idea": { band: "ink", visual: ProjectionFan },\n"record": { band: "ink", glyph: "record", visual: MaturityLadder },\n"home:governing-core": { band: undefined },`}>
+        <Prose measure="wide">
+          <table>
+            <thead><tr><th>Slug</th><th>Band</th><th>Diagram</th><th>Glyph</th><th>Form</th></tr></thead>
+            <tbody>
+              {lookRows.map((r) => <tr><td><code>{r.key}</code></td><td>{r.band}</td><td>{r.visual}</td><td>{r.glyph}</td><td>{r.form}</td></tr>)}
+            </tbody>
+          </table>
+        </Prose>
+      </Specimen>
+      <Specimen layout="bare" title="PageBands and Entry" note="PageBands turns a page's entries, in the data's order, into full-bleed bands: a section, a concept or any entry whose look names a surface opens one, and the entries after it are its items, grouped by form (a grid of ProjectCards, a grid of principles, a stack of pairs). Paper and page take turns, and ink only where the map asks. Entry draws one record by its type and look, gives it id={slug} and the diagram its look names. Figure numbers count up the page." code={`<PageBands entries={page.entries} page={page.key} />`}>
+        <PageBands bands={demoBands} page="styleguide" />
       </Specimen>
     </div>
   </Section>

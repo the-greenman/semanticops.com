@@ -8,9 +8,11 @@
     "claim": "The same records serve people and agents, each through a surface built for them.",
     "title": "One source, two readers",
     "slug": "one-source-two-readers",
-    "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source."
+    "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source.",
+    "pole_a": "One source",
+    "pole_b": "Two readers"
   },
   "createdAt": "2026-10-05T19:18:42.495555778+00:00",
-  "updatedAt": "2026-10-05T19:18:42.495562770+00:00",
+  "updatedAt": "2026-10-05T21:15:36.186752098+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

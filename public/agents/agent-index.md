@@ -12,7 +12,7 @@ Contents: 66 instances (66 records, 0 notes)
 - `com.semanticops.site/section` v1 (5 fields) — A block of prose with a heading: a hero, an argument, a call to action.
 - `com.semanticops.site/concept` v1 (6 fields) — A defined idea of the SRS model or architecture, with a real example.
 - `com.semanticops.site/project` v1 (9 fields) — One of the SemanticOps projects, described as a kind of technology.
-- `com.semanticops.site/principle` v1 (4 fields) — A principle or design preference of SRS, stated as a claim with its mechanism.
+- `com.semanticops.site/principle` v1 (6 fields) — A principle or design preference of SRS, stated as a claim with its mechanism.
 - `com.semanticops.core/purpose` v1 (2 fields) — A Tier-2 typed record capturing the purpose or mission of a repository. Always available in every conforming SRS repository via the implicit core base package (RFC-018). identityInstanceId on the root container MUST reference a record of this type.
 
 ## Sections

@@ -1,7 +1,9 @@
 ---
 import Eyebrow from "./Eyebrow.astro";
 import Lede from "./Lede.astro";
+import Glyph from "./diagram/Glyph.astro";
 import type { Tone } from "./diagram/tones";
+import type { GlyphKind } from "./types";
 
 /**
  * The opening of a section: an eyebrow, a heading and a lede (the slot). The one
@@ -11,19 +13,28 @@ import type { Tone } from "./diagram/tones";
 interface Props {
   eyebrow?: string;
   tone?: Tone;
+  /** A glyph of the diagram vocabulary before the eyebrow: the kind of idea this section is about. */
+  glyph?: GlyphKind;
   title: string;
   /** The heading level to render. The h2 is the default; use h1 once per page. */
   level?: "h1" | "h2" | "h3";
   class?: string;
 }
 
-const { eyebrow, tone, title, level = "h2", class: className } = Astro.props;
+const { eyebrow, tone, glyph, title, level = "h2", class: className } = Astro.props;
 const Heading = level;
 const hasLede = Astro.slots.has("default");
 ---
 
 <header class:list={["section-header", className]}>
-  {eyebrow && <Eyebrow {tone}>{eyebrow}</Eyebrow>}
+  {
+    (eyebrow || glyph) && (
+      <Eyebrow {tone}>
+        {glyph && <Glyph kind={glyph} size={20} />}
+        {eyebrow}
+      </Eyebrow>
+    )
+  }
   <Heading class="section-header__title">{title}</Heading>
   {hasLede && <Lede><slot /></Lede>}
 </header>

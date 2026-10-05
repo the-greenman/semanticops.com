@@ -28,18 +28,6 @@
   color: var(--color-muted);
 }
 
-.stack > * + * {
-  margin-top: var(--space-sm);
-}
-
-.stack--xs > * + * {
-  margin-top: var(--space-xs);
-}
-
-.stack--md > * + * {
-  margin-top: var(--space-md);
-}
-
 .cluster {
   display: flex;
   flex-wrap: wrap;
@@ -86,6 +74,15 @@
   --grid-min: 20rem;
 }
 
+.grid--xl {
+  --grid-min: 24rem;
+}
+
+/* Fewer items than columns: let them share the row instead of leaving empty tracks. */
+.grid--fit {
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min), 100%), 1fr));
+}
+
 .grid--gap-md {
   gap: var(--space-md);
 }
@@ -93,12 +90,31 @@
 /* Two columns that stack on small screens: text on one side, a figure on the other. */
 .split {
   display: grid;
-  gap: var(--space-lg);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
   align-items: center;
+}
+
+.split--start {
+  align-items: start;
 }
 
 @media (min-width: 960px) {
   .split {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-lg);
   }
+}
+
+/* Last, so a stacked cluster, grid or split still gets its space (their own margin reset comes earlier). */
+.stack > * + * {
+  margin-top: var(--space-sm);
+}
+
+.stack--xs > * + * {
+  margin-top: var(--space-xs);
+}
+
+.stack--md > * + * {
+  margin-top: var(--space-md);
 }

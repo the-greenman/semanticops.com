@@ -49,7 +49,7 @@ The definitions, with their `aiGuidance`, are the source of truth in `source/pac
 | `section` | `title`, `slug`, `eyebrow`, `lede` (md), `body` (md). `eyebrow` and `body` are optional. |
 | `concept` | `title`, `slug`, `summary` (one line), `body` (md), `example` (JSON text), `spec_link` (https URL). `example` and `spec_link` are optional. |
 | `project` | `name`, `slug`, `kind`, `tagline`, `summary`, `audience`, `makes_possible`, `repository` (https URL), `licence` |
-| `principle` | `title`, `slug`, `claim`, `explanation` (md) |
+| `principle` | `title`, `slug`, `claim`, `explanation` (md), `pole_a`, `pole_b`. The two poles are optional and set together: a principle that is a held pair names its two sides. |
 
 `example` is display text: real JSON trimmed from the SRS specification repository, shown verbatim in a code block. It is not meant to be parsed. Markdown fields use plain CommonMark with inline code, lists, bold, links and fenced code.
 

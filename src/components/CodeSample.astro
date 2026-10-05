@@ -1,6 +1,7 @@
 ---
 import { Code } from "astro:components";
 import type { ComponentProps } from "astro/types";
+import { shikiConfig } from "../lib/shiki.mjs";
 
 /**
  * A block of code. Highlighted at build time by Shiki's css-variables theme, mapped to
@@ -22,7 +23,7 @@ const { code, lang = "json", filename, class: className } = Astro.props;
 
 <figure class:list={["codesample", className]}>
   {filename && <figcaption class="codesample__bar t-label">{filename}</figcaption>}
-  <Code {code} {lang} theme="css-variables" />
+  <Code {code} {lang} theme={shikiConfig.theme} />
 </figure>
 
 <style>

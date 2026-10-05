@@ -86,6 +86,7 @@ const { title, note, code, ink = false, layout = "row", id } = Astro.props;
 
     .specimen__stage--stack {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-md);
     }
 

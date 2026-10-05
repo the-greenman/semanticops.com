@@ -1,0 +1,29 @@
+# One job, the same gates as the local checklist in CLAUDE.md ("Running the checks"). It never deploys:
+# deploys are Cloudflare Workers Builds on push to main.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Re-runs the content pipeline with the sha256-pinned srs binary (it downloads it) and fails if the
+      # committed src/data, public/llms.txt or public/agents differ from what source/ produces.
+      - run: npm run source:check
+      - run: npm run check
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm run check:links

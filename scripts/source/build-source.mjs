@@ -214,10 +214,30 @@ function lintText(text, where, slug, problems) {
     if (m) problems.push(`${where}: ${name} ("${text.slice(Math.max(0, m.index - 25), m.index + m[0].length + 25).replace(/\s+/g, " ")}")`);
   }
 }
+// The fields that hold markdown (src/data/README.md). The human site renders them to HTML as trusted
+// output, so the markdown itself must be plain: no raw HTML, and links only to http(s) or the site.
+const MARKDOWN_FIELDS = new Set(["lede", "body", "explanation"]);
+const HTML_TAG = /<\/?[A-Za-z][\w:-]*(?:\s[^>]*)?\/?>|<!--|<![A-Za-z]|<\?/g;
+const LINK_TARGETS = [/\]\(\s*<?([^)\s>]+)/g, /^\s{0,3}\[[^\]]+\]:\s*<?(\S+?)>?(?:\s|$)/gm, /<([A-Za-z][A-Za-z0-9+.-]*:[^>\s]*)>/g];
+// Code is shown, not interpreted, so a tag or a URL inside a fence or a code span is fine.
+const withoutCode = (md) => md.replace(/^( {0,3})(`{3,}|~{3,})[^\n]*\n[\s\S]*?(?:\n\1\2[`~]*[ \t]*(?=\n|$)|(?![\s\S]))/gm, (m) => m.replace(/[^\n]/g, " ")).replace(/(`+)[^`]*?\1/g, (m) => m.replace(/[^\n]/g, " "));
+function lintMarkdownField(md, where, problems) {
+  const text = withoutCode(md);
+  for (const tag of text.matchAll(HTML_TAG)) problems.push(`${where}: raw HTML in markdown ("${tag[0].slice(0, 40)}")`);
+  for (const re of LINK_TARGETS)
+    for (const m of text.matchAll(re)) {
+      const scheme = /^([A-Za-z][A-Za-z0-9+.-]*):/.exec(m[1])?.[1];
+      if (scheme && !/^https?$/i.test(scheme)) problems.push(`${where}: link scheme "${scheme}:" in markdown (only http, https or a relative link: "${m[1].slice(0, 40)}")`);
+    }
+}
 function lintPageData(data, problems) {
   for (const e of data.entries) {
-    for (const [field, value] of Object.entries(e.fields))
-      if (typeof value === "string") lintText(value, `page ${data.page}, slug ${e.slug}, field ${field}`, e.slug, problems);
+    for (const [field, value] of Object.entries(e.fields)) {
+      if (typeof value !== "string") continue;
+      const where = `page ${data.page}, slug ${e.slug}, field ${field}`;
+      lintText(value, where, e.slug, problems);
+      if (MARKDOWN_FIELDS.has(field)) lintMarkdownField(value, where, problems);
+    }
     for (const r of e.relations ?? []) lintText(r.label ?? "", `page ${data.page}, slug ${e.slug}, relation label`, e.slug, problems);
   }
 }
