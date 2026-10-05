@@ -1,0 +1,16 @@
+{
+  "instanceId": "db7a411a-82e0-453c-a7b9-4f78be6309dc",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "When the model changes, migrate the data. Do not let it drift.",
+    "title": "Migration over drift",
+    "slug": "migration-over-drift",
+    "explanation": "A change to the standard ships with a migration that carries existing repositories forward. A tool that meets data newer than it understands refuses it instead of silently downgrading it."
+  },
+  "createdAt": "2026-10-05T19:18:43.108767373+00:00",
+  "updatedAt": "2026-10-05T19:18:43.108773160+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

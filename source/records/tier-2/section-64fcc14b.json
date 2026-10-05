@@ -1,0 +1,17 @@
+{
+  "instanceId": "64fcc14b-155f-454d-af65-cdbcd59cf721",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Small constructs, stated once",
+    "slug": "model-intro",
+    "eyebrow": "The model",
+    "lede": "SRS does all its work with a few constructs. Each is a definition you can read, a file you can inspect and a rule a tool can check.",
+    "body": "Meaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order. Each example is trimmed from the specification, which is itself an SRS repository."
+  },
+  "createdAt": "2026-10-05T19:18:40.178393306+00:00",
+  "updatedAt": "2026-10-05T19:18:40.178400377+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

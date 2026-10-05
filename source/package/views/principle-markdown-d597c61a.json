@@ -1,0 +1,40 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "d597c61a-d75d-45ee-bb9c-23a7826f4014",
+  "namespace": "com.semanticops.site",
+  "name": "principle-markdown",
+  "version": 1,
+  "description": "Renders a principle record: identity as the heading, prose fields unlabelled, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "3c934b62-1993-4da4-aabf-5aadf7cc8e48",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "2d7d565a-8870-4153-9f43-e09dc539b57e",
+      "order": 3,
+      "labelMode": "none"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/principle"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Controls how a principle reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+  "typeId": "10d77c50-c8d9-456d-b43e-08594a85166d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "project",
+  "fieldValues": {
+    "name": "srs-rust",
+    "slug": "srs-rust",
+    "kind": "Reference engine",
+    "tagline": "One core behind a CLI, WebAssembly bindings and an MCP server.",
+    "summary": "A library-first reference implementation. The core holds types and validation. One repository service sits over it and is exposed as a command line with a stable JSON contract, as WASM bindings and as an MCP server.",
+    "audience": "Engineers who script, validate or embed SRS, and agents that need a tool-enforced way to write records.",
+    "makes_possible": "Every client gets the same answer, because the logic exists once.",
+    "repository": "https://github.com/the-greenman/srs-rust",
+    "licence": "MIT or Apache-2.0"
+  },
+  "createdAt": "2026-10-05T19:18:41.940638451+00:00",
+  "updatedAt": "2026-10-05T19:18:41.940644705+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

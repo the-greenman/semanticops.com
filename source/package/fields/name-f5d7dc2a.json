@@ -1,0 +1,15 @@
+{
+  "id": "f5d7dc2a-6cfe-4ade-804e-bdb96aae99fe",
+  "namespace": "com.semanticops.site",
+  "name": "name",
+  "version": 1,
+  "description": "The name of a project exactly as its repository publishes it.",
+  "aiGuidance": {
+    "purpose": "Lowercase, as in the repository name, for example srs-rust. Never invent a product name."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

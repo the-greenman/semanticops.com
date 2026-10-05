@@ -1,0 +1,15 @@
+{
+  "id": "e8ea9186-4324-4891-aa2c-951f0f3f1b2c",
+  "namespace": "com.semanticops.site",
+  "name": "spec_link",
+  "version": 1,
+  "description": "Link to the canonical definition of the concept.",
+  "aiGuidance": {
+    "purpose": "A full https URL to a published schema or to the specification repository. Omit it when no published definition exists. Do not link to documents that describe older versions of the model."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "uri"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

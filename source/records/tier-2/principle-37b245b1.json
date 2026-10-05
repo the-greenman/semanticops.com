@@ -1,0 +1,16 @@
+{
+  "instanceId": "37b245b1-1fc3-467f-b693-8dddfc4acd7a",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "The same records serve people and agents, each through a surface built for them.",
+    "title": "One source, two readers",
+    "slug": "one-source-two-readers",
+    "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source."
+  },
+  "createdAt": "2026-10-05T19:18:42.495555778+00:00",
+  "updatedAt": "2026-10-05T19:18:42.495562770+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

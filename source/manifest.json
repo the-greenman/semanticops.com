@@ -1,0 +1,68 @@
+{
+  "container": {
+    "containerId": "0dbab76e-7f8e-4276-8791-c00a8627965d",
+    "title": "SemanticOps",
+    "identityInstanceId": "85d1e87f-d0cd-481c-a883-d45d9357daff",
+    "memberInstanceIds": [
+      {
+        "instanceId": "85d1e87f-d0cd-481c-a883-d45d9357daff"
+      },
+      {
+        "instanceId": "e84378a8-016b-4cfc-871c-ca594aa2986b"
+      },
+      {
+        "instanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca"
+      },
+      {
+        "instanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710"
+      },
+      {
+        "instanceId": "92d6197a-4325-41fd-b236-bd12997e86c8"
+      },
+      {
+        "instanceId": "de391831-5aac-4610-a23f-b2982489c4d7"
+      }
+    ]
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/manifest.json",
+  "createdAt": "2026-10-05T19:18:37.454098047+00:00",
+  "dataModelRevision": 9,
+  "declaredExtensions": [
+    "ext:relations",
+    "ext:repository",
+    "ext:views-l1",
+    "ext:views-l2"
+  ],
+  "description": "The facts of the SemanticOps website, authored once as an SRS repository and projected as JSON for the human site and as data for agents.",
+  "namespace": "com.semanticops.site",
+  "renderedPresentations": [
+    {
+      "compositionId": "21c83e15-b4b0-4241-8d66-9a7186ec2da5",
+      "format": "markdown",
+      "outputPath": "projections/home.md"
+    },
+    {
+      "compositionId": "438b9295-5ba6-459c-9891-6a77645e6e9c",
+      "format": "markdown",
+      "outputPath": "projections/model.md"
+    },
+    {
+      "compositionId": "b02f0751-52ce-47c3-b1d8-18c01944b02c",
+      "format": "markdown",
+      "outputPath": "projections/architecture.md"
+    },
+    {
+      "compositionId": "253c3501-12dc-4ff4-855f-96ddd21047d1",
+      "format": "markdown",
+      "outputPath": "projections/principles.md"
+    },
+    {
+      "compositionId": "45a948b8-222d-4910-8292-db0c8e0ed8c9",
+      "format": "markdown",
+      "outputPath": "projections/projects.md"
+    }
+  ],
+  "repositoryId": "0dbab76e-7f8e-4276-8791-c00a8627965d",
+  "srsVersion": "2.0-draft",
+  "title": "SemanticOps"
+}

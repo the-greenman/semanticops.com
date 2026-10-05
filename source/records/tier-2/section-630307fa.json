@@ -1,0 +1,17 @@
+{
+  "instanceId": "630307fa-2930-4076-8b81-525f76197350",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "What is out of scope",
+    "slug": "scope",
+    "eyebrow": "Scope",
+    "lede": "The test for any proposed capability: does it help transfer a unit of knowledge with its meaning intact, without encoding who is in charge?",
+    "body": "If not, it is out of scope. SRS deliberately does not provide:\n\n- an org chart, roles, or an approval or permission hierarchy\n- a workflow or process engine\n- a specific application or UI\n- a storage engine, database or sync service\n- a messaging or transport protocol\n- the governance decisions themselves\n\nThose belong to clients, to infrastructure and to the groups that build on SRS. The model stays free of them on purpose."
+  },
+  "createdAt": "2026-10-05T19:18:40.477916072+00:00",
+  "updatedAt": "2026-10-05T19:18:40.477919655+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

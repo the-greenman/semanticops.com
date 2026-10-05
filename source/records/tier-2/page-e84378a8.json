@@ -1,0 +1,15 @@
+{
+  "instanceId": "e84378a8-016b-4cfc-871c-ca594aa2986b",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Home",
+    "slug": "home",
+    "summary": "SRS is an open standard for portable semantic documents that people and AI can both understand and use. This site is generated from the records of an SRS repository."
+  },
+  "createdAt": "2026-10-05T19:18:39.296479427+00:00",
+  "updatedAt": "2026-10-05T19:18:39.296484298+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

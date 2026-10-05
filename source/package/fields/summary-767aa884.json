@@ -1,0 +1,15 @@
+{
+  "id": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+  "namespace": "com.semanticops.site",
+  "name": "summary",
+  "version": 1,
+  "description": "A brief statement of what the record is, able to stand alone in a list, a card or a page description.",
+  "aiGuidance": {
+    "purpose": "One to three plain sentences. For a concept, one line. For a page, a sentence suited to a page description. It must make sense with nothing around it. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

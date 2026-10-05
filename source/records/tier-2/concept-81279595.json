@@ -1,0 +1,17 @@
+{
+  "instanceId": "81279595-537f-4b6d-b539-83b53d81b9a8",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Spec independence",
+    "slug": "spec-independence",
+    "summary": "The standard stays valid with no implementation present.",
+    "body": "The specification is data and schemas, not code. It remains valid without any Rust or JavaScript present, and the reference engine consumes it as an external repository instead of embedding it.\n\nIf every implementation disappeared, the standard would still say what a conforming repository is, and anyone could write another engine against it.",
+    "spec_link": "https://github.com/the-greenman/srs"
+  },
+  "createdAt": "2026-10-05T19:18:41.453576103+00:00",
+  "updatedAt": "2026-10-05T19:18:41.453580459+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,14 @@
+{
+  "instanceId": "85d1e87f-d0cd-481c-a883-d45d9357daff",
+  "typeId": "3c000001-0000-4000-a000-000000000001",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.core",
+  "typeName": "purpose",
+  "fieldValues": {
+    "statement": "SemanticOps builds SRS (Semantic Record System, pronounced \"source\"): an open standard for portable semantic documents that people and AI can both understand and use. Knowledge moves intact, so anyone can inspect it, move it and keep using it without depending on the system that created it.",
+    "title": "SemanticOps"
+  },
+  "createdAt": "2026-10-05T19:18:37.454256727+00:00",
+  "updatedAt": "2026-10-05T19:18:39.290414607+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

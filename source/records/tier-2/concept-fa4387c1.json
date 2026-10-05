@@ -1,0 +1,18 @@
+{
+  "instanceId": "fa4387c1-e362-4cf6-ab99-32e916c062be",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Field",
+    "slug": "field",
+    "summary": "The atomic, reusable unit of meaning.",
+    "body": "A Field has a stable UUID, a namespace, a snake_case name, an integer version and a faceted `fieldType` that says what shape its values take. Its `aiGuidance` travels with the definition instead of living in an application's prompt, so any agent that meets the Field learns how to read and write it.\n\nField semantics are immutable. A Field means the same thing everywhere it is used, and a Type cannot override it. Different meaning is a different Field.",
+    "example": "{\n  \"id\": \"d5e6f7a8-b9c0-4d1e-8f3a-4b5c6d7e8f9a\",\n  \"namespace\": \"com.semanticops.srs\",\n  \"name\": \"description\",\n  \"version\": 1,\n  \"description\": \"A detailed description of the record.\",\n  \"aiGuidance\": {\n    \"purpose\": \"Descriptions can be multi-paragraph and may include markdown formatting. Explain the what, why, and how.\"\n  },\n  \"fieldType\": {\n    \"datatype\": \"string\",\n    \"format\": \"markdown\"\n  }\n}",
+    "spec_link": "https://srs.semanticops.com/schema/2.0/field.json"
+  },
+  "createdAt": "2026-10-05T19:18:40.721373831+00:00",
+  "updatedAt": "2026-10-05T19:18:40.721381856+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

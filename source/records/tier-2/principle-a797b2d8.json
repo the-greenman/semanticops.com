@@ -1,0 +1,16 @@
+{
+  "instanceId": "a797b2d8-a656-4de9-9826-ac108991ac11",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "What belongs where is declared, not inferred from position.",
+    "title": "Declaration over location",
+    "slug": "declaration-over-location",
+    "explanation": "A container lists its members. It does not collect whatever happens to sit beside them or hang beneath them through `contains` edges."
+  },
+  "createdAt": "2026-10-05T19:18:42.929549325+00:00",
+  "updatedAt": "2026-10-05T19:18:42.929553633+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,15 @@
+{
+  "instanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Architecture",
+    "slug": "architecture",
+    "summary": "How SRS is layered: a standard independent of any implementation, one core consumed identically by every client, and tool-enforced contracts for agents."
+  },
+  "createdAt": "2026-10-05T19:18:39.425522057+00:00",
+  "updatedAt": "2026-10-05T19:18:39.425528450+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

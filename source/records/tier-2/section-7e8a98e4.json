@@ -1,0 +1,17 @@
+{
+  "instanceId": "7e8a98e4-b02d-4fac-9a46-85caefafbfed",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Commitments that decide the rest",
+    "slug": "principles-glance",
+    "eyebrow": "Principles",
+    "lede": "When two designs both work, these choose between them.",
+    "body": "One governing idea and a short list of pairs that SRS refuses to settle. All of them are on the [principles page](/principles)."
+  },
+  "createdAt": "2026-10-05T19:18:39.994474298+00:00",
+  "updatedAt": "2026-10-05T19:18:39.994479765+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

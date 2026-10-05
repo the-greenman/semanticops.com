@@ -1,0 +1,35 @@
+{
+  "id": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "namespace": "com.semanticops.site",
+  "name": "principle",
+  "version": 1,
+  "description": "A principle or design preference of SRS, stated as a claim with its mechanism.",
+  "fields": [
+    {
+      "fieldId": "3c934b62-1993-4da4-aabf-5aadf7cc8e48",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "2d7d565a-8870-4153-9f43-e09dc539b57e",
+      "order": 4,
+      "required": true
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for charter principles, held pairs and this-over-that preferences. Quote the charter faithfully where it exists. Keep the claim to one sentence and the explanation to the mechanism that enforces it. AI never decides or ratifies: say so wherever authority is in question."
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

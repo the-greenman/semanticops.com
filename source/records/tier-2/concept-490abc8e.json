@@ -1,0 +1,18 @@
+{
+  "instanceId": "490abc8e-079c-4e98-a8ed-a8ada48c6c46",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Package",
+    "slug": "package",
+    "summary": "Fields and Types, distributed together.",
+    "body": "A Package is the set of definitions a repository uses: Fields, Types, Compositions and more, indexed in `package.json`. It travels as a single `.srspkg` bundle, so a definition can move between repositories without being retyped. A Package can declare the packages it requires, by package id and SemVer version.\n\nA Package carries definitions only, never records. The records stay with the repository that holds them.",
+    "example": "{\n  \"id\": \"3a000001-0000-4000-a000-000000000001\",\n  \"namespace\": \"com.semanticops.core\",\n  \"name\": \"core\",\n  \"version\": \"1.0.0\",\n  \"fields\": [\n    \"fields/statement-3b000001.json\",\n    \"fields/title-3b000002.json\"\n  ],\n  \"types\": [\n    \"types/purpose-3c000001.json\"\n  ]\n}",
+    "spec_link": "https://srs.semanticops.com/schema/2.0/package-manifest.json"
+  },
+  "createdAt": "2026-10-05T19:18:40.843930275+00:00",
+  "updatedAt": "2026-10-05T19:18:40.843938339+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

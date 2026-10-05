@@ -1,0 +1,60 @@
+{
+  "id": "10d77c50-c8d9-456d-b43e-08594a85166d",
+  "namespace": "com.semanticops.site",
+  "name": "project",
+  "version": 1,
+  "description": "One of the SemanticOps projects, described as a kind of technology.",
+  "fields": [
+    {
+      "fieldId": "f5d7dc2a-6cfe-4ade-804e-bdb96aae99fe",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "d4b386fb-1860-41bb-ad85-255955b957a7",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "5a4f97ab-4363-4964-855d-de4ba439b4f7",
+      "order": 4,
+      "required": true
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 5,
+      "required": true
+    },
+    {
+      "fieldId": "2fdf03e1-e96f-4208-97cd-df4d636d9e2b",
+      "order": 6,
+      "required": true
+    },
+    {
+      "fieldId": "f6cb3757-f42a-43ae-b792-70b1048cd821",
+      "order": 7,
+      "required": true
+    },
+    {
+      "fieldId": "02bf113a-b3d9-4e97-8d6f-37981f22a9c0",
+      "order": 8,
+      "required": true
+    },
+    {
+      "fieldId": "8acd71ff-7c1d-4398-b7b5-1364b950f945",
+      "order": 9,
+      "required": true
+    }
+  ],
+  "identityFieldId": "f5d7dc2a-6cfe-4ade-804e-bdb96aae99fe",
+  "aiGuidance": {
+    "purpose": "Describe the kind of technology a project is and who uses it, never its current state, version or counts. Use the repository's own name and licence. Say planned and nothing more about future work."
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

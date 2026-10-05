@@ -1,0 +1,15 @@
+{
+  "id": "5a4f97ab-4363-4964-855d-de4ba439b4f7",
+  "namespace": "com.semanticops.site",
+  "name": "tagline",
+  "version": 1,
+  "description": "One line saying what a project is for.",
+  "aiGuidance": {
+    "purpose": "A single plain sentence ending in a full stop. Concrete: name the mechanism, not the benefit. No marketing words."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

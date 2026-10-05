@@ -1,0 +1,53 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/package-manifest.json",
+  "id": "5d21b5bf-9c9a-466f-89af-9a9701a6f49a",
+  "namespace": "com.semanticops.site",
+  "name": "site",
+  "version": "1.0.0",
+  "title": "primary",
+  "description": "",
+  "status": "active",
+  "createdAt": "2026-01-01T00:00:00Z",
+  "fields": [
+    "fields/slug-36b6e082.json",
+    "fields/title-d5fcce40.json",
+    "fields/eyebrow-4f12508b.json",
+    "fields/lede-cbd209b7.json",
+    "fields/body-c2b17c36.json",
+    "fields/summary-767aa884.json",
+    "fields/example-00c8f6df.json",
+    "fields/speclink-e8ea9186.json",
+    "fields/name-f5d7dc2a.json",
+    "fields/kind-d4b386fb.json",
+    "fields/tagline-5a4f97ab.json",
+    "fields/audience-2fdf03e1.json",
+    "fields/makespossible-f6cb3757.json",
+    "fields/repository-02bf113a.json",
+    "fields/licence-8acd71ff.json",
+    "fields/claim-3c934b62.json",
+    "fields/explanation-2d7d565a.json"
+  ],
+  "types": [
+    "types/page-f0a4a712.json",
+    "types/section-a17e2e07.json",
+    "types/concept-0d32838e.json",
+    "types/project-10d77c50.json",
+    "types/principle-a21a7a0c.json"
+  ],
+  "relationTypes": [],
+  "views": [
+    "views/page-markdown-bf437791.json",
+    "views/section-markdown-9ae6f0a2.json",
+    "views/concept-markdown-bde8b8dd.json",
+    "views/project-markdown-ab01ce1d.json",
+    "views/principle-markdown-d597c61a.json"
+  ],
+  "compositions": [
+    "compositions/home-page-21c83e15.json",
+    "compositions/model-page-438b9295.json",
+    "compositions/architecture-page-b02f0751.json",
+    "compositions/principles-page-253c3501.json",
+    "compositions/projects-page-45a948b8.json"
+  ],
+  "blueprints": []
+}

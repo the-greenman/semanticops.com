@@ -1,0 +1,82 @@
+{
+  "containerId": "b5bbab79-3f0e-4f21-ad9e-2800e7ed8eb8",
+  "title": "SemanticOps: principles",
+  "namespace": "com.semanticops.site",
+  "name": "principles",
+  "description": "The purpose, the governing core, the pairs SRS holds without settling, and the scope test that keeps the standard small.",
+  "anchorInstanceId": "92d6197a-4325-41fd-b236-bd12997e86c8",
+  "memberInstanceIds": [
+    {
+      "instanceId": "92d6197a-4325-41fd-b236-bd12997e86c8"
+    },
+    {
+      "instanceId": "5e6a9a9a-1b79-47ce-a1f6-22b3e66393aa"
+    },
+    {
+      "instanceId": "b6382344-f142-4752-ad78-456f2d957805"
+    },
+    {
+      "instanceId": "0cd1dbd8-3d68-4cf1-80ff-63d72667b57e"
+    },
+    {
+      "instanceId": "9acec686-1143-4ab0-8750-302cc277fe24"
+    },
+    {
+      "instanceId": "63fc2c37-4d7c-455d-93f7-aee4f33ac6d7"
+    },
+    {
+      "instanceId": "e92d1bba-10f8-40e6-b5fc-d5684b29779b"
+    },
+    {
+      "instanceId": "b73217a0-5ad6-47e2-961e-d84e4098ff95"
+    },
+    {
+      "instanceId": "03dcd28d-ae8a-4724-8895-399cfa258079"
+    },
+    {
+      "instanceId": "37b245b1-1fc3-467f-b693-8dddfc4acd7a"
+    },
+    {
+      "instanceId": "bdedfbd2-30d2-40bf-992e-fafae4285e94"
+    },
+    {
+      "instanceId": "7f21f643-1ce0-4102-a852-e79f68030e24"
+    },
+    {
+      "instanceId": "1b7e37b2-d4b3-4080-a102-12be38d6fcbe"
+    },
+    {
+      "instanceId": "e110f7c3-b814-4a08-b8e1-ef28e9550315"
+    },
+    {
+      "instanceId": "f3d0b2fd-74b9-4280-a0ae-68958a2ac7b6"
+    },
+    {
+      "instanceId": "bce2830d-8ccc-4266-9a76-abbf92cc4a00"
+    },
+    {
+      "instanceId": "8062e71b-7a48-4454-a453-d01ef5dbaae0"
+    },
+    {
+      "instanceId": "a797b2d8-a656-4de9-9826-ac108991ac11"
+    },
+    {
+      "instanceId": "86cb1c96-3e98-4899-ba2d-96d56768632b"
+    },
+    {
+      "instanceId": "7958003f-b47c-431c-8d83-f24ef16ef174"
+    },
+    {
+      "instanceId": "db7a411a-82e0-453c-a7b9-4f78be6309dc"
+    },
+    {
+      "instanceId": "e4dd922d-4387-44f1-9cf7-c032a41da9d5"
+    },
+    {
+      "instanceId": "4605361f-8855-474c-a39f-72416f37c9e8"
+    },
+    {
+      "instanceId": "630307fa-2930-4076-8b81-525f76197350"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "instanceId": "462993f0-adf1-4f4c-b878-a17a38785ee1",
+  "typeId": "10d77c50-c8d9-456d-b43e-08594a85166d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "project",
+  "fieldValues": {
+    "name": "srs-vscode",
+    "slug": "srs-vscode",
+    "kind": "VS Code extension",
+    "tagline": "Repositories in your workspace, with views for navigating them.",
+    "summary": "A thin VS Code extension over the srs binary. Tree and navigator views, validation on save, preview and a relation graph, for engineers who keep repositories in their workspace.",
+    "audience": "Engineers who keep SRS repositories next to their code.",
+    "makes_possible": "Working on records the way you work on source: in the editor, in git, with validation as you save.",
+    "repository": "https://github.com/the-greenman/srs-vscode",
+    "licence": "Apache-2.0"
+  },
+  "createdAt": "2026-10-05T19:18:42.062134483+00:00",
+  "updatedAt": "2026-10-05T19:18:42.062140699+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "cbd209b7-b144-4e5f-9584-05563de33a25",
+  "namespace": "com.semanticops.site",
+  "name": "lede",
+  "version": 1,
+  "description": "The first standing sentence or two of a section, read before the body.",
+  "aiGuidance": {
+    "purpose": "One or two plain sentences that could be read alone. Technical, concrete and confident. Prefer the owner's own phrasing where the facts file quotes it. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "c2b17c36-1ead-4588-93de-d9526bd6c401",
+  "namespace": "com.semanticops.site",
+  "name": "body",
+  "version": 1,
+  "description": "The main prose of a section or concept, written as markdown.",
+  "aiGuidance": {
+    "purpose": "Short paragraphs, concrete and technical, naming the mechanism. Show the structure instead of describing it vaguely. State only what the records of this repository state: no issue, ticket or build identifiers, no counts of records or tests, and no claims about capability, maturity or stability that another record does not make. Describe SRS as a standard for portable semantic documents. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

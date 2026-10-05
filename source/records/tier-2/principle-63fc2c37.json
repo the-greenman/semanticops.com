@@ -1,0 +1,16 @@
+{
+  "instanceId": "63fc2c37-4d7c-455d-93f7-aee4f33ac6d7",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "The people who create knowledge own it. It is portable and readable without permission from any central service or vendor.",
+    "title": "Data sovereignty",
+    "slug": "data-sovereignty",
+    "explanation": "Sovereignty is structural, not aspirational. A repository is a folder of plain JSON files, and its definitions travel with it. Reading it depends on no service staying in business."
+  },
+  "createdAt": "2026-10-05T19:18:42.306159526+00:00",
+  "updatedAt": "2026-10-05T19:18:42.306163875+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "00c8f6df-7411-4cfc-b16d-593c1d818648",
+  "namespace": "com.semanticops.site",
+  "name": "example",
+  "version": 1,
+  "description": "A short code sample shown verbatim beside a concept.",
+  "aiGuidance": {
+    "purpose": "Real JSON in the current shape, trimmed from the SRS specification repository and never copied from older documents. It is display text, not data to parse: keep it under about fifteen lines, with valid JSON and two-space indentation. Trim by removing keys, never by inventing values."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

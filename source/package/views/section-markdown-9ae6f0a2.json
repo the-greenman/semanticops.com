@@ -1,0 +1,45 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "9ae6f0a2-df52-49c3-9d9a-169c78770b34",
+  "namespace": "com.semanticops.site",
+  "name": "section-markdown",
+  "version": 1,
+  "description": "Renders a section record: identity as the heading, prose fields unlabelled, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "4f12508b-0294-45fb-a95c-4fd4bf0b1348",
+      "order": 2,
+      "visible": false
+    },
+    {
+      "fieldId": "cbd209b7-b144-4e5f-9584-05563de33a25",
+      "order": 3,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "c2b17c36-1ead-4588-93de-d9526bd6c401",
+      "order": 4,
+      "labelMode": "none"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/section"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Controls how a section reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

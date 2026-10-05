@@ -1,0 +1,17 @@
+{
+  "instanceId": "8a6035d6-c2ce-45ea-9dba-f4a5eaa16592",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Agents read this site as data",
+    "slug": "agents-as-data",
+    "eyebrow": "For agents",
+    "lede": "This site has two surfaces built from one source. People get the pages. Agents get the records.",
+    "body": "Every page is projected from an SRS repository, so an agent never needs to scrape HTML. [/llms.txt](/llms.txt) is the entry point. `/agents/<page>.md` and `/agents/<page>.json` carry each page as markdown and as JSON. [/agents/semanticops.srs](/agents/semanticops.srs) is the whole repository as one portable archive that an SRS client or MCP server can open and query.\n\nThe same facts reach two readers. Each surface can be designed for its reader because the meaning lives in the records and not in either surface."
+  },
+  "createdAt": "2026-10-05T19:18:40.055503996+00:00",
+  "updatedAt": "2026-10-05T19:18:40.055510280+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,17 @@
+{
+  "instanceId": "08804fd4-6423-40a2-b452-87aa558a9bcc",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Read it, run it, argue with it",
+    "slug": "get-involved",
+    "eyebrow": "Get involved",
+    "lede": "The standard is open and in a formation phase, so the useful contributions are early ones.",
+    "body": "The specification, the reference engine, the browser editor and the VS Code extension are public on GitHub. Read the records, run `srs repo validate` on your own folder, and open an issue where the standard is unclear or wrong.\n\n- [srs](https://github.com/the-greenman/srs): the specification\n- [srs-rust](https://github.com/the-greenman/srs-rust): the reference engine and CLI\n- [srs-web](https://github.com/the-greenman/srs-web): the browser editor\n- [srs-vscode](https://github.com/the-greenman/srs-vscode): the VS Code extension"
+  },
+  "createdAt": "2026-10-05T19:18:40.117878412+00:00",
+  "updatedAt": "2026-10-05T19:18:40.117884301+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

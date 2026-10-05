@@ -1,0 +1,15 @@
+{
+  "instanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Model",
+    "slug": "model",
+    "summary": "The SRS model in order: Field, Type, Package, Note, Record, Relation, Container, repository, validation, rendering and identity, each with a real example."
+  },
+  "createdAt": "2026-10-05T19:18:39.360228147+00:00",
+  "updatedAt": "2026-10-05T19:18:39.360234204+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

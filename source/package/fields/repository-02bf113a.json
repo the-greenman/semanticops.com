@@ -1,0 +1,15 @@
+{
+  "id": "02bf113a-b3d9-4e97-8d6f-37981f22a9c0",
+  "namespace": "com.semanticops.site",
+  "name": "repository",
+  "version": 1,
+  "description": "The public repository of a project.",
+  "aiGuidance": {
+    "purpose": "A full https URL to the public repository. Do not link to private repositories."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "uri"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

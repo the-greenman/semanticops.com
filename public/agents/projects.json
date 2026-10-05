@@ -1,0 +1,158 @@
+{
+  "page": "projects",
+  "title": "SemanticOps: projects",
+  "entries": [
+    {
+      "instanceId": "de391831-5aac-4610-a23f-b2982489c4d7",
+      "type": "page",
+      "slug": "projects",
+      "fields": {
+        "slug": "projects",
+        "title": "Projects",
+        "summary": "The four SemanticOps projects as kinds of technology: the standard, the reference engine, the browser editor and the VS Code extension."
+      }
+    },
+    {
+      "instanceId": "30045956-a9ec-4a9b-b5d9-5595978c7e44",
+      "type": "section",
+      "slug": "projects-intro",
+      "fields": {
+        "slug": "projects-intro",
+        "title": "A standard, an engine and two editors",
+        "eyebrow": "Projects",
+        "lede": "SemanticOps is four projects that share one standard.",
+        "body": "The standard says what a repository is. The engine implements it once, and the two editors add presentation on top of that engine. All four are public."
+      }
+    },
+    {
+      "instanceId": "4505c3f9-a959-4571-ab1c-697ce9c7f3d8",
+      "type": "project",
+      "slug": "srs",
+      "fields": {
+        "slug": "srs",
+        "name": "srs",
+        "kind": "Open standard",
+        "tagline": "The specification, authored as its own data.",
+        "summary": "An open, implementation-independent standard for portable semantic documents. The specification is itself an SRS repository: its content (its prose, invariants, extensions and decisions) is authored as records, and the rendered specification is a projection of them. JSON Schemas and conformance fixtures are published alongside as files.",
+        "audience": "Implementers, tool builders and anyone who needs to know exactly what a conforming repository is.",
+        "makes_possible": "A second implementation, in any language, that reads and writes the same repositories as the first.",
+        "repository": "https://github.com/the-greenman/srs",
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+      "type": "project",
+      "slug": "srs-rust",
+      "fields": {
+        "slug": "srs-rust",
+        "name": "srs-rust",
+        "kind": "Reference engine",
+        "tagline": "One core behind a CLI, WebAssembly bindings and an MCP server.",
+        "summary": "A library-first reference implementation. The core holds types and validation. One repository service sits over it and is exposed as a command line with a stable JSON contract, as WASM bindings and as an MCP server.",
+        "audience": "Engineers who script, validate or embed SRS, and agents that need a tool-enforced way to write records.",
+        "makes_possible": "Every client gets the same answer, because the logic exists once.",
+        "repository": "https://github.com/the-greenman/srs-rust",
+        "licence": "MIT or Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "4505c3f9-a959-4571-ab1c-697ce9c7f3d8",
+              "slug": "srs",
+              "label": "srs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "d53c0e02-f30b-466d-ad25-e3a3db2bd28e",
+      "type": "project",
+      "slug": "srs-web",
+      "fields": {
+        "slug": "srs-web",
+        "name": "srs-web",
+        "kind": "Browser editor",
+        "tagline": "Edit SRS repositories entirely client-side, on storage you own.",
+        "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.",
+        "audience": "People who work with structured knowledge and want it to stay theirs.",
+        "makes_possible": "Reading and editing a repository with nothing to install, while the files stay in your own storage.",
+        "repository": "https://github.com/the-greenman/srs-web",
+        "licence": "Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+              "slug": "srs-rust",
+              "label": "srs-rust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "462993f0-adf1-4f4c-b878-a17a38785ee1",
+      "type": "project",
+      "slug": "srs-vscode",
+      "fields": {
+        "slug": "srs-vscode",
+        "name": "srs-vscode",
+        "kind": "VS Code extension",
+        "tagline": "Repositories in your workspace, with views for navigating them.",
+        "summary": "A thin VS Code extension over the srs binary. Tree and navigator views, validation on save, preview and a relation graph, for engineers who keep repositories in their workspace.",
+        "audience": "Engineers who keep SRS repositories next to their code.",
+        "makes_possible": "Working on records the way you work on source: in the editor, in git, with validation as you save.",
+        "repository": "https://github.com/the-greenman/srs-vscode",
+        "licence": "Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+              "slug": "srs-rust",
+              "label": "srs-rust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "602908f5-6147-465f-9890-380c82365a8c",
+      "type": "section",
+      "slug": "first-consumer",
+      "fields": {
+        "slug": "first-consumer",
+        "title": "muDemocracy",
+        "eyebrow": "First consumer",
+        "lede": "muDemocracy is the first consumer of SRS.",
+        "body": "It uses the standard for decision practice, which makes it the first test of whether the model holds up outside the specification. What muDemocracy needs from SRS is what SRS is tested against. Visit [mudemocracy.org](https://mudemocracy.org)."
+      }
+    },
+    {
+      "instanceId": "c76bd78c-df0c-45e4-a59b-39110e96f931",
+      "type": "section",
+      "slug": "direction",
+      "fields": {
+        "slug": "direction",
+        "title": "Where it is going",
+        "eyebrow": "Direction",
+        "lede": "The direction is more portability, not more platform.",
+        "body": "Planned: working offline and reintegrating changes afterwards, a richer semantic diff, and federation between repositories. The standard is in a formation phase, so these will move."
+      }
+    }
+  ]
+}

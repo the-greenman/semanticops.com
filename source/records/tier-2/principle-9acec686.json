@@ -1,0 +1,16 @@
+{
+  "instanceId": "9acec686-1143-4ab0-8750-302cc277fe24",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "The model must not presume who is in charge, who approves, or how a group is organised. Structure describes knowledge, never authority.",
+    "title": "No engineered control hierarchy",
+    "slug": "no-control-hierarchy",
+    "explanation": "Most collaboration tools quietly encode the structure of the organisation that built them: Conway's law made permanent in software. SRS is designed not to. Its structure comes from the knowledge being shared, not from a chain of command baked into the format. Relations are claims about knowledge, not control flow."
+  },
+  "createdAt": "2026-10-05T19:18:42.244360729+00:00",
+  "updatedAt": "2026-10-05T19:18:42.244365791+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

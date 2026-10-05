@@ -1,0 +1,16 @@
+{
+  "instanceId": "fc16656d-c300-4c0d-a76d-e87a67d54f89",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Three planes",
+    "slug": "three-planes",
+    "summary": "Meaning, expression and operation.",
+    "body": "**Meaning** is what things are: the substrate, then definitions, then instances. **Expression** is how meaning becomes something to read: selection, then composition, then presentation, then projection. **Operation** is how people and agents act on it: the core service, then adapters, then clients.\n\nEach layer works without the layers above it. Meaning is complete without any expression, and expression is complete without any client. Meaning and expression are held apart on purpose: the same meaning can take many expressions, and no expression changes the meaning. That separation is what lets one source serve two readers."
+  },
+  "createdAt": "2026-10-05T19:18:41.637849312+00:00",
+  "updatedAt": "2026-10-05T19:18:41.637853501+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

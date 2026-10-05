@@ -1,0 +1,17 @@
+{
+  "instanceId": "30045956-a9ec-4a9b-b5d9-5595978c7e44",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "A standard, an engine and two editors",
+    "slug": "projects-intro",
+    "eyebrow": "Projects",
+    "lede": "SemanticOps is four projects that share one standard.",
+    "body": "The standard says what a repository is. The engine implements it once, and the two editors add presentation on top of that engine. All four are public."
+  },
+  "createdAt": "2026-10-05T19:18:40.537164869+00:00",
+  "updatedAt": "2026-10-05T19:18:40.537168356+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

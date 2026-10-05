@@ -1,0 +1,16 @@
+{
+  "instanceId": "f3d0b2fd-74b9-4280-a0ae-68958a2ac7b6",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "A change is a new version, not an overwrite of the old one.",
+    "title": "Increment over edit",
+    "slug": "increment-over-edit",
+    "explanation": "A Type that changes gets a new version. Records stay bound to the version they were written against, so old data keeps its meaning."
+  },
+  "createdAt": "2026-10-05T19:18:42.752924360+00:00",
+  "updatedAt": "2026-10-05T19:18:42.752929292+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "f6cb3757-f42a-43ae-b792-70b1048cd821",
+  "namespace": "com.semanticops.site",
+  "name": "makes_possible",
+  "version": 1,
+  "description": "What the project makes possible that depends on it.",
+  "aiGuidance": {
+    "purpose": "One sentence stating a concrete capability. Describe what becomes possible, never what is planned or promised. Never claim stability or maturity."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

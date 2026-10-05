@@ -1,0 +1,30 @@
+{
+  "id": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "namespace": "com.semanticops.site",
+  "name": "page",
+  "version": 1,
+  "description": "One page of the site: its title and the description used for it.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 3,
+      "required": true
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Create one page record per page of the site, anchoring that page's container. Its slug is the page key. Its summary is the page description and must stand alone."
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

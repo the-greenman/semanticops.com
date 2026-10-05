@@ -1,0 +1,16 @@
+{
+  "instanceId": "b6382344-f142-4752-ad78-456f2d957805",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "Give the receiver enough context to understand, and never more than they can take in.",
+    "title": "Depth without overload",
+    "slug": "depth-without-overload",
+    "explanation": "Depth of context and freedom from overload pull against each other, and SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand. In the model, a Container's outline is the surface and the records nested beneath an entry are the depth. Going deeper adds detail. It does not change the story."
+  },
+  "createdAt": "2026-10-05T19:18:42.122091865+00:00",
+  "updatedAt": "2026-10-05T19:18:42.122097667+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

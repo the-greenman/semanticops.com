@@ -1,0 +1,15 @@
+{
+  "id": "2fdf03e1-e96f-4208-97cd-df4d636d9e2b",
+  "namespace": "com.semanticops.site",
+  "name": "audience",
+  "version": 1,
+  "description": "Who a project is for.",
+  "aiGuidance": {
+    "purpose": "One sentence naming the technical readers who would use it: engineers, architects, tool builders, agents. Never promise outcomes."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

@@ -1,0 +1,156 @@
+{
+  "page": "architecture",
+  "title": "SemanticOps: architecture",
+  "entries": [
+    {
+      "instanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710",
+      "type": "page",
+      "slug": "architecture",
+      "fields": {
+        "slug": "architecture",
+        "title": "Architecture",
+        "summary": "How SRS is layered: a standard independent of any implementation, one core consumed identically by every client, and tool-enforced contracts for agents."
+      }
+    },
+    {
+      "instanceId": "1fe349c9-cf32-40c0-8bc2-51bf63765bf1",
+      "type": "section",
+      "slug": "architecture-intro",
+      "fields": {
+        "slug": "architecture-intro",
+        "title": "Layers that each stand alone",
+        "eyebrow": "Architecture",
+        "lede": "Meaning, expression and operation are separate planes, and each layer works without the layers above it.",
+        "body": "SRS is built so that the standard, the engine and the clients can each be replaced without rewriting the others. This page explains the layering, how agents use it, and why a tool is a safer door than a file."
+      }
+    },
+    {
+      "instanceId": "81279595-537f-4b6d-b539-83b53d81b9a8",
+      "type": "concept",
+      "slug": "spec-independence",
+      "fields": {
+        "slug": "spec-independence",
+        "title": "Spec independence",
+        "summary": "The standard stays valid with no implementation present.",
+        "body": "The specification is data and schemas, not code. It remains valid without any Rust or JavaScript present, and the reference engine consumes it as an external repository instead of embedding it.\n\nIf every implementation disappeared, the standard would still say what a conforming repository is, and anyone could write another engine against it.",
+        "spec_link": "https://github.com/the-greenman/srs"
+      }
+    },
+    {
+      "instanceId": "a57306f0-1338-4066-953f-448f6c0591f2",
+      "type": "concept",
+      "slug": "self-hosting",
+      "fields": {
+        "slug": "self-hosting",
+        "title": "Self-hosting",
+        "summary": "The specification is itself an SRS repository.",
+        "body": "The content of the specification lives as Records with their own Types. The rendered specification is a Projection of those records: derived, never authoritative. The standard is held to its own rules, because a standard that cannot describe itself is not ready to describe anything else.\n\nThis site follows the same pattern. Its facts are records in a repository, and every page is a projection of them.",
+        "spec_link": "https://github.com/the-greenman/srs"
+      }
+    },
+    {
+      "instanceId": "f9ddb5c2-69e5-4d05-a14a-f12f35c15006",
+      "type": "concept",
+      "slug": "capability-layering",
+      "fields": {
+        "slug": "capability-layering",
+        "title": "Capability layering",
+        "summary": "Implemented once, consumed identically.",
+        "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.",
+        "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"payload\": {\n    \"diagnostics\": []\n  }\n}",
+        "spec_link": "https://github.com/the-greenman/srs-rust"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "81279595-537f-4b6d-b539-83b53d81b9a8",
+              "slug": "spec-independence",
+              "label": "Spec independence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "fc16656d-c300-4c0d-a76d-e87a67d54f89",
+      "type": "concept",
+      "slug": "three-planes",
+      "fields": {
+        "slug": "three-planes",
+        "title": "Three planes",
+        "summary": "Meaning, expression and operation.",
+        "body": "**Meaning** is what things are: the substrate, then definitions, then instances. **Expression** is how meaning becomes something to read: selection, then composition, then presentation, then projection. **Operation** is how people and agents act on it: the core service, then adapters, then clients.\n\nEach layer works without the layers above it. Meaning is complete without any expression, and expression is complete without any client. Meaning and expression are held apart on purpose: the same meaning can take many expressions, and no expression changes the meaning. That separation is what lets one source serve two readers."
+      }
+    },
+    {
+      "instanceId": "24f9e2ae-d8e0-4d08-b1b7-7ec2574f5bb6",
+      "type": "concept",
+      "slug": "agents-and-mcp",
+      "fields": {
+        "slug": "agents-and-mcp",
+        "title": "Agents and MCP",
+        "summary": "The same tools for a person's client and for an agent.",
+        "body": "`srs mcp serve` runs an MCP server over a repository. Its tools include `find`, `read`, `record_create`, `record_update`, `record_transition`, `relation_create`, `note_create`, `note_graduate`, container edits and `repo_validate`. Its resources include a repository map, the navigation and an agent index: a one-page orientation that tells a cold agent what is here.\n\nThe same tools run in the browser over WebAssembly, so an agent in the editor and an agent on the command line meet one contract. `find` and `similar` are lexical: they match words, not embeddings.",
+        "example": "{\n  \"name\": \"find\",\n  \"arguments\": {\n    \"typeName\": \"concept\",\n    \"contentMatch\": \"relation\",\n    \"limit\": 5\n  }\n}",
+        "spec_link": "https://github.com/the-greenman/srs-rust"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "f9ddb5c2-69e5-4d05-a14a-f12f35c15006",
+              "slug": "capability-layering",
+              "label": "Capability layering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "1a0df941-9c8d-4e53-bc8e-a7a70bb657e4",
+      "type": "concept",
+      "slug": "tools-over-mimicry",
+      "fields": {
+        "slug": "tools-over-mimicry",
+        "title": "Tools over mimicry",
+        "summary": "Tool-enforced contracts beat look-alike files.",
+        "body": "Agents imitate structure. Asked to add a record, an agent will readily write a JSON file that looks right, satisfies the format and skips validation and referential integrity. That is mimicry.\n\nThe defence is to make the tool the only door. A write goes through a tool that enforces the repository's Type and relation contracts, and a rejected write returns diagnostics and writes nothing. For example, a write tool refuses a relation whose type the package does not define, and says why.",
+        "example": "{\n  \"content\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"relation validation failed for relation fb01853f-0177-46c2-9fb3-4feb6ea244b1: E1UnknownRelationType: E1: relation type 'owns' is not installed in the package\"\n    }\n  ],\n  \"isError\": true\n}",
+        "spec_link": "https://github.com/the-greenman/srs-rust"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "24f9e2ae-d8e0-4d08-b1b7-7ec2574f5bb6",
+              "slug": "agents-and-mcp",
+              "label": "Agents and MCP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "4d354441-d593-4a29-8f8d-6a1d3bd51765",
+      "type": "concept",
+      "slug": "travelling-forms",
+      "fields": {
+        "slug": "travelling-forms",
+        "title": "Travelling forms",
+        "summary": "One repository, three portable forms.",
+        "body": "A repository on disk is a folder, and it can travel in three forms. `.srs` is the default interchange: a deterministic zip of the folder, byte-identical when packed again. `.srsj` is a single JSON file. `.srspkg` carries a Package: definitions only, never records.\n\nPortability over possession: a capability that exists only in place is captivity. If a repository can only be used inside the tool that made it, the tool owns the knowledge. This site publishes its own source as [/agents/semanticops.srs](/agents/semanticops.srs).",
+        "spec_link": "https://github.com/the-greenman/srs"
+      }
+    }
+  ]
+}

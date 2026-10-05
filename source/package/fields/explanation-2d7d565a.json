@@ -1,0 +1,15 @@
+{
+  "id": "2d7d565a-8870-4153-9f43-e09dc539b57e",
+  "namespace": "com.semanticops.site",
+  "name": "explanation",
+  "version": 1,
+  "description": "The reasoning behind a principle, with the mechanism that enforces it.",
+  "aiGuidance": {
+    "purpose": "Two to four short sentences. Name the concrete mechanism in the data model that holds the principle, so a reader can check it. Plain words only. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

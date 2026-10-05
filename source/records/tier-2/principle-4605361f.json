@@ -1,0 +1,16 @@
+{
+  "instanceId": "4605361f-8855-474c-a39f-72416f37c9e8",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "A conforming tool keeps data it does not understand intact.",
+    "title": "Understand what you can, preserve what you cannot",
+    "slug": "preserve-what-you-cannot",
+    "explanation": "An extension a tool does not implement, or a field it has never seen, is carried through unchanged and not dropped. Recognition is optional. Preservation is not."
+  },
+  "createdAt": "2026-10-05T19:18:43.227271317+00:00",
+  "updatedAt": "2026-10-05T19:18:43.227274816+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

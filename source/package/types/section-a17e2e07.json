@@ -1,0 +1,40 @@
+{
+  "id": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "namespace": "com.semanticops.site",
+  "name": "section",
+  "version": 1,
+  "description": "A block of prose with a heading: a hero, an argument, a call to action.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "4f12508b-0294-45fb-a95c-4fd4bf0b1348",
+      "order": 3,
+      "required": false
+    },
+    {
+      "fieldId": "cbd209b7-b144-4e5f-9584-05563de33a25",
+      "order": 4,
+      "required": true
+    },
+    {
+      "fieldId": "c2b17c36-1ead-4588-93de-d9526bd6c401",
+      "order": 5,
+      "required": false
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for prose that is not a definition, a project or a principle. One idea per section. The lede carries the point and the body carries the mechanism. Follow the copy rules in the Field guidance."
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

@@ -1,0 +1,17 @@
+{
+  "instanceId": "a57306f0-1338-4066-953f-448f6c0591f2",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Self-hosting",
+    "slug": "self-hosting",
+    "summary": "The specification is itself an SRS repository.",
+    "body": "The content of the specification lives as Records with their own Types. The rendered specification is a Projection of those records: derived, never authoritative. The standard is held to its own rules, because a standard that cannot describe itself is not ready to describe anything else.\n\nThis site follows the same pattern. Its facts are records in a repository, and every page is a projection of them.",
+    "spec_link": "https://github.com/the-greenman/srs"
+  },
+  "createdAt": "2026-10-05T19:18:41.514138504+00:00",
+  "updatedAt": "2026-10-05T19:18:41.514143007+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

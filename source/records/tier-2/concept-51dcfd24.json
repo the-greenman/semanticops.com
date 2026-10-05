@@ -1,0 +1,18 @@
+{
+  "instanceId": "51dcfd24-3064-4ff0-ab74-59a4490cff25",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Type",
+    "slug": "type",
+    "summary": "A versioned composition of Fields.",
+    "body": "A Type lists Fields as assignments: which Field, in what order, and whether it is required. Required Fields are how a Type asks its questions, so a unit of knowledge cannot be transferred half-formed. A display label on an assignment is rendering only and never changes what the Field means.\n\nA Record binds to an exact `typeId` and `typeVersion`. When a Type gains a new version, existing Records are not migrated. You write a successor and link it with `supersedes` or `refines`, and the original stays.",
+    "example": "{\n  \"id\": \"3c000001-0000-4000-a000-000000000001\",\n  \"namespace\": \"com.semanticops.core\",\n  \"name\": \"purpose\",\n  \"version\": 1,\n  \"fields\": [\n    {\n      \"fieldId\": \"3b000001-0000-4000-a000-000000000001\",\n      \"order\": 0,\n      \"required\": true\n    },\n    {\n      \"fieldId\": \"3b000002-0000-4000-a000-000000000002\",\n      \"order\": 1,\n      \"required\": false\n    }\n  ]\n}",
+    "spec_link": "https://srs.semanticops.com/schema/2.0/type.json"
+  },
+  "createdAt": "2026-10-05T19:18:40.784253853+00:00",
+  "updatedAt": "2026-10-05T19:18:40.784258233+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

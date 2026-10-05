@@ -1,0 +1,15 @@
+{
+  "instanceId": "de391831-5aac-4610-a23f-b2982489c4d7",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Projects",
+    "slug": "projects",
+    "summary": "The four SemanticOps projects as kinds of technology: the standard, the reference engine, the browser editor and the VS Code extension."
+  },
+  "createdAt": "2026-10-05T19:18:39.555078537+00:00",
+  "updatedAt": "2026-10-05T19:18:39.555083359+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

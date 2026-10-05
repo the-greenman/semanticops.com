@@ -1,0 +1,18 @@
+{
+  "instanceId": "f9ddb5c2-69e5-4d05-a14a-f12f35c15006",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Capability layering",
+    "slug": "capability-layering",
+    "summary": "Implemented once, consumed identically.",
+    "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.",
+    "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"payload\": {\n    \"diagnostics\": []\n  }\n}",
+    "spec_link": "https://github.com/the-greenman/srs-rust"
+  },
+  "createdAt": "2026-10-05T19:18:41.576759526+00:00",
+  "updatedAt": "2026-10-05T19:18:41.576764791+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
