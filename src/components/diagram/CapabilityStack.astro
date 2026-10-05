@@ -10,6 +10,10 @@ import Target from "./Target.astro";
  * The capability layers: one core, one repository service, adapters (CLI, WASM, MCP),
  * then clients. A capability is implemented once, in the core, and consumed identically
  * by every client. Clients add presentation, never semantics.
+ *
+ * Colour carries one meaning each, and architecture is none of them: an adapter or a client
+ * is not a field or a record. So the layers are drawn in neutral ink, adapters as ring-nodes
+ * and clients as discs, and only the core keeps the target, the mark of identity.
  */
 interface Props {
   number?: number;
@@ -77,8 +81,8 @@ const desc = "Four layers from top to bottom. The core, a target centre. One rep
             return (
               <>
                 {i > 0 && <line class="dg-rule" x1={r.x1} x2={r.x2} y1={L.mode === "narrow" ? r.y : y(i) - 48} y2={L.mode === "narrow" ? r.y : y(i) - 48}></line>}
-                <text class="dg-text dg-text--caps dg-text--strong dg-text--knock" x={h.name.x} y={h.name.y} text-anchor={h.name.anchor}>{row.name}</text>
-                {h.note && <text class="dg-text dg-text--muted dg-text--knock" x={h.note.x} y={h.note.y} text-anchor={h.note.anchor}>{row.note}</text>}
+                <text class="dg-text dg-text--caps dg-text--strong" x={h.name.x} y={h.name.y} text-anchor={h.name.anchor}>{row.name}</text>
+                {h.note && <text class="dg-text dg-text--muted" x={h.note.x} y={h.note.y} text-anchor={h.note.anchor}>{row.note}</text>}
               </>
             );
           })}
@@ -86,9 +90,9 @@ const desc = "Four layers from top to bottom. The core, a target centre. One rep
           {L.xs.map((x, i) => <Link x1={L.cx} y1={y(1)} x2={x} y2={y(2)} width={2} inset={24} arrow="end" draw delay={0.15 + i * 0.1} />)}
           {L.xs.map((x, i) => <Link x1={x} y1={y(2)} x2={x} y2={y(3)} width={2} inset={26} arrow="end" draw delay={0.5 + i * 0.1} />)}
           <Target cx={L.cx} cy={y(0)} r={20} />
-          <RingNode cx={L.cx} cy={y(1)} r={18} tone="structure" inner="ring" />
-          {adapters.map((label, i) => <RingNode cx={L.xs[i]} cy={y(2)} r={14} tone="field" label={label} labelPosition="right" />)}
-          {clients.map((label, i) => <Disc cx={L.xs[i]} cy={y(3)} r={14} tone="record" label={label} labelPosition="right" />)}
+          <RingNode cx={L.cx} cy={y(1)} r={18} tone="ink" inner="ring" />
+          {adapters.map((label, i) => <RingNode cx={L.xs[i]} cy={y(2)} r={14} tone="ink" label={label} labelPosition="right" />)}
+          {clients.map((label, i) => <Disc cx={L.xs[i]} cy={y(3)} r={14} tone="ink" label={label} labelPosition="right" />)}
         </Canvas>
       );
     })

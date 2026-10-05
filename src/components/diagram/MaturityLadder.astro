@@ -66,16 +66,16 @@ const narrow = {
 };
 const layouts = [wide, narrow];
 const title = "A note graduates into records";
-const desc = `A pale gold note, ringed by a dashed boundary, stays in place. ${n} vermilion records (${records.join(", ")}) each point back to it with a ${relation} relation. The note is preserved.`;
+const desc = `A pale gold note, ringed by a dashed neutral ring, stays in place. ${n} vermilion records (${records.join(", ")}) each point back to it with a ${relation} relation. The note is preserved.`;
 ---
 
 <Figure {number} {caption} {grid} {motion}>
   {
     layouts.map((L) => (
       <Canvas layout={L.mode} {id} {title} {desc} viewBox={L.viewBox}>
-        <BrokenRing cx={L.note.cx} cy={L.note.cy} r={L.note.r + 14} width={2} tone="relation" segments={20} gap={9} />
+        <BrokenRing cx={L.note.cx} cy={L.note.cy} r={L.note.r + 14} width={2} tone="ink" segments={20} gap={9} />
         {L.trunk && <Link x1={70} y1={recY(n - 1)} x2={70} y2={L.note.cy + L.note.r + 20} arrow="end" width={1.5} draw label="" />}
-        {L.trunk && <text class="dg-text dg-text--muted dg-text--knock" x={82} y={170}>{relation}</text>}
+        {L.trunk && <text class="dg-text dg-text--muted" x={82} y={170}>{relation}</text>}
         {L.recs.map((rec, i) => {
           // Wide: each record lands at its own point on the note's boundary, so the arrowheads do not stack.
           const end = polarEnd(L.note, i);

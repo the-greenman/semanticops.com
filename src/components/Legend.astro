@@ -4,7 +4,8 @@ import type { GlyphKind } from "./types";
 
 /**
  * The key to the diagram vocabulary: one glyph and one plain sentence per idea. Colour
- * carries meaning once, and this is where it is explained. Put it under a diagram that
+ * carries meaning once, and this is where it is explained. Ink is the neutral: it means
+ * nothing of its own, and a hollow ink ring is derived output. Put it under a diagram that
  * uses several of the shapes, or show it whole on the styleguide.
  */
 interface Props {
@@ -20,6 +21,7 @@ const all: Record<GlyphKind, { name: string; text: string }> = {
   relation: { name: "Relation", text: "A typed edge between two things: a thin line, read source to target." },
   identity: { name: "Core", text: "Identity: the thing everything else is arranged around." },
   note: { name: "Note", text: "Free text, provisional, not yet typed." },
+  part: { name: "Part", text: "Anything in a system drawing that is none of these, such as an adapter or a client: neutral ink." },
   derived: { name: "Derived", text: "Rendered output: a projection, never authoritative." },
 };
 const { kinds = Object.keys(all) as GlyphKind[], class: className } = Astro.props;

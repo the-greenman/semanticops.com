@@ -5,8 +5,9 @@ import type { ComponentProps } from "astro/types";
 /**
  * A block of code. Highlighted at build time by Shiki's css-variables theme, mapped to
  * the semantic tokens here, so it follows light, dark and ink with no second theme.
- * Show real structure: the JSON, the command, the file name. Syntax colour reuses the
- * diagram meanings (keys in structure, values in field, punctuation muted).
+ * Show real structure: the JSON, the command, the file name. Code is paper and ink:
+ * names strong, values plain, punctuation and comments muted. It never borrows the
+ * diagram colours, because those carry meaning (a green string is not a field).
  */
 interface Props {
   code: string;

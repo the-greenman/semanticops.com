@@ -193,14 +193,14 @@ const relationJson = `{
 
   <!-- COLOUR MEANING -->
   <Section id="meaning">
-    <SectionHeader eyebrow="Foundations" tone="structure" title="Colour carries one meaning each">
-      Blue is structure, vermilion is records, green is fields, khaki is relations. The rest of the site stays paper and ink: colour lives in diagrams, marks and focal accents, never in large fills.
+    <SectionHeader eyebrow="Foundations" title="Colour carries one meaning each">
+      Blue is structure, vermilion is records, green is fields, khaki is relations, gold is notes. Ink is the neutral: it means nothing, so it draws an adapter or a client, and a hollow ink ring is derived output. The rest of the site stays paper and ink: colour lives in diagrams, marks and focal accents, never in large fills, and code is never coloured.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen layout="bare" title="Legend" note="The key to the diagram vocabulary. Put it under a diagram that uses several shapes. Pass kinds to show a subset.">
+      <Specimen layout="bare" title="Legend" note="The key to the diagram vocabulary, and what every diagram on this page does: each coloured shape means one idea, and anything else is neutral ink. Put it under a diagram that uses several shapes. Pass kinds to show a subset.">
         <Legend />
       </Specimen>
-      <Specimen title="Tone dots" note="Eyebrow and Chip take a tone to carry the diagram colour as a small dot, so a label can say which idea it belongs to.">
+      <Specimen title="Tone dots" note="Eyebrow and Chip take a tone to carry the diagram colour as a small dot, so a label can say which idea it names. Use it only when the label really names that idea: the dot is the meaning, never decoration.">
         <Eyebrow tone="structure">Boundary</Eyebrow>
         <Eyebrow tone="record">Record</Eyebrow>
         <Eyebrow tone="field">Field</Eyebrow>
@@ -419,46 +419,43 @@ const relationJson = `{
 
   <!-- DIAGRAM PRIMITIVES -->
   <Section id="primitives" variant="page">
-    <SectionHeader eyebrow="Diagrams" tone="relation" title="Diagram primitives">
+    <SectionHeader eyebrow="Diagrams" title="Diagram primitives">
       Every diagram is composed from these, and nothing else draws circles or lines. A broken ring is a boundary, a flat disc is a record, a ring-node is a field, a thin line is a relation, a target is identity.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen title="Disc" note="A flat filled disc: a record, or with tone another idea. hollow draws only the ring, for derived output. label and labelPosition set short text." code={`<Disc cx={40} cy={50} r={20} tone="record" label="record" />`}>
-        <Canvas id="sg-disc" viewBox="0 0 520 120" title="Discs" desc="Six discs, one in each diagram colour, then a hollow ring.">
+      <Specimen title="Disc" note="A flat filled disc: a record (vermilion, the default), a note (gold) or a neutral part (ink). hollow draws only the ring, for derived output. label and labelPosition set short text. Boundaries, fields and relations have their own shapes below, so they are never drawn as discs." code={`<Disc cx={40} cy={50} r={20} tone="record" label="record" />`}>
+        <Canvas id="sg-disc" viewBox="0 0 360 120" title="Discs" desc="Four discs: a vermilion record, a gold note, a neutral ink disc and a hollow ink ring for derived output.">
           <Disc cx={40} cy={44} r={20} tone="record" label="record" />
-          <Disc cx={116} cy={44} r={20} tone="structure" label="structure" />
-          <Disc cx={192} cy={44} r={20} tone="field" label="field" />
-          <Disc cx={268} cy={44} r={20} tone="relation" label="relation" />
-          <Disc cx={344} cy={44} r={20} tone="note" label="note" />
-          <Disc cx={420} cy={44} r={20} tone="ink" label="ink" />
-          <Disc cx={496} cy={44} r={20} tone="ink" hollow label="hollow" />
+          <Disc cx={130} cy={44} r={20} tone="note" label="note" />
+          <Disc cx={220} cy={44} r={20} tone="ink" label="ink" />
+          <Disc cx={310} cy={44} r={20} tone="ink" hollow label="hollow" />
         </Canvas>
       </Specimen>
-      <Specimen title="RingNode" note="A ring around a smaller ring or a dot: a field, a value, a part. inner is dot, ring or none. Its middle is pale so a line can end at it." code={`<RingNode cx={40} cy={44} r={20} inner="dot" />`}>
-        <Canvas id="sg-ringnode" viewBox="0 0 420 120" title="Ring-nodes" desc="Ring-nodes with a dot, with a ring and with nothing inside, in field green and structure blue.">
+      <Specimen title="RingNode" note="A ring around a smaller ring or a dot: a field (green, the default) or, in neutral ink, a part with no idea of its own. inner is dot, ring or none. Its middle is pale so a line can end at it." code={`<RingNode cx={40} cy={44} r={20} inner="dot" />`}>
+        <Canvas id="sg-ringnode" viewBox="0 0 420 120" title="Ring-nodes" desc="Field ring-nodes in green with a dot, with a ring and with nothing inside, then a neutral ink ring-node and a small green one.">
           <RingNode cx={40} cy={44} r={20} inner="dot" label="dot" />
           <RingNode cx={116} cy={44} r={20} inner="ring" label="ring" />
           <RingNode cx={192} cy={44} r={20} inner="none" label="none" />
-          <RingNode cx={268} cy={44} r={20} tone="structure" inner="dot" label="structure" />
-          <RingNode cx={344} cy={44} r={12} tone="record" inner="dot" label="small" />
+          <RingNode cx={268} cy={44} r={20} tone="ink" inner="dot" label="ink" />
+          <RingNode cx={344} cy={44} r={12} inner="dot" label="small" />
         </Canvas>
       </Specimen>
       <Specimen title="BrokenRing" note="Thick segments with clean gaps: a boundary is drawn, not solid, because a container is a declared selection. segments and gap space it evenly; gaps places gap centres by angle. Never close the circle for a container." code={`<BrokenRing cx={60} cy={60} r={44} width={8} segments={6} gap={14} />`}>
-        <Canvas id="sg-broken" viewBox="0 0 460 140" title="Broken rings" desc="Three broken rings: six segments, three segments with wide gaps, and a ring with gaps at chosen angles.">
+        <Canvas id="sg-broken" viewBox="0 0 460 140" title="Broken rings" desc="Three broken blue rings: six segments, three segments with wide gaps, and a ring with gaps at chosen angles.">
           <BrokenRing cx={70} cy={66} r={50} segments={6} gap={14} />
-          <BrokenRing cx={230} cy={66} r={50} segments={3} gap={30} tone="record" />
-          <BrokenRing cx={390} cy={66} r={50} gaps={[-90, 20, 150]} gap={[16, 30, 16]} tone="field" />
+          <BrokenRing cx={230} cy={66} r={50} segments={3} gap={30} />
+          <BrokenRing cx={390} cy={66} r={50} gaps={[-90, 20, 150]} gap={[16, 30, 16]} />
         </Canvas>
       </Specimen>
-      <Specimen title="Link" note="A relation line with an optional mono label, which breaks the line with a knockout halo. Reads source to target: the arrow points at the target. dashed, inset, width and tone adjust it." code={`<Link x1={10} y1={40} x2={200} y2={40} arrow="end" label="precedes" />`}>
-        <Canvas id="sg-link" viewBox="0 0 520 190" title="Relation lines" desc="Four lines: plain, with an arrow, with a label and arrow, and dashed.">
+      <Specimen title="Link" note="A relation line (khaki) with an optional mono label, which breaks the line with its halo. Reads source to target: the arrow points at the target. dashed, inset and width adjust it; tone ink draws a neutral action such as an edit, which is not a relation." code={`<Link x1={10} y1={40} x2={200} y2={40} arrow="end" label="precedes" />`}>
+        <Canvas id="sg-link" viewBox="0 0 520 190" title="Relation lines" desc="Four khaki relation lines: plain, with an arrow, with a label and arrow, and dashed. Beside them a thick relation line, a neutral ink arrow pointing back and a medium relation arrow.">
           <Link x1={10} y1={24} x2={240} y2={24} />
           <Link x1={10} y1={64} x2={240} y2={64} arrow="end" />
           <Link x1={10} y1={104} x2={240} y2={104} arrow="end" label="precedes" />
           <Link x1={10} y1={144} x2={240} y2={144} dashed arrow="end" label="proposed" />
-          <Link x1={280} y1={24} x2={510} y2={24} tone="structure" width={4} />
-          <Link x1={280} y1={64} x2={510} y2={64} tone="record" arrow="start" />
-          <Link x1={280} y1={104} x2={510} y2={104} tone="field" arrow="end" width={3} />
+          <Link x1={280} y1={24} x2={510} y2={24} width={4} />
+          <Link x1={280} y1={64} x2={510} y2={64} tone="ink" arrow="start" />
+          <Link x1={280} y1={104} x2={510} y2={104} arrow="end" width={3} />
         </Canvas>
       </Specimen>
       <Specimen title="Target" note="Ring, fill, ring, dot: identity, or the core. The thing everything else is arranged around." code={`<Target cx={40} cy={44} r={24} label="core" />`}>
@@ -495,6 +492,7 @@ const relationJson = `{
         <span class="cluster"><Glyph kind="relation" size={28} /><span class="t-label">relation</span></span>
         <span class="cluster"><Glyph kind="identity" size={28} /><span class="t-label">identity</span></span>
         <span class="cluster"><Glyph kind="note" size={28} /><span class="t-label">note</span></span>
+        <span class="cluster"><Glyph kind="part" size={28} /><span class="t-label">part</span></span>
         <span class="cluster"><Glyph kind="derived" size={28} /><span class="t-label">derived</span></span>
       </Specimen>
       <Specimen layout="grid" title="Figure and Canvas" note="Figure is the chrome: a plate with an optional dot-grid ground, a mono figure number and a caption. The plate is a size container, so a diagram picks its wide or narrow layout from the room it has. Canvas is the svg: role img, title and description. motion plays the drawing-in on load (CSS only, off under reduced motion): a boundary draws, its parts pop in, the relations draw, then an arrowhead appears only after its line. Use it above the fold. Every label inside a Canvas sits on a ground-coloured halo (--dg-halo) wide enough to bridge a word space, so the dot grid never reads as a middot." code={`<Figure number={7} caption="A caption." grid motion><Canvas ...>...</Canvas></Figure>`}>
@@ -514,7 +512,7 @@ const relationJson = `{
 
   <!-- DIAGRAMS -->
   <Section id="diagrams">
-    <SectionHeader eyebrow="Diagrams" tone="record" title="Diagrams">
+    <SectionHeader eyebrow="Diagrams" title="Diagrams">
       Six diagrams, each composed from the primitives, each with a wide layout and a stacked narrow one that stays legible at 375px. Labels are props: Phase 2 feeds real content in. Resize the window to see the layouts switch.
     </SectionHeader>
     <div class="stack stack--md">
@@ -524,7 +522,7 @@ const relationJson = `{
       <Specimen layout="bare" title="ProjectionFan" note="Records fan out into projections. Edits go only into the records; every projection is derived. Props: outputs, edit, derived. Narrow layout hangs the outputs off one trunk." code={`<ProjectionFan outputs={["Markdown", "HTML", "JSON", "agent context"]} />`}>
         <ProjectionFan number={2} id="sg-fan" />
       </Specimen>
-      <Specimen layout="bare" title="CapabilityStack" note="Core, one service, the CLI, WASM and MCP adapters, then the clients. A capability is implemented once, in the core. Clients add presentation, never semantics." code={`<CapabilityStack />`}>
+      <Specimen layout="bare" title="CapabilityStack" note="Core, one service, the CLI, WASM and MCP adapters, then the clients. A capability is implemented once, in the core. Clients add presentation, never semantics. Architecture is no colour meaning, so adapters are neutral ink ring-nodes and clients neutral ink discs; only the core keeps the target." code={`<CapabilityStack />`}>
         <CapabilityStack number={3} id="sg-stack" />
       </Specimen>
       <Specimen layout="bare" title="MaturityLadder" note="A note graduates into records, linked back by derived-from, and the note is kept. Props: note, records (one label each), relation." code={`<MaturityLadder records={["decision", "task", "task", "task", "risk", "risk"]} />`}>

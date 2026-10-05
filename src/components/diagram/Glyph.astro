@@ -25,6 +25,7 @@ const { kind, size = 24 } = Astro.props;
   {kind === "relation" && <Link x1={2} y1={12} x2={22} y2={12} width={2} arrow="end" />}
   {kind === "identity" && <Target cx={12} cy={12} r={9} knockout={0} />}
   {kind === "note" && <Disc cx={12} cy={12} r={8} tone="note" knockout={0} />}
+  {kind === "part" && <RingNode cx={12} cy={12} r={8} tone="ink" knockout={0} />}
   {kind === "derived" && <Disc cx={12} cy={12} r={7.5} tone="ink" hollow knockout={0} />}
 </svg>
 
