@@ -56,7 +56,7 @@ SRS records what was decided and why. It never takes the decision, and it carrie
 
 Some principles come as pairs. SRS does not pick a winner. It holds both, and a specific mechanism holds each pair.
 
-Depth without overload, above, is the first. Four more follow. None is a slogan to balance by feel: each is held by something concrete in the data model, so you can check it.
+Depth without overload, above, is the first. The pairs below are held the same way. None is a slogan to balance by feel: each is held by something concrete in the data model, so you can check it.
 
 
 ### Fixed meaning, changing state
