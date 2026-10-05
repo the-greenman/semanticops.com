@@ -9,6 +9,9 @@ const rad = (deg: number) => (deg * Math.PI) / 180;
 
 export const round = (n: number) => Math.round(n * 100) / 100;
 
+/** Every ring and link is drawn this much heavier than the width it is given: one knob for the line weight of the whole diagram family. */
+export const LINE_WEIGHT = 1.35;
+
 export function polar(cx: number, cy: number, r: number, deg: number): Point {
   return { x: round(cx + r * Math.cos(rad(deg))), y: round(cy + r * Math.sin(rad(deg))) };
 }

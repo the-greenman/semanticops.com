@@ -1,5 +1,5 @@
 ---
-import { round, trim } from "./geometry";
+import { LINE_WEIGHT, round, trim } from "./geometry";
 import type { Tone } from "./tones";
 
 /**
@@ -19,6 +19,7 @@ interface Props {
   labelAt?: number;
   arrow?: "end" | "start" | "none";
   dashed?: boolean;
+  /** Nominal stroke width, drawn LINE_WEIGHT heavier (geometry.ts). */
   width?: number;
   /** Shorten the line at each end so it stops at the edge of a node. */
   inset?: number;
@@ -29,7 +30,8 @@ interface Props {
   class?: string;
 }
 
-const { x1, y1, x2, y2, tone = "relation", label = "", labelAt = 0.5, arrow = "none", dashed = false, width = 2, inset = 0, insetEnd, draw = false, delay = 0, class: className } = Astro.props;
+const { x1, y1, x2, y2, tone = "relation", label = "", labelAt = 0.5, arrow = "none", dashed = false, width: nominal = 2, inset = 0, insetEnd, draw = false, delay = 0, class: className } = Astro.props;
+const width = nominal * LINE_WEIGHT;
 
 const [a, b] = trim({ x: x1, y: y1 }, { x: x2, y: y2 }, inset, insetEnd ?? inset);
 const ang = Math.atan2(b.y - a.y, b.x - a.x);
