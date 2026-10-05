@@ -1,5 +1,6 @@
 ---
 import { round } from "./geometry";
+import type { Tone } from "./tones";
 
 /**
  * One disc divided by an S-shaped line into two regions, each holding a seed of the
@@ -18,14 +19,14 @@ interface Props {
   right?: "ink" | "paper";
   /** The seed in each region: a dot, or a ring-node. */
   seed?: "dot" | "ring";
-  /** Trace the S inside each region in the other region's tone. Off for marks under 32px, where the lines would blur. */
-  trace?: boolean;
+  /** The S drawn as a line over the seam: grey (default), a diagram tone, or none. */
+  line?: "grey" | "none" | Tone;
   /** Outline width. Defaults to a tenth of the radius. */
   edge?: number;
   class?: string;
 }
 
-const { cx, cy, r, right = "ink", seed = "dot", trace = true, edge, class: className } = Astro.props;
+const { cx, cy, r, right = "ink", seed = "dot", line = "grey", edge, class: className } = Astro.props;
 
 const left = right === "ink" ? "paper" : "ink";
 const h = r / 2;
@@ -42,32 +43,16 @@ const seeds = [
   { x: cx, y: round(cy - h), tone: left },
   { x: cx, y: round(cy + h), tone: right },
 ];
-// The traces: the S shifted d into each region, drawn in the other region's tone, so the
-// dividing line reads as a pronounced S. Shifting an arc sideways keeps its centre and
-// changes its radius: inside the right region the upper arc shrinks to h - d and the lower
-// grows to h + d. The grown arc would leave the disc, so it ends where it meets the rim:
-// x² + y² = r² and x² + (y - h)² = (h + d)², relative to the centre. The left region's
-// trace is the same curve turned half a turn.
-const d = r * 0.15;
-const ty = (r * r - (h + d) * (h + d) + h * h) / (2 * h);
-const tx = Math.sqrt(r * r - ty * ty);
-const arcs = (s: 1 | -1) =>
-  `M${round(cx)} ${round(cy - s * (r - d))}` +
-  `A${round(h - d)} ${round(h - d)} 0 0 0 ${round(cx)} ${round(cy - s * d)}` +
-  `A${round(h + d)} ${round(h + d)} 0 0 1 ${round(cx + s * tx)} ${round(cy + s * ty)}`;
-const traces = trace
-  ? [
-      { d: arcs(1), tone: left },
-      { d: arcs(-1), tone: right },
-    ]
-  : [];
-const tw = r * 0.065;
+// The S itself, drawn as one line over the seam: grey by default, or a diagram tone. Its
+// butt ends sit on the rim's centre line, so the rim covers them.
+const divide = `M${cx} ${top}A${h} ${h} 0 0 0 ${cx} ${cy}A${h} ${h} 0 0 1 ${cx} ${bottom}`;
+const lw = r * 0.093;
 ---
 
 <g class:list={["dg-halves", className]}>
   <circle class={`dg-half--${left}`} {cx} {cy} {r}></circle>
   <path class={`dg-half--${right}`} d={regionRight}></path>
-  {traces.map((t) => <path class={`dg-trace--${t.tone}`} d={t.d} stroke-width={tw}></path>)}
+  {line !== "none" && <path class:list={["dg-divide", line !== "grey" && `dg-tone--${line}`]} d={divide} stroke-width={lw}></path>}
   {
     seeds.map((s) =>
       seed === "ring" ? (

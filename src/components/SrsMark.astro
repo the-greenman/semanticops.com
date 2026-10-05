@@ -1,6 +1,7 @@
 ---
 import BrokenRing from "./diagram/BrokenRing.astro";
 import Halves from "./diagram/Halves.astro";
+import type { Tone } from "./diagram/tones";
 
 /**
  * The SRS mark: a disc divided by an S-shaped line, drawn in the same 24 box and with
@@ -10,7 +11,8 @@ import Halves from "./diagram/Halves.astro";
  *
  * Variants:
  *  - line    a disc with the S-wave drawn through it, top to bottom (srs-web turned upright)
- *  - halves  the two regions filled, each with a seed of the other
+ *  - halves  the two regions filled, each with a seed of the other, and the S drawn as a
+ *            line over the seam (grey by default, or a diagram tone via `line`)
  *  - ring    the halves with ring-node seeds, inside a broken ring (the SemanticOps lockup)
  *
  * It follows the theme and the surface it sits on. Decorative by default (aria-hidden):
@@ -18,6 +20,8 @@ import Halves from "./diagram/Halves.astro";
  */
 interface Props {
   variant?: "line" | "halves" | "ring";
+  /** The colour of the S line in halves and ring: grey (default), a diagram tone, or none. */
+  line?: "grey" | "none" | Tone;
   /** Rendered size in px. */
   size?: number;
   /** An accessible name. Omit when the mark sits beside text that says the same. */
@@ -25,7 +29,7 @@ interface Props {
   class?: string;
 }
 
-const { variant = "halves", size = 24, label, class: className } = Astro.props;
+const { variant = "halves", line = "grey", size = 24, label, class: className } = Astro.props;
 ---
 
 <svg
@@ -46,12 +50,12 @@ const { variant = "halves", size = 24, label, class: className } = Astro.props;
       </>
     )
   }
-  {variant === "halves" && <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" trace={size >= 32} />}
+  {variant === "halves" && <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" {line} />}
   {
     variant === "ring" && (
       <>
         <BrokenRing cx={12} cy={12} r={10.9} width={1.6} segments={6} gap={16} start={-60} />
-        <Halves cx={12} cy={12} r={7.6} edge={0.9} seed="ring" trace={size >= 32} />
+        <Halves cx={12} cy={12} r={7.6} edge={0.9} seed="ring" {line} />
       </>
     )
   }

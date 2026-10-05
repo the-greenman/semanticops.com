@@ -124,21 +124,23 @@
   fill: var(--figure-ground);
 }
 
-.dg-seed-ring--ink,
-.dg-trace--ink {
+.dg-seed-ring--ink {
   fill: none;
   stroke: var(--color-text-strong);
 }
 
-.dg-seed-ring--paper,
-.dg-trace--paper {
+.dg-seed-ring--paper {
   fill: none;
   stroke: var(--figure-ground);
 }
 
-.dg-trace--ink,
-.dg-trace--paper {
-  stroke-linecap: round;
+.dg-divide {
+  fill: none;
+  stroke: var(--dg-divide);
+}
+
+.dg-divide[class*="dg-tone--"] {
+  stroke: var(--dg-tone);
 }
 
 .dg-rule {
