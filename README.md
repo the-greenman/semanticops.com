@@ -2,11 +2,24 @@
 
 The SemanticOps website: a human site and an agent site, projected from one SRS repository.
 
-SRS (Semantic Record System, pronounced "source") builds portable semantic documents that both humans and AI can understand and use. This site explains the kind of technology it is and where it is going.
+SRS (pronounced "source") is an open standard for portable semantic documents that people and AI can both understand and use. This site explains the kind of technology it is and where it is going.
 
 ## Status
 
-Phase 2: the five pages (home, model, architecture, principles, projects), assembled from the styleguide components and the generated data. `/styleguide` stays the contract for every token, component and diagram. A page added in `source/` becomes a route and a nav entry; how a record looks is one line in `src/lib/presentation.ts`.
+The site is live at [semanticops.com](https://semanticops.com): five pages (home, model, architecture, principles, projects), assembled from the styleguide components and the generated data. The agent site is at [`/llms.txt`](https://semanticops.com/llms.txt), the entry point for agents. [srs.semanticops.com](https://srs.semanticops.com) is a separate site: the specification and schema host, with its own content and its own repository ([srs](https://github.com/the-greenman/srs)), which this repo never touches.
+
+`/styleguide` stays the contract for every token, component and diagram. A page added in `source/` becomes a route and a nav entry; how a record looks is one line in `src/lib/presentation.ts`.
+
+## The SemanticOps projects
+
+| Project | Kind | In one line |
+|---|---|---|
+| [srs](https://github.com/the-greenman/srs) | Open standard | The specification, authored as its own data. |
+| [srs-rust](https://github.com/the-greenman/srs-rust) | Reference engine | One core behind a CLI, WebAssembly bindings and an MCP server. |
+| [srs-web](https://github.com/the-greenman/srs-web) | Browser editor | Edit SRS repositories entirely client-side, on storage you own. |
+| [srs-vscode](https://github.com/the-greenman/srs-vscode) | VS Code extension | Repositories in your workspace, with views for navigating them. |
+
+muDemocracy is the first consumer of SRS, covering decision practice. This site presents each project at [semanticops.com/projects](https://semanticops.com/projects/).
 
 ## Develop
 
