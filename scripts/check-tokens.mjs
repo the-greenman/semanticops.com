@@ -9,9 +9,10 @@
 //   5. a component <style> whose rules are not inside @layer components
 //   6. a var(--x) that is read but defined nowhere
 //   7. a diagram colour under 3:1, or a text colour under 4.5:1, on its grounds
+//   8. the layer order not declared first in Base.astro (inlined component CSS would set it instead)
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
-import { colourReport, loadTokens, parseRules, resolve } from "./lib/tokens.mjs";
+import { colourReport, contrast, isHex, loadTokens, resolve } from "./lib/tokens.mjs";
 
 const ROOT = process.cwd();
 const walk = (dir) =>
@@ -86,6 +87,7 @@ for (const file of files.filter((f) => f.endsWith(".astro"))) {
   const raw = readFileSync(file, "utf8");
   for (const m of raw.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) {
     const css = stripComments(m[1]);
+    if (css.trim() === "@layer tokens, base, layout, components, theme, utilities;") continue; // the layer order statement itself
     const rules = [];
     let depth = 0;
     let start = 0;
@@ -106,6 +108,14 @@ for (const file of files.filter((f) => f.endsWith(".astro"))) {
   }
 }
 
+// ---- 8: the layer order is fixed first in the document (inlined component CSS would otherwise set it) --
+const ORDER = "@layer tokens, base, layout, components, theme, utilities;";
+for (const f of ["src/layouts/Base.astro", "src/styles/index.css"]) {
+  if (!readFileSync(join(ROOT, f), "utf8").includes(ORDER)) fail(f, 0, `must declare the layer order: ${ORDER}`);
+}
+const base = readFileSync(join(ROOT, "src/layouts/Base.astro"), "utf8");
+if (base.indexOf(ORDER) > base.indexOf("<Font")) fail("src/layouts/Base.astro", 0, "the layer order statement must come before any other head content that can carry CSS");
+
 // ---- 7: contrast ---------------------------------------------------------------------
 const GRAPHIC = ["--color-structure", "--color-record", "--color-field", "--color-relation"];
 const TEXT = ["--color-text", "--color-text-strong", "--color-muted", "--color-muted-strong"];
@@ -120,6 +130,22 @@ for (const r of report) {
       rows.push(`${r.name} ${scheme}/${ground} ${c.toFixed(2)}`);
       if (c < need) fail("src/styles/tokens.css", 0, `${r.name} on ${scheme} ${ground} is ${c.toFixed(2)}:1, needs ${need}:1`);
     }
+  }
+}
+// Text drawn on a fill: [text token, fill token, minimum], checked in both schemes.
+const ON_FILL = [
+  ["--color-on-strong", "--color-text-strong", 4.5],
+  ["--color-on-note", "--color-note", 4.5],
+  ["--color-ground", "--color-record", 4.5], // the label inside a record disc
+];
+for (const [fg, bg, need] of ON_FILL) {
+  for (const [scheme, maps] of [["light", [t.light, t.primitives]], ["dark", [t.darkManual, t.light, t.primitives]]]) {
+    const a = resolve(fg, ...maps);
+    const b = resolve(bg, ...maps);
+    if (!isHex(a) || !isHex(b)) continue;
+    const c = contrast(a, b);
+    rows.push(`${fg} on ${bg} ${scheme} ${c.toFixed(2)}`);
+    if (c < need) fail("src/styles/tokens.css", 0, `${fg} on ${bg} (${scheme}) is ${c.toFixed(2)}:1, needs ${need}:1`);
   }
 }
 // Notes (gold) are a fill drawn with a relation-coloured edge: the edge carries the 3:1.

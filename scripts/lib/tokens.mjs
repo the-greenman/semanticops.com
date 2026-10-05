@@ -44,7 +44,6 @@ export function loadTokens(root = process.cwd()) {
     for (const m of markers) if (m.at <= r.start + 1) tier = m.tier;
     return { ...r, tier };
   });
-  const decl = (r) => new Map(r.decls);
   const primitives = new Map();
   const light = new Map();
   const darkMedia = new Map();

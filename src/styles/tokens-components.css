@@ -50,6 +50,18 @@
   --code-border: var(--color-line);
   --code-fg: var(--color-text);
   --code-inline-bg: var(--color-line-soft);
+  /* Shiki's css-variables theme (CodeSample, and markdown code blocks in Prose) reads these. */
+  --astro-code-foreground: var(--code-fg);
+  --astro-code-background: var(--code-bg);
+  --astro-code-token-constant: var(--color-structure);
+  --astro-code-token-string: var(--color-field);
+  --astro-code-token-string-expression: var(--color-field);
+  --astro-code-token-comment: var(--color-muted);
+  --astro-code-token-keyword: var(--color-record);
+  --astro-code-token-parameter: var(--color-text);
+  --astro-code-token-function: var(--color-structure);
+  --astro-code-token-punctuation: var(--color-muted-strong);
+  --astro-code-token-link: var(--color-structure);
 
   /* Quote */
   --quote-rule: var(--color-text-strong);

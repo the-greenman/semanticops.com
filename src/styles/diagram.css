@@ -175,6 +175,11 @@
   paint-order: stroke;
 }
 
+.dg-text--on-note {
+  font-weight: var(--weight-medium);
+  fill: var(--color-on-note);
+}
+
 .dg-text--on-disc {
   fill: var(--figure-ground);
   font-weight: var(--weight-medium);

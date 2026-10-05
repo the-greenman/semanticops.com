@@ -87,6 +87,7 @@
   --color-field: var(--green); /* fields and atomic values */
   --color-relation: var(--khaki-deep); /* relations and connectors */
   --color-note: var(--gold); /* notes: free text, provisional. A fill: draw it with a relation-coloured edge */
+  --color-on-note: var(--black); /* text on a note fill: always dark, in both schemes */
 
   --shadow-popover: 0 4px 16px var(--shadow-tint);
 
@@ -194,6 +195,7 @@
     --color-field: var(--green-lit);
     --color-relation: var(--khaki-lit);
     --color-note: var(--gold);
+    --color-on-note: var(--black);
 
     --shadow-popover: 0 4px 16px var(--shadow-tint-dark);
   }
@@ -225,6 +227,7 @@
   --color-field: var(--green-lit);
   --color-relation: var(--khaki-lit);
   --color-note: var(--gold);
+  --color-on-note: var(--black);
 
   --shadow-popover: 0 4px 16px var(--shadow-tint-dark);
 }
