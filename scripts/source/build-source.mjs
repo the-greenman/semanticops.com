@@ -7,7 +7,7 @@
 // Everything is rendered and linted into a staging directory first; only when all of it passes is
 // it swapped into src/data and public/agents. On any failure the tree is left untouched.
 // Usage: node scripts/source/build-source.mjs [--check]   (--check fails if the output differs from git)
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { basename, dirname, extname, isAbsolute, join, normalize, relative, resolve } from "node:path";
 import { REPO_ROOT, resolveSrsBinary } from "./lib-srs.mjs";
@@ -26,7 +26,8 @@ const fail = (msg) => {
   process.exit(1);
 };
 
-execFileSync(process.execPath, [join(REPO_ROOT, "scripts", "source", "ensure-srs-cli.mjs"), ...(CHECK ? ["--check"] : [])], { stdio: "inherit" });
+const ensured = spawnSync(process.execPath, [join(REPO_ROOT, "scripts", "source", "ensure-srs-cli.mjs"), ...(CHECK ? ["--check"] : [])], { stdio: "inherit" });
+if (ensured.status !== 0) process.exit(ensured.status ?? 1); // the child already printed one line
 const SRS = resolveSrsBinary();
 
 function srs(...args) {
