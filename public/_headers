@@ -1,0 +1,13 @@
+# Response headers for Cloudflare Workers static assets (other static hosts read this format too).
+# The agent site is public, read-only data: let browser-based agents fetch it from any origin.
+
+/llms.txt
+  Access-Control-Allow-Origin: *
+
+/agents/*
+  Access-Control-Allow-Origin: *
+
+# .srs is the SRS ZIP archive (ext:repository). It has no registered media type, and the
+# extension is unknown to the host, so name the container format.
+/agents/*.srs
+  Content-Type: application/zip
