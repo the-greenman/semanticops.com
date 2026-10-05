@@ -19,8 +19,9 @@ src/components/    one component per file; diagram/ holds the primitives and the
 src/components/styleguide/   specimen helpers used only by /styleguide
 src/components/page/         the assemblers: PageBands (entries to bands) and Entry (one record)
 src/layouts/Base.astro       page shell
-src/lib/           content.ts (typed data loader), markdown.ts, bands.ts, presentation.ts (the presentation map)
+src/lib/           content.ts (typed data loader), markdown.ts, shiki.mjs (the one code theme), bands.ts, presentation.ts (the presentation map)
 src/pages/         index (home), [page] (every other page, from site.json), 404, styleguide
+.github/workflows/ci.yml     the one CI job (see "Running the checks")
 scripts/           check-tokens.mjs, check-copy.mjs, check-links.mjs, lib/tokens.mjs (the token parser)
 plans/             one page per phase
 source/            the SRS repository of facts          (content pipeline owns it)
@@ -44,9 +45,9 @@ A page contains components and the layout utilities in `utilities.css` (`stack`,
 Every visible fact comes from `src/data/*.json` (see `src/data/README.md`); the only text written in code is UI chrome ("Menu", "On this page", "Keep reading", "Read this page as data"). The route and the nav come from `site.json`, so a page added in `source/` is a route and a nav entry with no code change.
 
 - **`src/lib/content.ts`** types the data contract and loads it. It never reorders or filters to change the order. `linkTo(slug, fromPage)` resolves a relation target to an anchor or to its owning page.
-- **`src/lib/presentation.ts`, the presentation map, is the one place a slug is paired with how it is shown**: the band surface (`paper`, `page`, `ink`), a diagram, a glyph, a lede as a quotation, a principle as a headline or a pair. `page:slug` overrides it for one page. A slug with no entry takes the default of its entry type. Never choose a component or a diagram by slug anywhere else.
+- **`src/lib/presentation.ts`, the presentation map, is the one place a slug is paired with how it is shown**: the band surface (`paper`, `page`, `ink`), a diagram (named, from the `visuals` table), a glyph, a lede as a quotation, a principle as a headline or a pair, the hero. `page:slug` overrides it for one page. A slug with no entry takes the default of its entry type. Never choose a component or a diagram by slug anywhere else.
 - **`src/lib/bands.ts`** groups the flat entry list into bands (a section, a concept, or an entry whose look names a surface opens one; the entries after it are its items) and alternates paper and page; ink only where the map asks. **`components/page/PageBands.astro`** lays them out and numbers the figures; **`components/page/Entry.astro`** draws one record by type and look and gives it `id={slug}`.
-- `src/pages/[page].astro` is the one dynamic route (page header, an "on this page" index when a page has four or more bands, the bands, "Keep reading"). `src/pages/index.astro` composes only the hero by hand and hands the rest to `PageBands`.
+- `src/pages/[page].astro` is the one dynamic route (page header, an "on this page" index when a page has four or more bands, the bands, "Keep reading"). `src/pages/index.astro` composes only the hero by hand (which record is the hero, and the pages its buttons lead to, are the `hero` and `actions` looks in the map) and hands the rest to `PageBands`. Bands are computed once per page (`toBands`) and passed to `PageBands`; `closingSurface` gives the ground of a band that follows them.
 
 **To add a page:** add its records, a container and a composition in `source/` (see `source/README.md`), then `npm run source`. It appears at `/<slug>` and in the nav. **To change how a record looks:** add or change one line in `presentation.ts`. **To add a new kind of look** (a new diagram pairing is only a line; a new component is not): add the component and its specimen first, then reference it from the map. If a record reads wrongly, change the record through the SRS tools, never the component.
 
@@ -67,7 +68,7 @@ Every diagram is composed from the primitives in `components/diagram/` (`Disc`, 
 
 ### 4. Two surfaces from one source
 
-Facts live in `source/` (an SRS repository). `npm run source` regenerates `src/data/`, `public/llms.txt` and `public/agents/` and needs the `srs` binary. **Never hand-edit `src/data/`, `public/agents/` or `public/llms.txt`.** To change a fact, change a record in `source/` through the SRS tools (the MCP server first, the CLI as fallback; never write look-alike JSON by hand), then run `npm run source`. CI re-runs it and fails on drift. `npm run build` is `astro build` only, so any host can build without the binary.
+Facts live in `source/` (an SRS repository). `npm run source` regenerates `src/data/`, `public/llms.txt` and `public/agents/` and needs the `srs` binary. **Never hand-edit `src/data/`, `public/agents/` or `public/llms.txt`.** To change a fact, change a record in `source/` through the SRS tools (the MCP server first, the CLI as fallback; never write look-alike JSON by hand), then run `npm run source`. CI re-runs it (`npm run source:check`) and fails on drift. `npm run build` is `astro build` only, so any host can build without the binary.
 
 ### 5. Copy rules
 
@@ -95,7 +96,9 @@ npm run check:links # after a build: every internal href and #anchor in dist/ re
 npm run dev         # local server; open /styleguide
 ```
 
-Run the first three before every commit, and `npm run check:links` after any change to pages or data. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
+Run the first three before every commit, and `npm run check:links` after any change to pages or data. `npm run source:check` (needs the vendored srs binary, which it downloads itself, pinned by sha256) fails if the committed generated output differs from what `source/` produces.
+
+**CI** is `.github/workflows/ci.yml`: one job on every pull request and every push to `main`, on ubuntu-latest with Node 22. It runs `npm ci`, `npm run source:check`, `npm run check`, `npm run typecheck`, `npm run build` and `npm run check:links`, and nothing else. It never deploys (deploys are Workers Builds). A change to the gates goes in both places. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
 
 ## Process
 

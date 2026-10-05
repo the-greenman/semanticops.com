@@ -23,7 +23,7 @@ Scope: assemble the real pages from the styleguide components and the generated 
 
 | Slug | Look |
 |---|---|
-| `hero` | hand-composed on home: SrsMark halves, Pronunciation lockup, HeroCluster (motion) |
+| `home:hero` | `hero` look: hand-composed on home (SrsMark halves, Pronunciation lockup, HeroCluster); its two buttons lead to the pages named in `actions` (model, architecture), labelled by the page records |
 | `problem` | lede as a Quote |
 | `idea` | ink band, ProjectionFan |
 | `model-glance` | ConceptCards of the six model concepts (linked to `/model#slug`); body not repeated |
@@ -34,7 +34,7 @@ Scope: assemble the real pages from the styleguide components and the generated 
 | `tools-over-mimicry` | ink band (the rejected write is the point) |
 | `agents-as-data` | ink band, TwoSurfaces |
 | `governing-core` | headline: Quote and explanation; on `/principles` it opens an ink band |
-| the five held pairs | PairItem (title split at the comma into two poles) |
+| the five held pairs | PrincipleItem as a pair: the two poles are the `pole_a` and `pole_b` fields of the record |
 | `one-source-two-readers` | TwoSurfaces on `/principles` only |
 | `scope`, `first-consumer` | ink band; `scope` lede as a Quote |
 | projects | ProjectCard grid, relations as links |
@@ -44,11 +44,11 @@ Figure numbers count per page, in order. Diagram labels remain the component def
 
 ## New components (each with a specimen)
 
-`ConceptEntry` (a concept as a chapter: text beside its JSON), `PairItem` (a held pair), `RelationList` (relation chips), `OnThisPage` (anchor index), `AgentEdition` (the quiet link to a page's data), `PageLinks` (the other pages). Changed: `ProjectCard` (tagline, audience, makes possible, relations, id), `PrincipleItem` and `ConceptCard` (id), `SectionHeader` (glyph). The assemblers in `components/page/` have no visual of their own and are documented in the styleguide.
+`ConceptEntry` (a concept as a chapter: text beside its JSON), `RelationList` (relation chips), `OnThisPage` (anchor index), `AgentEdition` (the quiet link to a page's data), `PageLinks` (the other pages). Changed: `ProjectCard` (tagline, audience, makes possible, relations, id), `PrincipleItem` (claim, id, level, and the held-pair variant) and `ConceptCard` (id), `SectionHeader` (glyph). The assemblers in `components/page/` have no visual of their own and are documented in the styleguide.
 
 ## Records changed
 
-`held-pairs` (principles): the body said "Four more follow" and five pairs follow, so the count is dropped. Changed through the pinned srs CLI, then `npm run source`.
+`held-pairs` (principles): the body said "Four more follow" and five pairs follow, so the count is dropped. The `principle` type gained two optional fields, `pole_a` and `pole_b`, developed in place at version 1 (the site package is pre-publication), and the five pair records carry them. All through the pinned srs CLI, then `npm run source`.
 
 ## Checks
 
