@@ -30,17 +30,17 @@ Root container (`manifest.container`): the identity record (`purpose`, one or tw
 
 ## Compositions and presentations
 
-One Composition per page: a single `container-subset` section with `ordering.source: arranged`, so order and depth come from the container. One L1 View per Type controls the markdown (identity as the heading, prose fields unlabelled); the JSON projection carries every field. Each Composition names its page container in its single section (a declared link, not a naming convention) and is declared as a presentation (markdown, `public/agents/<page>.md`); the JSON projection is the same Composition rendered with `--view-format json` (the CLI holds one declared presentation per Composition).
+One Composition per page: a single `container-subset` section with `ordering.source: arranged`, so order and depth come from the container. One L1 View per Type controls the markdown (identity as the heading, prose fields unlabelled); the JSON projection carries every field. Each Composition names its page container in its single section (a declared link, not a naming convention) and is declared as a presentation (markdown, repository-relative `projections/<page>.md`, so the bundle is self-contained; the pipeline places the output in `public/agents/<page>.md`); the JSON projection is the same Composition rendered with `--view-format json` (the CLI holds one declared presentation per Composition).
 
 ## Pipeline: `npm run source` -> `scripts/source/build-source.mjs`
 
 1. ensure the pinned binary (`v0.1.0-build.470`) in gitignored `.bin/srs`;
-2. `srs repo validate`, fail on any error or warning;
-3. render each page to JSON, apply a thin presentation transform (name-key lift, relation targets get slugs, volatile keys dropped), write `src/data/<page>.json`; order and membership come from the render output untouched;
-4. render each page to markdown at `public/agents/<page>.md`, copy the JSON to `public/agents/<page>.json`;
-5. `srs repo agent-index` into `public/llms.txt` under a generated header listing the `/agents/*` files (from the presentations) and the bundle;
-6. `srs archive pack` to `public/agents/semanticops.srs` (deterministic);
-7. write `src/data/site.json` (identity statement and pages in the root container's navigation order). A small copy lint (em dash, dead vocabulary) fails the build.
+2. `srs repo validate`, fail on any diagnostic;
+3. render each page to JSON and markdown (diagnostics checked), apply a thin presentation transform (relation targets get slugs, volatile keys dropped); order and membership come from the render output untouched, and the page key (the page record's slug) must equal the presentation file name;
+4. `site.json` (identity statement and pages in navigation order) and `public/llms.txt` in the llmstxt convention (title, purpose blockquote, pages with summaries and JSON links, data links), all from records;
+5. copy lint over everything that ships (page JSON, markdown, site.json, llms.txt, aiGuidance of this repository's definitions);
+6. `srs repo agent-index` written unmodified to `public/agents/agent-index.md`; `srs archive pack` to `public/agents/semanticops.srs` (deterministic);
+7. all of it is built in a staging directory and swapped into `src/data` and `public/agents` only if every step passed.
 
 Output is committed; a clean re-run produces no diff.
 
