@@ -46,7 +46,7 @@ const arcs = order.map((g, i) => {
 <g class:list={["dg-ring-group", `dg-tone--${tone}`]}>
   {
     arcs.map((arc, i) => (
-      <path class:list={["dg-broken", draw && "dg-draw"]} d={arc.d} stroke-width={width} style={draw ? `--dg-len:${arc.len};--dg-delay:${round(delay + i * 0.08)}s` : undefined}></path>
+      <path class:list={["dg-broken", draw && "dg-draw"]} d={arc.d} stroke-width={width} style={draw ? `--dg-len:${arc.len};--dg-delay:${round(delay + i * 0.05)}s` : undefined}></path>
     ))
   }
 </g>

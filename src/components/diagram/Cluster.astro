@@ -12,6 +12,11 @@ import { angularWidth, hexPoints, polar, round } from "./geometry";
  * hexagram, and a target centre. Self-similar: one part can open into a smaller
  * cluster of its own, and that one into another. Layered and drillable.
  * Composed only of the diagram primitives.
+ *
+ * Its drawing-in (a motion figure) is one deliberate sequence per cluster: the ring draws,
+ * the parts pop in, the labels appear, the relations draw, then the opening link draws
+ * (its arrowhead after it) and the next cluster begins the same sequence, hidden until its
+ * turn. Deeper clusters run it faster.
  */
 interface Props {
   cx: number;
@@ -24,7 +29,7 @@ interface Props {
   open?: number;
   /** How many smaller clusters open in a chain from this one. */
   levels?: number;
-  /** Mono labels for the six parts, shown on the wide layout only. */
+  /** Mono labels for the six parts, clockwise from the first. The opened part's label sits beside it, clear of the zoom link. */
   labels?: string[];
   /** Seconds before this cluster's motion starts. */
   delay?: number;
@@ -54,11 +59,22 @@ const child = polar(parts[open].x, parts[open].y, away, dir);
 const edgeA = polar(parts[open].x, parts[open].y, partR + ko + 2, dir);
 const edgeB = polar(child.x, child.y, childR + ringW / 2 + 2, dir + 180);
 
+// The sequence, in seconds after `delay`, scaled down for the clusters inside.
+const k = depth === 0 ? 1 : 0.6;
+const at = (t: number) => round(delay + t * k);
+const t = { discs: 0.65, labels: 1.15, chords: 1.0, link: 1.7, child: 2.25 };
+
 const labelAt = (i: number) => {
   const a = start + i * 60;
-  const p = polar(cx, cy, r + partR + 14, a);
   const c = Math.cos((a * Math.PI) / 180);
   const s = Math.sin((a * Math.PI) / 180);
+  if (opening && i === open) {
+    // The opened part: beside the disc on its clockwise flank, where neither the zoom link nor the next cluster is.
+    const q = polar(parts[i].x, parts[i].y, partR + ko + 20, a + 80);
+    const qc = Math.cos(((a + 80) * Math.PI) / 180);
+    return { x: round(q.x), y: round(q.y + 4), anchor: Math.abs(qc) < 0.2 ? "middle" : qc > 0 ? "start" : "end" };
+  }
+  const p = polar(cx, cy, r + partR + 14, a);
   const anchor = Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end";
   const y = round(Math.abs(s) > 0.8 ? p.y + (s > 0 ? 8 : -2) : p.y);
   return { x: round(p.x), y, anchor };
@@ -66,39 +82,35 @@ const labelAt = (i: number) => {
 ---
 
 <g class:list={["dg-cluster", depth > 0 && "dg-cluster--inner"]}>
-  <BrokenRing {cx} {cy} {r} width={ringW} gaps={parts.map((_, i) => start + i * 60)} gap={gapDeg} draw delay={delay} />
-  {chords.map((c, i) => <Link x1={c.a.x} y1={c.a.y} x2={c.b.x} y2={c.b.y} width={linkW} inset={partR + ko + 1} draw delay={round(delay + 0.3 + i * 0.1)} />)}
+  <BrokenRing {cx} {cy} {r} width={ringW} gaps={parts.map((_, i) => start + i * 60)} gap={gapDeg} draw {delay} />
+  {chords.map((c, i) => <Link x1={c.a.x} y1={c.a.y} x2={c.b.x} y2={c.b.y} width={linkW} inset={partR + ko + 1} draw delay={at(t.chords + i * 0.06)} />)}
   {
-    parts.map((p) =>
+    parts.map((p, i) =>
       depth === 0 ? (
-        <Disc cx={p.x} cy={p.y} r={partR} knockout={ko} />
+        <Disc cx={p.x} cy={p.y} r={partR} knockout={ko} pop delay={at(t.discs + i * 0.05)} />
       ) : (
-        <RingNode cx={p.x} cy={p.y} r={partR} knockout={ko} />
+        <RingNode cx={p.x} cy={p.y} r={partR} knockout={ko} pop delay={at(t.discs + i * 0.05)} />
       ),
     )
   }
-  {depth === 0 ? <Target {cx} {cy} r={r * 0.17} knockout={ko} /> : <RingNode {cx} {cy} r={r * 0.15} tone="structure" inner="dot" knockout={ko} />}
+  {depth === 0 ? <Target {cx} {cy} r={r * 0.17} knockout={ko} pop delay={at(t.discs - 0.1)} /> : <RingNode {cx} {cy} r={r * 0.15} tone="structure" inner="dot" knockout={ko} pop delay={at(t.discs - 0.1)} />}
   {
-    labels.length > 0 &&
-      labels.map((text, i) => {
-        const at = labelAt(i);
-        return (
-          text &&
-          !(opening && i === open) && (
-            <text class="dg-text dg-wide-only" x={at.x} y={at.y} text-anchor={at.anchor}>
-              {text}
-            </text>
-          )
-        );
-      })
+    labels.map((text, i) => {
+      const place = labelAt(i);
+      return (
+        text && (
+          <text class="dg-text dg-fade" x={place.x} y={place.y} text-anchor={place.anchor} style={`--dg-delay:${at(t.labels)}s`}>
+            {text}
+          </text>
+        )
+      );
+    })
   }
   {
     opening && (
       <>
-        <Link x1={edgeA.x} y1={edgeA.y} x2={edgeB.x} y2={edgeB.y} arrow="end" width={Math.max(1.2, linkW * 1.4)} draw delay={round(delay + 0.9)} />
-        <g class="dg-open" style={`transform-origin:${parts[open].x}px ${parts[open].y}px;--dg-delay:${round(delay + 1.1)}s`}>
-          <Self cx={round(child.x)} cy={round(child.y)} r={round(childR)} depth={depth + 1} open={open} levels={levels - 1} start={start} delay={round(delay + 1.4)} />
-        </g>
+        <Link x1={edgeA.x} y1={edgeA.y} x2={edgeB.x} y2={edgeB.y} arrow="end" width={Math.max(1.2, linkW * 1.4)} draw delay={at(t.link)} />
+        <Self cx={round(child.x)} cy={round(child.y)} r={round(childR)} depth={depth + 1} open={open} levels={levels - 1} start={start} delay={at(t.child)} />
       </>
     )
   }

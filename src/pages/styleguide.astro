@@ -483,7 +483,7 @@ const relationJson = `{
           <Halves cx={390} cy={62} r={48} upper="paper" seed="ring" edge={2} />
         </Canvas>
       </Specimen>
-      <Specimen title="Cluster" note="A unit of knowledge with its parts: a broken ring, six parts, hairline relations and a target. Self-similar: open one part and it becomes a smaller cluster, which can open again. levels sets how many open; labels shows on the wide layout only." code={`<Cluster cx={160} cy={160} r={110} open={1} levels={2} labels={[...]} />`}>
+      <Specimen title="Cluster" note="A unit of knowledge with its parts: a broken ring, six parts, hairline relations and a target. Self-similar: open one part and it becomes a smaller cluster, which can open again. levels sets how many open; labels names the six parts, and the opened part's label sits beside it, clear of the zoom link." code={`<Cluster cx={160} cy={160} r={110} open={1} levels={2} labels={[...]} />`}>
         <Canvas id="sg-cluster" viewBox="0 0 560 330" title="A cluster that opens" desc="A broken ring of six records opens one part into a smaller ring of fields, and that into a smaller ring again.">
           <Cluster cx={160} cy={170} r={110} open={1} levels={2} />
         </Canvas>
@@ -497,7 +497,7 @@ const relationJson = `{
         <span class="cluster"><Glyph kind="note" size={28} /><span class="t-label">note</span></span>
         <span class="cluster"><Glyph kind="derived" size={28} /><span class="t-label">derived</span></span>
       </Specimen>
-      <Specimen layout="grid" title="Figure and Canvas" note="Figure is the chrome: a plate with an optional dot-grid ground, a mono figure number and a caption. The plate is a size container, so a diagram picks its wide or narrow layout from the room it has. Canvas is the svg: role img, title and description. motion plays the drawing-in on load (CSS only, off under reduced motion); use it above the fold." code={`<Figure number={7} caption="A caption." grid motion><Canvas ...>...</Canvas></Figure>`}>
+      <Specimen layout="grid" title="Figure and Canvas" note="Figure is the chrome: a plate with an optional dot-grid ground, a mono figure number and a caption. The plate is a size container, so a diagram picks its wide or narrow layout from the room it has. Canvas is the svg: role img, title and description. motion plays the drawing-in on load (CSS only, off under reduced motion): a boundary draws, its parts pop in, the relations draw, then an arrowhead appears only after its line. Use it above the fold. Every label inside a Canvas sits on a ground-coloured halo (--dg-halo) wide enough to bridge a word space, so the dot grid never reads as a middot." code={`<Figure number={7} caption="A caption." grid motion><Canvas ...>...</Canvas></Figure>`}>
         <Figure number={7} caption="With the dot-grid ground." size="narrow">
           <Canvas id="sg-figure-a" viewBox="0 0 240 90" title="A record on a figure" desc="One record disc on a dot-grid plate.">
             <Disc cx={120} cy={45} r={22} />
@@ -518,7 +518,7 @@ const relationJson = `{
       Six diagrams, each composed from the primitives, each with a wide layout and a stacked narrow one that stays legible at 375px. Labels are props: Phase 2 feeds real content in. Resize the window to see the layouts switch.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen layout="bare" title="HeroCluster" note="The signature visual: a repository drawn as a broken ring, one record opening into its own cluster, and that into another. Layered and drillable. It plays its drawing-in on load. Props: labels (six record names), caption." code={`<HeroCluster labels={["decision", "claim", "task", "source", "risk", "rule"]} />`}>
+      <Specimen layout="bare" title="HeroCluster" note="The signature visual: a repository drawn as a broken ring, one record opening into its own cluster, and that into another. Layered and drillable. Every record carries its label, the one that opens included. It plays its drawing-in on load as one sequence: the ring, the records, the relations, then the cluster that opens. The narrow layout turns it so the same record opens downward. Props: labels (six record names), caption." code={`<HeroCluster labels={["decision", "claim", "task", "source", "risk", "rule"]} />`}>
         <HeroCluster number={1} id="sg-hero" />
       </Specimen>
       <Specimen layout="bare" title="ProjectionFan" note="Records fan out into projections. Edits go only into the records; every projection is derived. Props: outputs, edit, derived. Narrow layout hangs the outputs off one trunk." code={`<ProjectionFan outputs={["Markdown", "HTML", "JSON", "agent context"]} />`}>

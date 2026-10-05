@@ -74,4 +74,5 @@
   --dg-text: var(--color-text);
   --dg-text-muted: var(--color-muted);
   --dg-delay: 0s; /* motion start delay; primitives override it inline */
+  --dg-halo: 18px; /* the ground-coloured halo under every label, in user units: wider than a word space */
 }
