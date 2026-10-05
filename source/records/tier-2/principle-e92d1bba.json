@@ -1,0 +1,16 @@
+{
+  "instanceId": "e92d1bba-10f8-40e6-b5fc-d5684b29779b",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "Groups decide for themselves how they organise, govern, and act on their knowledge. SRS supplies the substrate for those decisions; it does not make them, and it does not lock them in.",
+    "title": "Decision sovereignty",
+    "slug": "decision-sovereignty",
+    "explanation": "SRS records what was decided and why. It never takes the decision, and it carries no roles or approvals that would decide on a group's behalf."
+  },
+  "createdAt": "2026-10-05T19:18:42.370155566+00:00",
+  "updatedAt": "2026-10-05T19:18:42.370161303+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,16 @@
+{
+  "instanceId": "1b7e37b2-d4b3-4080-a102-12be38d6fcbe",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "AI may observe, extract, propose, question, organise, explain and coach. People decide, agree, ratify and remain accountable.",
+    "title": "People decide, AI assists",
+    "slug": "human-ai-stance",
+    "explanation": "AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies."
+  },
+  "createdAt": "2026-10-05T19:18:42.691066333+00:00",
+  "updatedAt": "2026-10-05T19:18:42.691071891+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "bf437791-6496-43bc-8cb6-26c4855d2c28",
+  "namespace": "com.semanticops.site",
+  "name": "page-markdown",
+  "version": 1,
+  "description": "Renders a page record: identity as the heading, prose fields unlabelled, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 2,
+      "labelMode": "none"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/page"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Controls how a page reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "instanceId": "bdedfbd2-30d2-40bf-992e-fafae4285e94",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "A Relation says how two pieces of knowledge are connected. It never says who may act.",
+    "title": "Structure describes, never commands",
+    "slug": "structure-describes",
+    "explanation": "Relations are semantic claims between instances, not ownership or control flow. A `depends-on` edge blocks nothing, and a `contains` edge does not make a record belong to a container. The model has no roles, approvals or permissions to attach authority to."
+  },
+  "createdAt": "2026-10-05T19:18:42.571926175+00:00",
+  "updatedAt": "2026-10-05T19:18:42.571932760+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

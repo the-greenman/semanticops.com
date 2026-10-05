@@ -1,0 +1,37 @@
+{
+  "containerId": "cf56a441-a991-4ce2-a709-4732fb98e130",
+  "title": "SemanticOps: architecture",
+  "namespace": "com.semanticops.site",
+  "name": "architecture",
+  "description": "How SRS is layered: a standard independent of any implementation, one core consumed identically by every client, and tool-enforced contracts for agents.",
+  "anchorInstanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710",
+  "memberInstanceIds": [
+    {
+      "instanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710"
+    },
+    {
+      "instanceId": "1fe349c9-cf32-40c0-8bc2-51bf63765bf1"
+    },
+    {
+      "instanceId": "81279595-537f-4b6d-b539-83b53d81b9a8"
+    },
+    {
+      "instanceId": "a57306f0-1338-4066-953f-448f6c0591f2"
+    },
+    {
+      "instanceId": "f9ddb5c2-69e5-4d05-a14a-f12f35c15006"
+    },
+    {
+      "instanceId": "fc16656d-c300-4c0d-a76d-e87a67d54f89"
+    },
+    {
+      "instanceId": "24f9e2ae-d8e0-4d08-b1b7-7ec2574f5bb6"
+    },
+    {
+      "instanceId": "1a0df941-9c8d-4e53-bc8e-a7a70bb657e4"
+    },
+    {
+      "instanceId": "4d354441-d593-4a29-8f8d-6a1d3bd51765"
+    }
+  ]
+}

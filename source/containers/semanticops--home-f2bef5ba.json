@@ -1,0 +1,61 @@
+{
+  "containerId": "f2bef5ba-9749-410f-a433-270febcfe307",
+  "title": "SemanticOps: home",
+  "namespace": "com.semanticops.site",
+  "name": "home",
+  "description": "SRS is an open standard for portable semantic documents that people and AI can both understand and use. This site is generated from the records of an SRS repository.",
+  "anchorInstanceId": "e84378a8-016b-4cfc-871c-ca594aa2986b",
+  "memberInstanceIds": [
+    {
+      "instanceId": "e84378a8-016b-4cfc-871c-ca594aa2986b"
+    },
+    {
+      "instanceId": "d1a57ade-aa30-4f7b-90af-468d6abb97ad"
+    },
+    {
+      "instanceId": "ade953c2-e407-4e14-b1eb-74c9f12f5cf4"
+    },
+    {
+      "instanceId": "bf179824-4099-406e-9af0-556b14108a5c"
+    },
+    {
+      "instanceId": "d4edd0dc-cef1-4f42-a874-ec17e1b682e9"
+    },
+    {
+      "instanceId": "7c51c6f0-33a7-4000-874a-e998ae3ec2c3"
+    },
+    {
+      "instanceId": "587dc9a6-d2c2-462f-8da4-3b7259085132"
+    },
+    {
+      "instanceId": "4505c3f9-a959-4571-ab1c-697ce9c7f3d8"
+    },
+    {
+      "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b"
+    },
+    {
+      "instanceId": "d53c0e02-f30b-466d-ad25-e3a3db2bd28e"
+    },
+    {
+      "instanceId": "462993f0-adf1-4f4c-b878-a17a38785ee1"
+    },
+    {
+      "instanceId": "7e8a98e4-b02d-4fac-9a46-85caefafbfed"
+    },
+    {
+      "instanceId": "0cd1dbd8-3d68-4cf1-80ff-63d72667b57e"
+    },
+    {
+      "instanceId": "b6382344-f142-4752-ad78-456f2d957805"
+    },
+    {
+      "instanceId": "37b245b1-1fc3-467f-b693-8dddfc4acd7a"
+    },
+    {
+      "instanceId": "8a6035d6-c2ce-45ea-9dba-f4a5eaa16592"
+    },
+    {
+      "instanceId": "08804fd4-6423-40a2-b452-87aa558a9bcc"
+    }
+  ]
+}

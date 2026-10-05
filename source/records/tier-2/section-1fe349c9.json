@@ -1,0 +1,17 @@
+{
+  "instanceId": "1fe349c9-cf32-40c0-8bc2-51bf63765bf1",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Layers that each stand alone",
+    "slug": "architecture-intro",
+    "eyebrow": "Architecture",
+    "lede": "Meaning, expression and operation are separate planes, and each layer works without the layers above it.",
+    "body": "SRS is built so that the standard, the engine and the clients can each be replaced without rewriting the others. This page explains the layering, how agents use it, and why a tool is a safer door than a file."
+  },
+  "createdAt": "2026-10-05T19:18:40.238084769+00:00",
+  "updatedAt": "2026-10-05T19:18:40.238092240+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

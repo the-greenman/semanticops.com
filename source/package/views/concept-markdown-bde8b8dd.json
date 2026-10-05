@@ -1,0 +1,52 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "bde8b8dd-9383-4e3e-b6b9-c3a362b568bf",
+  "namespace": "com.semanticops.site",
+  "name": "concept-markdown",
+  "version": 1,
+  "description": "Renders a concept record: identity as the heading, prose fields unlabelled, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "c2b17c36-1ead-4588-93de-d9526bd6c401",
+      "order": 3,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "00c8f6df-7411-4cfc-b16d-593c1d818648",
+      "order": 4,
+      "displayLabel": "Example (JSON)",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "e8ea9186-4324-4891-aa2c-951f0f3f1b2c",
+      "order": 5,
+      "displayLabel": "Definition",
+      "labelMode": "inline"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/concept"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Controls how a concept reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

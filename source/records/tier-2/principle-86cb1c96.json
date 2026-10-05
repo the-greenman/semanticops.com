@@ -1,0 +1,16 @@
+{
+  "instanceId": "86cb1c96-3e98-4899-ba2d-96d56768632b",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "Say what a record claims about itself. Do not leave it to be guessed.",
+    "title": "Stated over assumed",
+    "slug": "stated-over-assumed",
+    "explanation": "An unattributed statement is unattributed: not invalid, and not assumed to come from anyone. Where origin or meaning matters, it is stated in the data."
+  },
+  "createdAt": "2026-10-05T19:18:42.989960378+00:00",
+  "updatedAt": "2026-10-05T19:18:42.989965187+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

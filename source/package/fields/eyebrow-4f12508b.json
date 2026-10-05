@@ -1,0 +1,15 @@
+{
+  "id": "4f12508b-0294-45fb-a95c-4fd4bf0b1348",
+  "namespace": "com.semanticops.site",
+  "name": "eyebrow",
+  "version": 1,
+  "description": "Short overline set above a section heading.",
+  "aiGuidance": {
+    "purpose": "Two to four words in sentence case that name the kind of thing the section is. It orients the reader and never repeats the title."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

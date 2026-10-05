@@ -1,0 +1,17 @@
+{
+  "instanceId": "b73217a0-5ad6-47e2-961e-d84e4098ff95",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Pairs we keep",
+    "slug": "held-pairs",
+    "eyebrow": "Held, not settled",
+    "lede": "Some principles come as pairs. SRS does not pick a winner. It holds both, and a specific mechanism holds each pair.",
+    "body": "Depth without overload, above, is the first. Four more follow. None is a slogan to balance by feel: each is held by something concrete in the data model, so you can check it."
+  },
+  "createdAt": "2026-10-05T19:18:40.356956725+00:00",
+  "updatedAt": "2026-10-05T19:18:40.356960896+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

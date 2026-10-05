@@ -1,0 +1,70 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "ab01ce1d-3cc0-45de-841a-c567bf74efe3",
+  "namespace": "com.semanticops.site",
+  "name": "project-markdown",
+  "version": 1,
+  "description": "Renders a project record: identity as the heading, prose fields unlabelled, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "f5d7dc2a-6cfe-4ade-804e-bdb96aae99fe",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "d4b386fb-1860-41bb-ad85-255955b957a7",
+      "order": 2,
+      "displayLabel": "Kind",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "5a4f97ab-4363-4964-855d-de4ba439b4f7",
+      "order": 3,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 4,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "2fdf03e1-e96f-4208-97cd-df4d636d9e2b",
+      "order": 5,
+      "displayLabel": "Audience",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "f6cb3757-f42a-43ae-b792-70b1048cd821",
+      "order": 6,
+      "displayLabel": "Makes possible",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "02bf113a-b3d9-4e97-8d6f-37981f22a9c0",
+      "order": 7,
+      "displayLabel": "Repository",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "8acd71ff-7c1d-4398-b7b5-1364b950f945",
+      "order": 8,
+      "displayLabel": "Licence",
+      "labelMode": "inline"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/project"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Controls how a project reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

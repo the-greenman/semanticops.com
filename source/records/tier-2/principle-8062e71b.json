@@ -1,0 +1,16 @@
+{
+  "instanceId": "8062e71b-7a48-4454-a453-d01ef5dbaae0",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "When a record is replaced, write its successor and keep the original.",
+    "title": "Successor over overwrite",
+    "slug": "successor-over-overwrite",
+    "explanation": "A superseded decision is not edited. A new Record is linked to it with `supersedes` or `refines`, so the history of what was believed stays readable."
+  },
+  "createdAt": "2026-10-05T19:18:42.870678431+00:00",
+  "updatedAt": "2026-10-05T19:18:42.870683696+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

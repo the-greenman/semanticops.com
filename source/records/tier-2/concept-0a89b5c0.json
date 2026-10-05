@@ -1,0 +1,18 @@
+{
+  "instanceId": "0a89b5c0-f5b8-4d10-9021-1676c5d662db",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Record and graduation",
+    "slug": "record",
+    "summary": "Knowledge bound to a Type, and how a Note becomes one.",
+    "body": "A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, and `fieldValues` maps Field names to values. The Record also carries `typeNamespace` and `typeName` as hints. If they disagree with the resolved Type, the `typeId` wins and the Record is invalid.\n\nGraduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.",
+    "example": "{\n  \"instanceId\": \"1f1da0e0-acae-4a66-bac3-30ec1ffd75df\",\n  \"typeId\": \"2a000004-0000-4000-a000-000000000004\",\n  \"typeVersion\": 1,\n  \"typeNamespace\": \"com.semanticops.spec\",\n  \"typeName\": \"concept\",\n  \"fieldValues\": {\n    \"canonical_key\": \"record:concepts/semantic-sovereignty\",\n    \"title\": \"Semantic sovereignty\"\n  }\n}",
+    "spec_link": "https://srs.semanticops.com/schema/2.0/record.json"
+  },
+  "createdAt": "2026-10-05T19:18:40.969381671+00:00",
+  "updatedAt": "2026-10-05T19:18:40.969387692+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,17 @@
+{
+  "instanceId": "c76bd78c-df0c-45e4-a59b-39110e96f931",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Where it is going",
+    "slug": "direction",
+    "eyebrow": "Direction",
+    "lede": "The direction is more portability, not more platform.",
+    "body": "Planned: working offline and reintegrating changes afterwards, a richer semantic diff, and federation between repositories. The standard is in a formation phase, so these will move."
+  },
+  "createdAt": "2026-10-05T19:18:40.660570888+00:00",
+  "updatedAt": "2026-10-05T19:18:40.660574643+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

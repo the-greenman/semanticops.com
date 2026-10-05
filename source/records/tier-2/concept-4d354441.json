@@ -1,0 +1,17 @@
+{
+  "instanceId": "4d354441-d593-4a29-8f8d-6a1d3bd51765",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Travelling forms",
+    "slug": "travelling-forms",
+    "summary": "One repository, three portable forms.",
+    "body": "A repository on disk is a folder, and it can travel in three forms. `.srs` is the default interchange: a deterministic zip of the folder, byte-identical when packed again. `.srsj` is a single JSON file. `.srspkg` carries a Package: definitions only, never records.\n\nPortability over possession: a capability that exists only in place is captivity. If a repository can only be used inside the tool that made it, the tool owns the knowledge. This site publishes its own source as [/agents/semanticops.srs](/agents/semanticops.srs).",
+    "spec_link": "https://github.com/the-greenman/srs"
+  },
+  "createdAt": "2026-10-05T19:18:41.818626908+00:00",
+  "updatedAt": "2026-10-05T19:18:41.818632471+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

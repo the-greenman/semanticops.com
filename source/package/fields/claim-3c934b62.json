@@ -1,0 +1,15 @@
+{
+  "id": "3c934b62-1993-4da4-aabf-5aadf7cc8e48",
+  "namespace": "com.semanticops.site",
+  "name": "claim",
+  "version": 1,
+  "description": "A principle stated in one sentence.",
+  "aiGuidance": {
+    "purpose": "A single standing sentence that could be quoted. When the charter wording exists, quote it faithfully and do not paraphrase. Plain words only: never borrow vocabulary from philosophy or from systems theory. State pairs that are held in tension as pairs, never as a resolved winner."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

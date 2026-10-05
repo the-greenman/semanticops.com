@@ -1,0 +1,45 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/composition.json",
+  "id": "21c83e15-b4b0-4241-8d66-9a7186ec2da5",
+  "namespace": "com.semanticops.site",
+  "name": "home-page",
+  "version": 1,
+  "description": "The home page: the entries of its container, in the container's own order and depth.",
+  "sections": [
+    {
+      "sectionId": "entries",
+      "order": 0,
+      "source": {
+        "type": "container-subset",
+        "containerId": "f2bef5ba-9749-410f-a433-270febcfe307"
+      },
+      "typeDispatch": {
+        "com.semanticops.site/concept": "bde8b8dd-9383-4e3e-b6b9-c3a362b568bf",
+        "com.semanticops.site/page": "bf437791-6496-43bc-8cb6-26c4855d2c28",
+        "com.semanticops.site/principle": "d597c61a-d75d-45ee-bb9c-23a7826f4014",
+        "com.semanticops.site/project": "ab01ce1d-3cc0-45de-841a-c567bf74efe3",
+        "com.semanticops.site/section": "9ae6f0a2-df52-49c3-9d9a-169c78770b34"
+      },
+      "ordering": {
+        "source": "arranged"
+      },
+      "emptyBehavior": "hide",
+      "relationsPresentation": {
+        "include": [
+          {
+            "relationType": "depends-on",
+            "directions": "forward",
+            "forwardLabel": "Depends on"
+          }
+        ]
+      }
+    }
+  ],
+  "exportConfig": {
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "aiGuidance": {
+    "purpose": "Projects the home page. Order and nesting come from the page container, never from this Composition."
+  }
+}

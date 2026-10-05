@@ -1,0 +1,17 @@
+{
+  "instanceId": "e110f7c3-b814-4a08-b8e1-ef28e9550315",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "When two designs both work",
+    "slug": "design-preferences",
+    "eyebrow": "Design preferences",
+    "lede": "These preferences choose between designs that both work. Each is stated as this over that.",
+    "body": "They are defaults, not laws. Each applies to a specific part of the model, and the explanation names that part."
+  },
+  "createdAt": "2026-10-05T19:18:40.418229663+00:00",
+  "updatedAt": "2026-10-05T19:18:40.418234131+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

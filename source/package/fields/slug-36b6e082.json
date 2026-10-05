@@ -1,0 +1,15 @@
+{
+  "id": "36b6e082-f7e1-4966-a6ca-91722d006256",
+  "namespace": "com.semanticops.site",
+  "name": "slug",
+  "version": 1,
+  "description": "Stable, short, unique key by which a record is referred to.",
+  "aiGuidance": {
+    "purpose": "Write lowercase kebab-case, at most four words, unique across the whole repository. The human site uses it to choose components and diagrams, so it is a key and not a label: never rename a published slug. Name the thing itself, never its position on a page."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

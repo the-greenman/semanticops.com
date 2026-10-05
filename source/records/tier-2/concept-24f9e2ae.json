@@ -1,0 +1,18 @@
+{
+  "instanceId": "24f9e2ae-d8e0-4d08-b1b7-7ec2574f5bb6",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Agents and MCP",
+    "slug": "agents-and-mcp",
+    "summary": "The same tools for a person's client and for an agent.",
+    "body": "`srs mcp serve` runs an MCP server over a repository. Its tools include `find`, `read`, `record_create`, `record_update`, `record_transition`, `relation_create`, `note_create`, `note_graduate`, container edits and `repo_validate`. Its resources include a repository map, the navigation and an agent index: a one-page orientation that tells a cold agent what is here.\n\nThe same tools run in the browser over WebAssembly, so an agent in the editor and an agent on the command line meet one contract. `find` and `similar` are lexical: they match words, not embeddings.",
+    "example": "{\n  \"name\": \"find\",\n  \"arguments\": {\n    \"typeName\": \"concept\",\n    \"contentMatch\": \"relation\",\n    \"limit\": 5\n  }\n}",
+    "spec_link": "https://github.com/the-greenman/srs-rust"
+  },
+  "createdAt": "2026-10-05T19:18:41.698309262+00:00",
+  "updatedAt": "2026-10-05T19:18:41.698315029+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

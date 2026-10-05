@@ -1,0 +1,16 @@
+{
+  "instanceId": "e4dd922d-4387-44f1-9cf7-c032a41da9d5",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "A capability that exists only in place is captivity.",
+    "title": "Portability over possession",
+    "slug": "portability-over-possession",
+    "explanation": "If the only way to use a feature is inside one tool or one place, the tool owns the knowledge. Every held construct has a form that travels: a repository, a package, a single file."
+  },
+  "createdAt": "2026-10-05T19:18:43.167107543+00:00",
+  "updatedAt": "2026-10-05T19:18:43.167113040+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

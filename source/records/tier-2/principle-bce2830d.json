@@ -1,0 +1,16 @@
+{
+  "instanceId": "bce2830d-8ccc-4266-9a76-abbf92cc4a00",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "Things are known by a stable identifier. A name is only a label.",
+    "title": "Identifier over label",
+    "slug": "identifier-over-label",
+    "explanation": "UUIDs never change when something is copied, imported or exported. A Record's `typeId` decides its Type. The name beside it is a hint, and when the two disagree the identifier wins."
+  },
+  "createdAt": "2026-10-05T19:18:42.812317915+00:00",
+  "updatedAt": "2026-10-05T19:18:42.812324321+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

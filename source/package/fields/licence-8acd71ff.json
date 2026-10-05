@@ -1,0 +1,15 @@
+{
+  "id": "8acd71ff-7c1d-4398-b7b5-1364b950f945",
+  "namespace": "com.semanticops.site",
+  "name": "licence",
+  "version": 1,
+  "description": "The licence identifier or identifiers a project is published under.",
+  "aiGuidance": {
+    "purpose": "Use the SPDX identifier as the repository publishes it. When a project is dual licensed, write both, joined by or."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

@@ -1,0 +1,15 @@
+{
+  "instanceId": "92d6197a-4325-41fd-b236-bd12997e86c8",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Principles",
+    "slug": "principles",
+    "summary": "The purpose, the governing core, the pairs SRS holds without settling, and the scope test that keeps the standard small."
+  },
+  "createdAt": "2026-10-05T19:18:39.491524211+00:00",
+  "updatedAt": "2026-10-05T19:18:39.491528164+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

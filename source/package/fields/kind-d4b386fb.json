@@ -1,0 +1,15 @@
+{
+  "id": "d4b386fb-1860-41bb-ad85-255955b957a7",
+  "namespace": "com.semanticops.site",
+  "name": "kind",
+  "version": 1,
+  "description": "What kind of technology a project is.",
+  "aiGuidance": {
+    "purpose": "Two or three words in sentence case, such as Open standard or Reference engine. Name the kind of thing, never its current state or maturity."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T00:00:00Z"
+}

@@ -1,0 +1,18 @@
+{
+  "instanceId": "0107e43d-204e-4fc3-9614-37a15ed2bb94",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Identity and versioning",
+    "slug": "identity-versioning",
+    "summary": "UUIDs never change. Versions only increase.",
+    "body": "Every Field, Type, Record, Relation and Container has a UUID. It never changes when a definition is copied, imported, exported or renamed. Names are for people. The display form is `namespace/name@version`, for example `com.semanticops.core/purpose@1`.\n\nA version is a positive integer that increments within a UUID lineage. Changing a Field's namespace or name makes a new Field with a new UUID, not a new version. A Record binds to an exact Type version, and a change is an increment, not an edit.",
+    "example": "{\n  \"instanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\",\n  \"typeId\": \"3c000001-0000-4000-a000-000000000001\",\n  \"typeVersion\": 1,\n  \"typeNamespace\": \"com.semanticops.core\",\n  \"typeName\": \"purpose\"\n}",
+    "spec_link": "https://github.com/the-greenman/srs"
+  },
+  "createdAt": "2026-10-05T19:18:41.392340647+00:00",
+  "updatedAt": "2026-10-05T19:18:41.392345975+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

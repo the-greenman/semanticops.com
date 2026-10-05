@@ -1,0 +1,16 @@
+{
+  "instanceId": "7958003f-b47c-431c-8d83-f24ef16ef174",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "One mechanism for each goal.",
+    "title": "One way over many",
+    "slug": "one-way-over-many",
+    "explanation": "Two ways to do the same thing drift apart. SRS keeps one and removes or migrates the other, so the way in use is also the way that is documented."
+  },
+  "createdAt": "2026-10-05T19:18:43.050046281+00:00",
+  "updatedAt": "2026-10-05T19:18:43.050051282+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,17 @@
+{
+  "instanceId": "d4edd0dc-cef1-4f42-a874-ec17e1b682e9",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Six constructs, each small",
+    "slug": "model-glance",
+    "eyebrow": "The model",
+    "lede": "A small set of constructs does all the work.",
+    "body": "- **Field**: the smallest unit of meaning, with a stable identity and guidance for AI.\n- **Type**: a versioned composition of Fields that says which questions a record must answer.\n- **Record**: knowledge bound to a Type. A **Note** is its free-text precursor.\n- **Relation**: a typed, binary edge between two records, read as source, type, target.\n- **Container**: a declared, ordered selection of records. A boundary means what it holds.\n- **Package**: the Fields and Types a repository uses, distributed together.\n\nThe [model page](/model) takes each in turn, with real examples."
+  },
+  "createdAt": "2026-10-05T19:18:39.814379080+00:00",
+  "updatedAt": "2026-10-05T19:18:39.814382047+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

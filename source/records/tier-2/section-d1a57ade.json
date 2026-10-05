@@ -1,0 +1,17 @@
+{
+  "instanceId": "d1a57ade-aa30-4f7b-90af-468d6abb97ad",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Portable semantic documents for people and AI",
+    "slug": "hero",
+    "eyebrow": "Semantic Record System",
+    "lede": "SRS builds portable semantic documents that both humans and AI can understand and use.",
+    "body": "It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+  },
+  "createdAt": "2026-10-05T19:18:39.619597825+00:00",
+  "updatedAt": "2026-10-05T19:18:39.619601251+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,16 @@
+{
+  "instanceId": "7f21f643-1ce0-4102-a852-e79f68030e24",
+  "typeId": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "principle",
+  "fieldValues": {
+    "claim": "Membership is declared, never derived.",
+    "title": "Declared, never derived",
+    "slug": "declared-never-derived",
+    "explanation": "What a container holds is what it says it holds, in its own ordered `memberInstanceIds` list. It is not inferred from relations, from a folder, or from a query that could answer differently tomorrow. A boundary means what it holds, and because it is declared it can be drawn again, differently, without touching the records inside."
+  },
+  "createdAt": "2026-10-05T19:18:42.632385509+00:00",
+  "updatedAt": "2026-10-05T19:18:42.632390315+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "namespace": "com.semanticops.site",
+  "name": "concept",
+  "version": 1,
+  "description": "A defined idea of the SRS model or architecture, with a real example.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "767aa884-9afe-4a6b-bb6f-7a2d610b69d9",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "c2b17c36-1ead-4588-93de-d9526bd6c401",
+      "order": 4,
+      "required": true
+    },
+    {
+      "fieldId": "00c8f6df-7411-4cfc-b16d-593c1d818648",
+      "order": 5,
+      "required": false
+    },
+    {
+      "fieldId": "e8ea9186-4324-4891-aa2c-951f0f3f1b2c",
+      "order": 6,
+      "required": false
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for one idea that a technical reader needs defined. The summary is one line. The body names the mechanism. Where a published shape exists, add a real example trimmed from the specification repository and a link to its canonical definition."
+  },
+  "createdAt": "2026-10-05T00:00:00Z",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

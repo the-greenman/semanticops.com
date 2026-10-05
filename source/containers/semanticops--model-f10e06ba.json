@@ -1,0 +1,52 @@
+{
+  "containerId": "f10e06ba-e0f2-41de-a1c1-48119eab6cb3",
+  "title": "SemanticOps: model",
+  "namespace": "com.semanticops.site",
+  "name": "model",
+  "description": "The SRS model in order: Field, Type, Package, Note, Record, Relation, Container, repository, validation, rendering and identity, each with a real example.",
+  "anchorInstanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca",
+  "memberInstanceIds": [
+    {
+      "instanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca"
+    },
+    {
+      "instanceId": "64fcc14b-155f-454d-af65-cdbcd59cf721"
+    },
+    {
+      "instanceId": "fa4387c1-e362-4cf6-ab99-32e916c062be"
+    },
+    {
+      "instanceId": "51dcfd24-3064-4ff0-ab74-59a4490cff25"
+    },
+    {
+      "instanceId": "490abc8e-079c-4e98-a8ed-a8ada48c6c46"
+    },
+    {
+      "instanceId": "97b8d606-ec41-49f2-ae24-ee622cc7e8a8"
+    },
+    {
+      "instanceId": "0a89b5c0-f5b8-4d10-9021-1676c5d662db"
+    },
+    {
+      "instanceId": "382e65db-240b-4224-8357-81ab80b1b62e"
+    },
+    {
+      "instanceId": "a800c6ba-34ee-4d98-8bb3-8b4540a2a5c0"
+    },
+    {
+      "instanceId": "f74059ae-5491-4284-b1b3-ec6edbad5c3b"
+    },
+    {
+      "instanceId": "f4997152-d30d-43e3-ae35-e07091e3f5b2"
+    },
+    {
+      "instanceId": "1c5023af-5c8e-4540-95e3-376824109142"
+    },
+    {
+      "instanceId": "9b3d024c-7e8a-4b51-bc51-e637f7df9e79"
+    },
+    {
+      "instanceId": "0107e43d-204e-4fc3-9614-37a15ed2bb94"
+    }
+  ]
+}
