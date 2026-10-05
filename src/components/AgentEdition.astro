@@ -9,19 +9,21 @@ import Glyph from "./diagram/Glyph.astro";
 interface Props {
   md: string;
   json: string;
-  /** The label. */
+  /** The visible label. */
   label?: string;
+  /** What each link is, said to assistive technology before its path. */
+  context?: { md: string; json: string };
   class?: string;
 }
 
-const { md, json, label = "Read this page as data", class: className } = Astro.props;
+const { md, json, label = "Read this page as data", context = { md: "Markdown edition of this page", json: "JSON edition of this page" }, class: className } = Astro.props;
 ---
 
 <p class:list={["agent-edition", className]}>
   <Glyph kind="derived" size={18} />
   <span class="t-label">{label}</span>
-  <a class="agent-edition__link" href={md}>{md}</a>
-  <a class="agent-edition__link" href={json}>{json}</a>
+  <a class="agent-edition__link" href={md}><span class="sr-only">{context.md}: </span>{md}</a>
+  <a class="agent-edition__link" href={json}><span class="sr-only">{context.json}: </span>{json}</a>
 </p>
 
 <style>

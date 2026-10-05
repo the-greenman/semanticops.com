@@ -1,9 +1,15 @@
 ---
+import Halves from "./diagram/Halves.astro";
+
 /**
- * One principle: a number, a title, its one-sentence statement and the explanation (the
- * slot). Set several in a grid for a list of principles. Statements are quoted faithfully from
- * the charter, so keep the wording as given. The number sits above the title, so an item works
- * in a column of any width.
+ * One principle: an optional number above a title, its one-sentence statement and the
+ * explanation (the slot). Set several in a grid for a list of principles. Statements are quoted
+ * faithfully from the charter, so keep the wording as given.
+ *
+ * With `poles` it is a held pair: two ideas the standard keeps without choosing between them,
+ * set as two poles either side of one seam, the divided disc that both divides and joins, with
+ * the claim and the explanation centred under both. The poles are fields of the record; the
+ * title is still the heading's accessible name.
  */
 interface Props {
   /** The ordinal, as text: "01". */
@@ -11,18 +17,36 @@ interface Props {
   title: string;
   /** The one-sentence statement, quoted as given. */
   claim?: string;
+  /** The two sides of a held pair. Set both, or neither. */
+  poles?: [string, string];
+  /** The heading level: h3 in a list, h2 when the item opens a band. */
+  level?: "h2" | "h3";
   /** Anchor target. */
   id?: string;
   class?: string;
 }
 
-const { number, title, claim, id, class: className } = Astro.props;
+const { number, title, claim, poles, level = "h3", id, class: className } = Astro.props;
+const Heading = level;
 ---
 
-<article {id} class:list={["principle", className]}>
+<article {id} class:list={["principle", poles && "principle--pair", className]}>
   {number && <p class="principle__no t-label">{number}</p>}
   <div class="principle__main">
-    <h3 class="principle__title">{title}</h3>
+    {
+      poles ? (
+        <Heading class="principle__title principle__title--pair">
+          <span class="sr-only">{title}</span>
+          <span class="principle__pole principle__pole--first" aria-hidden="true">{poles[0]}</span>
+          <svg class="principle__seam" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" />
+          </svg>
+          <span class="principle__pole" aria-hidden="true">{poles[1]}</span>
+        </Heading>
+      ) : (
+        <Heading class="principle__title">{title}</Heading>
+      )
+    }
     {claim && <p class="principle__claim">{claim}</p>}
     <div class="principle__body"><slot /></div>
   </div>
@@ -59,6 +83,30 @@ const { number, title, claim, id, class: className } = Astro.props;
     .principle__body {
       max-width: 40rem;
       color: var(--color-muted-strong);
+    }
+
+    /* A held pair: two poles either side of the seam, the text centred under them. */
+    .principle__title--pair {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--size-h3);
+    }
+
+    .principle__pole--first {
+      text-align: right;
+    }
+
+    .principle__seam {
+      display: block;
+      width: 40px;
+      height: 40px;
+    }
+
+    .principle--pair .principle__claim,
+    .principle--pair .principle__body {
+      margin-inline: auto;
     }
   }
 </style>

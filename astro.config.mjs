@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
+import { shikiConfig } from "./src/lib/shiki.mjs";
 
 // Static output only: dist/ is a plain site any static host can serve.
 // Fonts are self-hosted: the local provider reads the woff2 files of the installed @fontsource
@@ -35,8 +36,7 @@ export default defineConfig({
     plex("IBM Plex Sans", "--font-plex-sans", "@fontsource/ibm-plex-sans", "ibm-plex-sans", [300, 400, 500, 700], ["system-ui", "sans-serif"]),
     plex("IBM Plex Mono", "--font-plex-mono", "@fontsource/ibm-plex-mono", "ibm-plex-mono", [400, 500], ["ui-monospace", "monospace"]),
   ],
-  markdown: {
-    // Shiki's css-variables theme emits var(--astro-code-*): src/styles/tokens-components.css maps them to tokens.
-    shikiConfig: { theme: "css-variables" },
-  },
+  // Shiki's css-variables theme emits var(--astro-code-*): src/styles/tokens-components.css maps them to tokens.
+  // The same config is read by lib/markdown.ts and CodeSample.astro (src/lib/shiki.mjs).
+  markdown: { shikiConfig },
 });

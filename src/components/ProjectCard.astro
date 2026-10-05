@@ -26,12 +26,15 @@ interface Props {
   tags?: string[];
   /** The label of the link. */
   cta?: string;
+  /** The heading level: h3 in a grid, h2 when the card opens a band. */
+  level?: "h2" | "h3";
   /** Anchor target. */
   id?: string;
   class?: string;
 }
 
-const { name, kind, href, tagline, audience, makes, relations = [], tags = [], cta = "View on GitHub", id, class: className } = Astro.props;
+const { name, kind, href, tagline, audience, makes, relations = [], tags = [], cta = "View on GitHub", level = "h3", id, class: className } = Astro.props;
+const Heading = level;
 const facts = [
   { label: "For", text: audience },
   { label: "Makes possible", text: makes },
@@ -40,7 +43,7 @@ const facts = [
 
 <article {id} class:list={["project-card", className]}>
   <p class="t-label">{kind}</p>
-  <h3 class="project-card__name"><a class="project-card__link" href={href}>{name}</a></h3>
+  <Heading class="project-card__name"><a class="project-card__link" href={href}>{name}</a></Heading>
   {tagline && <p class="project-card__tagline">{tagline}</p>}
   <div class="project-card__body"><slot /></div>
   {
@@ -93,6 +96,16 @@ const facts = [
       content: "";
       position: absolute;
       inset: 0;
+    }
+
+    /* The whole item is the target, so the focus ring is drawn on the overlay and not on the small link text. */
+    .project-card__link:focus-visible {
+      outline: none;
+    }
+
+    .project-card__link:focus-visible::after {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
     }
 
     .project-card__tagline {

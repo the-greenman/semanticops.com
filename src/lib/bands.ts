@@ -25,20 +25,24 @@ export interface Run {
 const formOf = (entry: Entry, look: Look): Run["form"] =>
   entry.type === "project" ? "project" : look.as === "pair" ? "pair" : look.as === "headline" ? "headline" : "principle";
 
-/**
- * @param after the surface of the band that sits above (paper and page take turns from there)
- */
-export function toBands(entries: Entry[], page: string, after: "paper" | "page" = "paper"): Band[] {
+type Ground = "paper" | "page";
+const turn = (g: Ground): Ground => (g === "paper" ? "page" : "paper");
+
+/** The ground of the last paper or page band (ink does not count), or paper: every page opens on paper. */
+const lastGround = (bands: Band[]): Ground => bands.findLast((b) => b.surface !== "ink")?.surface as Ground | undefined ?? "paper";
+
+/** The ground the next band takes: the other of paper and page, from the last one that was either. */
+export const closingSurface = (bands: Band[]): Ground => turn(lastGround(bands));
+
+/** Entries to bands. The page opens on a paper band (the home hero, the page header), so the first band here is page. */
+export function toBands(entries: Entry[], page: string): Band[] {
   const bands: Band[] = [];
-  let last = after;
   let concepts = 0;
   for (const entry of entries) {
     const look = lookFor(page, entry.slug);
     const opens = bands.length === 0 || entry.type === "section" || entry.type === "concept" || look.band !== undefined;
     if (opens) {
-      let surface: Surface;
-      if (look.band) surface = look.band;
-      else surface = last = last === "paper" ? "page" : "paper";
+      const surface: Surface = look.band ?? closingSurface(bands);
       const number = entry.type === "concept" ? String(++concepts).padStart(2, "0") : undefined;
       bands.push({ head: entry, headLook: look, surface, number, runs: [] });
       continue;

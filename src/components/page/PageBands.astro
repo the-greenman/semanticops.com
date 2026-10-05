@@ -1,28 +1,25 @@
 ---
 import Section from "../Section.astro";
 import Entry from "./Entry.astro";
-import { toBands } from "../../lib/bands";
-import type { Entry as EntryRecord } from "../../lib/content";
+import type { Band } from "../../lib/bands";
 
 /**
- * The body of a page: its entries, in order, as full-bleed bands. Where a band ends and which
- * ground it sits on come from src/lib/bands.ts and the presentation map; this only lays them
- * out. A band's items are grouped by form (a grid of project cards, a list of principles, a
- * stack of pairs). Figure numbers count up through the page in the order the diagrams appear.
+ * The body of a page: its bands, in order, as full-bleed sections. Where a band ends and which
+ * ground it sits on were decided once, by toBands (src/lib/bands.ts) and the presentation map;
+ * this only lays them out. A band's items are grouped by form (a grid of project cards, a grid of
+ * principles, a stack of pairs). Figure numbers count up through the page in the order the
+ * diagrams appear.
  */
 interface Props {
-  /** The content entries, in the order given (never the page record). */
-  entries: EntryRecord[];
+  /** The page's bands, from toBands. Computed once by the page, which also needs them for its index and its closing band. */
+  bands: Band[];
   /** The page key. */
   page: string;
-  /** The ground of the band above, so paper and page take turns from there. */
-  after?: "paper" | "page";
   /** The number of the first figure on the page: home's hero is FIG. 01, so its next is 2. */
   figureStart?: number;
 }
 
-const { entries, page, after = "paper", figureStart = 1 } = Astro.props;
-const bands = toBands(entries, page, after);
+const { bands, page, figureStart = 1 } = Astro.props;
 
 // Figure numbers by order of appearance.
 let figure = figureStart;

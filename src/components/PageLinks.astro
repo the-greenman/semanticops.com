@@ -73,6 +73,16 @@ const { items, class: className } = Astro.props;
       inset: 0;
     }
 
+    /* The whole item is the target, so the focus ring is drawn on the overlay and not on the small link text. */
+    .page-links__link:focus-visible {
+      outline: none;
+    }
+
+    .page-links__link:focus-visible::after {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
+    }
+
     .page-links__arrow {
       font-family: var(--font-mono);
       color: var(--color-muted);

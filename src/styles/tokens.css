@@ -144,6 +144,7 @@
   --width-default: 75rem;
   --width-wide: 90rem;
   --header-height: 56px;
+  --anchor-offset: calc(var(--header-height) + var(--space-sm)); /* how far a deep link, or a sticky column, sits clear of the sticky header */
   --hit-target: 24px;
 
   /* Shape and rules: hairlines, sharp radii, pills only for chips */

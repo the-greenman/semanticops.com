@@ -37,7 +37,10 @@ export type ProjectRecord = Base<
   "project",
   { slug: string; name: string; kind: string; tagline: string; summary: string; audience: string; makes_possible: string; repository: string; licence: string }
 >;
-export type PrincipleRecord = Base<"principle", { slug: string; title: string; claim: string; explanation: string }>;
+export type PrincipleRecord = Base<
+  "principle",
+  { slug: string; title: string; claim: string; explanation: string; pole_a?: string; pole_b?: string }
+>;
 
 export type Entry = SectionRecord | ConceptRecord | ProjectRecord | PrincipleRecord;
 export type EntryType = Entry["type"];
@@ -90,7 +93,14 @@ function load(key: string): Page {
 
 /** Every page, in navigation order. */
 export const pages: Page[] = site.pages.map((p) => load(p.page));
-export const getPage = (key: string): Page => pages.find((p) => p.key === key) ?? load(key);
+/** A page by key, or undefined: for lookups that must tolerate a key that is not a page (the styleguide's demo). */
+export const findPage = (key: string): Page | undefined => pages.find((p) => p.key === key);
+/** A page by key. A key that is not in site.json is a mistake in the presentation map, so it stops the build. */
+export const getPage = (key: string): Page => {
+  const page = findPage(key);
+  if (!page) throw new Error(`"${key}" is not a page in site.json`);
+  return page;
+};
 export const homePage = getPage(homeKey);
 
 /** The pages that have a route of their own, in navigation order: what `[page].astro` generates. */
@@ -125,7 +135,7 @@ for (const p of [...contentPages, homePage]) for (const e of p.entries) if (!own
 export function linkTo(slug: string, from: string): string | undefined {
   const where = owner.get(slug);
   if (!where) return undefined;
-  if (getPage(from).entries.some((e) => e.slug === slug)) return `#${slug}`;
+  if (findPage(from)?.entries.some((e) => e.slug === slug)) return `#${slug}`;
   return `${routeOf(where)}#${slug}`;
 }
 
@@ -147,5 +157,5 @@ export function findConcept(slug: string): ConceptRecord | undefined {
 /** The page that owns a slug (see `owner`): where a reader is sent to read about it. */
 export const pageOf = (slug: string): Page | undefined => {
   const key = owner.get(slug);
-  return key ? getPage(key) : undefined;
+  return key ? findPage(key) : undefined;
 };

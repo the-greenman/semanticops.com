@@ -6,7 +6,7 @@ import PageLinks from "../components/PageLinks.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import PageBands from "../components/page/PageBands.astro";
-import { INDEX_MIN_BANDS, indexOf, toBands } from "../lib/bands";
+import { INDEX_MIN_BANDS, closingSurface, indexOf, toBands } from "../lib/bands";
 import { agentEdition, contentPages, getPage, site } from "../lib/content";
 
 /** One route for every page with its own address: a page added in source/ appears here with no new file. */
@@ -18,8 +18,8 @@ const page = getPage(Astro.params.page);
 const bands = toBands(page.entries, page.key);
 const index = bands.length >= INDEX_MIN_BANDS ? indexOf(bands) : [];
 const others = contentPages.filter((p) => p.key !== page.key);
-// The closing band takes the other of paper and page, or paper after an ink band.
-const tail = bands.at(-1)?.surface === "paper" ? "page" : "paper";
+// The closing band takes its ground by the same turn-taking as the bands above it.
+const tail = closingSurface(bands);
 ---
 
 <Base title={page.title} description={page.summary}>
@@ -30,7 +30,7 @@ const tail = bands.at(-1)?.surface === "paper" ? "page" : "paper";
       <AgentEdition {...agentEdition(page.key)} />
     </div>
   </Section>
-  <PageBands entries={page.entries} page={page.key} />
+  <PageBands {bands} page={page.key} />
   <Section variant={tail}>
     <div class="stack stack--md">
       <SectionHeader title="Keep reading" />

@@ -73,6 +73,16 @@ const { kind, title, glyph = "record", href, id, class: className } = Astro.prop
       inset: 0;
     }
 
+    /* The whole item is the target, so the focus ring is drawn on the overlay and not on the small link text. */
+    .concept-card__link:focus-visible {
+      outline: none;
+    }
+
+    .concept-card__link:focus-visible::after {
+      outline: var(--focus-ring);
+      outline-offset: var(--focus-offset);
+    }
+
     .concept-card__body {
       color: var(--color-muted-strong);
       font-size: var(--size-base);

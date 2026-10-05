@@ -3,7 +3,8 @@
  * An index of the page: anchor links, one per part, in the page's own order. Put it in the
  * page header of a long page so a reader can jump to any part. The links are `#slug` anchors.
  * An item with a number shows it (the same ordinal as the part's own heading); one without
- * shows a bare rule.
+ * shows its label alone. Give a second index on the same page its own `title`, so the two
+ * landmarks have different names.
  */
 interface Props {
   items: { href: string; label: string; number?: string }[];
@@ -22,7 +23,7 @@ const { items, title = "On this page", class: className } = Astro.props;
       items.map((item) => (
         <li>
           <a class="on-page__link" href={item.href}>
-            <span class="on-page__no t-label">{item.number}</span>
+            {item.number && <span class="on-page__no t-label">{item.number}</span>}
             <span>{item.label}</span>
           </a>
         </li>
