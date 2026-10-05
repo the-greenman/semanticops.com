@@ -124,6 +124,23 @@
   fill: var(--figure-ground);
 }
 
+.dg-seed-ring--ink,
+.dg-trace--ink {
+  fill: none;
+  stroke: var(--color-text-strong);
+}
+
+.dg-seed-ring--paper,
+.dg-trace--paper {
+  fill: none;
+  stroke: var(--figure-ground);
+}
+
+.dg-trace--ink,
+.dg-trace--paper {
+  stroke-linecap: round;
+}
+
 .dg-rule {
   stroke: var(--color-line);
   stroke-width: 1;

@@ -46,12 +46,12 @@ const { variant = "halves", size = 24, label, class: className } = Astro.props;
       </>
     )
   }
-  {variant === "halves" && <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" />}
+  {variant === "halves" && <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" trace={size >= 32} />}
   {
     variant === "ring" && (
       <>
         <BrokenRing cx={12} cy={12} r={10.9} width={1.6} segments={6} gap={16} start={-60} />
-        <Halves cx={12} cy={12} r={7.6} edge={0.9} seed="ring" />
+        <Halves cx={12} cy={12} r={7.6} edge={0.9} seed="ring" trace={size >= 32} />
       </>
     )
   }
