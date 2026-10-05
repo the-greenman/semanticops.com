@@ -1,0 +1,15 @@
+{
+  "id": "70c8895f-3e83-4f8e-aca6-0bb9130d3d88",
+  "namespace": "com.semanticops.site",
+  "name": "pole_a",
+  "version": 1,
+  "description": "The first pole of a held pair.",
+  "aiGuidance": {
+    "purpose": "One side of a pair that SRS holds without choosing between them, in two to four words and sentence case, such as Fixed meaning. The title names the pair as a whole and the poles name its two sides. Set it only on a principle that is a held pair, and always together with the second pole."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T21:15:08.546434322+00:00"
+}

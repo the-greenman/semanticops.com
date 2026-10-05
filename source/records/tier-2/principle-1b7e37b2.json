@@ -8,9 +8,11 @@
     "claim": "AI may observe, extract, propose, question, organise, explain and coach. People decide, agree, ratify and remain accountable.",
     "title": "People decide, AI assists",
     "slug": "human-ai-stance",
-    "explanation": "AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies."
+    "explanation": "AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies.",
+    "pole_a": "People decide",
+    "pole_b": "AI assists"
   },
   "createdAt": "2026-10-05T19:18:42.691066333+00:00",
-  "updatedAt": "2026-10-05T19:18:42.691071891+00:00",
+  "updatedAt": "2026-10-05T21:15:36.550280287+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

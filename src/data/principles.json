@@ -99,7 +99,9 @@
         "slug": "fixed-meaning-changing-state",
         "title": "Fixed meaning, changing state",
         "claim": "A definition never changes underneath the records that use it, and records still move through states.",
-        "explanation": "Field semantics are immutable and a Record binds to an exact Type version, so what a value means is fixed. State is separate: with the lifecycle extension a Record moves through declared states, such as draft and ratified, without its meaning changing. When meaning must change, the answer is a new version or a successor, never an edit in place."
+        "explanation": "Field semantics are immutable and a Record binds to an exact Type version, so what a value means is fixed. State is separate: with the lifecycle extension a Record moves through declared states, such as draft and ratified, without its meaning changing. When meaning must change, the answer is a new version or a successor, never an edit in place.",
+        "pole_a": "Fixed meaning",
+        "pole_b": "Changing state"
       }
     },
     {
@@ -110,7 +112,9 @@
         "slug": "one-source-two-readers",
         "title": "One source, two readers",
         "claim": "The same records serve people and agents, each through a surface built for them.",
-        "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source."
+        "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source.",
+        "pole_a": "One source",
+        "pole_b": "Two readers"
       }
     },
     {
@@ -121,7 +125,9 @@
         "slug": "structure-describes",
         "title": "Structure describes, never commands",
         "claim": "A Relation says how two pieces of knowledge are connected. It never says who may act.",
-        "explanation": "Relations are semantic claims between instances, not ownership or control flow. A `depends-on` edge blocks nothing, and a `contains` edge does not make a record belong to a container. The model has no roles, approvals or permissions to attach authority to."
+        "explanation": "Relations are semantic claims between instances, not ownership or control flow. A `depends-on` edge blocks nothing, and a `contains` edge does not make a record belong to a container. The model has no roles, approvals or permissions to attach authority to.",
+        "pole_a": "Structure describes",
+        "pole_b": "Never commands"
       }
     },
     {
@@ -132,7 +138,9 @@
         "slug": "declared-never-derived",
         "title": "Declared, never derived",
         "claim": "Membership is declared, never derived.",
-        "explanation": "What a container holds is what it says it holds, in its own ordered `memberInstanceIds` list. It is not inferred from relations, from a folder, or from a query that could answer differently tomorrow. A boundary means what it holds, and because it is declared it can be drawn again, differently, without touching the records inside."
+        "explanation": "What a container holds is what it says it holds, in its own ordered `memberInstanceIds` list. It is not inferred from relations, from a folder, or from a query that could answer differently tomorrow. A boundary means what it holds, and because it is declared it can be drawn again, differently, without touching the records inside.",
+        "pole_a": "Declared",
+        "pole_b": "Never derived"
       }
     },
     {
@@ -143,7 +151,9 @@
         "slug": "human-ai-stance",
         "title": "People decide, AI assists",
         "claim": "AI may observe, extract, propose, question, organise, explain and coach. People decide, agree, ratify and remain accountable.",
-        "explanation": "AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies."
+        "explanation": "AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies.",
+        "pole_a": "People decide",
+        "pole_b": "AI assists"
       }
     },
     {

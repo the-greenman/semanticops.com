@@ -8,9 +8,11 @@
     "claim": "Membership is declared, never derived.",
     "title": "Declared, never derived",
     "slug": "declared-never-derived",
-    "explanation": "What a container holds is what it says it holds, in its own ordered `memberInstanceIds` list. It is not inferred from relations, from a folder, or from a query that could answer differently tomorrow. A boundary means what it holds, and because it is declared it can be drawn again, differently, without touching the records inside."
+    "explanation": "What a container holds is what it says it holds, in its own ordered `memberInstanceIds` list. It is not inferred from relations, from a folder, or from a query that could answer differently tomorrow. A boundary means what it holds, and because it is declared it can be drawn again, differently, without touching the records inside.",
+    "pole_a": "Declared",
+    "pole_b": "Never derived"
   },
   "createdAt": "2026-10-05T19:18:42.632385509+00:00",
-  "updatedAt": "2026-10-05T19:18:42.632390315+00:00",
+  "updatedAt": "2026-10-05T21:15:36.430477613+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

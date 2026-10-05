@@ -25,7 +25,9 @@
     "fields/repository-02bf113a.json",
     "fields/licence-8acd71ff.json",
     "fields/claim-3c934b62.json",
-    "fields/explanation-2d7d565a.json"
+    "fields/explanation-2d7d565a.json",
+    "fields/polea-70c8895f.json",
+    "fields/poleb-fc120bab.json"
   ],
   "types": [
     "types/page-f0a4a712.json",

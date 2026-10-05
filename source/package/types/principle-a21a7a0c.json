@@ -1,4 +1,5 @@
 {
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json",
   "id": "a21a7a0c-7782-448f-8d3b-1a7578b21770",
   "namespace": "com.semanticops.site",
   "name": "principle",
@@ -24,12 +25,21 @@
       "fieldId": "2d7d565a-8870-4153-9f43-e09dc539b57e",
       "order": 4,
       "required": true
+    },
+    {
+      "fieldId": "70c8895f-3e83-4f8e-aca6-0bb9130d3d88",
+      "order": 5,
+      "required": false
+    },
+    {
+      "fieldId": "fc120bab-1dbc-438f-8413-d0aa6856f38e",
+      "order": 6,
+      "required": false
     }
   ],
   "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
   "aiGuidance": {
-    "purpose": "Use for charter principles, held pairs and this-over-that preferences. Quote the charter faithfully where it exists. Keep the claim to one sentence and the explanation to the mechanism that enforces it. AI never decides or ratifies: say so wherever authority is in question."
+    "purpose": "Use for charter principles, held pairs and this-over-that preferences. Quote the charter faithfully where it exists. Keep the claim to one sentence and the explanation to the mechanism that enforces it. AI never decides or ratifies: say so wherever authority is in question. A principle that is a held pair also names its two sides in pole_a and pole_b, set together, and leaves them empty otherwise."
   },
-  "createdAt": "2026-10-05T00:00:00Z",
-  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+  "createdAt": "2026-10-05T00:00:00Z"
 }

@@ -8,9 +8,11 @@
     "claim": "A Relation says how two pieces of knowledge are connected. It never says who may act.",
     "title": "Structure describes, never commands",
     "slug": "structure-describes",
-    "explanation": "Relations are semantic claims between instances, not ownership or control flow. A `depends-on` edge blocks nothing, and a `contains` edge does not make a record belong to a container. The model has no roles, approvals or permissions to attach authority to."
+    "explanation": "Relations are semantic claims between instances, not ownership or control flow. A `depends-on` edge blocks nothing, and a `contains` edge does not make a record belong to a container. The model has no roles, approvals or permissions to attach authority to.",
+    "pole_a": "Structure describes",
+    "pole_b": "Never commands"
   },
   "createdAt": "2026-10-05T19:18:42.571926175+00:00",
-  "updatedAt": "2026-10-05T19:18:42.571932760+00:00",
+  "updatedAt": "2026-10-05T21:15:36.311386436+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

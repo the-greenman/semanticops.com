@@ -1,0 +1,15 @@
+{
+  "id": "fc120bab-1dbc-438f-8413-d0aa6856f38e",
+  "namespace": "com.semanticops.site",
+  "name": "pole_b",
+  "version": 1,
+  "description": "The second pole of a held pair.",
+  "aiGuidance": {
+    "purpose": "The other side of a pair that SRS holds without choosing between them, in two to four words and sentence case, such as Changing state. The title names the pair as a whole and the poles name its two sides. Set it only on a principle that is a held pair, and always together with the first pole."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-05T21:15:08.622179159+00:00"
+}
