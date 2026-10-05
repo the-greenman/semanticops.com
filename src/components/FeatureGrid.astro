@@ -1,5 +1,6 @@
 ---
 import Glyph from "./diagram/Glyph.astro";
+import type { GlyphKind } from "./types";
 
 /**
  * A ruled grid of short features: an optional glyph and mono label, a title and a
@@ -11,7 +12,7 @@ interface Props {
     eyebrow?: string;
     title: string;
     body: string;
-    glyph?: "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+    glyph?: GlyphKind;
   }[];
   columns?: 2 | 3 | 4;
   class?: string;

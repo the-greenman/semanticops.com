@@ -1,4 +1,5 @@
 ---
+import { labelAt, type LabelPosition } from "./geometry";
 import Knockout from "./Knockout.astro";
 import type { Tone } from "./tones";
 
@@ -18,20 +19,14 @@ interface Props {
   hollow?: boolean;
   /** Short label. Pass an empty string for none. */
   label?: string;
-  labelPosition?: "below" | "above" | "right" | "left" | "inside";
+  labelPosition?: LabelPosition;
   /** Extra classes on the group, e.g. "dg-wide-only". */
   class?: string;
 }
 
 const { cx, cy, r, tone = "record", knockout = 3, hollow = false, label = "", labelPosition = "below", class: className } = Astro.props;
 
-const place = {
-  below: { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" },
-  above: { x: cx, y: cy - r - 10, anchor: "middle", base: "auto" },
-  right: { x: cx + r + 12, y: cy, anchor: "start", base: "central" },
-  left: { x: cx - r - 12, y: cy, anchor: "end", base: "central" },
-  inside: { x: cx, y: cy, anchor: "middle", base: "central" },
-}[labelPosition];
+const place = labelAt(cx, cy, r, labelPosition);
 ---
 
 <g class:list={["dg-node", `dg-tone--${tone}`, className]}>

@@ -43,3 +43,21 @@ export function trim(a: Point, b: Point, insetA: number, insetB = insetA): [Poin
 export function hexPoints(cx: number, cy: number, r: number, start = -90): Point[] {
   return Array.from({ length: 6 }, (_, i) => polar(cx, cy, r, start + i * 60));
 }
+
+export type LabelPosition = "below" | "above" | "right" | "left" | "inside";
+
+/** Where a node's short label sits relative to the node: the position, its text anchor and baseline. */
+export function labelAt(cx: number, cy: number, r: number, position: LabelPosition) {
+  switch (position) {
+    case "above":
+      return { x: cx, y: cy - r - 10, anchor: "middle", base: "auto" };
+    case "right":
+      return { x: cx + r + 12, y: cy, anchor: "start", base: "central" };
+    case "left":
+      return { x: cx - r - 12, y: cy, anchor: "end", base: "central" };
+    case "inside":
+      return { x: cx, y: cy, anchor: "middle", base: "central" };
+    default:
+      return { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" };
+  }
+}

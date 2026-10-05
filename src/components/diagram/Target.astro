@@ -1,4 +1,5 @@
 ---
+import { labelAt, type LabelPosition } from "./geometry";
 import Knockout from "./Knockout.astro";
 
 /**
@@ -11,18 +12,13 @@ interface Props {
   r: number;
   knockout?: number;
   label?: string;
-  labelPosition?: "below" | "above" | "right" | "left";
+  labelPosition?: Exclude<LabelPosition, "inside">;
 }
 
 const { cx, cy, r, knockout = 3, label = "", labelPosition = "below" } = Astro.props;
 
 const ring = Math.max(1.5, r * 0.2);
-const place = {
-  below: { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" },
-  above: { x: cx, y: cy - r - 10, anchor: "middle", base: "auto" },
-  right: { x: cx + r + 12, y: cy, anchor: "start", base: "central" },
-  left: { x: cx - r - 12, y: cy, anchor: "end", base: "central" },
-}[labelPosition];
+const place = labelAt(cx, cy, r, labelPosition);
 ---
 
 <g class="dg-node dg-target">

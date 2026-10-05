@@ -4,13 +4,14 @@ import Disc from "./Disc.astro";
 import Link from "./Link.astro";
 import RingNode from "./RingNode.astro";
 import Target from "./Target.astro";
+import type { GlyphKind } from "../types";
 
 /**
  * One small icon per idea in the diagram vocabulary, drawn from the primitives: the
  * legend and the concept cards share it. Decorative: always paired with a text label.
  */
 interface Props {
-  kind: "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+  kind: GlyphKind;
   size?: number;
 }
 

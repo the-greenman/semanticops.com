@@ -53,8 +53,8 @@ const narrow = {
   y0: 70,
   cx: 150,
   xs: [44, 150, 256],
-  // The row heading is the name alone: a note would sit across the links that pass down to the next row.
-  head: (y: number) => ({ name: { x: 0, y: y - 54, anchor: "start" }, note: null as null | { x: number; y: number; anchor: string } }),
+  // The row heading is the name alone, set at the right edge: the links pass down the left and middle of each row.
+  head: (y: number) => ({ name: { x: 340, y: y - 54, anchor: "end" }, note: null as null | { x: number; y: number; anchor: string } }),
   rule: (y: number) => ({ x1: 0, x2: 340, y: y - 76 }),
 };
 const layouts = [

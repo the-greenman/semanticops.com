@@ -1,11 +1,13 @@
 ---
+import type { Status } from "./types";
+
 /**
  * A status, told by border and fill and never by hue alone: draft is dashed (provisional),
  * proposed is quiet, active is firm, ratified is filled (agreed), superseded and archived
  * recede, and superseded is struck through (terminal). Mono, small, uppercase.
  */
 interface Props {
-  status?: "draft" | "proposed" | "active" | "ratified" | "superseded" | "archived";
+  status?: Status;
   class?: string;
 }
 

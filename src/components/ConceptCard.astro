@@ -1,5 +1,6 @@
 ---
 import Glyph from "./diagram/Glyph.astro";
+import type { GlyphKind } from "./types";
 
 /**
  * A card for one idea of the model: a glyph from the diagram vocabulary, a mono kind
@@ -11,7 +12,7 @@ interface Props {
   kind: string;
   title: string;
   /** Which glyph of the diagram vocabulary draws it. */
-  glyph?: "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+  glyph?: GlyphKind;
   href?: string;
   class?: string;
 }

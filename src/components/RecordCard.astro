@@ -1,5 +1,6 @@
 ---
 import Tag from "./Tag.astro";
+import type { Status } from "./types";
 
 /**
  * A record shown as a thing: an ink header (mono id, title, status) over rows of label
@@ -13,7 +14,7 @@ interface Props {
   /** namespace/name@version of its Type. */
   type: string;
   title: string;
-  status?: "draft" | "proposed" | "active" | "ratified" | "superseded" | "archived";
+  status?: Status;
   fields: { label: string; value: string; required?: boolean }[];
   class?: string;
 }

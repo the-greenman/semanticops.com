@@ -1,4 +1,5 @@
 ---
+import { nav as site } from "./nav";
 import SrsMark from "./SrsMark.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Wordmark from "./Wordmark.astro";
@@ -8,12 +9,6 @@ import Wordmark from "./Wordmark.astro";
  * the official asset arrives), the agent edition entry point, the repositories, and the
  * theme control.
  */
-const site = [
-  { href: "/model", label: "Model" },
-  { href: "/architecture", label: "Architecture" },
-  { href: "/principles", label: "Principles" },
-  { href: "/projects", label: "Projects" },
-];
 const elsewhere = [
   { href: "/llms.txt", label: "Agent edition" },
   { href: "https://github.com/the-greenman/srs", label: "GitHub: srs" },

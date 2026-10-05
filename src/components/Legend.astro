@@ -1,20 +1,19 @@
 ---
 import Glyph from "./diagram/Glyph.astro";
+import type { GlyphKind } from "./types";
 
 /**
  * The key to the diagram vocabulary: one glyph and one plain sentence per idea. Colour
  * carries meaning once, and this is where it is explained. Put it under a diagram that
  * uses several of the shapes, or show it whole on the styleguide.
  */
-type Kind = "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
-
 interface Props {
   /** Which entries to show, in order. Defaults to all. */
-  kinds?: Kind[];
+  kinds?: GlyphKind[];
   class?: string;
 }
 
-const all: Record<Kind, { name: string; text: string }> = {
+const all: Record<GlyphKind, { name: string; text: string }> = {
   structure: { name: "Boundary", text: "A container or repository: a declared selection, so its edge is drawn broken." },
   record: { name: "Record", text: "A unit of knowledge: the substance, drawn as a flat disc." },
   field: { name: "Field", text: "An atomic value, drawn as a ring around a smaller ring or dot." },
@@ -23,7 +22,7 @@ const all: Record<Kind, { name: string; text: string }> = {
   note: { name: "Note", text: "Free text, provisional, not yet typed." },
   derived: { name: "Derived", text: "Rendered output: a projection, never authoritative." },
 };
-const { kinds = Object.keys(all) as Kind[], class: className } = Astro.props;
+const { kinds = Object.keys(all) as GlyphKind[], class: className } = Astro.props;
 ---
 
 <ul class:list={["legend", className]}>
