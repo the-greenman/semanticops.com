@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <!-- The SRS mark (halves): paper disc, ink half, the S as a grey line, two seeds, rim. Flips in dark mode. -->
+  <!-- The SRS mark (halves): paper disc, ink half, the S as a vermilion accent line, two seeds, rim. Flips in dark mode. -->
   <style>
     .a { fill: #1a1a1a }
     .b { fill: #f4f2ee }
-    .s { fill: none; stroke: #c8c4bc; stroke-width: 1 }
+    .s { fill: none; stroke: #cc3300; stroke-width: 1 }
     .e { fill: none; stroke: #1a1a1a; stroke-width: 1.25 }
     @media (prefers-color-scheme: dark) {
       .a { fill: #faf8f5 }
       .b { fill: #211f1d }
-      .s { stroke: #4a4744 }
+      .s { stroke: #ff7f56 }
       .e { stroke: #faf8f5 }
     }
   </style>

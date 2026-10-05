@@ -503,10 +503,9 @@ const relationJson = `{
       <Specimen layout="stack" title="SrsMark: halves (recommended)" note="The same disc and the same S, with the two regions filled and each holding a seed of the other, and the S drawn as a line over the seam so it reads as a letter. It reads as one source and two readers, people and agents, and it is the shape the TwoSurfaces diagram explains. Recommended as the primary mark." code={`<SrsMark variant="halves" size={24} />`}>
         <MarkRow mark="srs" variant="halves" />
       </Specimen>
-      <Specimen title="SrsMark: S line colours" note="The S line is grey by default (the --dg-divide token). line takes a diagram tone for display and brand uses where colour is wanted, or none for the plain halves." code={`<SrsMark variant="halves" line="record" size={96} />`}>
+      <Specimen title="SrsMark: S line colours" note="The S line is a small vermilion accent by default (the --dg-divide token, the owner's choice), lit on dark when the mark inverts. line takes another diagram tone for display uses, or none for the plain halves." code={`<SrsMark variant="halves" line="structure" size={96} />`}>
         <div class="cluster">
           <SrsMark variant="halves" size={96} />
-          <SrsMark variant="halves" line="record" size={96} />
           <SrsMark variant="halves" line="structure" size={96} />
           <SrsMark variant="halves" line="relation" size={96} />
           <SrsMark variant="halves" line="none" size={96} />
