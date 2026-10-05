@@ -1,0 +1,263 @@
+{
+  "page": "home",
+  "title": "SemanticOps: home",
+  "entries": [
+    {
+      "instanceId": "e84378a8-016b-4cfc-871c-ca594aa2986b",
+      "type": "page",
+      "slug": "home",
+      "fields": {
+        "slug": "home",
+        "title": "Home",
+        "summary": "SRS is an open standard for portable semantic documents that people and AI can both understand and use. This site is generated from the records of an SRS repository."
+      }
+    },
+    {
+      "instanceId": "d1a57ade-aa30-4f7b-90af-468d6abb97ad",
+      "type": "section",
+      "slug": "hero",
+      "fields": {
+        "slug": "hero",
+        "title": "Portable semantic documents for people and AI",
+        "eyebrow": "Semantic Record System",
+        "lede": "SRS builds portable semantic documents that both humans and AI can understand and use.",
+        "body": "It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+      }
+    },
+    {
+      "instanceId": "ade953c2-e407-4e14-b1eb-74c9f12f5cf4",
+      "type": "section",
+      "slug": "problem",
+      "fields": {
+        "slug": "problem",
+        "title": "Knowledge does not travel intact",
+        "eyebrow": "The problem",
+        "lede": "The hard part is to transfer a complex unit of knowledge, intact, from one mind or system to another. Not a file, not a message, not a row in a database.",
+        "body": "A wall of prose can only be interpreted by a human, and only whole. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.\n\nTwo demands pull against each other. The receiver needs depth of context to understand, and no one, human or AI, can take in everything at once. SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand."
+      }
+    },
+    {
+      "instanceId": "bf179824-4099-406e-9af0-556b14108a5c",
+      "type": "section",
+      "slug": "idea",
+      "fields": {
+        "slug": "idea",
+        "title": "Records are the source. Documents are projections.",
+        "eyebrow": "The idea",
+        "lede": "Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.",
+        "body": "Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. A Composition says how records become a document. A Presentation is a repository's declared commitment to render it. The Projection is the file that results, and it can be regenerated at any time.\n\nThis site works that way. Every page, and every file in the agent section below, is generated from records in an SRS repository."
+      }
+    },
+    {
+      "instanceId": "d4edd0dc-cef1-4f42-a874-ec17e1b682e9",
+      "type": "section",
+      "slug": "model-glance",
+      "fields": {
+        "slug": "model-glance",
+        "title": "Six constructs, each small",
+        "eyebrow": "The model",
+        "lede": "A small set of constructs does all the work.",
+        "body": "- **Field**: the smallest unit of meaning, with a stable identity and guidance for AI.\n- **Type**: a versioned composition of Fields that says which questions a record must answer.\n- **Record**: knowledge bound to a Type. A **Note** is its free-text precursor.\n- **Relation**: a typed, binary edge between two records, read as source, type, target.\n- **Container**: a declared, ordered selection of records. A boundary means what it holds.\n- **Package**: the Fields and Types a repository uses, distributed together.\n\nThe [model page](/model) takes each in turn, with real examples."
+      }
+    },
+    {
+      "instanceId": "7c51c6f0-33a7-4000-874a-e998ae3ec2c3",
+      "type": "section",
+      "slug": "one-core",
+      "fields": {
+        "slug": "one-core",
+        "title": "Implemented once, consumed the same everywhere",
+        "eyebrow": "One core, many surfaces",
+        "lede": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics.",
+        "body": "The core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service as a command line with a stable JSON contract, as WebAssembly bindings and as an MCP server. Clients, a browser editor and a VS Code extension, add presentation on top.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place. See [architecture](/architecture)."
+      }
+    },
+    {
+      "instanceId": "587dc9a6-d2c2-462f-8da4-3b7259085132",
+      "type": "section",
+      "slug": "projects-glance",
+      "fields": {
+        "slug": "projects-glance",
+        "title": "A standard, an engine and two editors",
+        "eyebrow": "The projects",
+        "lede": "Four projects share one standard, and each does one job.",
+        "body": "Each project is described by the kind of technology it is. The [projects page](/projects) says where each fits."
+      }
+    },
+    {
+      "instanceId": "4505c3f9-a959-4571-ab1c-697ce9c7f3d8",
+      "type": "project",
+      "slug": "srs",
+      "fields": {
+        "slug": "srs",
+        "name": "srs",
+        "kind": "Open standard",
+        "tagline": "The specification, authored as its own data.",
+        "summary": "An open, implementation-independent standard for portable semantic documents. It is authored as an SRS repository: the JSON Schemas, base packages, conformance material and decision charter are all records, and the rendered specification is a projection of them.",
+        "audience": "Implementers, tool builders and anyone who needs to know exactly what a conforming repository is.",
+        "makes_possible": "A second implementation, in any language, that reads and writes the same repositories as the first.",
+        "repository": "https://github.com/the-greenman/srs",
+        "licence": "Apache-2.0"
+      }
+    },
+    {
+      "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+      "type": "project",
+      "slug": "srs-rust",
+      "fields": {
+        "slug": "srs-rust",
+        "name": "srs-rust",
+        "kind": "Reference engine",
+        "tagline": "One core behind a CLI, WebAssembly bindings and an MCP server.",
+        "summary": "A library-first reference implementation. The core holds types and validation. One repository service sits over it and is exposed as a command line with a stable JSON contract, as WASM bindings and as an MCP server.",
+        "audience": "Engineers who script, validate or embed SRS, and agents that need a tool-enforced way to write records.",
+        "makes_possible": "Every client gets the same answer, because the logic exists once.",
+        "repository": "https://github.com/the-greenman/srs-rust",
+        "licence": "MIT or Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "4505c3f9-a959-4571-ab1c-697ce9c7f3d8",
+              "slug": "srs",
+              "label": "srs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "d53c0e02-f30b-466d-ad25-e3a3db2bd28e",
+      "type": "project",
+      "slug": "srs-web",
+      "fields": {
+        "slug": "srs-web",
+        "name": "srs-web",
+        "kind": "Browser editor",
+        "tagline": "Edit SRS repositories entirely client-side, on storage you own.",
+        "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.",
+        "audience": "People who work with structured knowledge and want it to stay theirs.",
+        "makes_possible": "Reading and editing a repository with nothing to install, while the files stay in your own storage.",
+        "repository": "https://github.com/the-greenman/srs-web",
+        "licence": "Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+              "slug": "srs-rust",
+              "label": "srs-rust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "462993f0-adf1-4f4c-b878-a17a38785ee1",
+      "type": "project",
+      "slug": "srs-vscode",
+      "fields": {
+        "slug": "srs-vscode",
+        "name": "srs-vscode",
+        "kind": "VS Code extension",
+        "tagline": "Repositories in your workspace, with views for navigating them.",
+        "summary": "A thin VS Code extension over the srs binary. Tree and navigator views, validation on save, preview and a relation graph, for engineers who keep repositories in their workspace.",
+        "audience": "Engineers who keep SRS repositories next to their code.",
+        "makes_possible": "Working on records the way you work on source: in the editor, in git, with validation as you save.",
+        "repository": "https://github.com/the-greenman/srs-vscode",
+        "licence": "Apache-2.0"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "c669ee7d-d421-4a49-9888-841d83e0837b",
+              "slug": "srs-rust",
+              "label": "srs-rust"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "7e8a98e4-b02d-4fac-9a46-85caefafbfed",
+      "type": "section",
+      "slug": "principles-glance",
+      "fields": {
+        "slug": "principles-glance",
+        "title": "Commitments that decide the rest",
+        "eyebrow": "Principles",
+        "lede": "When two designs both work, these choose between them.",
+        "body": "One governing idea and a short list of pairs that SRS refuses to settle. All of them are on the [principles page](/principles)."
+      }
+    },
+    {
+      "instanceId": "0cd1dbd8-3d68-4cf1-80ff-63d72667b57e",
+      "type": "principle",
+      "slug": "governing-core",
+      "fields": {
+        "slug": "governing-core",
+        "title": "The governing core",
+        "claim": "SRS preserves semantic sovereignty through portable data.",
+        "explanation": "Meaning stays under the control of the people who made it, and moves between tools, implementations and time without captivity or silent loss. Portability alone is not enough: data that travels without a stable identity, its relations or interpretable semantics has lost the meaning it carried.\n\nThree principles follow. The openness of the spec is the mechanism for all three: an open, implementable standard is what makes the data portable and the decisions the group's own."
+      }
+    },
+    {
+      "instanceId": "b6382344-f142-4752-ad78-456f2d957805",
+      "type": "principle",
+      "slug": "depth-without-overload",
+      "fields": {
+        "slug": "depth-without-overload",
+        "title": "Depth without overload",
+        "claim": "Give the receiver enough context to understand, and never more than they can take in.",
+        "explanation": "Depth of context and freedom from overload pull against each other, and SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand. In the model, a Container's outline is the surface and the records nested beneath an entry are the depth. Going deeper adds detail. It does not change the story."
+      }
+    },
+    {
+      "instanceId": "37b245b1-1fc3-467f-b693-8dddfc4acd7a",
+      "type": "principle",
+      "slug": "one-source-two-readers",
+      "fields": {
+        "slug": "one-source-two-readers",
+        "title": "One source, two readers",
+        "claim": "The same records serve people and agents, each through a surface built for them.",
+        "explanation": "Facts live once, as records, and a Composition projects them for each reader. People read a projection designed for people. Agents read the records as data, through tools or as files, with no scraping. Neither surface is a degraded copy of the other, because neither is the source."
+      }
+    },
+    {
+      "instanceId": "8a6035d6-c2ce-45ea-9dba-f4a5eaa16592",
+      "type": "section",
+      "slug": "agents-as-data",
+      "fields": {
+        "slug": "agents-as-data",
+        "title": "Agents read this site as data",
+        "eyebrow": "For agents",
+        "lede": "This site has two surfaces built from one source. People get the pages. Agents get the records.",
+        "body": "Every page is projected from an SRS repository, so an agent never needs to scrape HTML. [/llms.txt](/llms.txt) is the entry point. `/agents/<page>.md` and `/agents/<page>.json` carry each page as markdown and as JSON. [/agents/semanticops.srs](/agents/semanticops.srs) is the whole repository as one portable archive that an SRS client or MCP server can open and query.\n\nThe same facts reach two readers. Each surface can be designed for its reader because the meaning lives in the records and not in either surface."
+      }
+    },
+    {
+      "instanceId": "08804fd4-6423-40a2-b452-87aa558a9bcc",
+      "type": "section",
+      "slug": "get-involved",
+      "fields": {
+        "slug": "get-involved",
+        "title": "Read it, run it, argue with it",
+        "eyebrow": "Get involved",
+        "lede": "The standard is open and in a formation phase, so the useful contributions are early ones.",
+        "body": "The specification, the reference engine, the browser editor and the VS Code extension are public on GitHub. Read the records, run `srs repo validate` on your own folder, and open an issue where the standard is unclear or wrong.\n\n- [srs](https://github.com/the-greenman/srs): the specification\n- [srs-rust](https://github.com/the-greenman/srs-rust): the reference engine and CLI\n- [srs-web](https://github.com/the-greenman/srs-web): the browser editor\n- [srs-vscode](https://github.com/the-greenman/srs-vscode): the VS Code extension"
+      }
+    }
+  ]
+}

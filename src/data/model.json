@@ -1,0 +1,282 @@
+{
+  "page": "model",
+  "title": "SemanticOps: model",
+  "entries": [
+    {
+      "instanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca",
+      "type": "page",
+      "slug": "model",
+      "fields": {
+        "slug": "model",
+        "title": "Model",
+        "summary": "The SRS model in order: Field, Type, Package, Note, Record, Relation, Container, repository, validation, rendering and identity, each with a real example."
+      }
+    },
+    {
+      "instanceId": "64fcc14b-155f-454d-af65-cdbcd59cf721",
+      "type": "section",
+      "slug": "model-intro",
+      "fields": {
+        "slug": "model-intro",
+        "title": "Small constructs, stated once",
+        "eyebrow": "The model",
+        "lede": "SRS does all its work with a few constructs. Each is a definition you can read, a file you can inspect and a rule a tool can check.",
+        "body": "Meaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order. Each example is trimmed from the specification, which is itself an SRS repository."
+      }
+    },
+    {
+      "instanceId": "fa4387c1-e362-4cf6-ab99-32e916c062be",
+      "type": "concept",
+      "slug": "field",
+      "fields": {
+        "slug": "field",
+        "title": "Field",
+        "summary": "The atomic, reusable unit of meaning.",
+        "body": "A Field has a stable UUID, a namespace, a snake_case name, an integer version and a faceted `fieldType` that says what shape its values take. Its `aiGuidance` travels with the definition instead of living in an application's prompt, so any agent that meets the Field learns how to read and write it.\n\nField semantics are immutable. A Field means the same thing everywhere it is used, and a Type cannot override it. Different meaning is a different Field.",
+        "example": "{\n  \"id\": \"d5e6f7a8-b9c0-4d1e-8f3a-4b5c6d7e8f9a\",\n  \"namespace\": \"com.semanticops.srs\",\n  \"name\": \"description\",\n  \"version\": 1,\n  \"description\": \"A detailed description of the record.\",\n  \"aiGuidance\": {\n    \"purpose\": \"Descriptions can be multi-paragraph and may include markdown formatting. Explain the what, why, and how.\"\n  },\n  \"fieldType\": {\n    \"datatype\": \"string\",\n    \"format\": \"markdown\"\n  }\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/field.json"
+      }
+    },
+    {
+      "instanceId": "51dcfd24-3064-4ff0-ab74-59a4490cff25",
+      "type": "concept",
+      "slug": "type",
+      "fields": {
+        "slug": "type",
+        "title": "Type",
+        "summary": "A versioned composition of Fields.",
+        "body": "A Type lists Fields as assignments: which Field, in what order, and whether it is required. Required Fields are how a Type asks its questions, so a unit of knowledge cannot be transferred half-formed. A display label on an assignment is rendering only and never changes what the Field means.\n\nA Record binds to an exact `typeId` and `typeVersion`. When a Type gains a new version, existing Records are not migrated. You write a successor and link it with `supersedes` or `refines`, and the original stays.",
+        "example": "{\n  \"id\": \"3c000001-0000-4000-a000-000000000001\",\n  \"namespace\": \"com.semanticops.core\",\n  \"name\": \"purpose\",\n  \"version\": 1,\n  \"fields\": [\n    {\n      \"fieldId\": \"3b000001-0000-4000-a000-000000000001\",\n      \"order\": 0,\n      \"required\": true\n    },\n    {\n      \"fieldId\": \"3b000002-0000-4000-a000-000000000002\",\n      \"order\": 1,\n      \"required\": false\n    }\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/type.json"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "fa4387c1-e362-4cf6-ab99-32e916c062be",
+              "slug": "field",
+              "label": "Field"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "490abc8e-079c-4e98-a8ed-a8ada48c6c46",
+      "type": "concept",
+      "slug": "package",
+      "fields": {
+        "slug": "package",
+        "title": "Package",
+        "summary": "Fields and Types, distributed together.",
+        "body": "A Package is the set of definitions a repository uses: Fields, Types, Compositions and more, indexed in `package.json`. It travels as a single `.srspkg` bundle, so a definition can move between repositories without being retyped. A Package can declare the packages it requires, by package id and SemVer version.\n\nA Package carries definitions only, never records. The records stay with the repository that holds them.",
+        "example": "{\n  \"id\": \"3a000001-0000-4000-a000-000000000001\",\n  \"namespace\": \"com.semanticops.core\",\n  \"name\": \"core\",\n  \"version\": \"1.0.0\",\n  \"fields\": [\n    \"fields/statement-3b000001.json\",\n    \"fields/title-3b000002.json\"\n  ],\n  \"types\": [\n    \"types/purpose-3c000001.json\"\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/package-manifest.json"
+      }
+    },
+    {
+      "instanceId": "97b8d606-ec41-49f2-ae24-ee622cc7e8a8",
+      "type": "concept",
+      "slug": "note",
+      "fields": {
+        "slug": "note",
+        "title": "Note",
+        "summary": "Free text with no Type, for capture before structure.",
+        "body": "A Note holds named sections of free text and is bound to no Type. It exists so that capture is never blocked by structure: write first, decide later what the knowledge is.\n\nMaturity is a ladder, not a gate. A Note stays a Note for as long as that is useful, and nothing is lost when it becomes something firmer.",
+        "example": "{\n  \"instanceId\": \"c0f7c97d-84a9-48a5-bc4d-41d7ee5f8cd9\",\n  \"title\": \"Human Meaning and AI Collaboration\",\n  \"sections\": [\n    {\n      \"name\": \"purpose\",\n      \"content\": \"SRS should help humans remember that meaning is their job. AI can assist with extraction, synthesis, critique, comparison, and context assembly, but it cannot become the authority that decides what something means for a community, organization, or domain.\"\n    },\n    {\n      \"name\": \"human_responsibility\",\n      \"content\": \"Meaning is not only pattern recognition. It involves responsibility, context, judgment, values, memory, consent, and commitment. A Record may capture negotiated semantic state, but the negotiation is a human and social act. SRS should make that act more legible, not replace it.\"\n    }\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/note.json"
+      }
+    },
+    {
+      "instanceId": "0a89b5c0-f5b8-4d10-9021-1676c5d662db",
+      "type": "concept",
+      "slug": "record",
+      "fields": {
+        "slug": "record",
+        "title": "Record and graduation",
+        "summary": "Knowledge bound to a Type, and how a Note becomes one.",
+        "body": "A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, and `fieldValues` maps Field names to values. The Record also carries `typeNamespace` and `typeName` as hints. If they disagree with the resolved Type, the `typeId` wins and the Record is invalid.\n\nGraduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.",
+        "example": "{\n  \"instanceId\": \"1f1da0e0-acae-4a66-bac3-30ec1ffd75df\",\n  \"typeId\": \"2a000004-0000-4000-a000-000000000004\",\n  \"typeVersion\": 1,\n  \"typeNamespace\": \"com.semanticops.spec\",\n  \"typeName\": \"concept\",\n  \"fieldValues\": {\n    \"canonical_key\": \"record:concepts/semantic-sovereignty\",\n    \"title\": \"Semantic sovereignty\"\n  }\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/record.json"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "51dcfd24-3064-4ff0-ab74-59a4490cff25",
+              "slug": "type",
+              "label": "Type"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "382e65db-240b-4224-8357-81ab80b1b62e",
+      "type": "concept",
+      "slug": "relation",
+      "fields": {
+        "slug": "relation",
+        "title": "Relation",
+        "summary": "A typed, binary edge between two instances.",
+        "body": "A Relation is first-class: its own file, its own identity, exactly two endpoints. It reads source, type, target, so `A refines B` is stored once, in that direction, and the inverse is derived and never stored. A Relation is a semantic claim about knowledge, not ownership and not control flow, and it never changes the records it joins.\n\nSeven canonical types ship in the core package: `contains`, `depends-on`, `precedes`, `supersedes`, `refines`, `derived-from` and `evidences`. A custom type is written `namespace/name` and needs its own installed definition. `precedes` means semantic order only, where a different order would be wrong.",
+        "example": "{\n  \"relationId\": \"0b02f66a-323c-4cda-be78-366f141c3043\",\n  \"relationType\": \"refines\",\n  \"sourceInstanceId\": \"0750c62f-b419-496d-b64c-ab7c8c4f5404\",\n  \"targetInstanceId\": \"9ee14517-9c12-4d06-b7bb-c5d59684d7f5\"\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/relation.json"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "0a89b5c0-f5b8-4d10-9021-1676c5d662db",
+              "slug": "record",
+              "label": "Record and graduation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "a800c6ba-34ee-4d98-8bb3-8b4540a2a5c0",
+      "type": "concept",
+      "slug": "container",
+      "fields": {
+        "slug": "container",
+        "title": "Container",
+        "summary": "A declared, ordered selection of records.",
+        "body": "A Container is a boundary drawn around records. Membership is declared, never derived: what is in a container is what its `memberInstanceIds` list says, not whatever is reachable through `contains` edges. The list is an ordered outline of entries, each with an `instanceId` and an optional `depth`, so order is data and nesting follows from depth.\n\nA boundary means what it holds, and boundaries are drawn and redrawn: the same record can sit in many containers. A Container's own id is never the source or target of a Relation.",
+        "example": "{\n  \"containerId\": \"6587bc86-9461-43f4-b790-504b2bcbddb5\",\n  \"title\": \"Semantic Record System Specification\",\n  \"identityInstanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\",\n  \"memberInstanceIds\": [\n    {\n      \"instanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\"\n    },\n    {\n      \"instanceId\": \"69010931-a272-452e-b540-fd89d4551b92\"\n    },\n    {\n      \"instanceId\": \"1f57e484-f870-4704-814d-f3f0614c3641\"\n    }\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/container.json"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "0a89b5c0-f5b8-4d10-9021-1676c5d662db",
+              "slug": "record",
+              "label": "Record and graduation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "f74059ae-5491-4284-b1b3-ec6edbad5c3b",
+      "type": "concept",
+      "slug": "repository",
+      "fields": {
+        "slug": "repository",
+        "title": "Repository on disk",
+        "summary": "Plain JSON files in git, one file per record and per relation.",
+        "body": "A directory is an SRS repository when it contains a `.srs/` marker. The files are the repository:\n\n```\n.srs/             marker\nmanifest.json     identity, package references, root container\npackage/          Field, Type and Composition definitions\nrecords/          one JSON file per Note or Record\nrelations/        one JSON file per Relation\n```\n\nThe directory tree is authoritative: a file under `records/` is a member. Sovereignty is structural, not aspirational. This is a folder. It diffs in git, opens in any editor and needs no service to read.\n\nEvery repository has a root container, named in the manifest, that is its identity and the top of its navigation.",
+        "example": "{\n  \"namespace\": \"com.semanticops.srs\",\n  \"repositoryId\": \"4172fada-bc38-5479-ac18-4be3194a68ca\",\n  \"title\": \"Semantic Record System Specification\",\n  \"packageRefs\": [\n    {\n      \"mode\": \"local\",\n      \"path\": \"package/base\"\n    },\n    {\n      \"mode\": \"local\",\n      \"path\": \"package/core\"\n    }\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/manifest.json"
+      }
+    },
+    {
+      "instanceId": "f4997152-d30d-43e3-ae35-e07091e3f5b2",
+      "type": "concept",
+      "slug": "validation",
+      "fields": {
+        "slug": "validation",
+        "title": "Validation",
+        "summary": "Diagnostics are data.",
+        "body": "Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so read the diagnostics, not the exit code.\n\nIdentity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.",
+        "example": "{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"diagnostics\": [\n    \"[containers/home-page-35e0da5b.json] SRS038-R13-DANGLING-REFERENCE: container memberInstanceIds '79508597-c133-4c32-88bd-a65b36f792b6' resolves to nothing in the instance set\"\n  ]\n}",
+        "spec_link": "https://github.com/the-greenman/srs"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "51dcfd24-3064-4ff0-ab74-59a4490cff25",
+              "slug": "type",
+              "label": "Type"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "1c5023af-5c8e-4540-95e3-376824109142",
+      "type": "concept",
+      "slug": "rendering-chain",
+      "fields": {
+        "slug": "rendering-chain",
+        "title": "The rendering chain",
+        "summary": "Composition, Presentation, Projection: how records become documents.",
+        "body": "Records are never the document. Three steps lead from one to the other. A **Composition** says how records become a document: which records, in what order, through which views. A **Presentation** is a repository's declared commitment to render a Composition to a named output. A **Projection** is the artifact that results.\n\nThemes wrap content and never replace, suppress or reorder it. Order comes from the container's own outline or from a rule, never from a template. A Projection can be deleted and regenerated, because it was never the source.",
+        "example": "{\n  \"id\": \"3a000005-0000-4000-a000-000000000005\",\n  \"namespace\": \"com.semanticops.spec\",\n  \"name\": \"spec-glossary\",\n  \"version\": 1,\n  \"sections\": [\n    {\n      \"sectionId\": \"concepts\",\n      \"title\": \"Glossary\",\n      \"order\": 0,\n      \"source\": {\n        \"type\": \"discovery-query\",\n        \"query\": {\n          \"typeNamespace\": \"com.semanticops.spec\",\n          \"typeName\": \"concept\"\n        }\n      },\n      \"renderViewId\": \"5c000005-0000-4000-a000-000000000005\",\n      \"ordering\": {\n        \"fieldId\": \"1a000001-0000-4000-a000-000000000001\",\n        \"direction\": \"asc\"\n      }\n    }\n  ],\n  \"exportConfig\": {\n    \"format\": \"markdown\"\n  }\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/composition.json"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "a800c6ba-34ee-4d98-8bb3-8b4540a2a5c0",
+              "slug": "container",
+              "label": "Container"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "instanceId": "9b3d024c-7e8a-4b51-bc51-e637f7df9e79",
+      "type": "concept",
+      "slug": "extensions",
+      "fields": {
+        "slug": "extensions",
+        "title": "Extensions",
+        "summary": "Opt-in capability modules, declared in the manifest.",
+        "body": "Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, document views, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.\n\nThe rule for tools is: understand what you can, preserve what you cannot.",
+        "example": "{\n  \"declaredExtensions\": [\n    \"ext:lifecycle\",\n    \"ext:repository\",\n    \"ext:themes-l1\",\n    \"ext:views-l1\",\n    \"ext:views-l2\"\n  ]\n}",
+        "spec_link": "https://srs.semanticops.com/schema/2.0/manifest.json"
+      }
+    },
+    {
+      "instanceId": "0107e43d-204e-4fc3-9614-37a15ed2bb94",
+      "type": "concept",
+      "slug": "identity-versioning",
+      "fields": {
+        "slug": "identity-versioning",
+        "title": "Identity and versioning",
+        "summary": "UUIDs never change. Versions only increase.",
+        "body": "Every Field, Type, Record, Relation and Container has a UUID. It never changes when a definition is copied, imported, exported or renamed. Names are for people. The display form is `namespace/name@version`, for example `com.semanticops.core/purpose@1`.\n\nA version is a positive integer that increments within a UUID lineage. Changing a Field's namespace or name makes a new Field with a new UUID, not a new version. A Record binds to an exact Type version, and a change is an increment, not an edit.",
+        "example": "{\n  \"instanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\",\n  \"typeId\": \"3c000001-0000-4000-a000-000000000001\",\n  \"typeVersion\": 1,\n  \"typeNamespace\": \"com.semanticops.core\",\n  \"typeName\": \"purpose\"\n}",
+        "spec_link": "https://github.com/the-greenman/srs"
+      },
+      "relations": [
+        {
+          "type": "depends-on",
+          "direction": "forward",
+          "label": "Depends on",
+          "targets": [
+            {
+              "instanceId": "fa4387c1-e362-4cf6-ab99-32e916c062be",
+              "slug": "field",
+              "label": "Field"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
