@@ -1,22 +1,49 @@
 ---
 import Base from "../layouts/Base.astro";
-import Lede from "../components/Lede.astro";
+import AgentEdition from "../components/AgentEdition.astro";
+import Button from "../components/Button.astro";
 import Pronunciation from "../components/Pronunciation.astro";
+import Prose from "../components/Prose.astro";
 import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 import SrsMark from "../components/SrsMark.astro";
 import HeroCluster from "../components/diagram/HeroCluster.astro";
+import PageBands from "../components/page/PageBands.astro";
+import { agentEdition, contentPages, homePage, site } from "../lib/content";
+import { markdown, markdownInline } from "../lib/markdown";
+
+/**
+ * Home is a landing page, so its first band is composed by hand: the mark, the name lockup, the
+ * hero record's words and the signature diagram. Everything below it is the same band assembly
+ * as every other page, driven by the same presentation map. The hero is the one entry taken out
+ * of the flow; the rest keep the data's order.
+ */
+const hero = homePage.entries.find((e) => e.slug === "hero");
+if (hero?.type !== "section") throw new Error("home.json has no hero section: run npm run source");
+const rest = homePage.entries.filter((e) => e !== hero);
+const [primary, secondary] = contentPages;
 ---
 
-<Base>
-  <Section width="wide">
-    <h1 class="sr-only">SemanticOps: SRS, pronounced source</h1>
+<Base fullTitle={`${site.title}: ${hero.fields.title}`} description={homePage.summary}>
+  <Section id={hero.slug} width="wide">
     <div class="split">
       <div class="stack stack--md">
-        <SrsMark variant="halves" size={96} />
-        <Pronunciation size="lg" />
-        <Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>
+        <div class="cluster cluster--md">
+          <SrsMark variant="halves" size={56} />
+          <Pronunciation size="md" />
+        </div>
+        <SectionHeader level="h1" eyebrow={hero.fields.eyebrow} title={hero.fields.title}>
+          <Fragment set:html={await markdownInline(hero.fields.lede)} />
+        </SectionHeader>
+        {hero.fields.body && <Prose><Fragment set:html={await markdown(hero.fields.body)} /></Prose>}
+        <div class="cluster cluster--md">
+          {primary && <Button href={primary.href}>{primary.title}</Button>}
+          {secondary && <Button href={secondary.href} variant="secondary">{secondary.title}</Button>}
+        </div>
+        <AgentEdition {...agentEdition(homePage.key)} />
       </div>
-      <HeroCluster />
+      <HeroCluster number={1} id="fig-hero" />
     </div>
   </Section>
+  <PageBands entries={rest} page={homePage.key} figureStart={2} />
 </Base>
