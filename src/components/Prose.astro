@@ -1,0 +1,110 @@
+---
+/**
+ * Long-form text: the wrapper for rendered markdown HTML. Pass the HTML as a slot (or
+ * render a markdown file's <Content /> inside it). It styles the elements the markdown
+ * renderer produces, so no page ever styles its own prose.
+ */
+interface Props {
+  /** Cap the measure for comfortable reading. */
+  measure?: "text" | "wide";
+  class?: string;
+}
+
+const { measure = "text", class: className } = Astro.props;
+---
+
+<div class:list={["prose", `prose--${measure}`, className]}><slot /></div>
+
+<style>
+  @layer components {
+    .prose {
+      line-height: var(--leading-loose);
+    }
+
+    .prose--text {
+      max-width: 42rem;
+    }
+
+    .prose > :global(* + *) {
+      margin-top: var(--space-sm);
+    }
+
+    .prose > :global(:first-child) {
+      margin-top: 0;
+    }
+
+    .prose :global(h2) {
+      margin-top: var(--space-lg);
+      font-size: var(--size-h2);
+    }
+
+    .prose :global(h3) {
+      margin-top: var(--space-md);
+      font-size: var(--size-h3);
+    }
+
+    .prose :global(h4) {
+      margin-top: var(--space-md);
+    }
+
+    .prose :global(ul),
+    .prose :global(ol) {
+      padding-left: 1.4em;
+    }
+
+    .prose :global(li + li) {
+      margin-top: var(--space-2xs);
+    }
+
+    .prose :global(blockquote) {
+      margin-inline: 0;
+      padding-left: var(--space-sm);
+      border-left: var(--rule-strong);
+      color: var(--color-muted-strong);
+    }
+
+    .prose :global(code) {
+      padding: 0.1em 0.35em;
+      border-radius: var(--radius-sm);
+      background: var(--code-inline-bg);
+    }
+
+    .prose :global(pre) {
+      overflow-x: auto;
+      padding: var(--space-sm);
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-sm);
+      background: var(--code-bg);
+      line-height: var(--leading-snug);
+    }
+
+    .prose :global(pre code) {
+      padding: 0;
+      background: none;
+    }
+
+    .prose :global(table) {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--size-sm);
+    }
+
+    .prose :global(th),
+    .prose :global(td) {
+      padding: var(--space-xs) var(--space-sm);
+      border-bottom: var(--rule-soft);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .prose :global(th) {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      color: var(--color-muted);
+      border-bottom: var(--rule);
+    }
+  }
+</style>

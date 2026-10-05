@@ -1,0 +1,43 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+import Lede from "./Lede.astro";
+import type { Tone } from "./diagram/tones";
+
+/**
+ * The opening of a section: an eyebrow, a heading and a lede (the slot). The one
+ * pattern every section starts with, so headings, rhythm and measure never vary by page.
+ * Headings are sentence case.
+ */
+interface Props {
+  eyebrow?: string;
+  tone?: Tone;
+  title: string;
+  /** The heading level to render. The h2 is the default; use h1 once per page. */
+  level?: "h1" | "h2" | "h3";
+  class?: string;
+}
+
+const { eyebrow, tone, title, level = "h2", class: className } = Astro.props;
+const Heading = level;
+const hasLede = Astro.slots.has("default");
+---
+
+<header class:list={["section-header", className]}>
+  {eyebrow && <Eyebrow {tone}>{eyebrow}</Eyebrow>}
+  <Heading class="section-header__title">{title}</Heading>
+  {hasLede && <Lede><slot /></Lede>}
+</header>
+
+<style>
+  @layer components {
+    .section-header {
+      display: grid;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .section-header__title {
+      max-width: 22ch;
+    }
+  }
+</style>

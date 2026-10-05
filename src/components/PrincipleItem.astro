@@ -1,0 +1,55 @@
+---
+/**
+ * One principle: a number, a one-line statement as the heading, and the explanation
+ * (the slot). Stack several for a list of principles. Statements are quoted faithfully
+ * from the charter, so keep the wording as given.
+ */
+interface Props {
+  /** The ordinal, as text: "01". */
+  number?: string;
+  title: string;
+  class?: string;
+}
+
+const { number, title, class: className } = Astro.props;
+---
+
+<article class:list={["principle", className]}>
+  {number && <p class="principle__no t-label">{number}</p>}
+  <div class="principle__main">
+    <h3 class="principle__title">{title}</h3>
+    <div class="principle__body"><slot /></div>
+  </div>
+</article>
+
+<style>
+  @layer components {
+    .principle {
+      display: grid;
+      gap: var(--space-xs) var(--space-md);
+      padding: var(--space-md) 0;
+      border-top: var(--rule);
+    }
+
+    .principle__no {
+      margin: 0;
+    }
+
+    .principle__title {
+      margin: 0 0 var(--space-xs);
+      font-size: var(--size-lg);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .principle__body {
+      max-width: 40rem;
+      color: var(--color-muted-strong);
+    }
+
+    @media (min-width: 720px) {
+      .principle {
+        grid-template-columns: 5rem 1fr;
+      }
+    }
+  }
+</style>

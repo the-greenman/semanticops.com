@@ -1,0 +1,94 @@
+---
+/**
+ * Theme control: auto follows the system, light and dark are forced. The choice is
+ * kept in localStorage (inside try/catch: it can be blocked) and applied as
+ * data-theme on the root. The matching inline script in Base.astro applies it before
+ * first paint, so there is no flash. Several toggles on one page stay in step.
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const modes = [
+  { id: "auto", label: "Auto" },
+  { id: "light", label: "Light" },
+  { id: "dark", label: "Dark" },
+];
+---
+
+<div class:list={["theme-toggle", className]} role="group" aria-label="Colour theme">
+  {modes.map((m) => <button type="button" class="theme-toggle__btn" data-theme-set={m.id} aria-pressed={m.id === "auto" ? "true" : "false"}>{m.label}</button>)}
+</div>
+
+<script>
+  const KEY = "semanticops-theme";
+  const root = document.documentElement;
+
+  function current(): string {
+    return root.dataset.theme === "light" || root.dataset.theme === "dark" ? root.dataset.theme : "auto";
+  }
+
+  function sync() {
+    const mode = current();
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-set]").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.themeSet === mode));
+    });
+  }
+
+  function apply(mode: string) {
+    if (mode === "light" || mode === "dark") root.dataset.theme = mode;
+    else delete root.dataset.theme;
+    try {
+      if (mode === "auto") localStorage.removeItem(KEY);
+      else localStorage.setItem(KEY, mode);
+    } catch {
+      /* storage blocked: the choice lasts for this page only */
+    }
+    sync();
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>("[data-theme-set]");
+    if (btn?.dataset.themeSet) apply(btn.dataset.themeSet);
+  });
+  sync();
+</script>
+
+<style>
+  @layer components {
+    .theme-toggle {
+      display: inline-flex;
+      border: var(--rule);
+      border-radius: var(--radius-sm);
+    }
+
+    .theme-toggle__btn {
+      min-height: var(--hit-target);
+      padding: var(--space-2xs) var(--space-sm);
+      border: 0;
+      border-right: var(--rule);
+      background: transparent;
+      color: var(--color-muted-strong);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .theme-toggle__btn:last-child {
+      border-right: 0;
+    }
+
+    .theme-toggle__btn:hover {
+      background: var(--color-hover);
+      color: var(--color-text-strong);
+    }
+
+    .theme-toggle__btn[aria-pressed="true"] {
+      background: var(--color-text-strong);
+      color: var(--color-on-strong);
+    }
+  }
+</style>

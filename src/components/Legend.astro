@@ -1,0 +1,70 @@
+---
+import Glyph from "./diagram/Glyph.astro";
+
+/**
+ * The key to the diagram vocabulary: one glyph and one plain sentence per idea. Colour
+ * carries meaning once, and this is where it is explained. Put it under a diagram that
+ * uses several of the shapes, or show it whole on the styleguide.
+ */
+type Kind = "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+
+interface Props {
+  /** Which entries to show, in order. Defaults to all. */
+  kinds?: Kind[];
+  class?: string;
+}
+
+const all: Record<Kind, { name: string; text: string }> = {
+  structure: { name: "Boundary", text: "A container or repository: a declared selection, so its edge is drawn broken." },
+  record: { name: "Record", text: "A unit of knowledge: the substance, drawn as a flat disc." },
+  field: { name: "Field", text: "An atomic value, drawn as a ring around a smaller ring or dot." },
+  relation: { name: "Relation", text: "A typed edge between two things: a thin line, read source to target." },
+  identity: { name: "Core", text: "Identity: the thing everything else is arranged around." },
+  note: { name: "Note", text: "Free text, provisional, not yet typed." },
+  derived: { name: "Derived", text: "Rendered output: a projection, never authoritative." },
+};
+const { kinds = Object.keys(all) as Kind[], class: className } = Astro.props;
+---
+
+<ul class:list={["legend", className]}>
+  {
+    kinds.map((k) => (
+      <li class="legend__item">
+        <Glyph kind={k} size={28} />
+        <div>
+          <p class="legend__name t-label">{all[k].name}</p>
+          <p class="legend__text">{all[k].text}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  @layer components {
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: var(--space-sm) var(--space-md);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .legend__item {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-start;
+    }
+
+    .legend__name {
+      margin: 0 0 var(--space-2xs);
+    }
+
+    .legend__text {
+      margin: 0;
+      font-size: var(--size-sm);
+      color: var(--color-muted-strong);
+    }
+  }
+</style>

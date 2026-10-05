@@ -1,0 +1,55 @@
+---
+import type { Tone } from "./diagram/tones";
+
+/**
+ * A small mono pill for a name, a file kind or an identifier: ".srspkg", "ext:lifecycle",
+ * "namespace/name@1". With a tone it carries a dot in that diagram colour. Pills are
+ * for chips only; everything else on the site has sharp corners.
+ */
+interface Props {
+  tone?: Tone;
+  /** Render as a link. */
+  href?: string;
+  class?: string;
+}
+
+const { tone, href, class: className } = Astro.props;
+const Tag = href ? "a" : "span";
+---
+
+<Tag class:list={["chip", tone && `dg-tone--${tone}`, className]} href={href}>
+  {tone && <span class="chip__dot" aria-hidden="true"></span>}
+  <slot />
+</Tag>
+
+<style>
+  @layer components {
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-2xs) var(--space-xs);
+      border: 1px solid var(--chip-border);
+      border-radius: var(--radius-pill);
+      background: var(--chip-bg);
+      color: var(--chip-fg);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      line-height: var(--leading-solid);
+      letter-spacing: var(--tracking-wide);
+      text-decoration: none;
+    }
+
+    a.chip:hover {
+      border-color: var(--color-text-strong);
+      color: var(--color-text-strong);
+    }
+
+    .chip__dot {
+      width: 7px;
+      height: 7px;
+      border-radius: var(--radius-pill);
+      background: var(--dg-tone);
+    }
+  }
+</style>

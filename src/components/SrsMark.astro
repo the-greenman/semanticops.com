@@ -1,0 +1,80 @@
+---
+import BrokenRing from "./diagram/BrokenRing.astro";
+import Halves from "./diagram/Halves.astro";
+
+/**
+ * The SRS mark: a disc divided by an S-shaped line, drawn in the same 24 box and with
+ * the same geometry as srs-web's SrsMark so it stays recognisable at 16px. Read the
+ * two halves as the two readers of one source, people and agents. Each half holds a
+ * seed of the other.
+ *
+ * Variants:
+ *  - line    the srs-web mark as it ships: a disc with the S-wave drawn through it
+ *  - halves  the two regions filled, each with a seed of the other
+ *  - ring    the halves with ring-node seeds, inside a broken ring (the SemanticOps lockup)
+ *
+ * It follows the theme and the surface it sits on. Decorative by default (aria-hidden):
+ * pair it with a text label, or pass `label` to make it an image.
+ */
+interface Props {
+  variant?: "line" | "halves" | "ring";
+  /** Rendered size in px. */
+  size?: number;
+  /** An accessible name. Omit when the mark sits beside text that says the same. */
+  label?: string;
+  class?: string;
+}
+
+const { variant = "halves", size = 24, label, class: className } = Astro.props;
+---
+
+<svg
+  class:list={["srs-mark", className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+  focusable="false"
+>
+  {
+    variant === "line" && (
+      <>
+        <circle class="srs-mark__disc" cx="12" cy="12" r="10.75"></circle>
+        <path class="srs-mark__wave" d="M1.25 12 a5.375 5.375 0 0 1 10.75 0 a5.375 5.375 0 0 0 10.75 0"></path>
+      </>
+    )
+  }
+  {variant === "halves" && <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" />}
+  {
+    variant === "ring" && (
+      <>
+        <BrokenRing cx={12} cy={12} r={10.9} width={1.6} segments={6} gap={16} start={-60} />
+        <Halves cx={12} cy={12} r={7.6} edge={0.9} seed="ring" />
+      </>
+    )
+  }
+</svg>
+
+<style>
+  @layer components {
+    .srs-mark {
+      flex: none;
+      display: block;
+    }
+
+    .srs-mark__disc {
+      fill: var(--color-text-strong);
+      stroke: var(--color-on-strong);
+      stroke-width: 1.25;
+    }
+
+    .srs-mark__wave {
+      fill: none;
+      stroke: var(--color-on-strong);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+    }
+  }
+</style>

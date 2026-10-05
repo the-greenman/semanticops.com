@@ -1,0 +1,108 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/**
+ * An action. Renders a link when given an href, otherwise a button. One filled variant
+ * (primary); everything else is outlined or flat, to keep the page quiet. Inside an ink
+ * band it re-colours itself: there is no separate on-ink variant to remember.
+ *
+ * Variants: primary (the one main action), secondary (outlined), ghost (low contrast,
+ * tertiary), mono (utility and format actions: flat, small, uppercase).
+ */
+interface Props extends Omit<HTMLAttributes<"a">, "type"> {
+  variant?: "primary" | "secondary" | "ghost" | "mono";
+  size?: "md" | "sm";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+}
+
+const { variant = "primary", size = "md", href, type = "button", disabled = false, class: className, ...rest } = Astro.props;
+const classes = ["btn", `btn--${variant}`, size === "sm" && "btn--sm", className];
+---
+
+{
+  href ? (
+    <a class:list={classes} href={href} aria-disabled={disabled ? "true" : undefined} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button class:list={classes} type={type} disabled={disabled} {...(rest as HTMLAttributes<"button">)}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  @layer components {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      min-height: var(--hit-target);
+      padding: var(--btn-pad);
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius-sm);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      font-family: var(--font-sans);
+      font-size: var(--size-base);
+      font-weight: var(--weight-medium);
+      line-height: var(--leading-solid);
+      letter-spacing: var(--tracking-snug);
+      text-decoration: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .btn:hover:not(:disabled) {
+      border-color: var(--btn-hover-border);
+      color: var(--btn-hover-fg);
+    }
+
+    .btn:disabled,
+    .btn[aria-disabled="true"] {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn--sm {
+      padding: var(--btn-pad-sm);
+      font-size: var(--size-sm);
+    }
+
+    .btn--primary {
+      --btn-bg: var(--btn-primary-bg);
+      --btn-fg: var(--btn-primary-fg);
+      --btn-border: var(--btn-primary-bg);
+      --btn-hover-border: var(--btn-primary-hover-bg);
+      --btn-hover-fg: var(--btn-primary-fg);
+    }
+
+    .btn--primary:hover:not(:disabled) {
+      background: var(--btn-primary-hover-bg);
+    }
+
+    .btn--secondary {
+      --btn-border: var(--color-muted-strong);
+      font-weight: var(--weight-regular);
+    }
+
+    .btn--ghost {
+      --btn-fg: var(--color-muted-strong);
+      font-weight: var(--weight-regular);
+    }
+
+    .btn--mono {
+      --btn-fg: var(--color-muted-strong);
+      padding: var(--btn-pad-sm);
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import { Font } from "astro:assets";
+import "../styles/index.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+/**
+ * The page shell: meta, self-hosted fonts, the theme-init script, the shared SVG defs
+ * (the #ink-surface toner filter), and the header and footer. Pages are assembled only
+ * from components, inside this layout.
+ */
+interface Props {
+  title?: string;
+  description?: string;
+  /** Keep the page out of search indexes (the styleguide). */
+  noindex?: boolean;
+  /** Show the site header and footer. */
+  chrome?: boolean;
+}
+
+const {
+  title,
+  description = "SemanticOps builds SRS, an open standard for portable semantic documents that people and software can inspect, understand and move.",
+  noindex = false,
+  chrome = true,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | SemanticOps` : "SemanticOps";
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- The cascade layer order must be fixed before any component CSS: small stylesheets are inlined in document order, and the first mention of a layer sets its place. Keep this first. -->
+    <style is:inline>
+      @layer tokens, base, layout, components, theme, utilities;
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="color-scheme" content="light dark" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <Font cssVariable="--font-plex-sans" preload={[{ weight: 400, style: "normal" }, { weight: 500, style: "normal" }]} />
+    <Font cssVariable="--font-plex-mono" preload={[{ weight: 400, style: "normal" }]} />
+    <script is:inline>
+      // Apply a saved theme before first paint. Storage can be blocked: ignore that.
+      try {
+        var t = localStorage.getItem("semanticops-theme");
+        if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <!-- The toner texture of an ink surface: two noise scales, a soft edge. Applied by base.css to [data-surface="ink"]::before. -->
+        <filter id="ink-surface" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="4" seed="42" result="noise-coarse" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.9 0.7" numOctaves="2" seed="17" result="noise-fine" />
+          <feMerge result="noise-combined">
+            <feMergeNode in="noise-coarse" />
+            <feMergeNode in="noise-fine" />
+          </feMerge>
+          <feColorMatrix in="noise-combined" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -10 1.8" result="toner-mask" />
+          <feComposite in="SourceGraphic" in2="toner-mask" operator="arithmetic" k1="0" k2="1" k3="0.06" k4="0" result="surface-textured" />
+          <feTurbulence type="turbulence" baseFrequency="0.03 0.015" numOctaves="2" seed="7" result="edge-noise" />
+          <feDisplacementMap in="surface-textured" in2="edge-noise" scale="0.6" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+    {chrome && <a class="skip-link" href="#main">Skip to content</a>}
+    {chrome && <SiteHeader current={Astro.url.pathname} />}
+    <main id="main">
+      <slot />
+    </main>
+    {chrome && <SiteFooter />}
+  </body>
+</html>
+
+<style>
+  @layer components {
+    .skip-link {
+      position: absolute;
+      top: var(--space-xs);
+      left: var(--space-xs);
+      z-index: var(--z-overlay);
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--color-text-strong);
+      color: var(--color-on-strong);
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus {
+      transform: none;
+    }
+  }
+</style>

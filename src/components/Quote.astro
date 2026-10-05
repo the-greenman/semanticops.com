@@ -1,0 +1,51 @@
+---
+/**
+ * A quotation, set large with a hard rule: for the owner's phrasings, charter
+ * sentences and other lines worth quoting faithfully. The attribution is a mono label.
+ */
+interface Props {
+  /** Who or what the words come from. */
+  cite?: string;
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const { cite, size = "md", class: className } = Astro.props;
+---
+
+<figure class:list={["quote", `quote--${size}`, className]}>
+  <blockquote class="quote__body"><slot /></blockquote>
+  {cite && <figcaption class="quote__cite t-label">{cite}</figcaption>}
+</figure>
+
+<style>
+  @layer components {
+    .quote {
+      margin: 0;
+      padding-left: var(--space-md);
+      border-left: 3px solid var(--quote-rule);
+    }
+
+    .quote__body {
+      margin: 0;
+      max-width: 36em;
+      font-weight: var(--weight-light);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-snug);
+      color: var(--color-text-strong);
+      text-wrap: balance;
+    }
+
+    .quote--md .quote__body {
+      font-size: var(--size-md);
+    }
+
+    .quote--lg .quote__body {
+      font-size: var(--size-h3);
+    }
+
+    .quote__cite {
+      margin-top: var(--space-sm);
+    }
+  }
+</style>

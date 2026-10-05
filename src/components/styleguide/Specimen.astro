@@ -1,0 +1,103 @@
+---
+import CodeSample from "../CodeSample.astro";
+
+/**
+ * One styleguide specimen: a heading, a one or two sentence usage note (when to use it,
+ * which props), the live example on a stage, and optionally the snippet that makes it.
+ * Used only by /styleguide. Every component change updates its specimen in the same change.
+ */
+interface Props {
+  title: string;
+  /** When to use it, and which props matter. One or two sentences. */
+  note: string;
+  /** The usage snippet, shown under the stage. */
+  code?: string;
+  /** Show the example on an ink band. */
+  ink?: boolean;
+  /** How the stage lays out several examples. */
+  layout?: "row" | "stack" | "grid" | "bare";
+  id?: string;
+}
+
+const { title, note, code, ink = false, layout = "row", id } = Astro.props;
+---
+
+<div class="specimen" {id}>
+  <header class="specimen__head">
+    <h3 class="specimen__title">{title}</h3>
+    <p class="specimen__note">{note}</p>
+  </header>
+  <div class:list={["specimen__stage", `specimen__stage--${layout}`, ink && "specimen__stage--ink"]} data-surface={ink ? "ink" : undefined}>
+    <slot />
+  </div>
+  {code && <CodeSample class="specimen__code" {code} lang="astro" />}
+</div>
+
+<style>
+  @layer components {
+    .specimen {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+      min-width: 0;
+      padding-bottom: var(--space-md);
+    }
+
+    .specimen__title {
+      margin: 0 0 var(--space-2xs);
+      font-family: var(--font-mono);
+      font-size: var(--size-base);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .specimen__note {
+      margin: 0;
+      max-width: 44rem;
+      font-size: var(--size-sm);
+      color: var(--color-muted-strong);
+    }
+
+    .specimen__stage {
+      position: relative;
+      padding: var(--space-md) var(--space-sm);
+      border: 1px dashed var(--color-line);
+      background: var(--color-bg);
+    }
+
+    .specimen__stage--ink {
+      background: transparent;
+      border-style: solid;
+      border-color: var(--color-line);
+    }
+
+    .specimen__stage--row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .specimen__stage--bare {
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .specimen__stage--stack {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .specimen__stage--grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+      gap: var(--space-md);
+      align-items: start;
+    }
+
+    .specimen__code {
+      font-size: var(--size-sm);
+    }
+  }
+</style>

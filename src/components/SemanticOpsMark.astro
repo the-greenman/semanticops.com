@@ -1,0 +1,66 @@
+---
+import BrokenRing from "./diagram/BrokenRing.astro";
+import Disc from "./diagram/Disc.astro";
+import Link from "./diagram/Link.astro";
+import Target from "./diagram/Target.astro";
+import { hexPoints } from "./diagram/geometry";
+
+/**
+ * The SemanticOps mark, for the ecosystem rather than for SRS itself. Drawn from the
+ * diagram vocabulary, not copied from the-organization.com: a broken ring, a target
+ * centre and discs that open into one another.
+ *
+ * Variants:
+ *  - network  a broken ring, six records, hairline relations, a target centre
+ *  - orbit    a broken ring around one large record, with a satellite on the ring
+ */
+interface Props {
+  variant?: "network" | "orbit";
+  size?: number;
+  label?: string;
+  class?: string;
+}
+
+const { variant = "network", size = 32, label, class: className } = Astro.props;
+const parts = hexPoints(12, 12, 9.2);
+---
+
+<svg
+  class:list={["so-mark", className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}
+  focusable="false"
+>
+  {
+    variant === "network" && (
+      <>
+        <BrokenRing cx={12} cy={12} r={9.2} width={1.8} gaps={[-90, -30, 30, 90, 150, 210]} gap={28} />
+        {parts.map((p, i) => <Link x1={p.x} y1={p.y} x2={parts[(i + 2) % 6].x} y2={parts[(i + 2) % 6].y} width={0.5} inset={2.6} />)}
+        {parts.map((p) => <Disc cx={p.x} cy={p.y} r={1.9} knockout={0.8} />)}
+        <Target cx={12} cy={12} r={3.4} knockout={0.8} />
+      </>
+    )
+  }
+  {
+    variant === "orbit" && (
+      <>
+        <BrokenRing cx={12} cy={12} r={9.2} width={1.8} gaps={[-40]} gap={26} />
+        <Disc cx={12} cy={12} r={5.2} knockout={0} />
+        <Disc cx={19.2} cy={5.6} r={2.2} tone="note" knockout={1} />
+      </>
+    )
+  }
+</svg>
+
+<style>
+  @layer components {
+    .so-mark {
+      flex: none;
+      display: block;
+    }
+  }
+</style>

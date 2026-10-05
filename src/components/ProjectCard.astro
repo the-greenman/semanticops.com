@@ -1,0 +1,92 @@
+---
+import Chip from "./Chip.astro";
+
+/**
+ * One of the four projects, described as a kind of technology rather than a status.
+ * A mono kind label, the project name, what it is (the slot), its technologies as
+ * chips, and a link. The whole card is the link target.
+ */
+interface Props {
+  /** The project name: srs, srs-rust, srs-web, srs-vscode. */
+  name: string;
+  /** What kind of thing it is: "Open standard", "Reference engine". */
+  kind: string;
+  href: string;
+  /** Short mono chips: licence, language, runtime. */
+  tags?: string[];
+  /** The label of the link. */
+  cta?: string;
+  class?: string;
+}
+
+const { name, kind, href, tags = [], cta = "View on GitHub", class: className } = Astro.props;
+---
+
+<article class:list={["project-card", className]}>
+  <p class="t-label">{kind}</p>
+  <h3 class="project-card__name"><a class="project-card__link" href={href}>{name}</a></h3>
+  <div class="project-card__body"><slot /></div>
+  {tags.length > 0 && <ul class="project-card__tags">{tags.map((t) => <li><Chip>{t}</Chip></li>)}</ul>}
+  <p class="project-card__cta t-label" aria-hidden="true">{cta}</p>
+</article>
+
+<style>
+  @layer components {
+    .project-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-sm) var(--space-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .project-card:hover {
+      border-color: var(--card-hover-border);
+    }
+
+    .project-card__name {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: var(--size-lg);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .project-card__link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .project-card__link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .project-card__body {
+      flex: 1;
+      color: var(--color-muted-strong);
+    }
+
+    .project-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .project-card__cta {
+      margin: 0;
+      padding-top: var(--space-xs);
+      border-top: var(--rule-soft);
+    }
+
+    .project-card:hover .project-card__cta {
+      color: var(--color-text-strong);
+    }
+  }
+</style>

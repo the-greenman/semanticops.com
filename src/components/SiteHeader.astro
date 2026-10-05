@@ -1,0 +1,175 @@
+---
+import SrsMark from "./SrsMark.astro";
+import Wordmark from "./Wordmark.astro";
+
+/**
+ * The site header: the mark and name, then the four primary sections. At 720px and up
+ * the nav is inline. Below that it is a native popover opened by a plain button: no
+ * framework, no script, and light-dismiss and Escape come from the browser.
+ */
+interface Props {
+  /** The current path, to mark the matching link. */
+  current?: string;
+}
+
+const { current = "" } = Astro.props;
+const nav = [
+  { href: "/model", label: "Model" },
+  { href: "/architecture", label: "Architecture" },
+  { href: "/principles", label: "Principles" },
+  { href: "/projects", label: "Projects" },
+];
+const active = (href: string) => current === href || current.startsWith(`${href}/`);
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/" aria-label="SemanticOps, home">
+      <SrsMark variant="halves" size={28} />
+      <Wordmark size="sm" />
+    </a>
+    <button class="site-header__menu-btn" type="button" popovertarget="site-nav" aria-label="Menu">
+      <span class="site-header__bars" aria-hidden="true"></span>
+      <span class="eyebrow">Menu</span>
+    </button>
+    <nav class="site-header__nav" id="site-nav" popover aria-label="Primary">
+      <ul class="site-header__list">
+        {nav.map((item) => <li><a class="site-header__link" href={item.href} aria-current={active(item.href) ? "page" : undefined}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  @layer components {
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--header-border);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      max-width: var(--width-wide);
+      min-height: var(--header-height);
+      margin-inline: auto;
+      padding-inline: var(--space-gutter);
+    }
+
+    .site-header__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      text-decoration: none;
+    }
+
+    .site-header__menu-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: var(--hit-target);
+      padding: var(--space-2xs) var(--space-xs);
+      border: var(--rule);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .site-header__bars,
+    .site-header__bars::before {
+      display: block;
+      width: 14px;
+      height: 1.5px;
+      background: var(--color-text-strong);
+    }
+
+    .site-header__bars {
+      position: relative;
+      top: -2.5px;
+    }
+
+    .site-header__bars::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+    }
+
+    /* The popover menu panel (small screens) */
+    .site-header__nav {
+      position: fixed;
+      inset: var(--header-height) 0 auto 0;
+      width: 100%;
+      margin: 0;
+      padding: var(--space-sm) var(--space-gutter) var(--space-md);
+      border: 0;
+      border-bottom: 1px solid var(--header-border);
+      background: var(--menu-bg);
+      color: var(--color-text);
+    }
+
+    .site-header__list {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site-header__link {
+      display: block;
+      padding: var(--space-xs) 0;
+      border-bottom: var(--rule-soft);
+      font-size: var(--size-md);
+      text-decoration: none;
+    }
+
+    .site-header__link[aria-current="page"] {
+      font-weight: var(--weight-medium);
+      color: var(--color-text-strong);
+    }
+
+    @media (min-width: 720px) {
+      .site-header__menu-btn {
+        display: none;
+      }
+
+      /* The same element, shown inline: reset the popover's top-layer defaults. */
+      .site-header__nav,
+      .site-header__nav:not(:popover-open) {
+        position: static;
+        display: block;
+        width: auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        overflow: visible;
+      }
+
+      .site-header__list {
+        flex-direction: row;
+        gap: var(--space-md);
+      }
+
+      .site-header__link {
+        padding: var(--space-2xs) 0;
+        border-bottom: 1px solid transparent;
+        font-size: var(--size-sm);
+        font-family: var(--font-mono);
+        letter-spacing: var(--tracking-label);
+        text-transform: uppercase;
+        color: var(--color-muted-strong);
+      }
+
+      .site-header__link:hover,
+      .site-header__link[aria-current="page"] {
+        color: var(--color-text-strong);
+        border-bottom-color: var(--color-text-strong);
+      }
+    }
+  }
+</style>

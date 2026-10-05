@@ -1,0 +1,105 @@
+---
+import SrsMark from "./SrsMark.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import Wordmark from "./Wordmark.astro";
+
+/**
+ * The site footer, on an ink band. Credit to the-organization.com (text and link until
+ * the official asset arrives), the agent edition entry point, the repositories, and the
+ * theme control.
+ */
+const site = [
+  { href: "/model", label: "Model" },
+  { href: "/architecture", label: "Architecture" },
+  { href: "/principles", label: "Principles" },
+  { href: "/projects", label: "Projects" },
+];
+const elsewhere = [
+  { href: "/llms.txt", label: "Agent edition" },
+  { href: "https://github.com/the-greenman/srs", label: "GitHub: srs" },
+  { href: "https://github.com/the-greenman/srs-rust", label: "GitHub: srs-rust" },
+  { href: "https://github.com/the-greenman/srs-web", label: "GitHub: srs-web" },
+  { href: "https://github.com/the-greenman/srs-vscode", label: "GitHub: srs-vscode" },
+];
+---
+
+<footer class="site-footer" data-surface="ink">
+  <div class="site-footer__inner">
+    <div class="site-footer__id">
+      <a class="site-footer__brand" href="/" aria-label="SemanticOps, home">
+        <SrsMark variant="halves" size={32} />
+        <Wordmark size="md" />
+      </a>
+      <p class="site-footer__credit">
+        SemanticOps is a project of <a href="https://the-organization.com">the-organization.com</a>.
+      </p>
+    </div>
+    <nav class="site-footer__col" aria-label="Site">
+      <p class="eyebrow">Site</p>
+      <ul>{site.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+    <nav class="site-footer__col" aria-label="Elsewhere">
+      <p class="eyebrow">Elsewhere</p>
+      <ul>{elsewhere.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+    <div class="site-footer__col">
+      <p class="eyebrow">Theme</p>
+      <ThemeToggle />
+    </div>
+  </div>
+</footer>
+
+<style>
+  @layer components {
+    .site-footer {
+      padding: var(--space-lg) var(--space-gutter);
+    }
+
+    .site-footer__inner {
+      display: grid;
+      gap: var(--space-md);
+      max-width: var(--width-wide);
+      margin-inline: auto;
+    }
+
+    .site-footer__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      text-decoration: none;
+    }
+
+    .site-footer__credit {
+      margin: var(--space-sm) 0 0;
+      max-width: 22rem;
+      color: var(--color-muted-strong);
+      font-size: var(--size-sm);
+    }
+
+    .site-footer__col ul {
+      margin: var(--space-xs) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site-footer__col li {
+      margin-bottom: var(--space-2xs);
+      font-size: var(--size-sm);
+    }
+
+    .site-footer__col .eyebrow {
+      margin: 0 0 var(--space-xs);
+    }
+
+    .site-footer a {
+      text-decoration-color: var(--color-line);
+    }
+
+    @media (min-width: 720px) {
+      .site-footer__inner {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: var(--space-lg);
+      }
+    }
+  }
+</style>

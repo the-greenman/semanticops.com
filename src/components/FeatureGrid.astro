@@ -1,0 +1,90 @@
+---
+import Glyph from "./diagram/Glyph.astro";
+
+/**
+ * A ruled grid of short features: an optional glyph and mono label, a title and a
+ * sentence each. Hairline rules, no boxes. Use it for three to six parallel points;
+ * for a single idea that needs room, use a ConceptCard instead.
+ */
+interface Props {
+  items: {
+    eyebrow?: string;
+    title: string;
+    body: string;
+    glyph?: "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+  }[];
+  columns?: 2 | 3 | 4;
+  class?: string;
+}
+
+const { items, columns = 3, class: className } = Astro.props;
+---
+
+<ul class:list={["feature-grid", `feature-grid--${columns}`, className]}>
+  {
+    items.map((item) => (
+      <li class="feature-grid__item">
+        <div class="feature-grid__head">
+          {item.glyph && <Glyph kind={item.glyph} size={22} />}
+          {item.eyebrow && <span class="t-label">{item.eyebrow}</span>}
+        </div>
+        <h3 class="feature-grid__title">{item.title}</h3>
+        <p class="feature-grid__body">{item.body}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  @layer components {
+    .feature-grid {
+      display: grid;
+      gap: var(--space-md);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .feature-grid__item {
+      padding-top: var(--space-sm);
+      border-top: var(--rule);
+    }
+
+    .feature-grid__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 1.5rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .feature-grid__title {
+      margin: 0 0 var(--space-xs);
+      font-size: var(--size-md);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .feature-grid__body {
+      margin: 0;
+      color: var(--color-muted-strong);
+    }
+
+    @media (min-width: 720px) {
+      .feature-grid--2,
+      .feature-grid--3,
+      .feature-grid--4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .feature-grid--3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .feature-grid--4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+</style>
