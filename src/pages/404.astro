@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
+import BrokenRing from "../components/diagram/BrokenRing.astro";
+import Canvas from "../components/diagram/Canvas.astro";
+import Disc from "../components/diagram/Disc.astro";
+import Figure from "../components/diagram/Figure.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<Base title="Not found">
+  <Section width="narrow">
+    <div class="stack stack--md">
+      <SectionHeader level="h1" eyebrow="404" title="That page is not here">
+        It may have moved, or it may not exist yet.
+      </SectionHeader>
+      <Figure number={404} caption="Membership is declared, never derived. This page is not a member." size="narrow">
+        <Canvas id="not-found" viewBox="0 0 300 150" title="A record outside a boundary" desc="A broken ring holds one record. A second record sits outside it, on its own.">
+          <BrokenRing cx={90} cy={75} r={52} segments={4} gap={28} start={-45} />
+          <Disc cx={90} cy={75} r={14} tone="record" />
+          <Disc cx={236} cy={75} r={14} tone="ink" hollow />
+        </Canvas>
+      </Figure>
+      <Button href="/">Back to the front door</Button>
+    </div>
+  </Section>
+</Base>

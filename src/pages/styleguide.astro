@@ -1,0 +1,560 @@
+---
+import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
+import Chip from "../components/Chip.astro";
+import CodeSample from "../components/CodeSample.astro";
+import ConceptCard from "../components/ConceptCard.astro";
+import Eyebrow from "../components/Eyebrow.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import Legend from "../components/Legend.astro";
+import Lede from "../components/Lede.astro";
+import Quote from "../components/Quote.astro";
+import Pronunciation from "../components/Pronunciation.astro";
+import Prose from "../components/Prose.astro";
+import PrincipleItem from "../components/PrincipleItem.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import RecordCard from "../components/RecordCard.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import SemanticOpsMark from "../components/SemanticOpsMark.astro";
+import SrsMark from "../components/SrsMark.astro";
+import Tag from "../components/Tag.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import Wordmark from "../components/Wordmark.astro";
+import BrokenRing from "../components/diagram/BrokenRing.astro";
+import Canvas from "../components/diagram/Canvas.astro";
+import CapabilityStack from "../components/diagram/CapabilityStack.astro";
+import Cluster from "../components/diagram/Cluster.astro";
+import Disc from "../components/diagram/Disc.astro";
+import Figure from "../components/diagram/Figure.astro";
+import Glyph from "../components/diagram/Glyph.astro";
+import Halves from "../components/diagram/Halves.astro";
+import HeroCluster from "../components/diagram/HeroCluster.astro";
+import Knockout from "../components/diagram/Knockout.astro";
+import Link from "../components/diagram/Link.astro";
+import MaturityLadder from "../components/diagram/MaturityLadder.astro";
+import ProjectionFan from "../components/diagram/ProjectionFan.astro";
+import RelationSentence from "../components/diagram/RelationSentence.astro";
+import RingNode from "../components/diagram/RingNode.astro";
+import Target from "../components/diagram/Target.astro";
+import TwoSurfaces from "../components/diagram/TwoSurfaces.astro";
+import ColourTable from "../components/styleguide/ColourTable.astro";
+import MarkRow from "../components/styleguide/MarkRow.astro";
+import Specimen from "../components/styleguide/Specimen.astro";
+import Swatch from "../components/styleguide/Swatch.astro";
+import TokenRow from "../components/styleguide/TokenRow.astro";
+import { colourReport, loadTokens } from "../../scripts/lib/tokens.mjs";
+
+// The token tables are the token files, parsed at build time: they cannot drift.
+const t = loadTokens(process.cwd());
+const colourPrimitives = [...t.primitives].filter(([, v]) => /^#/.test(v));
+const meanings: Record<string, string> = {
+  "--color-structure": "Boundaries: containers and repositories",
+  "--color-record": "Records: the substance",
+  "--color-field": "Fields and atomic values",
+  "--color-relation": "Relations and connectors",
+  "--color-note": "Notes: free text, a fill with a relation edge",
+};
+const semantic = colourReport(t).map((r: any) => ({ ...r, meaning: meanings[r.name] }));
+const light = [...t.light];
+const pick = (re: RegExp) => light.filter(([n]) => re.test(n));
+const sizes = pick(/^--size-(xs|sm|base|md|lg|xl|2xl|display|h1|h2|h3|standfirst|code|diagram|diagram-lg)$/);
+const weights = pick(/^--weight-/);
+const tracking = pick(/^--tracking-/);
+const leading = pick(/^--leading-/);
+const spaces = pick(/^--space-/);
+const radii = pick(/^--radius-/);
+const rules = pick(/^--rule/);
+const widths = pick(/^--width-/);
+const z = pick(/^--z-/);
+const fonts = pick(/^--font-/);
+const shadows = pick(/^--shadow-/);
+const componentTokens = [...t.components].filter(([n]) => !n.startsWith("--dg-"));
+const toc = [
+  ["tokens", "Tokens"],
+  ["meaning", "Colour meaning"],
+  ["layout", "Layout"],
+  ["content", "Content"],
+  ["cards", "Cards"],
+  ["marks", "Marks"],
+  ["primitives", "Diagram primitives"],
+  ["diagrams", "Diagrams"],
+  ["checks", "Checks"],
+];
+
+const proseSample = `
+<h2>A relation is a claim</h2>
+<p>A relation is a first-class, strictly binary, typed edge between two things. It reads <code>source [type] target</code>, and it says something about knowledge, not about who is in charge.</p>
+<ul>
+  <li>Store the forward form only. The reverse is read, never written.</li>
+  <li>Every type is an installed definition, so a typo is a diagnostic and not a new meaning.</li>
+</ul>
+<blockquote>Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.</blockquote>
+<table>
+  <thead><tr><th>Type</th><th>Reads as</th></tr></thead>
+  <tbody>
+    <tr><td><code>precedes</code></td><td>comes before</td></tr>
+    <tr><td><code>supersedes</code></td><td>replaces, and keeps the original</td></tr>
+  </tbody>
+</table>`;
+
+const recordJson = `{
+  "instanceId": "7c2e9f41-3b8a-4d6e-a1f0-52c9e8d3b764",
+  "typeId": "2a000004-0000-4000-a000-000000000004",
+  "typeVersion": 1,
+  "typeNamespace": "com.example.team",
+  "typeName": "decision",
+  "fieldValues": {
+    "title": "Review the budget weekly",
+    "outcome": "Agreed for one quarter, then revisit",
+    "status": "ratified"
+  }
+}`;
+const relationJson = `{
+  "relationId": "3f6a1d90-84c2-4b7e-9d15-0a2e6c8f4b21",
+  "relationType": "derived-from",
+  "sourceInstanceId": "7c2e9f41-3b8a-4d6e-a1f0-52c9e8d3b764",
+  "targetInstanceId": "b19d4e07-5a3c-4f82-8e6b-91c0d7a3f258"
+}`;
+---
+
+<Base title="Styleguide" noindex>
+  <Section id="top">
+    <SectionHeader level="h1" eyebrow="Styleguide" title="The design system, live">
+      Every token, component and diagram on the site, with its variants and a note on when to use it. Change a component and its specimen in the same change.
+    </SectionHeader>
+    <div class="stack">
+      <nav aria-label="On this page">
+        <ul class="cluster">
+          {toc.map(([id, label]) => <li><Chip href={`#${id}`}>{label}</Chip></li>)}
+        </ul>
+      </nav>
+      <div class="cluster">
+        <span class="t-label">Theme</span>
+        <ThemeToggle />
+      </div>
+    </div>
+  </Section>
+
+  <!-- TOKENS -->
+  <Section id="tokens" variant="page">
+    <SectionHeader eyebrow="Foundations" title="Tokens">
+      Three tiers. Primitives are raw values, read only inside tokens.css. Semantic tokens carry meaning and are what components read. Component tokens sit on :root and re-resolve inside ink bands. These tables are parsed from the token files at build time, so they cannot drift.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="bare" title="Colour primitives" note="Paper and ink from the muDemocracy system, plus a diagram palette from the the-organization.com family with lit variants for dark. Components never read these.">
+        <div class="grid grid--gap-md">
+          {colourPrimitives.map(([name, value]) => <Swatch name={name} value={value} />)}
+        </div>
+      </Specimen>
+      <Specimen layout="bare" title="Semantic colour" note="What components read. Every one is redefined for dark, and the contrast column is measured against the surfaces it is read on. Graphics need 3:1, text needs 4.5:1.">
+        <ColourTable rows={semantic} />
+      </Specimen>
+      <Specimen layout="stack" title="Typefaces" note="IBM Plex Sans for prose and headings. IBM Plex Mono, small, uppercase and letter-spaced for every label, id, eyebrow and figure number. Both are self-hosted.">
+        <p>Sans: records are the source of truth.</p>
+        <p class="t-mono">Mono: namespace/name@version</p>
+        <div class="stack stack--xs">
+          {fonts.map(([n, v]) => <TokenRow name={n} value={v} />)}
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="Type scale" note="Fixed steps and fluid roles. Components never set a literal size: scripts/check-tokens.mjs fails the build on one.">
+        <div>
+          {sizes.map(([n, v]) => <TokenRow name={n} value={v} kind="size" />)}
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="Weight, tracking and leading" note="Hierarchy comes from weight, size and the contrast between sans and mono, never from hue.">
+        <div>
+          {weights.map(([n, v]) => <TokenRow name={n} value={v} kind="weight" />)}
+          {tracking.map(([n, v]) => <TokenRow name={n} value={v} kind="tracking" text="Record of decision" />)}
+          {leading.map(([n, v]) => <TokenRow name={n} value={v} kind="leading" />)}
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="Space and layout" note="One spacing scale and three column widths.">
+        <div>
+          {spaces.map(([n, v]) => <TokenRow name={n} value={v} kind="space" />)}
+          {widths.map(([n, v]) => <TokenRow name={n} value={v} kind="width" />)}
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="Shape, rules and stacking" note="Hairline rules, sharp radii (pills only for chips) and one soft shadow for floating surfaces. Stacking is a short named scale.">
+        <div>
+          {radii.map(([n, v]) => <TokenRow name={n} value={v} kind="radius" />)}
+          {rules.map(([n, v]) => <TokenRow name={n} value={v} kind="rule" />)}
+          {shadows.map(([n, v]) => <TokenRow name={n} value={v} kind="shadow" />)}
+          {z.map(([n, v]) => <TokenRow name={n} value={v} />)}
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="Component tokens" note="--block-property-state, declared on :root and on every [data-surface], each defaulting to a semantic token. A variant re-assigns the token on its own selector.">
+        <div>
+          {componentTokens.map(([n, v]) => <TokenRow name={n} value={v} />)}
+        </div>
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- COLOUR MEANING -->
+  <Section id="meaning">
+    <SectionHeader eyebrow="Foundations" tone="structure" title="Colour carries one meaning each">
+      Blue is structure, vermilion is records, green is fields, khaki is relations. The rest of the site stays paper and ink: colour lives in diagrams, marks and focal accents, never in large fills.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="bare" title="Legend" note="The key to the diagram vocabulary. Put it under a diagram that uses several shapes. Pass kinds to show a subset.">
+        <Legend />
+      </Specimen>
+      <Specimen title="Tone dots" note="Eyebrow and Chip take a tone to carry the diagram colour as a small dot, so a label can say which idea it belongs to.">
+        <Eyebrow tone="structure">Boundary</Eyebrow>
+        <Eyebrow tone="record">Record</Eyebrow>
+        <Eyebrow tone="field">Field</Eyebrow>
+        <Eyebrow tone="relation">Relation</Eyebrow>
+        <Eyebrow tone="note">Note</Eyebrow>
+        <Chip tone="record">decision@1</Chip>
+        <Chip tone="field">title</Chip>
+        <Chip tone="relation">derived-from</Chip>
+      </Specimen>
+      <Specimen title="Knockout" note="Where shapes meet, a stroke in the ground colour cuts a clean gap. Disc, RingNode and Target do it by default (knockout prop); Knockout is the helper for any other shape.">
+        <Canvas id="sg-knockout" viewBox="0 0 420 110" title="Knockout gaps" desc="Two khaki lines pass behind a record. On the left the disc has no knockout and the line touches it. On the right a ground-coloured gap separates them.">
+          <Link x1={10} y1={55} x2={190} y2={55} width={3} />
+          <Disc cx={100} cy={55} r={26} knockout={0} label="knockout 0" labelPosition="below" />
+          <Link x1={230} y1={55} x2={410} y2={55} width={3} />
+          <Disc cx={320} cy={55} r={26} knockout={6} label="knockout 6" labelPosition="below" />
+        </Canvas>
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- LAYOUT -->
+  <Section id="layout" variant="page">
+    <SectionHeader eyebrow="Layout" title="Sections, header and footer">
+      The page is a stack of full-bleed bands. Paper bands and ink bands alternate, and a page band sits on the white page.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="bare" title="Section: variants" note="compact tightens the padding. variant is paper (the default ground), page (white) or ink. An ink band takes the dark scheme locally, so everything inside it re-colours with no extra props, and it carries the toner texture behind its content.">
+        <Section as="div" compact variant="paper"><Eyebrow>paper</Eyebrow><Lede>The default ground.</Lede></Section>
+        <Section as="div" compact variant="page"><Eyebrow>page</Eyebrow><Lede>The white page, for dense reading.</Lede></Section>
+        <Section as="div" compact variant="ink">
+          <Eyebrow>ink</Eyebrow>
+          <Lede>A dark band for a single idea.</Lede>
+          <div class="cluster">
+            <Button variant="primary">Primary</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Chip tone="record">record</Chip>
+            <Tag status="ratified" />
+          </div>
+        </Section>
+      </Specimen>
+      <Specimen layout="stack" title="Section: widths" note="width is narrow (reading text), default (most pages) or wide (diagrams and grids). The band is always full bleed; only the column changes.">
+        <Section as="div" compact width="narrow"><Eyebrow>narrow</Eyebrow></Section>
+        <Section as="div" compact width="default" variant="page"><Eyebrow>default</Eyebrow></Section>
+        <Section as="div" compact width="wide"><Eyebrow>wide</Eyebrow></Section>
+      </Specimen>
+      <Specimen layout="stack" title="SiteHeader and SiteFooter" note="The header at the top of this page and the footer at the bottom are the live specimens. At 720px and up the header nav is inline. Below that it is a native popover opened by the Menu button: no framework, no script. The footer sits on an ink band and carries the credit, the agent edition link, the repositories and the theme control.">
+        <p class="t-muted">Resize the window below 720px to see the menu.</p>
+      </Specimen>
+      <Specimen title="ThemeToggle" note="Auto follows the system. Light and dark are forced and remembered in localStorage inside try/catch. Dark is the same pair of paper and ink read the other way round, and doubles as the proof that tokens alone can reskin the site.">
+        <ThemeToggle />
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- CONTENT -->
+  <Section id="content">
+    <SectionHeader eyebrow="Components" title="Content">
+      The pieces text and actions are made of.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen title="Eyebrow" note="The mono label voice, above a heading, to name what kind of thing follows. Optional tone adds a diagram-colour dot." code={`<Eyebrow tone="field">Field</Eyebrow>`}>
+        <Eyebrow>The model</Eyebrow>
+        <Eyebrow tone="field">Field</Eyebrow>
+      </Specimen>
+      <Specimen layout="stack" title="Lede" note="The standfirst under a heading, one or two sentences, light weight, capped to a readable measure." code={`<Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>`}>
+        <Lede>SRS builds portable semantic documents that both humans and AI can understand and use.</Lede>
+      </Specimen>
+      <Specimen layout="stack" title="SectionHeader" note="Eyebrow, heading and lede in one. Every section opens with it, so headings, rhythm and measure never vary by page. level picks h1, h2 or h3." code={`<SectionHeader eyebrow="Model" title="Knowledge with its meaning intact">\n  Typed fields, binary relations, declared containers.\n</SectionHeader>`}>
+        <SectionHeader eyebrow="Model" title="Knowledge with its meaning intact">
+          Typed fields, binary relations, declared containers.
+        </SectionHeader>
+      </Specimen>
+      <Specimen layout="stack" title="Prose" note="Wrapper for rendered markdown HTML. It styles the elements the markdown renderer produces, so no page ever styles its own text." code={`<Prose><Fragment set:html={html} /></Prose>`}>
+        <Prose><Fragment set:html={proseSample} /></Prose>
+      </Specimen>
+      <Specimen title="Button" note="A link when given href, otherwise a button. One filled variant (primary), then secondary, ghost and mono for utility actions. size sm for tight places. Inside an ink band it re-colours itself." code={`<Button variant="primary" href="/model">Read the model</Button>`}>
+        <Button variant="primary" href="#content">Primary</Button>
+        <Button variant="secondary" href="#content">Secondary</Button>
+        <Button variant="ghost" href="#content">Ghost</Button>
+        <Button variant="mono" href="#content">Mono</Button>
+        <Button variant="secondary" size="sm">Small</Button>
+        <Button variant="primary" disabled>Disabled</Button>
+      </Specimen>
+      <Specimen ink title="Button on ink" note="The same component, in an ink band. There is no on-ink variant to remember: the band re-resolves the component tokens.">
+        <Button variant="primary" href="#content">Primary</Button>
+        <Button variant="secondary" href="#content">Secondary</Button>
+        <Button variant="ghost" href="#content">Ghost</Button>
+        <Button variant="mono" href="#content">Mono</Button>
+      </Specimen>
+      <Specimen title="Tag" note="A status, told by border and fill and never by hue alone. Dashed is provisional, filled is agreed, struck through is terminal." code={`<Tag status="ratified" />`}>
+        <Tag status="draft" />
+        <Tag status="proposed" />
+        <Tag status="active" />
+        <Tag status="ratified" />
+        <Tag status="superseded" />
+        <Tag status="archived" />
+      </Specimen>
+      <Specimen title="Chip" note="A small mono pill for a name, a file kind or an identifier. The only pill on the site. Optional tone dot, optional href." code={`<Chip tone="record">decision@1</Chip>`}>
+        <Chip>.srs</Chip>
+        <Chip>.srsj</Chip>
+        <Chip>.srspkg</Chip>
+        <Chip>ext:lifecycle</Chip>
+        <Chip tone="record">decision@1</Chip>
+        <Chip href="#content">As a link</Chip>
+      </Specimen>
+      <Specimen layout="grid" title="CodeSample" note="Real structure, highlighted at build time and mapped to tokens, so it follows light, dark and ink. Show the JSON, the command, the file name. filename sets the mono bar." code={`<CodeSample filename="records/decision-7c2e9f41.json" lang="json" code={json} />`}>
+        <CodeSample filename="records/decision-7c2e9f41.json" lang="json" code={recordJson} />
+        <CodeSample filename="relations/3f6a1d90.json" lang="json" code={relationJson} />
+        <CodeSample filename="shell" lang="bash" code={`srs repo validate --repo ./team-notes\nsrs record list --repo ./team-notes --type com.example.team/decision`} />
+      </Specimen>
+      <Specimen ink layout="stack" title="CodeSample on ink" note="The same sample on an ink band.">
+        <CodeSample filename="relations/3f6a1d90.json" lang="json" code={relationJson} />
+      </Specimen>
+      <Specimen layout="stack" title="Quote" note="For the owner's phrasings and charter sentences, quoted faithfully. size md or lg; cite is the mono attribution." code={`<Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>`}>
+        <Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>
+        <Quote cite="Standing principle">Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.</Quote>
+      </Specimen>
+      <Specimen layout="stack" title="Pronunciation" note="The name lockup: srs, pronounced source. The o is a ring in the record colour, because records are the source. size lg for the front door, md in running content." code={`<Pronunciation size="lg" />`}>
+        <Pronunciation size="lg" />
+        <Pronunciation size="md" />
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- CARDS -->
+  <Section id="cards" variant="page">
+    <SectionHeader eyebrow="Components" title="Cards">
+      Containers for one idea, one record or one project.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="grid" title="RecordCard" note="A record shown as a thing: an ink header with the mono id, the type as namespace/name@version and the status, over label and value rows. It is the key visual of the product. Mark required fields." code={`<RecordCard id="7c2e9f41" type="com.example.team/decision@1" title="Review the budget weekly" status="ratified" fields={[...]} />`}>
+        <RecordCard
+          id="7c2e9f41"
+          type="com.example.team/decision@1"
+          title="Review the budget weekly"
+          status="ratified"
+          fields={[
+            { label: "Title", value: "Review the budget weekly", required: true },
+            { label: "Outcome", value: "Agreed for one quarter, then revisit", required: true },
+            { label: "Rationale", value: "Spending drifted twice last year without anyone noticing." },
+          ]}
+        />
+        <RecordCard
+          id="b19d4e07"
+          type="com.example.team/risk@1"
+          title="Single point of failure in the release process"
+          status="draft"
+          fields={[
+            { label: "Title", value: "Single point of failure in the release process", required: true },
+            { label: "Mitigation", value: "Not yet decided" },
+          ]}
+        />
+      </Specimen>
+      <Specimen layout="grid" title="ConceptCard" note="One idea of the model: a glyph from the diagram vocabulary, a mono kind label, a title and a short explanation. With href the whole card is the link." code={`<ConceptCard kind="Field" glyph="field" title="Field">An atomic, reusable unit of meaning.</ConceptCard>`}>
+        <ConceptCard kind="Field" glyph="field" title="Field">An atomic, reusable unit of meaning with a stable id, a name and a version. Different meaning is a different Field.</ConceptCard>
+        <ConceptCard kind="Record" glyph="record" title="Record" href="#cards">A typed instance: values for the fields of one Type, bound to a specific version of it.</ConceptCard>
+        <ConceptCard kind="Relation" glyph="relation" title="Relation">A typed edge between two things, read source, type, target.</ConceptCard>
+        <ConceptCard kind="Container" glyph="structure" title="Container">A declared selection with an ordered outline. Membership is declared, never derived.</ConceptCard>
+      </Specimen>
+      <Specimen layout="grid" title="ProjectCard" note="One of the four projects, described as a kind of technology. A mono kind label, the name, what it is, its technologies as chips, and a link. The whole card is the target." code={`<ProjectCard name="srs-rust" kind="Reference engine" href="https://github.com/the-greenman/srs-rust" tags={["Rust", "MIT or Apache-2.0"]}>...</ProjectCard>`}>
+        <ProjectCard name="srs" kind="Open standard" href="https://github.com/the-greenman/srs" tags={["JSON Schema", "Apache-2.0"]}>An open, implementation-independent standard for portable semantic documents, authored as its own data.</ProjectCard>
+        <ProjectCard name="srs-rust" kind="Reference engine" href="https://github.com/the-greenman/srs-rust" tags={["Rust", "WASM", "MIT or Apache-2.0"]}>A library-first engine: one core behind a CLI with a stable JSON contract, WASM bindings and an MCP server.</ProjectCard>
+        <ProjectCard name="srs-web" kind="Browser editor" href="https://github.com/the-greenman/srs-web" tags={["WASM", "Client-side"]}>Edits SRS repositories entirely in the browser, against storage you own, with an agents panel.</ProjectCard>
+        <ProjectCard name="srs-vscode" kind="VS Code extension" href="https://github.com/the-greenman/srs-vscode" tags={["TypeScript"]}>Tree and navigator views, validate on save, preview and a relation graph, over the srs binary.</ProjectCard>
+      </Specimen>
+      <Specimen layout="stack" title="PrincipleItem" note="One principle: a number, a one-line statement as the heading, and the explanation. Keep the charter's wording as given." code={`<PrincipleItem number="01" title="Data sovereignty">The people who create knowledge own it.</PrincipleItem>`}>
+        <div>
+          <PrincipleItem number="01" title="Data sovereignty">The people who create knowledge own it.</PrincipleItem>
+          <PrincipleItem number="02" title="Decision sovereignty">Groups decide for themselves.</PrincipleItem>
+          <PrincipleItem number="03" title="Structure describes knowledge, never authority">No engineered control hierarchy. A relation is a claim about knowledge, not control flow.</PrincipleItem>
+        </div>
+      </Specimen>
+      <Specimen layout="stack" title="FeatureGrid" note="A ruled grid of short parallel points: optional glyph and mono label, a title and a sentence. columns is 2, 3 or 4." code={`<FeatureGrid columns={3} items={[{ eyebrow: "Field", glyph: "field", title: "...", body: "..." }]} />`}>
+        <FeatureGrid
+          items={[
+            { eyebrow: "Field", glyph: "field", title: "Meaning travels with the definition", body: "AI guidance lives with the field, not in an application's prompt." },
+            { eyebrow: "Record", glyph: "record", title: "Required fields mean nothing is half-formed", body: "A type says what must be present before knowledge can be transferred." },
+            { eyebrow: "Relation", glyph: "relation", title: "Edges are claims", body: "Strictly binary and typed, with one stored direction." },
+          ]}
+        />
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- MARKS -->
+  <Section id="marks">
+    <SectionHeader eyebrow="Identity" title="Marks, for the owner to choose">
+      Candidates for the SRS mark and the SemanticOps mark, each at the sizes it has to work at, on paper and on ink. The geometry of the S-wave is the one srs-web ships, so the 16px reading is unchanged.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="stack" title="SrsMark: line" note="The srs-web mark as it ships: a disc with the S-wave drawn through it. Kept for compatibility, and still the clearest at 16px." code={`<SrsMark variant="line" size={24} />`}>
+        <MarkRow mark="srs" variant="line" />
+      </Specimen>
+      <Specimen layout="stack" title="SrsMark: halves (recommended)" note="The same disc and the same line, with the two regions filled and each holding a seed of the other. It reads as one source and two readers, people and agents, and it is the shape the TwoSurfaces diagram explains. Recommended as the primary mark." code={`<SrsMark variant="halves" size={24} />`}>
+        <MarkRow mark="srs" variant="halves" />
+      </Specimen>
+      <Specimen layout="stack" title="SrsMark: ring" note="The halves with ring-node seeds, inside a broken ring. Too fine for 16px; use it large, as the SemanticOps lockup or a display mark." code={`<SrsMark variant="ring" size={96} />`}>
+        <MarkRow mark="srs" variant="ring" />
+      </Specimen>
+      <Specimen layout="stack" title="SemanticOpsMark: network" note="For the ecosystem rather than SRS itself. A broken ring, six records, hairline relations and a target centre: a repository drawn in the site's own vocabulary." code={`<SemanticOpsMark variant="network" size={48} />`}>
+        <MarkRow mark="semanticops" variant="network" sizes={[128, 48, 32]} />
+      </Specimen>
+      <Specimen layout="stack" title="SemanticOpsMark: orbit" note="A broken ring around one large record, with a satellite on the ring. Simpler and bolder, and it holds up better small." code={`<SemanticOpsMark variant="orbit" size={48} />`}>
+        <MarkRow mark="semanticops" variant="orbit" sizes={[128, 48, 32, 24]} />
+      </Specimen>
+      <Specimen title="Wordmark and lockups" note="SemanticOps holds two weights in one word: Semantic in regular, Ops in bold. srs is lowercase and medium. The mark sits to the left at the cap height of the word." code={`<SrsMark variant="halves" size={32} /><Wordmark size="md" />`}>
+        <Wordmark size="lg" />
+        <Wordmark size="md" />
+        <Wordmark size="sm" />
+        <Wordmark name="srs" size="lg" />
+        <span class="cluster cluster--md"><SrsMark variant="halves" size={40} /><Wordmark size="lg" /></span>
+        <span class="cluster cluster--md"><SemanticOpsMark variant="network" size={40} /><Wordmark size="lg" /></span>
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- DIAGRAM PRIMITIVES -->
+  <Section id="primitives" variant="page">
+    <SectionHeader eyebrow="Diagrams" tone="relation" title="Diagram primitives">
+      Every diagram is composed from these, and nothing else draws circles or lines. A broken ring is a boundary, a flat disc is a record, a ring-node is a field, a thin line is a relation, a target is identity.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen title="Disc" note="A flat filled disc: a record, or with tone another idea. hollow draws only the ring, for derived output. label and labelPosition set short text." code={`<Disc cx={40} cy={50} r={20} tone="record" label="record" />`}>
+        <Canvas id="sg-disc" viewBox="0 0 520 120" title="Discs" desc="Six discs, one in each diagram colour, then a hollow ring.">
+          <Disc cx={40} cy={44} r={20} tone="record" label="record" />
+          <Disc cx={116} cy={44} r={20} tone="structure" label="structure" />
+          <Disc cx={192} cy={44} r={20} tone="field" label="field" />
+          <Disc cx={268} cy={44} r={20} tone="relation" label="relation" />
+          <Disc cx={344} cy={44} r={20} tone="note" label="note" />
+          <Disc cx={420} cy={44} r={20} tone="ink" label="ink" />
+          <Disc cx={496} cy={44} r={20} tone="ink" hollow label="hollow" />
+        </Canvas>
+      </Specimen>
+      <Specimen title="RingNode" note="A ring around a smaller ring or a dot: a field, a value, a part. inner is dot, ring or none. Its middle is pale so a line can end at it." code={`<RingNode cx={40} cy={44} r={20} inner="dot" />`}>
+        <Canvas id="sg-ringnode" viewBox="0 0 420 120" title="Ring-nodes" desc="Ring-nodes with a dot, with a ring and with nothing inside, in field green and structure blue.">
+          <RingNode cx={40} cy={44} r={20} inner="dot" label="dot" />
+          <RingNode cx={116} cy={44} r={20} inner="ring" label="ring" />
+          <RingNode cx={192} cy={44} r={20} inner="none" label="none" />
+          <RingNode cx={268} cy={44} r={20} tone="structure" inner="dot" label="structure" />
+          <RingNode cx={344} cy={44} r={12} tone="record" inner="dot" label="small" />
+        </Canvas>
+      </Specimen>
+      <Specimen title="BrokenRing" note="Thick segments with clean gaps: a boundary is drawn, not solid, because a container is a declared selection. segments and gap space it evenly; gaps places gap centres by angle. Never close the circle for a container." code={`<BrokenRing cx={60} cy={60} r={44} width={8} segments={6} gap={14} />`}>
+        <Canvas id="sg-broken" viewBox="0 0 460 140" title="Broken rings" desc="Three broken rings: six segments, three segments with wide gaps, and a ring with gaps at chosen angles.">
+          <BrokenRing cx={70} cy={66} r={50} segments={6} gap={14} />
+          <BrokenRing cx={230} cy={66} r={50} segments={3} gap={30} tone="record" />
+          <BrokenRing cx={390} cy={66} r={50} gaps={[-90, 20, 150]} gap={[16, 30, 16]} tone="field" />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Link" note="A relation line with an optional mono label, which breaks the line with a knockout halo. Reads source to target: the arrow points at the target. dashed, inset, width and tone adjust it." code={`<Link x1={10} y1={40} x2={200} y2={40} arrow="end" label="precedes" />`}>
+        <Canvas id="sg-link" viewBox="0 0 520 190" title="Relation lines" desc="Four lines: plain, with an arrow, with a label and arrow, and dashed.">
+          <Link x1={10} y1={24} x2={240} y2={24} />
+          <Link x1={10} y1={64} x2={240} y2={64} arrow="end" />
+          <Link x1={10} y1={104} x2={240} y2={104} arrow="end" label="precedes" />
+          <Link x1={10} y1={144} x2={240} y2={144} dashed arrow="end" label="proposed" />
+          <Link x1={280} y1={24} x2={510} y2={24} tone="structure" width={4} />
+          <Link x1={280} y1={64} x2={510} y2={64} tone="record" arrow="start" />
+          <Link x1={280} y1={104} x2={510} y2={104} tone="field" arrow="end" width={3} />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Target" note="Ring, fill, ring, dot: identity, or the core. The thing everything else is arranged around." code={`<Target cx={40} cy={44} r={24} label="core" />`}>
+        <Canvas id="sg-target" viewBox="0 0 320 130" title="Targets" desc="Three target centres in increasing size.">
+          <Target cx={50} cy={50} r={14} label="14" />
+          <Target cx={140} cy={50} r={24} label="24" />
+          <Target cx={250} cy={50} r={38} label="38" />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Knockout" note="The helper behind the gaps: a disc in the ground colour, drawn under a shape. Use it for shapes that are not discs." code={`<Knockout cx={100} cy={50} r={32} />`}>
+        <Canvas id="sg-knockout2" viewBox="0 0 300 110" title="A knockout helper" desc="A khaki line is cut by a ground-coloured circle with a small record on top.">
+          <Link x1={10} y1={55} x2={290} y2={55} width={3} />
+          <Knockout cx={150} cy={55} r={34} />
+          <Disc cx={150} cy={55} r={18} knockout={0} />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Halves" note="One disc divided by an S-shaped line, each region holding a seed of the other. The geometry of the SRS mark, and the two readers of one source. upper picks which region is ink; seed is dot or ring." code={`<Halves cx={60} cy={60} r={48} upper="ink" seed="dot" />`}>
+        <Canvas id="sg-halves" viewBox="0 0 460 130" title="Halves" desc="Four discs divided by an S-shaped line: ink above with dot seeds, paper above with dot seeds, and both again with ring seeds.">
+          <Halves cx={60} cy={62} r={48} upper="ink" seed="dot" edge={2} />
+          <Halves cx={170} cy={62} r={48} upper="paper" seed="dot" edge={2} />
+          <Halves cx={280} cy={62} r={48} upper="ink" seed="ring" edge={2} />
+          <Halves cx={390} cy={62} r={48} upper="paper" seed="ring" edge={2} />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Cluster" note="A unit of knowledge with its parts: a broken ring, six parts, hairline relations and a target. Self-similar: open one part and it becomes a smaller cluster, which can open again. levels sets how many open; labels shows on the wide layout only." code={`<Cluster cx={160} cy={160} r={110} open={1} levels={2} labels={[...]} />`}>
+        <Canvas id="sg-cluster" viewBox="0 0 560 330" title="A cluster that opens" desc="A broken ring of six records opens one part into a smaller ring of fields, and that into a smaller ring again.">
+          <Cluster cx={160} cy={170} r={110} open={1} levels={2} />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Glyph" note="One small icon per idea, drawn from the primitives. The legend and the concept cards share it. Decorative: always pair it with text." code={`<Glyph kind="record" size={24} />`}>
+        <span class="cluster"><Glyph kind="structure" size={28} /><span class="t-label">structure</span></span>
+        <span class="cluster"><Glyph kind="record" size={28} /><span class="t-label">record</span></span>
+        <span class="cluster"><Glyph kind="field" size={28} /><span class="t-label">field</span></span>
+        <span class="cluster"><Glyph kind="relation" size={28} /><span class="t-label">relation</span></span>
+        <span class="cluster"><Glyph kind="identity" size={28} /><span class="t-label">identity</span></span>
+        <span class="cluster"><Glyph kind="note" size={28} /><span class="t-label">note</span></span>
+        <span class="cluster"><Glyph kind="derived" size={28} /><span class="t-label">derived</span></span>
+      </Specimen>
+      <Specimen layout="grid" title="Figure and Canvas" note="Figure is the chrome: a plate with an optional dot-grid ground, a mono figure number and a caption. The plate is a size container, so a diagram picks its wide or narrow layout from the room it has. Canvas is the svg: role img, title and description. motion plays the drawing-in on load (CSS only, off under reduced motion); use it above the fold." code={`<Figure number={7} caption="A caption." grid motion><Canvas ...>...</Canvas></Figure>`}>
+        <Figure number={7} caption="With the dot-grid ground." size="narrow">
+          <Canvas id="sg-figure-a" viewBox="0 0 240 90" title="A record on a figure" desc="One record disc on a dot-grid plate.">
+            <Disc cx={120} cy={45} r={22} />
+          </Canvas>
+        </Figure>
+        <Figure number={8} caption="Without it." grid={false} size="narrow">
+          <Canvas id="sg-figure-b" viewBox="0 0 240 90" title="A field on a plain plate" desc="One ring-node on a plain plate.">
+            <RingNode cx={120} cy={45} r={22} />
+          </Canvas>
+        </Figure>
+      </Specimen>
+    </div>
+  </Section>
+
+  <!-- DIAGRAMS -->
+  <Section id="diagrams">
+    <SectionHeader eyebrow="Diagrams" tone="record" title="Diagrams">
+      Six diagrams, each composed from the primitives, each with a wide layout and a stacked narrow one that stays legible at 375px. Labels are props: Phase 2 feeds real content in. Resize the window to see the layouts switch.
+    </SectionHeader>
+    <div class="stack stack--md">
+      <Specimen layout="bare" title="HeroCluster" note="The signature visual: a repository drawn as a broken ring, one record opening into its own cluster, and that into another. Layered and drillable. It plays its drawing-in on load. Props: labels (six record names), caption." code={`<HeroCluster labels={["decision", "claim", "task", "source", "risk", "rule"]} />`}>
+        <HeroCluster number={1} id="sg-hero" />
+      </Specimen>
+      <Specimen layout="bare" title="ProjectionFan" note="Records fan out into projections. Edits go only into the records; every projection is derived. Props: outputs, edit, derived. Narrow layout hangs the outputs off one trunk." code={`<ProjectionFan outputs={["Markdown", "HTML", "JSON", "agent context"]} />`}>
+        <ProjectionFan number={2} id="sg-fan" />
+      </Specimen>
+      <Specimen layout="bare" title="CapabilityStack" note="Core, one service, the CLI, WASM and MCP adapters, then the clients. A capability is implemented once, in the core. Clients add presentation, never semantics." code={`<CapabilityStack />`}>
+        <CapabilityStack number={3} id="sg-stack" />
+      </Specimen>
+      <Specimen layout="bare" title="MaturityLadder" note="A note graduates into records, linked back by derived-from, and the note is kept. Props: note, records (one label each), relation." code={`<MaturityLadder records={["decision", "task", "task", "task", "risk", "risk"]} />`}>
+        <MaturityLadder number={4} id="sg-ladder" />
+      </Specimen>
+      <Specimen layout="bare" title="RelationSentence" note="Seven rows reading source, type, target. Props: relations, a list of type and plain-words gloss." code={`<RelationSentence relations={[{ type: "precedes", gloss: "comes before" }]} />`}>
+        <RelationSentence number={5} id="sg-relations" />
+      </Specimen>
+      <Specimen layout="bare" title="TwoSurfaces" note="One source, projected twice: the human site and the agent site, drawn as the two halves of one disc. Props: source, human, agent, project." code={`<TwoSurfaces />`}>
+        <TwoSurfaces number={6} id="sg-two" />
+      </Specimen>
+    </div>
+  </Section>
+
+  <Section variant="ink" id="ink-diagram">
+    <SectionHeader eyebrow="Diagrams" title="On an ink band">
+      The same diagram on ink: the band re-resolves the diagram colours to their lit values, and knockouts follow the ground.
+    </SectionHeader>
+    <HeroCluster number={9} id="sg-hero-ink" motion={false} />
+  </Section>
+
+  <!-- CHECKS -->
+  <Section id="checks" variant="page">
+    <SectionHeader eyebrow="Process" title="Checks">
+      Run these before every commit. The styleguide and the guards are the contract.
+    </SectionHeader>
+    <CodeSample
+      filename="shell"
+      lang="bash"
+      code={`npm run check       # token guard and copy guard\nnpm run typecheck   # astro check\nnpm run build       # static build into dist/`}
+    />
+  </Section>
+</Base>
