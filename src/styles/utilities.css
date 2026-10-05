@@ -1,0 +1,68 @@
+/* utilities: single-purpose helpers, last in the cascade. Shared typographic helpers live here. */
+
+/* The mono label voice: every id, eyebrow, figure number and metadata item. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-muted);
+}
+
+.t-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  line-height: var(--leading-snug);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-muted);
+}
+
+.t-mono {
+  font-family: var(--font-mono);
+}
+
+.t-muted {
+  color: var(--color-muted);
+}
+
+.stack > * + * {
+  margin-top: var(--space-sm);
+}
+
+.stack--xs > * + * {
+  margin-top: var(--space-xs);
+}
+
+.stack--md > * + * {
+  margin-top: var(--space-md);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.cluster--md {
+  gap: var(--space-sm);
+}
+
+.push-right {
+  margin-left: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

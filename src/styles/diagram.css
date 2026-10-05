@@ -1,0 +1,208 @@
+/* ============================================================================
+   diagram: the shared rules of the diagram vocabulary
+   ----------------------------------------------------------------------------
+   Every diagram is composed from the primitives in components/diagram/, and those
+   primitives are styled here, once. Colour carries meaning (tokens.css):
+     structure  boundaries: containers and repositories, always broken rings
+     record     a record: a flat filled disc, the substance
+     field      a field: a ring-node, a ring around a smaller ring or dot
+     relation   a typed edge: a thin line
+     note       a note: free text, provisional
+     ink        derived output: rendered, never authoritative
+   A knockout is a stroke in the ground colour where two shapes meet.
+   ========================================================================== */
+
+.dg-tone--structure { --dg-tone: var(--color-structure); }
+.dg-tone--record { --dg-tone: var(--color-record); }
+.dg-tone--field { --dg-tone: var(--color-field); }
+.dg-tone--relation { --dg-tone: var(--color-relation); }
+.dg-tone--note { --dg-tone: var(--color-note); }
+.dg-tone--ink { --dg-tone: var(--color-text); }
+
+/* The svg itself. Two layouts per diagram (wide, narrow): the figure plate is a
+   container, and a container query picks the layout, so text never shrinks below
+   legibility on a phone. */
+.dg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.dg--wide {
+  display: none;
+}
+
+@container figure (min-width: 600px) {
+  .dg--wide {
+    display: block;
+  }
+
+  .dg--narrow {
+    display: none;
+  }
+
+  .dg--narrow-only {
+    display: none;
+  }
+}
+
+/* Labels that only fit the wide layout (the hero cluster) */
+@container figure (max-width: 599px) {
+  .dg-wide-only {
+    display: none;
+  }
+}
+
+/* Shapes */
+.dg-knockout {
+  fill: var(--figure-ground);
+}
+
+.dg-disc {
+  fill: var(--dg-tone);
+}
+
+.dg-disc--note {
+  stroke: var(--color-relation);
+  stroke-width: 2;
+}
+
+.dg-disc--hollow {
+  fill: var(--figure-ground);
+  stroke: var(--dg-tone);
+  stroke-width: 2.5;
+}
+
+.dg-ring {
+  fill: var(--color-line-soft);
+  stroke: var(--dg-tone);
+}
+
+.dg-dot {
+  fill: var(--dg-tone);
+}
+
+.dg-inner-ring {
+  fill: none;
+  stroke: var(--dg-tone);
+}
+
+.dg-broken {
+  fill: none;
+  stroke: var(--dg-tone);
+  stroke-linecap: butt;
+}
+
+.dg-line {
+  fill: none;
+  stroke: var(--dg-tone);
+  stroke-linecap: round;
+}
+
+.dg-line--dashed {
+  stroke-dasharray: 5 5;
+}
+
+.dg-arrow {
+  fill: var(--dg-tone);
+}
+
+.dg-half--ink {
+  fill: var(--color-text-strong);
+}
+
+.dg-half--paper {
+  fill: var(--figure-ground);
+}
+
+.dg-half-edge {
+  fill: none;
+  stroke: var(--color-text-strong);
+}
+
+.dg-seed--ink {
+  fill: var(--color-text-strong);
+}
+
+.dg-seed--paper {
+  fill: var(--figure-ground);
+}
+
+.dg-rule {
+  stroke: var(--color-line);
+  stroke-width: 1;
+  fill: none;
+}
+
+/* Text: real <text> in the mono voice, sized by the diagram tokens */
+.dg-text {
+  font-family: var(--font-mono);
+  font-size: var(--size-diagram);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wide);
+  fill: var(--dg-text);
+}
+
+.dg-text--muted {
+  fill: var(--dg-text-muted);
+}
+
+.dg-text--strong {
+  font-weight: var(--weight-medium);
+  fill: var(--color-text-strong);
+}
+
+.dg-text--caps {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.dg-text--lg {
+  font-family: var(--font-sans);
+  font-size: var(--size-diagram-lg);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-snug);
+  fill: var(--color-text-strong);
+}
+
+/* A label that sits over a line breaks the line with a ground-coloured halo. */
+.dg-text--knock {
+  stroke: var(--figure-ground);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+.dg-text--on-disc {
+  fill: var(--figure-ground);
+  font-weight: var(--weight-medium);
+}
+
+/* Motion: CSS only, and opt-in per figure (Figure `motion`), because a drawing-in that
+   plays on load is wasted on a diagram below the fold. The natural state is the finished
+   drawing, so the animation runs from the start state and a browser without it (or
+   base.css under prefers-reduced-motion) shows the full diagram. --dg-len is the path
+   length in user units, set inline by the primitive that knows it. */
+@keyframes dg-draw {
+  from {
+    stroke-dashoffset: var(--dg-len);
+  }
+}
+
+@keyframes dg-open {
+  from {
+    opacity: 0;
+    transform: scale(0.15);
+  }
+}
+
+.figure--motion .dg-draw {
+  stroke-dasharray: var(--dg-len);
+  animation: dg-draw 1.1s ease-out var(--dg-delay) backwards;
+}
+
+.figure--motion .dg-open {
+  animation: dg-open 1s cubic-bezier(0.2, 0.7, 0.2, 1) var(--dg-delay) backwards;
+}

@@ -1,0 +1,65 @@
+/* ============================================================================
+   tokens-components: the component tier (srs-web ADR-020 b)
+   ----------------------------------------------------------------------------
+   Naming: --<block>-<property>[-<state>]. Declared on :root AND [data-surface], never
+   on a component selector, so a theme can re-point them and an ink surface re-resolves
+   them against its own (dark) semantic tokens. Each defaults to a semantic token.
+   No colour literals and no var() fallbacks here: a token that is read must exist.
+   Components read these; a variant re-assigns them on the variant selector.
+   ========================================================================== */
+
+:root,
+[data-surface] {
+  /* Button */
+  --btn-bg: transparent;
+  --btn-fg: var(--color-text);
+  --btn-border: var(--color-line);
+  --btn-hover-border: var(--color-text-strong);
+  --btn-hover-fg: var(--color-text-strong);
+  --btn-primary-bg: var(--color-text-strong);
+  --btn-primary-fg: var(--color-on-strong);
+  --btn-primary-hover-bg: var(--color-muted-strong);
+  --btn-pad: 12px 28px;
+  --btn-pad-sm: 6px 12px;
+
+  /* Tag and Chip */
+  --tag-fg: var(--color-muted);
+  --tag-border: var(--color-line);
+  --tag-strong-bg: var(--color-text-strong);
+  --tag-strong-fg: var(--color-on-strong);
+  --chip-bg: transparent;
+  --chip-fg: var(--color-muted-strong);
+  --chip-border: var(--color-line);
+
+  /* Cards */
+  --card-bg: var(--color-page);
+  --card-border: var(--color-line);
+  --card-rule: var(--color-line-soft);
+  --card-hover-border: var(--color-text-strong);
+  --card-header-bg: var(--color-ink-bg);
+  --card-header-fg: var(--color-text);
+  --card-header-muted: var(--color-muted);
+
+  /* Header and footer */
+  --header-bg: var(--color-bg);
+  --header-border: var(--color-line);
+  --menu-bg: var(--color-page);
+
+  /* Code */
+  --code-bg: var(--color-page);
+  --code-border: var(--color-line);
+  --code-fg: var(--color-text);
+  --code-inline-bg: var(--color-line-soft);
+
+  /* Quote */
+  --quote-rule: var(--color-text-strong);
+
+  /* Figure and diagram */
+  --figure-ground: var(--color-ground);
+  --figure-border: var(--color-line);
+  --figure-grid-dot: var(--color-line);
+  --dg-link: var(--color-relation);
+  --dg-text: var(--color-text);
+  --dg-text-muted: var(--color-muted);
+  --dg-delay: 0s; /* motion start delay; primitives override it inline */
+}

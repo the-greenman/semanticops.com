@@ -1,0 +1,163 @@
+/* base: reset, document defaults, type rhythm, paper grain, ink surfaces. Element selectors only. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--size-base);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The paper grain: a fixed multiply overlay, so the page reads as a physical surface. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-grain);
+  opacity: 0.02;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 640px) {
+  body::after {
+    opacity: 0.016;
+  }
+}
+
+/* Ink surfaces. The elements that carry data-surface="ink" take the dark scheme
+   locally (tokens.css), paint the --color-ink-bg and a toner texture behind their
+   content. The filter sits on a pseudo-element so it roughens the surface, never the text. */
+[data-surface="ink"] {
+  position: relative;
+  isolation: isolate;
+  color: var(--color-text);
+}
+
+[data-surface="ink"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-ink-bg);
+  filter: url(#ink-surface);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-strong);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--size-h1);
+}
+
+h2 {
+  font-size: var(--size-h2);
+}
+
+h3 {
+  font-size: var(--size-h3);
+  letter-spacing: var(--tracking-snug);
+}
+
+h4 {
+  font-size: var(--size-md);
+  letter-spacing: var(--tracking-snug);
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  font-weight: var(--weight-bold);
+}
+
+a {
+  color: var(--color-text);
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--color-text-strong);
+  text-decoration-color: var(--color-text-strong);
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: var(--size-code);
+}
+
+hr {
+  border: 0;
+  border-top: var(--rule);
+  margin: var(--space-md) 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-text-strong);
+  color: var(--color-on-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

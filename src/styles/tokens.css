@@ -1,0 +1,241 @@
+/* ============================================================================
+   tokens: the single source of palette, type, space and meaning
+   ----------------------------------------------------------------------------
+   Three tiers (srs-web ADR-020):
+     1. primitives  raw values. Read only inside this file, never by a component.
+     2. semantic    --color-*, --size-*, --space-*, --radius-*, --rule-*, --z-*.
+                    Components read these, or the component tier built on them.
+     3. component   --<block>-<prop>[-<state>]: see tokens-components.css.
+
+   This is the ONLY file that may contain a colour literal. scripts/check-tokens.mjs
+   enforces that, and parses this file to build the /styleguide token tables, so the
+   comments below are not load-bearing: the declarations are.
+
+   Dark mode: every semantic colour is redefined twice, once under
+   prefers-color-scheme (unless the viewer forced light) and once under
+   [data-theme="dark"]. The second block also matches [data-surface="ink"], so an
+   ink band is "the dark scheme, applied locally" and everything inside re-resolves.
+   The two dark blocks must stay identical (the guard compares them).
+
+   Lineage (code comments may name it; visible copy never does): paper and ink are a
+   held pair, not a hierarchy. Dark mode is not a different site, it is the same pair
+   read the other way round. Colour carries one meaning each, defined once below.
+   ========================================================================== */
+
+/* tier: primitive */
+:root {
+  /* Paper and ink (muDemocracy v3) */
+  --black: #1a1a1a;
+  --ink: #2b2926;
+  --paper: #f4f2ee;
+  --paper-lit: #faf8f5;
+  --white: #ffffff;
+  --grey-1: #e8e5df;
+  --grey-2: #c8c4bc;
+  --grey-3: #8a8680;
+  --grey-3-deep: #66625c; /* muted text on paper: 4.5:1 or better */
+  --grey-3-lit: #938f89; /* muted text on night */
+  --grey-4: #4a4744;
+  --night: #211f1d; /* the paper of dark mode */
+  --night-line: #33302d;
+
+  /* Diagram palette, from the the-organization.com family: flat, saturated, geometric */
+  --blue-royal: #0038a0;
+  --blue-lit: #7a9cff;
+  --vermilion: #cc3300;
+  --vermilion-lit: #ff7f56;
+  --green: #006633;
+  --green-lit: #3dbd7d;
+  --khaki: #968a5c;
+  --khaki-deep: #857a4c;
+  --khaki-lit: #a89b6b;
+  --gold: #dccb6e;
+  --navy: #000080; /* reserved: use sparingly, if at all */
+  --amber: #bf6600; /* reserved: use sparingly, if at all */
+
+  /* Shadow tints */
+  --shadow-tint: rgb(26 26 26 / 0.18);
+  --shadow-tint-dark: rgb(0 0 0 / 0.5);
+}
+
+/* tier: semantic */
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --color-bg: var(--paper);
+  --color-page: var(--white);
+  --color-ground: var(--paper); /* what a diagram sits on; knockout gaps are drawn in this colour */
+  --color-ink-bg: var(--black);
+
+  /* Text */
+  --color-text: var(--ink);
+  --color-text-strong: var(--black);
+  --color-muted: var(--grey-3-deep);
+  --color-muted-strong: var(--grey-4);
+  --color-on-strong: var(--paper); /* text on a --color-text-strong fill */
+
+  /* Lines */
+  --color-line: var(--grey-2);
+  --color-line-soft: var(--grey-1);
+  --color-line-strong: var(--black);
+  --color-hover: var(--grey-1);
+
+  /* Diagram meaning: one colour, one idea, everywhere */
+  --color-structure: var(--blue-royal); /* boundaries: containers, repositories */
+  --color-record: var(--vermilion); /* records: the substance */
+  --color-field: var(--green); /* fields and atomic values */
+  --color-relation: var(--khaki-deep); /* relations and connectors */
+  --color-note: var(--gold); /* notes: free text, provisional. A fill: draw it with a relation-coloured edge */
+
+  --shadow-popover: 0 4px 16px var(--shadow-tint);
+
+  /* Type: fonts come from the Astro Fonts API (--font-plex-*), sizes and weights from this pool */
+  --font-sans: var(--font-plex-sans, system-ui, sans-serif);
+  --font-mono: var(--font-plex-mono, ui-monospace, monospace);
+
+  --size-xs: 11px; /* mono labels, the smallest text on the site */
+  --size-sm: 13px;
+  --size-base: 16px;
+  --size-md: 20px;
+  --size-lg: 28px;
+  --size-xl: 42px;
+  --size-2xl: 64px;
+  --size-display: clamp(40px, 5vw, 80px);
+  --size-h1: clamp(36px, 5vw, 64px);
+  --size-h2: clamp(26px, 3.5vw, 42px);
+  --size-h3: clamp(20px, 2.4vw, 28px);
+  --size-standfirst: clamp(18px, 2.4vw, 26px);
+  --size-code: 0.9em;
+  --size-diagram: 14px; /* diagram labels, in SVG user units: layouts are drawn so this stays 11px or more on screen */
+  --size-diagram-lg: 18px;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-label: 0.08em;
+  --tracking-eyebrow: 0.14em;
+
+  --leading-solid: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-body: 1.6;
+  --leading-loose: 1.75;
+
+  /* Space */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 96px;
+  --space-gutter: clamp(16px, 4vw, 32px);
+
+  /* Layout */
+  --width-narrow: 44rem;
+  --width-default: 75rem;
+  --width-wide: 90rem;
+  --header-height: 56px;
+  --hit-target: 24px;
+
+  /* Shape and rules: hairlines, sharp radii, pills only for chips */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-pill: 999px;
+  --rule: 1px solid var(--color-line);
+  --rule-soft: 1px solid var(--color-line-soft);
+  --rule-strong: 2px solid var(--color-line-strong);
+  --rule-dashed: 1px dashed var(--color-muted-strong);
+  --focus-ring: 2px solid var(--color-text-strong);
+  --focus-offset: 2px;
+
+  /* Stacking */
+  --z-sticky: 5;
+  --z-raised: 10;
+  --z-overlay: 100;
+  --z-grain: 9999; /* the paper grain: deliberately above everything */
+}
+
+@media (pointer: coarse) {
+  :root {
+    --hit-target: 44px;
+  }
+}
+
+/* tier: semantic, dark (media) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-bg: var(--night);
+    --color-page: var(--ink);
+    --color-ground: var(--night);
+    --color-ink-bg: var(--black);
+
+    --color-text: var(--paper);
+    --color-text-strong: var(--paper-lit);
+    --color-muted: var(--grey-3-lit);
+    --color-muted-strong: var(--grey-2);
+    --color-on-strong: var(--night);
+
+    --color-line: var(--grey-4);
+    --color-line-soft: var(--night-line);
+    --color-line-strong: var(--paper-lit);
+    --color-hover: var(--night-line);
+
+    --color-structure: var(--blue-lit);
+    --color-record: var(--vermilion-lit);
+    --color-field: var(--green-lit);
+    --color-relation: var(--khaki-lit);
+    --color-note: var(--gold);
+
+    --shadow-popover: 0 4px 16px var(--shadow-tint-dark);
+  }
+}
+
+/* tier: semantic, dark (manual, and every ink surface) */
+:root[data-theme="dark"],
+[data-surface="ink"] {
+  color-scheme: dark;
+
+  --color-bg: var(--night);
+  --color-page: var(--ink);
+  --color-ground: var(--night);
+  --color-ink-bg: var(--black);
+
+  --color-text: var(--paper);
+  --color-text-strong: var(--paper-lit);
+  --color-muted: var(--grey-3-lit);
+  --color-muted-strong: var(--grey-2);
+  --color-on-strong: var(--night);
+
+  --color-line: var(--grey-4);
+  --color-line-soft: var(--night-line);
+  --color-line-strong: var(--paper-lit);
+  --color-hover: var(--night-line);
+
+  --color-structure: var(--blue-lit);
+  --color-record: var(--vermilion-lit);
+  --color-field: var(--green-lit);
+  --color-relation: var(--khaki-lit);
+  --color-note: var(--gold);
+
+  --shadow-popover: 0 4px 16px var(--shadow-tint-dark);
+}
+
+/* An ink surface knocks its shapes out in its own colour, not the night of the page. */
+[data-surface="ink"] {
+  --color-ground: var(--color-ink-bg);
+}
+
+/* A page band sits on the white page rather than on paper. */
+[data-surface="page"] {
+  --color-bg: var(--color-page);
+  --color-ground: var(--color-page);
+}
