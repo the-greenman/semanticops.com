@@ -1,21 +1,15 @@
 ---
-import { nav as site } from "./nav";
+import { agentEntry, footerNav, repositories } from "../lib/content";
 import SrsMark from "./SrsMark.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Wordmark from "./Wordmark.astro";
 
 /**
  * The site footer, on an ink band. Credit to the-organization.com (text and link until
- * the official asset arrives), the agent edition entry point, the repositories, and the
- * theme control.
+ * the official asset arrives), the pages and the repositories (both from the data), the
+ * agent edition entry point, and the theme control.
  */
-const elsewhere = [
-  { href: "/llms.txt", label: "Agent edition" },
-  { href: "https://github.com/the-greenman/srs", label: "GitHub: srs" },
-  { href: "https://github.com/the-greenman/srs-rust", label: "GitHub: srs-rust" },
-  { href: "https://github.com/the-greenman/srs-web", label: "GitHub: srs-web" },
-  { href: "https://github.com/the-greenman/srs-vscode", label: "GitHub: srs-vscode" },
-];
+const elsewhere = [{ href: agentEntry, label: "Agent edition" }, ...repositories.map((r) => ({ href: r.href, label: r.name }))];
 ---
 
 <footer class="site-footer" data-surface="ink">
@@ -31,7 +25,7 @@ const elsewhere = [
     </div>
     <nav class="site-footer__col" aria-label="Site">
       <p class="eyebrow">Site</p>
-      <ul>{site.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <ul>{footerNav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
     </nav>
     <nav class="site-footer__col" aria-label="Elsewhere">
       <p class="eyebrow">Elsewhere</p>

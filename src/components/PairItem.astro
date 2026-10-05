@@ -1,0 +1,104 @@
+---
+import Halves from "./diagram/Halves.astro";
+
+/**
+ * A held pair: two ideas the standard keeps without choosing between them, set as two poles
+ * either side of one seam. The seam is the divided disc of the SRS mark, the line that both
+ * divides and joins. The poles come from the title, split at its first comma ("Fixed meaning,
+ * changing state"); a title with no comma is shown whole, with no seam. Then the claim, and the
+ * explanation (the slot), under both.
+ */
+interface Props {
+  title: string;
+  /** The one-sentence statement of the pair. */
+  claim?: string;
+  id?: string;
+  class?: string;
+}
+
+const { title, claim, id, class: className } = Astro.props;
+const [first, ...rest] = title.split(/,\s*/);
+const poles = rest.length > 0 ? [first, rest.join(", ")] : null;
+---
+
+<article {id} class:list={["pair", className]}>
+  <h3 class="pair__title">
+    {
+      poles ? (
+        <>
+          <span class="pair__pole">{poles[0]}</span>
+          <span class="sr-only">, </span>
+          <svg class="pair__seam" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" />
+          </svg>
+          <span class="pair__pole">{poles[1]}</span>
+        </>
+      ) : (
+        <span class="pair__whole">{title}</span>
+      )
+    }
+  </h3>
+  <div class="pair__body">
+    {claim && <p class="pair__claim">{claim}</p>}
+    <div class="pair__text"><slot /></div>
+  </div>
+</article>
+
+<style>
+  @layer components {
+    .pair {
+      display: grid;
+      gap: var(--space-sm);
+      padding: var(--space-md) 0;
+      border-top: var(--rule);
+    }
+
+    .pair__title {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: var(--space-sm);
+      margin: 0;
+      font-size: var(--size-h3);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .pair__pole:first-child {
+      text-align: right;
+    }
+
+    .pair__pole::first-letter,
+    .pair__whole::first-letter {
+      text-transform: uppercase;
+    }
+
+    .pair__whole {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    .pair__seam {
+      display: block;
+      width: 40px;
+      height: 40px;
+    }
+
+    .pair__body {
+      display: grid;
+      gap: var(--space-xs);
+      max-width: 40rem;
+      margin-inline: auto;
+    }
+
+    .pair__claim {
+      margin: 0;
+      font-size: var(--size-md);
+      line-height: var(--leading-snug);
+      color: var(--color-text-strong);
+    }
+
+    .pair__text {
+      color: var(--color-muted-strong);
+    }
+  }
+</style>

@@ -3,6 +3,7 @@ import { Font } from "astro:assets";
 import "../styles/index.css";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import { site } from "../lib/content";
 
 /**
  * The page shell: meta, self-hosted fonts, the theme-init script, the shared SVG defs
@@ -10,7 +11,11 @@ import SiteHeader from "../components/SiteHeader.astro";
  * from components, inside this layout.
  */
 interface Props {
+  /** The page title: shown as "Title | SemanticOps". */
   title?: string;
+  /** The whole title, when the page names itself (home). Wins over title. */
+  fullTitle?: string;
+  /** The meta description: the page record's summary. Defaults to the repository's purpose. */
   description?: string;
   /** Keep the page out of search indexes (the styleguide). */
   noindex?: boolean;
@@ -20,12 +25,13 @@ interface Props {
 
 const {
   title,
-  description = "SemanticOps builds SRS, an open standard for portable semantic documents that people and software can inspect, understand and move.",
+  fullTitle,
+  description = site.purpose,
   noindex = false,
   chrome = true,
 } = Astro.props;
 
-const pageTitle = title ? `${title} | SemanticOps` : "SemanticOps";
+const pageTitle = fullTitle ?? (title ? `${title} | ${site.title}` : site.title);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 

@@ -1,10 +1,11 @@
 ---
-import { nav } from "./nav";
+import { headerNav } from "../lib/content";
 import SrsMark from "./SrsMark.astro";
 import Wordmark from "./Wordmark.astro";
 
 /**
- * The site header: the mark and name, then the four primary sections. At 720px and up
+ * The site header: the mark and name, then the primary sections, listed from the data
+ * (every page but home, which the brand links to). At 720px and up
  * the nav is inline. Below that it is a native popover opened by a plain button: no
  * framework, no script, and light-dismiss and Escape come from the browser.
  */
@@ -29,7 +30,7 @@ const active = (href: string) => current === href || current.startsWith(`${href}
     </button>
     <nav class="site-header__nav" id="site-nav" popover aria-label="Primary">
       <ul class="site-header__list">
-        {nav.map((item) => <li><a class="site-header__link" href={item.href} aria-current={active(item.href) ? "page" : undefined}>{item.label}</a></li>)}
+        {headerNav.map((item) => <li><a class="site-header__link" href={item.href} aria-current={active(item.href) ? "page" : undefined}>{item.label}</a></li>)}
       </ul>
     </nav>
   </div>

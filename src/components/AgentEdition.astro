@@ -1,0 +1,48 @@
+---
+import Glyph from "./diagram/Glyph.astro";
+
+/**
+ * The quiet link from a human page to its own data: the same records, as markdown and as
+ * JSON, for an agent. It makes the two-surfaces idea tangible. The hollow ink ring is the
+ * glyph of derived output, because both files are projections of the page's records.
+ */
+interface Props {
+  md: string;
+  json: string;
+  /** The label. */
+  label?: string;
+  class?: string;
+}
+
+const { md, json, label = "Read this page as data", class: className } = Astro.props;
+---
+
+<p class:list={["agent-edition", className]}>
+  <Glyph kind="derived" size={18} />
+  <span class="t-label">{label}</span>
+  <a class="agent-edition__link" href={md}>{md}</a>
+  <a class="agent-edition__link" href={json}>{json}</a>
+</p>
+
+<style>
+  @layer components {
+    .agent-edition {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2xs) var(--space-sm);
+      margin: 0;
+    }
+
+    .agent-edition__link {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+      color: var(--color-muted-strong);
+      overflow-wrap: anywhere;
+    }
+
+    .agent-edition__link:hover {
+      color: var(--color-text-strong);
+    }
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+/**
+ * An index of the page: anchor links, one per part, in the page's own order. Put it in the
+ * page header of a long page so a reader can jump to any part. The links are `#slug` anchors.
+ * An item with a number shows it (the same ordinal as the part's own heading); one without
+ * shows a bare rule.
+ */
+interface Props {
+  items: { href: string; label: string; number?: string }[];
+  /** The index heading. */
+  title?: string;
+  class?: string;
+}
+
+const { items, title = "On this page", class: className } = Astro.props;
+---
+
+<nav class:list={["on-page", className]} aria-label={title}>
+  <p class="eyebrow">{title}</p>
+  <ol class="on-page__list">
+    {
+      items.map((item) => (
+        <li>
+          <a class="on-page__link" href={item.href}>
+            <span class="on-page__no t-label">{item.number}</span>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</nav>
+
+<style>
+  @layer components {
+    .on-page {
+      display: grid;
+      gap: var(--space-xs);
+    }
+
+    .on-page__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+      gap: 0 var(--space-md);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .on-page__link {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+      min-height: var(--hit-target);
+      padding: var(--space-xs) 0;
+      border-top: var(--rule-soft);
+      font-size: var(--size-sm);
+      text-decoration: none;
+    }
+
+    .on-page__link:hover {
+      border-top-color: var(--color-text-strong);
+    }
+
+    .on-page__no {
+      flex: none;
+      min-width: 2ch;
+    }
+  }
+</style>

@@ -14,13 +14,15 @@ interface Props {
   /** Which glyph of the diagram vocabulary draws it. */
   glyph?: GlyphKind;
   href?: string;
+  /** Anchor target. */
+  id?: string;
   class?: string;
 }
 
-const { kind, title, glyph = "record", href, class: className } = Astro.props;
+const { kind, title, glyph = "record", href, id, class: className } = Astro.props;
 ---
 
-<article class:list={["concept-card", href && "concept-card--link", className]}>
+<article {id} class:list={["concept-card", href && "concept-card--link", className]}>
   <div class="concept-card__head">
     <Glyph kind={glyph} size={28} />
     <span class="t-label">{kind}</span>

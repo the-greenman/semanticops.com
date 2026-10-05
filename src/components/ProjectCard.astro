@@ -1,10 +1,12 @@
 ---
 import Chip from "./Chip.astro";
+import RelationList from "./RelationList.astro";
 
 /**
  * One of the four projects, described as a kind of technology rather than a status.
- * A mono kind label, the project name, what it is (the slot), its technologies as
- * chips, and a link. The whole card is the link target.
+ * A mono kind label, the project name, a one-line tagline, what it is (the slot), who it is
+ * for and what it makes possible, what it depends on (linked), its technologies as chips,
+ * and a link. The whole card is the link target; the relation links sit above it.
  */
 interface Props {
   /** The project name: srs, srs-rust, srs-web, srs-vscode. */
@@ -12,20 +14,48 @@ interface Props {
   /** What kind of thing it is: "Open standard", "Reference engine". */
   kind: string;
   href: string;
+  /** One line under the name. */
+  tagline?: string;
+  /** Who it is for. */
+  audience?: string;
+  /** What it makes possible. */
+  makes?: string;
+  /** What it depends on, as relations with linked targets. */
+  relations?: { label: string; targets: { label: string; href?: string }[] }[];
   /** Short mono chips: licence, language, runtime. */
   tags?: string[];
   /** The label of the link. */
   cta?: string;
+  /** Anchor target. */
+  id?: string;
   class?: string;
 }
 
-const { name, kind, href, tags = [], cta = "View on GitHub", class: className } = Astro.props;
+const { name, kind, href, tagline, audience, makes, relations = [], tags = [], cta = "View on GitHub", id, class: className } = Astro.props;
+const facts = [
+  { label: "For", text: audience },
+  { label: "Makes possible", text: makes },
+].filter((f) => f.text);
 ---
 
-<article class:list={["project-card", className]}>
+<article {id} class:list={["project-card", className]}>
   <p class="t-label">{kind}</p>
   <h3 class="project-card__name"><a class="project-card__link" href={href}>{name}</a></h3>
+  {tagline && <p class="project-card__tagline">{tagline}</p>}
   <div class="project-card__body"><slot /></div>
+  {
+    facts.length > 0 && (
+      <dl class="project-card__facts">
+        {facts.map((f) => (
+          <div>
+            <dt class="t-label">{f.label}</dt>
+            <dd>{f.text}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+  {relations.length > 0 && <RelationList class="project-card__relations" {relations} />}
   {tags.length > 0 && <ul class="project-card__tags">{tags.map((t) => <li><Chip>{t}</Chip></li>)}</ul>}
   <p class="project-card__cta t-label" aria-hidden="true">{cta}</p>
 </article>
@@ -65,9 +95,38 @@ const { name, kind, href, tags = [], cta = "View on GitHub", class: className } 
       inset: 0;
     }
 
+    .project-card__tagline {
+      margin: 0;
+      font-size: var(--size-md);
+      line-height: var(--leading-snug);
+      color: var(--color-text-strong);
+    }
+
     .project-card__body {
       flex: 1;
       color: var(--color-muted-strong);
+    }
+
+    .project-card__facts {
+      display: grid;
+      gap: var(--space-sm);
+      margin: 0;
+      font-size: var(--size-sm);
+    }
+
+    .project-card__facts dt {
+      margin-bottom: var(--space-2xs);
+    }
+
+    .project-card__facts dd {
+      margin: 0;
+      color: var(--color-muted-strong);
+    }
+
+    /* The relation links are real links inside a card that is itself a link: lift them above its overlay. */
+    .project-card__relations {
+      position: relative;
+      z-index: var(--z-raised);
     }
 
     .project-card__tags {
