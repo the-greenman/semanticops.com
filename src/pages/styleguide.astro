@@ -227,7 +227,7 @@ const relationJson = `{
       The page is a stack of full-bleed bands. Paper bands and ink bands alternate, and a page band sits on the white page.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen layout="bare" title="Section: variants" note="compact tightens the padding. variant is paper (the default ground), page (white) or ink. An ink band takes the dark scheme locally, so everything inside it re-colours with no extra props, and it carries the toner texture behind its content.">
+      <Specimen layout="bare" title="Section: variants" note="compact tightens the padding. variant is paper (the default ground), page (white) or ink. An ink band takes the dark scheme locally, so everything inside it re-colours with no extra props, and it carries the toner texture behind its content. On the dark page a black band barely parts from night, so every band, the footer included, carries a hairline edge (--rule-band) that resolves against the page: invisible on paper, quiet on night.">
         <Section as="div" compact variant="paper"><Eyebrow>paper</Eyebrow><Lede>The default ground.</Lede></Section>
         <Section as="div" compact variant="page"><Eyebrow>page</Eyebrow><Lede>The white page, for dense reading.</Lede></Section>
         <Section as="div" compact variant="ink">

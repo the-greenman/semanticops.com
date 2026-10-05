@@ -50,7 +50,7 @@ A page contains components and the layout utilities in `utilities.css` (`stack`,
 
 ### 3a. Diagrams
 
-Every diagram is composed from the primitives in `components/diagram/` (`Disc`, `RingNode`, `BrokenRing`, `Link`, `Target`, `Knockout`, `Halves`, `Cluster`, inside `Figure` and `Canvas`). **A diagram never draws its own circles or lines.** Each draws a wide and a narrow layout switched by the figure's container query, so no text is under 11px on screen. Each has `role="img"`, a `<title>` and a `<desc>`. Labels are props. Motion is CSS only, opt-in per figure (`motion`), and removed under `prefers-reduced-motion`. Containers are broken rings, never closed circles.
+Every diagram is composed from the primitives in `components/diagram/` (`Disc`, `RingNode`, `BrokenRing`, `Link`, `Target`, `Knockout`, `Halves`, `Cluster`, inside `Figure` and `Canvas`). **A diagram never draws its own circles or lines.** Each draws a wide and a narrow layout switched by the figure's container query, so no text is under 11px on screen. Each has `role="img"`, a `<title>` and a `<desc>`. Labels are props. Motion is CSS only, opt-in per figure (`motion`), and removed under `prefers-reduced-motion`. Containers are broken rings, never closed circles. Every label sits on a ground-coloured halo (`--dg-halo`) wide enough to bridge a word space, so the dot grid never shows through a run of text. Ink bands carry a hairline (`--rule-band`) that resolves against the page, so they part from the dark page too.
 
 ### 4. Two surfaces from one source
 

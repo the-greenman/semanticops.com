@@ -67,6 +67,7 @@
   --color-page: var(--white);
   --color-ground: var(--paper); /* what a diagram sits on; knockout gaps are drawn in this colour */
   --color-ink-bg: var(--black);
+  --color-ink-edge: var(--black); /* the edge of an ink band, read against the page it sits on: invisible on paper (the band is its own colour) */
 
   /* Text */
   --color-text: var(--ink);
@@ -152,6 +153,7 @@
   --rule: 1px solid var(--color-line);
   --rule-soft: 1px solid var(--color-line-soft);
   --rule-strong: 2px solid var(--color-line-strong);
+  --rule-band: 1px solid var(--color-ink-edge); /* the hairline along an ink band. Declared on :root only, so it resolves against the page and not the band's own dark scheme */
   --rule-dashed: 1px dashed var(--color-muted-strong);
   --focus-ring: 2px solid var(--color-text-strong);
   --focus-offset: 2px;
@@ -178,6 +180,7 @@
     --color-page: var(--ink);
     --color-ground: var(--night);
     --color-ink-bg: var(--black);
+    --color-ink-edge: var(--grey-4); /* on the dark page a black band barely parts from night: a quiet hairline does it */
 
     --color-text: var(--paper);
     --color-text-strong: var(--paper-lit);
@@ -210,6 +213,7 @@
   --color-page: var(--ink);
   --color-ground: var(--night);
   --color-ink-bg: var(--black);
+  --color-ink-edge: var(--grey-4); /* on the dark page a black band barely parts from night: a quiet hairline does it */
 
   --color-text: var(--paper);
   --color-text-strong: var(--paper-lit);
