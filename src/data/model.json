@@ -193,7 +193,7 @@
         "title": "Validation",
         "summary": "Diagnostics are data.",
         "body": "Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so read the diagnostics, not the exit code.\n\nIdentity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.",
-        "example": "{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"diagnostics\": [\n    \"[containers/home-page-35e0da5b.json] SRS038-R13-DANGLING-REFERENCE: container memberInstanceIds '79508597-c133-4c32-88bd-a65b36f792b6' resolves to nothing in the instance set\"\n  ]\n}",
+        "example": "{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"diagnostics\": [\n    \"[records/tier-2/page-582af71a.json] missing required field key: eyebrow\"\n  ]\n}",
         "spec_link": "https://github.com/the-greenman/srs"
       },
       "relations": [
@@ -246,7 +246,7 @@
         "slug": "extensions",
         "title": "Extensions",
         "summary": "Opt-in capability modules, declared in the manifest.",
-        "body": "Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, document views, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.\n\nThe rule for tools is: understand what you can, preserve what you cannot.",
+        "body": "Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, views and compositions, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.\n\nThe rule for tools is: understand what you can, preserve what you cannot.",
         "example": "{\n  \"declaredExtensions\": [\n    \"ext:lifecycle\",\n    \"ext:repository\",\n    \"ext:themes-l1\",\n    \"ext:views-l1\",\n    \"ext:views-l2\"\n  ]\n}",
         "spec_link": "https://srs.semanticops.com/schema/2.0/manifest.json"
       }

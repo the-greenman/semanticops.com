@@ -93,7 +93,7 @@ Tool-enforced contracts beat look-alike files.
 
 Agents imitate structure. Asked to add a record, an agent will readily write a JSON file that looks right, satisfies the format and skips validation and referential integrity. That is mimicry.
 
-The defence is to make the tool the only door. A write goes through a tool that enforces the repository's Type and relation contracts, and a rejected write returns diagnostics and writes nothing. Below, a tool refuses a relation type that the package does not define.
+The defence is to make the tool the only door. A write goes through a tool that enforces the repository's Type and relation contracts, and a rejected write returns diagnostics and writes nothing. For example, a write tool refuses a relation whose type the package does not define, and says why.
 
 **Example (JSON)**: {
   "content": [

@@ -245,8 +245,9 @@ Identity conflicts are fatal: a duplicate id, or a reference to an id that does 
 **Example (JSON)**: {
   "ok": false,
   "command": "repo validate",
+  "version": "0.1.0",
   "diagnostics": [
-    "[containers/home-page-35e0da5b.json] SRS038-R13-DANGLING-REFERENCE: container memberInstanceIds '79508597-c133-4c32-88bd-a65b36f792b6' resolves to nothing in the instance set"
+    "[records/tier-2/page-582af71a.json] missing required field key: eyebrow"
   ]
 }
 
@@ -301,7 +302,7 @@ Themes wrap content and never replace, suppress or reorder it. Order comes from 
 
 Opt-in capability modules, declared in the manifest.
 
-Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, document views, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.
+Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, views and compositions, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.
 
 The rule for tools is: understand what you can, preserve what you cannot.
 

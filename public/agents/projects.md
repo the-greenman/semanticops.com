@@ -19,7 +19,7 @@ The standard says what a repository is. The engine implements it once, and the t
 
 The specification, authored as its own data.
 
-An open, implementation-independent standard for portable semantic documents. It is authored as an SRS repository: the JSON Schemas, base packages, conformance material and decision charter are all records, and the rendered specification is a projection of them.
+An open, implementation-independent standard for portable semantic documents. The specification is itself an SRS repository: its content (its prose, invariants, extensions and decisions) is authored as records, and the rendered specification is a projection of them. JSON Schemas and conformance fixtures are published alongside as files.
 
 **Audience**: Implementers, tool builders and anyone who needs to know exactly what a conforming repository is.
 
