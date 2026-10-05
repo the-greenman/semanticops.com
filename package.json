@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "node scripts/check-tokens.mjs && node scripts/check-copy.mjs",
+    "check:links": "node scripts/check-links.mjs",
     "typecheck": "astro check",
     "source": "node scripts/source/build-source.mjs",
     "source:check": "node scripts/source/build-source.mjs --check",

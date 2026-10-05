@@ -17,9 +17,11 @@ Facts live **once**, as an SRS repository in `source/`. Records are the source o
 src/styles/        tokens.css, tokens-components.css, base.css, utilities.css, diagram.css, index.css
 src/components/    one component per file; diagram/ holds the primitives and the six diagrams
 src/components/styleguide/   specimen helpers used only by /styleguide
+src/components/page/         the assemblers: PageBands (entries to bands) and Entry (one record)
 src/layouts/Base.astro       page shell
-src/pages/         index, 404, styleguide
-scripts/           check-tokens.mjs, check-copy.mjs, lib/tokens.mjs (the token parser)
+src/lib/           content.ts (typed data loader), markdown.ts, bands.ts, presentation.ts (the presentation map)
+src/pages/         index (home), [page] (every other page, from site.json), 404, styleguide
+scripts/           check-tokens.mjs, check-copy.mjs, check-links.mjs, lib/tokens.mjs (the token parser)
 plans/             one page per phase
 source/            the SRS repository of facts          (content pipeline owns it)
 scripts/source/    the projection scripts               (content pipeline owns it)
@@ -36,6 +38,17 @@ public/llms.txt, public/agents/    the agent site        (generated: never hand-
 ### 2. Pages are assembled only from components
 
 A page contains components and the layout utilities in `utilities.css` (`stack`, `cluster`, `grid`, `split`, `sr-only`). **No page-local styles and no page-local markup styling.** If a page needs something that does not exist, add a component (and its specimen), then use it. Every section opens with `SectionHeader`.
+
+### 2a. Pages are the data, laid out
+
+Every visible fact comes from `src/data/*.json` (see `src/data/README.md`); the only text written in code is UI chrome ("Menu", "On this page", "Keep reading", "Read this page as data"). The route and the nav come from `site.json`, so a page added in `source/` is a route and a nav entry with no code change.
+
+- **`src/lib/content.ts`** types the data contract and loads it. It never reorders or filters to change the order. `linkTo(slug, fromPage)` resolves a relation target to an anchor or to its owning page.
+- **`src/lib/presentation.ts`, the presentation map, is the one place a slug is paired with how it is shown**: the band surface (`paper`, `page`, `ink`), a diagram, a glyph, a lede as a quotation, a principle as a headline or a pair. `page:slug` overrides it for one page. A slug with no entry takes the default of its entry type. Never choose a component or a diagram by slug anywhere else.
+- **`src/lib/bands.ts`** groups the flat entry list into bands (a section, a concept, or an entry whose look names a surface opens one; the entries after it are its items) and alternates paper and page; ink only where the map asks. **`components/page/PageBands.astro`** lays them out and numbers the figures; **`components/page/Entry.astro`** draws one record by type and look and gives it `id={slug}`.
+- `src/pages/[page].astro` is the one dynamic route (page header, an "on this page" index when a page has four or more bands, the bands, "Keep reading"). `src/pages/index.astro` composes only the hero by hand and hands the rest to `PageBands`.
+
+**To add a page:** add its records, a container and a composition in `source/` (see `source/README.md`), then `npm run source`. It appears at `/<slug>` and in the nav. **To change how a record looks:** add or change one line in `presentation.ts`. **To add a new kind of look** (a new diagram pairing is only a line; a new component is not): add the component and its specimen first, then reference it from the map. If a record reads wrongly, change the record through the SRS tools, never the component.
 
 ### 3. Tokens only, three tiers, `@layer components`
 
@@ -78,11 +91,12 @@ Astro static output only: no adapter, no SSR, TypeScript strict, no UI framework
 npm run check       # token guard (scripts/check-tokens.mjs) and copy guard (scripts/check-copy.mjs)
 npm run typecheck   # astro check
 npm run build       # astro build into dist/
+npm run check:links # after a build: every internal href and #anchor in dist/ resolves, no duplicate ids
 npm run dev         # local server; open /styleguide
 ```
 
-Run all three before every commit. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
+Run the first three before every commit, and `npm run check:links` after any change to pages or data. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
 
 ## Process
 
-Plan, implement, self-review the diff (DRY, tokens only, `@layer components`, no em dashes, accessibility), update docs, dogfood: build, check, typecheck, and look at `/styleguide` and `/` at 1440 and 390 wide in light and dark. Work in a fresh worktree, never in the main checkout. Commit in logical steps with a plain, SSH-signed `git commit` (run `bash /home/greenman/dev/semanticops/check-signing.sh` first and expect `KEY_OK`; never bypass signing). Push branches only; the owner reviews the diff, then opens the PR. Default branch is `main`.
+Plan, implement, self-review the diff (DRY, tokens only, `@layer components`, no em dashes, accessibility), update docs, dogfood: build, check, typecheck, check:links, and look at `/styleguide` and every page at 1440 and 390 wide in light and dark (and confirm no horizontal scroll at 320). Work in a fresh worktree, never in the main checkout. Commit in logical steps with a plain, SSH-signed `git commit` (run `bash /home/greenman/dev/semanticops/check-signing.sh` first and expect `KEY_OK`; never bypass signing). Push branches only; the owner reviews the diff, then opens the PR. Default branch is `main`.
