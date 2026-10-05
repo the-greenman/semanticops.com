@@ -8,11 +8,11 @@
     "title": "Tools over mimicry",
     "slug": "tools-over-mimicry",
     "summary": "Tool-enforced contracts beat look-alike files.",
-    "body": "Agents imitate structure. Asked to add a record, an agent will readily write a JSON file that looks right, satisfies the format and skips validation and referential integrity. That is mimicry.\n\nThe defence is to make the tool the only door. A write goes through a tool that enforces the repository's Type and relation contracts, and a rejected write returns diagnostics and writes nothing. Below, a tool refuses a relation type that the package does not define.",
+    "body": "Agents imitate structure. Asked to add a record, an agent will readily write a JSON file that looks right, satisfies the format and skips validation and referential integrity. That is mimicry.\n\nThe defence is to make the tool the only door. A write goes through a tool that enforces the repository's Type and relation contracts, and a rejected write returns diagnostics and writes nothing. For example, a write tool refuses a relation whose type the package does not define, and says why.",
     "example": "{\n  \"content\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"relation validation failed for relation fb01853f-0177-46c2-9fb3-4feb6ea244b1: E1UnknownRelationType: E1: relation type 'owns' is not installed in the package\"\n    }\n  ],\n  \"isError\": true\n}",
     "spec_link": "https://github.com/the-greenman/srs-rust"
   },
   "createdAt": "2026-10-05T19:18:41.759529137+00:00",
-  "updatedAt": "2026-10-05T19:18:41.759535080+00:00",
+  "updatedAt": "2026-10-05T19:30:25.650177007+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

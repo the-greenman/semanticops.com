@@ -8,11 +8,11 @@
     "title": "Extensions",
     "slug": "extensions",
     "summary": "Opt-in capability modules, declared in the manifest.",
-    "body": "Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, document views, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.\n\nThe rule for tools is: understand what you can, preserve what you cannot.",
+    "body": "Capabilities beyond the core are independent modules named `ext:...`. A repository declares the ones it uses in `declaredExtensions`, so a reader knows what to expect before opening a single record: lifecycle states on records, views and compositions, themes, type inheritance, discovery queries. A tool can compare what is declared with what the content uses and report the difference.\n\nThe rule for tools is: understand what you can, preserve what you cannot.",
     "example": "{\n  \"declaredExtensions\": [\n    \"ext:lifecycle\",\n    \"ext:repository\",\n    \"ext:themes-l1\",\n    \"ext:views-l1\",\n    \"ext:views-l2\"\n  ]\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/manifest.json"
   },
   "createdAt": "2026-10-05T19:18:41.330482604+00:00",
-  "updatedAt": "2026-10-05T19:18:41.330486218+00:00",
+  "updatedAt": "2026-10-05T19:32:09.206758519+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

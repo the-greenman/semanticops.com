@@ -39,27 +39,27 @@
     {
       "compositionId": "21c83e15-b4b0-4241-8d66-9a7186ec2da5",
       "format": "markdown",
-      "outputPath": "../public/agents/home.md"
+      "outputPath": "projections/home.md"
     },
     {
       "compositionId": "438b9295-5ba6-459c-9891-6a77645e6e9c",
       "format": "markdown",
-      "outputPath": "../public/agents/model.md"
+      "outputPath": "projections/model.md"
     },
     {
       "compositionId": "b02f0751-52ce-47c3-b1d8-18c01944b02c",
       "format": "markdown",
-      "outputPath": "../public/agents/architecture.md"
+      "outputPath": "projections/architecture.md"
     },
     {
       "compositionId": "253c3501-12dc-4ff4-855f-96ddd21047d1",
       "format": "markdown",
-      "outputPath": "../public/agents/principles.md"
+      "outputPath": "projections/principles.md"
     },
     {
       "compositionId": "45a948b8-222d-4910-8292-db0c8e0ed8c9",
       "format": "markdown",
-      "outputPath": "../public/agents/projects.md"
+      "outputPath": "projections/projects.md"
     }
   ],
   "repositoryId": "0dbab76e-7f8e-4276-8791-c00a8627965d",

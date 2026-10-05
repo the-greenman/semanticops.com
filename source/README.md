@@ -9,7 +9,7 @@ SRS is pronounced "source", and this is the pun in practice: these records are t
 - Namespace `com.semanticops.site`. Root container (the repository identity and navigation): the purpose record, then the five pages in navigation order.
 - Five Types in `package/types/`: `page`, `section`, `concept`, `project`, `principle`. Every Field in `package/fields/` carries `aiGuidance`: read it before writing a record, it holds the copy rules.
 - One Container per page (`home`, `model`, `architecture`, `principles`, `projects`), anchored on that page's `page` record. A container's ordered outline is the page order. A record can sit in several containers (the four projects appear on home and on the projects page).
-- One Composition per page in `package/compositions/`, declared as a presentation in `manifest.json`. One View per Type in `package/views/` controls how a record reads as markdown.
+- One Composition per page in `package/compositions/`, declared as a presentation in `manifest.json` with a repository-relative output path (`projections/<page>.md`; nothing is written there, the pipeline places the output in `public/agents/`, so the repository packs into a self-contained `.srs`). One View per Type in `package/views/` controls how a record reads as markdown.
 - Relations are only the true canonical ones: `depends-on` between concepts and between projects.
 
 ## Rules
@@ -69,6 +69,6 @@ Mount it in your client's MCP configuration with that command. Read `/agent-inde
 npm run source
 ```
 
-This validates `source/` (any diagnostic fails the build), renders every page, and rewrites `src/data/`, `public/llms.txt` and `public/agents/` (including the `.srs` bundle of this repository). The output is committed. A clean re-run produces no diff; `node scripts/source/build-source.mjs --check` exits non-zero if the committed output is stale.
+This validates `source/` (any diagnostic fails the build), renders every page, and rewrites `src/data/`, `public/llms.txt` and `public/agents/` (including the `.srs` bundle of this repository and the unmodified `srs repo agent-index` output as `agent-index.md`). Everything is rendered and linted in a staging directory first and swapped in only if it all passes. The lint covers the copy rules and the never-say list, over the page JSON, the markdown, `llms.txt` and the `aiGuidance` of this repository's definitions; `agent-index.md` is raw tool output and is exempt. The output is committed. A clean re-run produces no diff; `node scripts/source/build-source.mjs --check` exits non-zero if the committed output is stale.
 
 The contract the pages consume is in `src/data/README.md`.

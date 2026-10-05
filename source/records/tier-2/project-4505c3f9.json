@@ -9,13 +9,13 @@
     "slug": "srs",
     "kind": "Open standard",
     "tagline": "The specification, authored as its own data.",
-    "summary": "An open, implementation-independent standard for portable semantic documents. It is authored as an SRS repository: the JSON Schemas, base packages, conformance material and decision charter are all records, and the rendered specification is a projection of them.",
+    "summary": "An open, implementation-independent standard for portable semantic documents. The specification is itself an SRS repository: its content (its prose, invariants, extensions and decisions) is authored as records, and the rendered specification is a projection of them. JSON Schemas and conformance fixtures are published alongside as files.",
     "audience": "Implementers, tool builders and anyone who needs to know exactly what a conforming repository is.",
     "makes_possible": "A second implementation, in any language, that reads and writes the same repositories as the first.",
     "repository": "https://github.com/the-greenman/srs",
     "licence": "Apache-2.0"
   },
   "createdAt": "2026-10-05T19:18:41.879997593+00:00",
-  "updatedAt": "2026-10-05T19:18:41.880000485+00:00",
+  "updatedAt": "2026-10-05T19:30:31.088404321+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

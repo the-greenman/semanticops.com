@@ -5,7 +5,7 @@
   "version": 1,
   "description": "The record's heading, shown wherever the record is named.",
   "aiGuidance": {
-    "purpose": "Sentence case, as few words as possible, naming what the record is about. No trailing full stop unless the title is a full sentence. Never use an em dash. Never use marketing words such as revolutionary, seamless, unlock, empower or leverage."
+    "purpose": "Sentence case, as few words as possible, naming what the record is about. No trailing full stop unless the title is a full sentence. Never use an em dash. Plain words only: no marketing language."
   },
   "fieldType": {
     "datatype": "string",
