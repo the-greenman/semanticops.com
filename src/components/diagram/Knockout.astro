@@ -1,0 +1,17 @@
+---
+/**
+ * The knockout helper: a disc in the ground colour, drawn under a shape so it cuts
+ * a clean gap in whatever lies beneath (lines, rings). Disc and RingNode use it
+ * themselves; use it directly for shapes that are not discs.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  /** Radius of the cleared area: the shape's radius plus the gap. */
+  r: number;
+}
+
+const { cx, cy, r } = Astro.props;
+---
+
+<circle class="dg-knockout" {cx} {cy} {r}></circle>

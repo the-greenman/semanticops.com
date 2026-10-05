@@ -1,0 +1,47 @@
+---
+import Knockout from "./Knockout.astro";
+import type { Tone } from "./tones";
+
+/**
+ * A ring-node: a ring around a smaller ring or a dot. The atom of the vocabulary:
+ * a field, a value, a part. Its middle is pale so a line can end at it cleanly.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  r: number;
+  tone?: Tone;
+  /** What sits inside the ring. */
+  inner?: "dot" | "ring" | "none";
+  /** The middle of the ring: pale (so a line can end at it) or open. */
+  fill?: "pale" | "open";
+  knockout?: number;
+  label?: string;
+  labelPosition?: "below" | "above" | "right" | "left";
+  class?: string;
+}
+
+const { cx, cy, r, tone = "field", inner = "dot", fill = "pale", knockout = 3, label = "", labelPosition = "below", class: className } = Astro.props;
+
+const w = Math.max(1.5, r * 0.22);
+const place = {
+  below: { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" },
+  above: { x: cx, y: cy - r - 10, anchor: "middle", base: "auto" },
+  right: { x: cx + r + 12, y: cy, anchor: "start", base: "central" },
+  left: { x: cx - r - 12, y: cy, anchor: "end", base: "central" },
+}[labelPosition];
+---
+
+<g class:list={["dg-node", `dg-tone--${tone}`, className]}>
+  {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
+  <circle class:list={["dg-ring", fill === "open" && "dg-ring--open"]} {cx} {cy} r={r - w / 2} stroke-width={w}></circle>
+  {inner === "dot" && <circle class="dg-dot" {cx} {cy} r={Math.max(1.2, r * 0.3)}></circle>}
+  {inner === "ring" && <circle class="dg-inner-ring" {cx} {cy} r={r * 0.42} stroke-width={Math.max(1, w * 0.6)}></circle>}
+  {
+    label && (
+      <text class="dg-text" x={place.x} y={place.y} text-anchor={place.anchor} dominant-baseline={place.base}>
+        {label}
+      </text>
+    )
+  }
+</g>

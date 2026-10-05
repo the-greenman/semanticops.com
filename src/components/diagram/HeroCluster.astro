@@ -1,0 +1,42 @@
+---
+import Canvas from "./Canvas.astro";
+import Cluster from "./Cluster.astro";
+import Figure from "./Figure.astro";
+
+/**
+ * The signature diagram: a repository drawn as a broken ring with six records, thin
+ * relation lines between them and a target centre. One record opens into a smaller
+ * cluster of its own (its fields), and that into another: layered and drillable,
+ * a meaningful surface that can be entered progressively.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** Six short labels for the records on the ring, clockwise from the top. Shown when there is room. */
+  labels?: string[];
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 1,
+  caption = "A repository is a declared boundary around records. Any part opens into a cluster of its own.",
+  id = "hero-cluster",
+  labels = ["decision", "claim", "task", "source", "risk", "rule"],
+  grid = true,
+  motion = true,
+} = Astro.props;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas
+    {id}
+    viewBox="0 0 600 440"
+    title="A repository that opens into itself"
+    desc="A broken blue ring holds six vermilion records, joined by thin khaki relation lines, around a target centre. One record opens into a smaller broken ring of green fields, and one of those opens into a smaller ring again."
+  >
+    <Cluster cx={200} cy={250} r={132} open={1} levels={2} {labels} />
+  </Canvas>
+</Figure>

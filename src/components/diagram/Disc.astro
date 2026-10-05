@@ -1,0 +1,53 @@
+---
+import Knockout from "./Knockout.astro";
+import type { Tone } from "./tones";
+
+/**
+ * A flat filled disc: a record, a unit of knowledge. Hollow draws only its ring
+ * (derived output). A knockout gap is cut around it by default.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  r: number;
+  /** Which idea the disc carries; sets its colour. */
+  tone?: Tone;
+  /** Width of the ground-coloured gap cut around the disc. 0 for none. */
+  knockout?: number;
+  /** Draw only a ring, for derived output. */
+  hollow?: boolean;
+  /** Short label. Pass an empty string for none. */
+  label?: string;
+  labelPosition?: "below" | "above" | "right" | "left" | "inside";
+  /** Extra classes on the group, e.g. "dg-wide-only". */
+  class?: string;
+}
+
+const { cx, cy, r, tone = "record", knockout = 3, hollow = false, label = "", labelPosition = "below", class: className } = Astro.props;
+
+const place = {
+  below: { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" },
+  above: { x: cx, y: cy - r - 10, anchor: "middle", base: "auto" },
+  right: { x: cx + r + 12, y: cy, anchor: "start", base: "central" },
+  left: { x: cx - r - 12, y: cy, anchor: "end", base: "central" },
+  inside: { x: cx, y: cy, anchor: "middle", base: "central" },
+}[labelPosition];
+---
+
+<g class:list={["dg-node", `dg-tone--${tone}`, className]}>
+  {knockout > 0 && <Knockout {cx} {cy} r={r + knockout} />}
+  <circle class:list={["dg-disc", hollow && "dg-disc--hollow", tone === "note" && "dg-disc--note"]} {cx} {cy} {r}></circle>
+  {
+    label && (
+      <text
+        class:list={["dg-text", labelPosition === "inside" && "dg-text--on-disc"]}
+        x={place.x}
+        y={place.y}
+        text-anchor={place.anchor}
+        dominant-baseline={place.base}
+      >
+        {label}
+      </text>
+    )
+  }
+</g>

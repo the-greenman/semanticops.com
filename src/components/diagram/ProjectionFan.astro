@@ -1,0 +1,88 @@
+---
+import Canvas from "./Canvas.astro";
+import Cluster from "./Cluster.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+
+/**
+ * Records fan out into projections. Edits go only into the records (the cluster); the
+ * projections are derived output, drawn as hollow ink rings, and are never edited.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** The projections, top to bottom. */
+  outputs?: string[];
+  /** The label on the edit arrow. */
+  edit?: string;
+  /** The note under the projections. */
+  derived?: string;
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 2,
+  caption = "Edits go only into the records. Every projection is derived from them.",
+  id = "projection-fan",
+  outputs = ["Markdown", "HTML", "JSON", "agent context"],
+  edit = "edit",
+  derived = "derived, never edited",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+// Wide: records on the left, projections fanning out to the right. Narrow: records on top, and the
+// projections hang off one trunk below them (a fan would cross its own labels at phone width).
+const wide = {
+  mode: "wide" as const,
+  viewBox: "0 0 720 340",
+  cluster: { cx: 150, cy: 170, r: 82 },
+  editArrow: { x1: 6, y1: 170, x2: 54, y2: 170, label: { x: 30, y: 148, anchor: "middle" } },
+  origin: { x: 244, y: 170 },
+  outs: outputs.map((label, i) => ({ label, x: 520, y: 50 + i * (240 / Math.max(1, outputs.length - 1)) })),
+  note: { x: 520, y: 328 },
+  trunk: null as null | { x: number; y1: number; y2: number },
+};
+const rowY = (i: number) => 236 + i * 54;
+const narrow = {
+  mode: "narrow" as const,
+  viewBox: `0 0 340 ${rowY(outputs.length - 1) + 54}`,
+  cluster: { cx: 92, cy: 118, r: 54 },
+  editArrow: { x1: 92, y1: 6, x2: 92, y2: 56, label: { x: 106, y: 34, anchor: "start" } },
+  origin: { x: 92, y: 182 },
+  outs: outputs.map((label, i) => ({ label, x: 134, y: rowY(i) })),
+  note: { x: 134, y: rowY(outputs.length - 1) + 40 },
+  trunk: { x: 92, y1: 182, y2: rowY(outputs.length - 1) },
+};
+const layouts = [wide, narrow];
+const title = "Records fan out into projections";
+const desc = `A cluster of records on one side is the only place edits go. Thin khaki lines fan from it to ${outputs.length} derived outputs drawn as hollow rings: ${outputs.join(", ")}. The outputs are never edited.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  {
+    layouts.map((L) => (
+      <Canvas layout={L.mode} {id} {title} {desc} viewBox={L.viewBox}>
+        <Cluster cx={L.cluster.cx} cy={L.cluster.cy} r={L.cluster.r} />
+        <Link x1={L.editArrow.x1} y1={L.editArrow.y1} x2={L.editArrow.x2} y2={L.editArrow.y2} tone="ink" arrow="end" width={2.5} />
+        <text class="dg-text dg-text--strong" x={L.editArrow.label.x} y={L.editArrow.label.y} text-anchor={L.editArrow.label.anchor}>{edit}</text>
+        {L.trunk && <Link x1={L.trunk.x} y1={L.trunk.y1} x2={L.trunk.x} y2={L.trunk.y2} width={1.5} draw />}
+        {L.outs.map((o, i) =>
+          L.trunk ? (
+            <Link x1={L.trunk!.x} y1={o.y} x2={o.x} y2={o.y} arrow="end" width={1.5} insetEnd={20} draw delay={0.2 + i * 0.12} />
+          ) : (
+            <Link x1={L.origin.x} y1={L.origin.y} x2={o.x} y2={o.y} arrow="end" width={1.5} insetEnd={22} draw delay={0.2 + i * 0.12} />
+          ),
+        )}
+        {L.outs.map((o) => (
+          <Disc cx={o.x} cy={o.y} r={13} tone="ink" hollow knockout={4} label={o.label} labelPosition="right" />
+        ))}
+        <text class="dg-text dg-text--muted" x={L.note.x} y={L.note.y}>{derived}</text>
+      </Canvas>
+    ))
+  }
+</Figure>

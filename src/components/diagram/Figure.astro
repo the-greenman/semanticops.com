@@ -1,0 +1,91 @@
+---
+/**
+ * Figure chrome for every diagram: a plate with an optional dot-grid ground, a mono
+ * figure number and a caption. The plate is a size container (named "figure"), so a
+ * diagram can pick its wide or narrow layout from the space it actually has.
+ */
+interface Props {
+  /** The figure number, shown as "FIG. 01". */
+  number: number;
+  caption: string;
+  /** Draw the dot-grid ground. */
+  grid?: boolean;
+  /** Play the drawing-in motion on load (CSS only; off under reduced motion). Use for a figure above the fold. */
+  motion?: boolean;
+  /** Cap the plate width. */
+  size?: "narrow" | "default" | "wide";
+  class?: string;
+}
+
+const { number, caption, grid = true, motion = false, size = "default", class: className } = Astro.props;
+const label = `FIG. ${String(number).padStart(2, "0")}`;
+---
+
+<figure class:list={["figure", `figure--${size}`, grid && "figure--grid", motion && "figure--motion", className]}>
+  <div class="figure__plate">
+    <slot />
+  </div>
+  <figcaption class="figure__caption">
+    <span class="figure__no">{label}</span>
+    <span class="figure__text">{caption}</span>
+  </figcaption>
+</figure>
+
+<style>
+  @layer components {
+    .figure {
+      margin: 0;
+      margin-inline: auto;
+      width: 100%;
+    }
+
+    .figure--narrow {
+      max-width: 32rem;
+    }
+
+    .figure--default {
+      max-width: 64rem;
+    }
+
+    .figure--wide {
+      max-width: none;
+    }
+
+    .figure__plate {
+      container: figure / inline-size;
+      padding: var(--space-md) var(--space-sm);
+      background-color: var(--figure-ground);
+      border: 1px solid var(--figure-border);
+    }
+
+    .figure--grid .figure__plate {
+      background-image: radial-gradient(var(--figure-grid-dot) 1px, transparent 1.5px);
+      background-size: 16px 16px;
+      background-position: 8px 8px;
+    }
+
+    .figure__caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-2xs) var(--space-sm);
+      padding: var(--space-xs) 0 0;
+      color: var(--color-muted-strong);
+      font-size: var(--size-sm);
+      line-height: var(--leading-snug);
+    }
+
+    .figure__no {
+      font-family: var(--font-mono);
+      font-size: var(--size-xs);
+      letter-spacing: var(--tracking-label);
+      color: var(--color-muted);
+    }
+
+    @media (min-width: 720px) {
+      .figure__plate {
+        padding: var(--space-md);
+      }
+    }
+  }
+</style>

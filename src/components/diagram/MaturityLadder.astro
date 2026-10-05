@@ -1,0 +1,97 @@
+---
+import BrokenRing from "./BrokenRing.astro";
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import { polar } from "./geometry";
+
+/**
+ * Maturity is a ladder, not a gate. A Note (free text, no type) graduates into Records;
+ * each record is linked back to it by derived-from, and the Note is preserved.
+ * "One meeting note can yield one decision, three tasks and two risks."
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** The note's label. */
+  note?: string;
+  /** The records it yields, one label each. */
+  records?: string[];
+  /** The label on the relation. */
+  relation?: string;
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 4,
+  caption = "A note graduates into records, linked by derived-from. The note is kept as written.",
+  id = "maturity-ladder",
+  note = "meeting note",
+  records = ["decision", "task", "task", "task", "risk", "risk"],
+  relation = "derived-from",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const n = records.length;
+const polarEnd = (note: { cx: number; cy: number; r: number }, i: number) => polar(note.cx, note.cy, note.r + 16, -55 + (110 * i) / Math.max(1, n - 1));
+// Wide: a fan of records converging on the note. Narrow: the records hang off one trunk that runs up to the note.
+const wideH = 60 + n * 54;
+const wide = {
+  mode: "wide" as const,
+  viewBox: `0 0 720 ${wideH}`,
+  note: { cx: 120, cy: wideH / 2, r: 40 },
+  recs: records.map((label, i) => ({ label, x: 520, y: 40 + i * 54 })),
+  texts: [
+    { text: note, dy: 92, cls: "" },
+    { text: "kept as written", dy: 112, cls: "dg-text--muted" },
+  ].map((t) => ({ ...t, x: 120, anchor: "middle" })),
+  trunk: false,
+};
+const recY = (i: number) => 214 + i * 50;
+const narrow = {
+  mode: "narrow" as const,
+  viewBox: `0 0 340 ${recY(n - 1) + 40}`,
+  note: { cx: 70, cy: 78, r: 34 },
+  recs: records.map((label, i) => ({ label, x: 124, y: recY(i) })),
+  texts: [
+    { text: note, dy: -8, cls: "" },
+    { text: "kept as written", dy: 14, cls: "dg-text--muted" },
+  ].map((t) => ({ ...t, x: 134, anchor: "start" })),
+  trunk: true,
+};
+const layouts = [wide, narrow];
+const title = "A note graduates into records";
+const desc = `A pale gold note, ringed by a dashed boundary, stays in place. ${n} vermilion records (${records.join(", ")}) each point back to it with a ${relation} relation. The note is preserved.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  {
+    layouts.map((L) => (
+      <Canvas layout={L.mode} {id} {title} {desc} viewBox={L.viewBox}>
+        <BrokenRing cx={L.note.cx} cy={L.note.cy} r={L.note.r + 14} width={2} tone="relation" segments={20} gap={9} />
+        {L.trunk && <Link x1={70} y1={recY(n - 1)} x2={70} y2={L.note.cy + L.note.r + 20} arrow="end" width={1.5} draw label="" />}
+        {L.trunk && <text class="dg-text dg-text--muted dg-text--knock" x={82} y={170}>{relation}</text>}
+        {L.recs.map((rec, i) => {
+          // Wide: each record lands at its own point on the note's boundary, so the arrowheads do not stack.
+          const end = polarEnd(L.note, i);
+          return L.trunk ? (
+            <Link x1={rec.x} y1={rec.y} x2={70} y2={rec.y} arrow="end" width={1.5} inset={20} insetEnd={0} draw delay={0.15 + i * 0.1} />
+          ) : (
+            <Link x1={rec.x} y1={rec.y} x2={end.x} y2={end.y} arrow="end" width={1.5} inset={20} insetEnd={1} draw delay={0.15 + i * 0.1} label={i === 1 ? relation : ""} />
+          );
+        })}
+        <Disc cx={L.note.cx} cy={L.note.cy} r={L.note.r} tone="note" knockout={0} />
+        <text class="dg-text dg-text--on-note" x={L.note.cx} y={L.note.cy} text-anchor="middle" dominant-baseline="central">note</text>
+        {L.texts.map((t) => <text class:list={["dg-text", t.cls]} x={t.x} y={L.note.cy + t.dy} text-anchor={t.anchor}>{t.text}</text>)}
+        {L.recs.map((rec) => (
+          <Disc cx={rec.x} cy={rec.y} r={15} tone="record" label={rec.label} labelPosition="right" />
+        ))}
+      </Canvas>
+    ))
+  }
+</Figure>

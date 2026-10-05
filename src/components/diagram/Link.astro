@@ -1,0 +1,66 @@
+---
+import { round, trim } from "./geometry";
+import type { Tone } from "./tones";
+
+/**
+ * A relation line between two points, with an optional mono label (the relation type)
+ * that breaks the line with a knockout halo. Reads source to target: the arrow, when
+ * present, points at the target.
+ */
+interface Props {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  tone?: Tone;
+  /** Relation type, or any short label, set on the line. */
+  label?: string;
+  /** Where along the line the label sits, 0 to 1. */
+  labelAt?: number;
+  arrow?: "end" | "start" | "none";
+  dashed?: boolean;
+  width?: number;
+  /** Shorten the line at each end so it stops at the edge of a node. */
+  inset?: number;
+  insetEnd?: number;
+  /** Animate the line drawing in, after `delay` seconds. */
+  draw?: boolean;
+  delay?: number;
+  class?: string;
+}
+
+const { x1, y1, x2, y2, tone = "relation", label = "", labelAt = 0.5, arrow = "none", dashed = false, width = 2, inset = 0, insetEnd, draw = false, delay = 0, class: className } = Astro.props;
+
+const [a, b] = trim({ x: x1, y: y1 }, { x: x2, y: y2 }, inset, insetEnd ?? inset);
+const ang = Math.atan2(b.y - a.y, b.x - a.x);
+const head = 5 + width * 1.5;
+const tip = (p: { x: number; y: number }, dir: number) => {
+  const l = { x: p.x - head * Math.cos(dir - 0.42), y: p.y - head * Math.sin(dir - 0.42) };
+  const r = { x: p.x - head * Math.cos(dir + 0.42), y: p.y - head * Math.sin(dir + 0.42) };
+  return `${round(p.x)},${round(p.y)} ${round(l.x)},${round(l.y)} ${round(r.x)},${round(r.y)}`;
+};
+const mid = { x: round(a.x + (b.x - a.x) * labelAt), y: round(a.y + (b.y - a.y) * labelAt) };
+const animate = draw && !dashed;
+const len = round(Math.hypot(b.x - a.x, b.y - a.y) + width);
+---
+
+<g class:list={["dg-link", `dg-tone--${tone}`, className]}>
+  <line
+    class:list={["dg-line", dashed && "dg-line--dashed", animate && "dg-draw"]}
+    x1={a.x}
+    y1={a.y}
+    x2={b.x}
+    y2={b.y}
+    stroke-width={width}
+    style={animate ? `--dg-len:${len};--dg-delay:${delay}s` : undefined}
+  ></line>
+  {arrow === "end" && <polygon class="dg-arrow" points={tip(b, ang)}></polygon>}
+  {arrow === "start" && <polygon class="dg-arrow" points={tip(a, ang + Math.PI)}></polygon>}
+  {
+    label && (
+      <text class="dg-text dg-text--knock dg-text--muted" x={mid.x} y={mid.y} text-anchor="middle" dominant-baseline="central">
+        {label}
+      </text>
+    )
+  }
+</g>

@@ -1,0 +1,37 @@
+---
+import BrokenRing from "./BrokenRing.astro";
+import Disc from "./Disc.astro";
+import Link from "./Link.astro";
+import RingNode from "./RingNode.astro";
+import Target from "./Target.astro";
+
+/**
+ * One small icon per idea in the diagram vocabulary, drawn from the primitives: the
+ * legend and the concept cards share it. Decorative: always paired with a text label.
+ */
+interface Props {
+  kind: "structure" | "record" | "field" | "relation" | "identity" | "note" | "derived";
+  size?: number;
+}
+
+const { kind, size = 24 } = Astro.props;
+---
+
+<svg class="dg-glyph" width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  {kind === "structure" && <BrokenRing cx={12} cy={12} r={9} width={3} segments={4} gap={26} start={-45} />}
+  {kind === "record" && <Disc cx={12} cy={12} r={8} knockout={0} />}
+  {kind === "field" && <RingNode cx={12} cy={12} r={8} knockout={0} />}
+  {kind === "relation" && <Link x1={2} y1={12} x2={22} y2={12} width={2} arrow="end" />}
+  {kind === "identity" && <Target cx={12} cy={12} r={9} knockout={0} />}
+  {kind === "note" && <Disc cx={12} cy={12} r={8} tone="note" knockout={0} />}
+  {kind === "derived" && <Disc cx={12} cy={12} r={7.5} tone="ink" hollow knockout={0} />}
+</svg>
+
+<style>
+  @layer components {
+    .dg-glyph {
+      display: block;
+      flex: none;
+    }
+  }
+</style>

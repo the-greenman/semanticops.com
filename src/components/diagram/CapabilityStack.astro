@@ -1,0 +1,96 @@
+---
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import RingNode from "./RingNode.astro";
+import Target from "./Target.astro";
+
+/**
+ * The capability layers: one core, one repository service, adapters (CLI, WASM, MCP),
+ * then clients. A capability is implemented once, in the core, and consumed identically
+ * by every client. Clients add presentation, never semantics.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  grid?: boolean;
+  /** Play the drawing-in motion on load. Off by default; the hero turns it on. */
+  motion?: boolean;
+}
+
+const {
+  number = 3,
+  caption = "Clients add presentation, never semantics.",
+  id = "capability-stack",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const rows = [
+  { name: "Core", note: "no file I/O" },
+  { name: "Service", note: "typed in and out" },
+  { name: "Adapters", note: "same answer, any door" },
+  { name: "Clients", note: "presentation only" },
+];
+const adapters = ["CLI", "WASM", "MCP"];
+const clients = ["VS Code", "web", "agents"];
+
+// Wide: four ruled rows with the row name at the left. Narrow: each row has its heading above its nodes.
+const wide = {
+  viewBox: "0 0 720 400",
+  pitch: 96,
+  y0: 48,
+  cx: 440,
+  xs: [320, 440, 560],
+  head: (y: number) => ({ name: { x: 0, y: y - 4, anchor: "start" }, note: { x: 0, y: y + 18, anchor: "start" } as null | { x: number; y: number; anchor: string } }),
+  rule: (y: number) => ({ x1: 0, x2: 720, y }),
+};
+const narrow = {
+  viewBox: "0 0 340 520",
+  pitch: 124,
+  y0: 70,
+  cx: 150,
+  xs: [44, 150, 256],
+  // The row heading is the name alone: a note would sit across the links that pass down to the next row.
+  head: (y: number) => ({ name: { x: 0, y: y - 54, anchor: "start" }, note: null as null | { x: number; y: number; anchor: string } }),
+  rule: (y: number) => ({ x1: 0, x2: 340, y: y - 76 }),
+};
+const layouts = [
+  { mode: "wide" as const, ...wide },
+  { mode: "narrow" as const, ...narrow },
+];
+const title = "The capability layers";
+const desc = "Four layers from top to bottom. The core, a target centre. One repository service. Three adapters: CLI, WASM and MCP. Three clients: VS Code, web and agents. Each adapter feeds one client. Every capability lives once in the core.";
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  {
+    layouts.map((L) => {
+      const y = (i: number) => L.y0 + i * L.pitch;
+      return (
+        <Canvas layout={L.mode} {id} {title} {desc} viewBox={L.viewBox}>
+          {rows.map((row, i) => {
+            const h = L.head(y(i));
+            const r = L.rule(y(i));
+            return (
+              <>
+                {i > 0 && <line class="dg-rule" x1={r.x1} x2={r.x2} y1={L.mode === "narrow" ? r.y : y(i) - 48} y2={L.mode === "narrow" ? r.y : y(i) - 48}></line>}
+                <text class="dg-text dg-text--caps dg-text--strong dg-text--knock" x={h.name.x} y={h.name.y} text-anchor={h.name.anchor}>{row.name}</text>
+                {h.note && <text class="dg-text dg-text--muted dg-text--knock" x={h.note.x} y={h.note.y} text-anchor={h.note.anchor}>{row.note}</text>}
+              </>
+            );
+          })}
+          <Link x1={L.cx} y1={y(0)} x2={L.cx} y2={y(1)} width={2} inset={26} arrow="end" draw />
+          {L.xs.map((x, i) => <Link x1={L.cx} y1={y(1)} x2={x} y2={y(2)} width={2} inset={24} arrow="end" draw delay={0.15 + i * 0.1} />)}
+          {L.xs.map((x, i) => <Link x1={x} y1={y(2)} x2={x} y2={y(3)} width={2} inset={26} arrow="end" draw delay={0.5 + i * 0.1} />)}
+          <Target cx={L.cx} cy={y(0)} r={20} />
+          <RingNode cx={L.cx} cy={y(1)} r={18} tone="structure" inner="ring" />
+          {adapters.map((label, i) => <RingNode cx={L.xs[i]} cy={y(2)} r={14} tone="field" label={label} labelPosition="right" />)}
+          {clients.map((label, i) => <Disc cx={L.xs[i]} cy={y(3)} r={14} tone="record" label={label} labelPosition="right" />)}
+        </Canvas>
+      );
+    })
+  }
+</Figure>

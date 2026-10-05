@@ -1,0 +1,58 @@
+---
+import { round } from "./geometry";
+
+/**
+ * One disc divided by an S-shaped line into two regions, each holding a seed of the
+ * other. The line both divides and joins: it is the same line on either side. This is
+ * the geometry of the SRS mark (srs-web's SrsMark: M1.25 12 a5.375 5.375 0 0 1 10.75 0
+ * a5.375 5.375 0 0 0 10.75 0 in a 24 box) with the two regions filled. The two readers
+ * of one source: people and agents. The geometry descends from the taijitu; the site
+ * never says so, it only draws it.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  r: number;
+  /** Which tone fills the upper region. The lower region takes the other. */
+  upper?: "ink" | "paper";
+  /** The seed in each region: a dot, or a ring-node. */
+  seed?: "dot" | "ring";
+  /** Outline width. Defaults to a tenth of the radius. */
+  edge?: number;
+  class?: string;
+}
+
+const { cx, cy, r, upper = "ink", seed = "dot", edge, class: className } = Astro.props;
+
+const lower = upper === "ink" ? "paper" : "ink";
+const h = r / 2;
+const left = round(cx - r);
+const right = round(cx + r);
+// Upper region: the big upper arc, then back along the S (reversed): bottom-right bump, then top-left bump.
+const regionUpper = `M${left} ${cy}A${r} ${r} 0 0 1 ${right} ${cy}A${h} ${h} 0 0 1 ${cx} ${cy}A${h} ${h} 0 0 0 ${left} ${cy}Z`;
+const w = edge ?? Math.max(0.6, r * 0.1);
+const sr = r * 0.14;
+// The seed of each region sits at the centre of the other's head.
+const seeds = [
+  { x: cx, y: round(cy - h), tone: lower },
+  { x: cx, y: round(cy + h), tone: upper },
+];
+---
+
+<g class:list={["dg-halves", className]}>
+  <circle class={`dg-half--${lower}`} {cx} {cy} {r}></circle>
+  <path class={`dg-half--${upper}`} d={regionUpper}></path>
+  {
+    seeds.map((s) =>
+      seed === "ring" ? (
+        <>
+          <circle class={`dg-seed-ring--${s.tone}`} cx={s.x} cy={s.y} r={sr * 1.5} stroke-width={Math.max(0.5, sr * 0.45)}></circle>
+          <circle class={`dg-seed--${s.tone}`} cx={s.x} cy={s.y} r={sr * 0.55}></circle>
+        </>
+      ) : (
+        <circle class={`dg-seed--${s.tone}`} cx={s.x} cy={s.y} r={sr}></circle>
+      ),
+    )
+  }
+  <circle class="dg-half-edge" {cx} {cy} {r} stroke-width={w}></circle>
+</g>
