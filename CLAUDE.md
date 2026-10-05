@@ -98,7 +98,7 @@ npm run dev         # local server; open /styleguide
 
 Run the first three before every commit, and `npm run check:links` after any change to pages or data. `npm run source:check` (needs the vendored srs binary, which it downloads itself, pinned by sha256) fails if the committed generated output differs from what `source/` produces.
 
-**CI** is `.github/workflows/ci.yml`: one job on every pull request and every push to `main`, on ubuntu-latest with Node 22. It runs `npm ci`, `npm run source:check`, `npm run check`, `npm run typecheck`, `npm run build` and `npm run check:links`, and nothing else. It never deploys (deploys are Workers Builds). A change to the gates goes in both places. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
+**CI** is `.github/workflows/ci.yml`: one job on every pull request and every push to `main`, on ubuntu-latest with the Node version in `.node-version` (also read by Workers Builds, so CI and deploys build on the same Node). It runs `npm ci`, `npm run source:check`, `npm run check`, `npm run typecheck`, `npm run build` and `npm run check:links`, and nothing else. It never deploys (deploys are Workers Builds). A change to the gates goes in both places. `node scripts/check-tokens.mjs --verbose` lists every measured contrast pair.
 
 ## Process
 
