@@ -72,7 +72,7 @@
   --figure-border: var(--color-line);
   --figure-grid-dot: var(--color-line);
   --dg-link: var(--color-relation);
-  --dg-divide: var(--color-line); /* the S line of the SRS mark: a mid grey that mirrors when the mark inverts */
+  --dg-divide: var(--color-record); /* the S line of the SRS mark: a small vermilion accent, lit on dark when the mark inverts */
   --dg-text: var(--color-text);
   --dg-text-muted: var(--color-muted);
   --dg-halo: 18px; /* the ground-coloured halo under every label, in user units: wider than a word space */

@@ -12,7 +12,7 @@ import type { Tone } from "./diagram/tones";
  * Variants:
  *  - line    a disc with the S-wave drawn through it, top to bottom (srs-web turned upright)
  *  - halves  the two regions filled, each with a seed of the other, and the S drawn as a
- *            line over the seam (grey by default, or a diagram tone via `line`)
+ *            line over the seam (a small vermilion accent by default, or a diagram tone via `line`)
  *  - ring    the halves with ring-node seeds, inside a broken ring (the SemanticOps lockup)
  *
  * It follows the theme and the surface it sits on. Decorative by default (aria-hidden):
@@ -20,8 +20,8 @@ import type { Tone } from "./diagram/tones";
  */
 interface Props {
   variant?: "line" | "halves" | "ring";
-  /** The colour of the S line in halves and ring: grey (default), a diagram tone, or none. */
-  line?: "grey" | "none" | Tone;
+  /** The colour of the S line in halves and ring: the accent (default), a diagram tone, or none. */
+  line?: "accent" | "none" | Tone;
   /** Rendered size in px. */
   size?: number;
   /** An accessible name. Omit when the mark sits beside text that says the same. */
@@ -29,7 +29,7 @@ interface Props {
   class?: string;
 }
 
-const { variant = "halves", line = "grey", size = 24, label, class: className } = Astro.props;
+const { variant = "halves", line = "accent", size = 24, label, class: className } = Astro.props;
 ---
 
 <svg
