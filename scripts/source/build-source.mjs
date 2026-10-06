@@ -186,7 +186,8 @@ function build() {
   srs("archive", "pack", "--output", join(stageAgents, BUNDLE_NAME));
   staged.push(`agents/${BUNDLE_NAME}`);
   put(stageTry, `${SAMPLE_NAME}.md`, sampleRender("markdown").rendered);
-  put(stageTry, `${SAMPLE_NAME}.json`, json(sampleRender("json").projection));
+  // generatedAt is volatile, so it is dropped for a stable output
+  put(stageTry, `${SAMPLE_NAME}.json`, json((({ generatedAt, ...p }) => p)(sampleRender("json").projection)));
   srsAt(SAMPLE, "archive", "pack", "--output", join(stageTry, `${SAMPLE_NAME}.srs`));
   staged.push(`try/${SAMPLE_NAME}.srs`);
 
