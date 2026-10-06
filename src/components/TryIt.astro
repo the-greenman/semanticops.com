@@ -75,6 +75,12 @@ const { options, class: className } = Astro.props;
       margin-top: auto;
     }
 
+    /* A command wraps rather than scrolls: a card is narrow. */
+    .tryit :global(pre) {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
     .tryit__option > :global(.codesample) {
       margin-top: auto;
       min-width: 0;
