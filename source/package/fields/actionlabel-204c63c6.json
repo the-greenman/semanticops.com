@@ -1,0 +1,15 @@
+{
+  "id": "204c63c6-40b2-4330-8e8c-7f4c2a076b25",
+  "namespace": "com.semanticops.site",
+  "name": "action_label",
+  "version": 1,
+  "description": "The words on the button that starts a way of trying SRS.",
+  "aiGuidance": {
+    "purpose": "A short verb phrase in sentence case, such as Open the sample. Plain words. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T10:23:21.049565844+00:00"
+}

@@ -7,7 +7,6 @@ import ProjectCard from "../ProjectCard.astro";
 import Prose from "../Prose.astro";
 import Quote from "../Quote.astro";
 import SectionHeader from "../SectionHeader.astro";
-import TryIt from "../TryIt.astro";
 import { displayUrl, findConcept, linkTo, pageOf, type Entry, type Relation } from "../../lib/content";
 import { markdown, markdownInline } from "../../lib/markdown";
 import { lookFor, visuals, type Look } from "../../lib/presentation";
@@ -44,9 +43,8 @@ const linked = (relations: Relation[] = []) =>
 
 // Markdown fields, rendered once, here.
 const ledeHtml = entry.type === "section" ? await markdownInline(entry.fields.lede) : "";
-const options = entry.type === "section" && look.body_as === "options" && !!entry.fields.body;
 const bodyHtml =
-  entry.type === "section" ? (entry.fields.body && look.body !== false && !options ? await markdown(entry.fields.body) : "") : entry.type === "concept" ? await markdown(entry.fields.body) : "";
+  entry.type === "section" ? (entry.fields.body && look.body !== false ? await markdown(entry.fields.body) : "") : entry.type === "concept" ? await markdown(entry.fields.body) : "";
 const patternHtml =
   entry.type === "pattern"
     ? { pattern: await markdown(entry.fields.pattern), symptoms: await markdown(entry.fields.symptoms), mechanism: await markdown(entry.fields.mechanism), case: entry.fields.case ? await markdown(entry.fields.case) : "" }
@@ -87,7 +85,6 @@ const cards = (look.cards ?? []).flatMap((slug) => findConcept(slug) ?? []);
           <Fragment set:html={ledeHtml} />
         </SectionHeader>
       )}
-      {options && entry.type === "section" && <TryIt body={entry.fields.body ?? ""} />}
       {cards.length > 0 && (
         <div class="grid grid--lg grid--gap-md">
           {cards.map((c) => (

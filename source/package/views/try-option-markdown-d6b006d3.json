@@ -1,0 +1,50 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "d6b006d3-2c70-4cbe-80f8-67c98a6ac69c",
+  "namespace": "com.semanticops.site",
+  "name": "try-option-markdown",
+  "version": 1,
+  "description": "Renders a try-option record: the title as the heading, then its sentence, link and command.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "20a91bc4-e0bf-406d-9f53-9f311ecced27",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "02393584-a3b3-4a17-bac6-ff6e215a5e04",
+      "order": 3,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "1cd22ece-6ab3-4329-9dd7-53dca85f942f",
+      "order": 4,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "204c63c6-40b2-4330-8e8c-7f4c2a076b25",
+      "order": 5,
+      "visible": false
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/try-option"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-06T10:23:35.318161227+00:00",
+  "aiGuidance": {
+    "purpose": "Controls how a try-option reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

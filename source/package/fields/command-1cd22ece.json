@@ -1,0 +1,15 @@
+{
+  "id": "1cd22ece-6ab3-4329-9dd7-53dca85f942f",
+  "namespace": "com.semanticops.site",
+  "name": "command",
+  "version": 1,
+  "description": "Shell text shown as a code block for a way of starting.",
+  "aiGuidance": {
+    "purpose": "One to four shell lines, each runnable as written, with no prompt characters and no comments that contain an em dash. Leave it out when the option is a link."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T10:23:21.237110767+00:00"
+}

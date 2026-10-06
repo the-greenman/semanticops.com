@@ -44,7 +44,9 @@ export type PrincipleRecord = Base<
 
 export type PatternRecord = Base<"pattern", { slug: string; title: string; pattern: string; symptoms: string; mechanism: string; case?: string }>;
 
-export type Entry = SectionRecord | ConceptRecord | ProjectRecord | PrincipleRecord | PatternRecord;
+export type TryOptionRecord = Base<"try-option", { slug: string; title: string; line: string; action_label: string; action_url?: string; command?: string }>;
+
+export type Entry = SectionRecord | ConceptRecord | ProjectRecord | PrincipleRecord | PatternRecord | TryOptionRecord;
 export type EntryType = Entry["type"];
 
 interface PageFile {

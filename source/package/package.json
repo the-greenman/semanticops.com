@@ -33,7 +33,11 @@
     "fields/mechanism-9413a3b2.json",
     "fields/case-8ab3668f.json",
     "fields/target-d46c2425.json",
-    "fields/why-69aa1f00.json"
+    "fields/why-69aa1f00.json",
+    "fields/line-20a91bc4.json",
+    "fields/actionlabel-204c63c6.json",
+    "fields/actionurl-02393584.json",
+    "fields/command-1cd22ece.json"
   ],
   "types": [
     "types/page-f0a4a712.json",
@@ -42,7 +46,8 @@
     "types/project-10d77c50.json",
     "types/principle-a21a7a0c.json",
     "types/pattern-9b5f45da.json",
-    "types/route-step-edf627e9.json"
+    "types/route-step-edf627e9.json",
+    "types/try-option-cfd7a91d.json"
   ],
   "relationTypes": [],
   "views": [
@@ -52,7 +57,8 @@
     "views/project-markdown-ab01ce1d.json",
     "views/principle-markdown-d597c61a.json",
     "views/pattern-markdown-ff02db55.json",
-    "views/route-step-markdown-ad4ed43a.json"
+    "views/route-step-markdown-ad4ed43a.json",
+    "views/try-option-markdown-d6b006d3.json"
   ],
   "compositions": [
     "compositions/home-page-21c83e15.json",

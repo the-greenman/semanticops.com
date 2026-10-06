@@ -9,9 +9,9 @@
     "slug": "try-it",
     "eyebrow": "Try it",
     "lede": "Three ways in, from no install to writes that the tools enforce.",
-    "body": "1. **Open it in your browser.** [Open the sample in the browser editor](https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs). No install, no account. Or download [meeting.srs](/try/meeting.srs), open [app.mudemocracy.org](https://app.mudemocracy.org) and choose \"From this device\".\n2. **Run the CLI.** Download the `srs` release for Linux x86_64 from [srs-rust](https://github.com/the-greenman/srs-rust/releases). Run `srs archive unpack meeting.srs --target meeting`, then `srs repo validate`, `srs repo map` and `srs find` against the folder.\n3. **Point your agent at it.** Give it [/llms.txt](/llms.txt) to read, or add `srs mcp serve --repo <folder>` to an MCP client configuration so writes go through the tools.\n\nThe people view of the sample is [meeting.md](/try/meeting.md)."
+    "body": "The people view of the sample is [meeting.md](/try/meeting.md)."
   },
   "createdAt": "2026-10-06T09:33:00.979846221+00:00",
-  "updatedAt": "2026-10-06T09:33:00.979854351+00:00",
+  "updatedAt": "2026-10-06T10:23:58.046507727+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

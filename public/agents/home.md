@@ -191,11 +191,31 @@ The same facts reach two readers. Each surface can be designed for its reader be
 
 Three ways in, from no install to writes that the tools enforce.
 
-1. **Open it in your browser.** [Open the sample in the browser editor](https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs). No install, no account. Or download [meeting.srs](/try/meeting.srs), open [app.mudemocracy.org](https://app.mudemocracy.org) and choose "From this device".
-2. **Run the CLI.** Download the `srs` release for Linux x86_64 from [srs-rust](https://github.com/the-greenman/srs-rust/releases). Run `srs archive unpack meeting.srs --target meeting`, then `srs repo validate`, `srs repo map` and `srs find` against the folder.
-3. **Point your agent at it.** Give it [/llms.txt](/llms.txt) to read, or add `srs mcp serve --repo <folder>` to an MCP client configuration so writes go through the tools.
-
 The people view of the sample is [meeting.md](/try/meeting.md).
+
+
+### Open it in your browser
+
+No install and no account: the sample opens in the browser editor.
+
+https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs
+
+
+### Run the CLI
+
+Download the srs release for Linux x86_64, unpack the sample, then check it and look around.
+
+srs archive unpack meeting.srs --target meeting
+srs repo validate --repo meeting
+srs repo map --repo meeting
+srs find --repo meeting --text standup
+
+
+### Point your agent at it
+
+Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.
+
+srs mcp serve --repo meeting
 
 
 ### Read it, run it, argue with it

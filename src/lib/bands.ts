@@ -18,12 +18,12 @@ export interface Band {
 }
 
 export interface Run {
-  form: "project" | "principle" | "pair" | "headline";
+  form: "project" | "principle" | "pair" | "headline" | "option";
   items: { entry: Entry; look: Look }[];
 }
 
 const formOf = (entry: Entry, look: Look): Run["form"] =>
-  entry.type === "project" ? "project" : look.as === "pair" ? "pair" : look.as === "headline" ? "headline" : "principle";
+  entry.type === "project" ? "project" : entry.type === "try-option" ? "option" : look.as === "pair" ? "pair" : look.as === "headline" ? "headline" : "principle";
 
 type Ground = "paper" | "page";
 const turn = (g: Ground): Ground => (g === "paper" ? "page" : "paper");

@@ -1,0 +1,15 @@
+{
+  "id": "20a91bc4-e0bf-406d-9f53-9f311ecced27",
+  "namespace": "com.semanticops.site",
+  "name": "line",
+  "version": 1,
+  "description": "One sentence that says what a way of starting involves.",
+  "aiGuidance": {
+    "purpose": "One plain sentence, concrete, naming what the reader does or gets. No marketing words, no counts, no build or issue numbers. Never use an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T10:23:20.973462772+00:00"
+}

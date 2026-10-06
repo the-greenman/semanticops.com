@@ -135,9 +135,11 @@ const demoEntries: Entry[] = [
 ];
 const demoBands = toBands(demoEntries, "styleguide");
 
-const tryItBody = `1. **Open it in your browser.** [Open the sample in the browser editor](https://app.mudemocracy.org/). No install, no account.
-2. **Run the CLI.** Run \`srs repo validate\`, then \`srs repo map\` and \`srs find\` against the unpacked folder.
-3. **Point your agent at it.** Give it [/llms.txt](/llms.txt) to read, or add \`srs mcp serve --repo <folder>\` to an MCP client configuration for writes the tools enforce.`;
+const tryOptions = [
+  { title: "Open it in your browser", line: "No install and no account: the sample opens in the browser editor.", label: "Open the sample", url: "https://app.mudemocracy.org/" },
+  { title: "Run the CLI", line: "Unpack the sample, then check it and look around.", label: "Run the CLI", command: "srs repo validate --repo meeting\nsrs repo map --repo meeting" },
+  { title: "Point your agent at it", line: "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.", label: "Start the MCP server", command: "srs mcp serve --repo meeting" },
+];
 const patternSample = {
   pattern: await markdown("A folder of markdown notes that people and agents both edit. Every rule about it is a convention."),
   symptoms: await markdown("- A rename leaves links pointing at nothing.\n- Some notes are linked from nowhere.\n- Nobody can say which note is current."),
@@ -498,9 +500,9 @@ const relationJson = `{
   <!-- TRY IT -->
   <Section id="tryit" variant="ink">
     <SectionHeader eyebrow="Components" title="TryIt">
-      The ways to start, ranked by friction, on an ink band. It lays out a section body written as markdown: an ordered list whose items open with a bold title. The first link of the first option becomes its button; the rest of each item is its text, with code as written.
+      The ways to start, ranked by friction, on an ink band. Each option is a record: a title, one sentence, and either a button link (action_url) or a code block (command). Pass them in rank order.
     </SectionHeader>
-    <TryIt body={tryItBody} />
+    <TryIt options={tryOptions} />
   </Section>
 
   <!-- PAGE ASSEMBLY -->

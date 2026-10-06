@@ -4,7 +4,7 @@
 
 Repository ID: `0dbab76e-7f8e-4276-8791-c00a8627965d`
 
-Contents: 83 instances (83 records, 0 notes)
+Contents: 86 instances (86 records, 0 notes)
 
 ## Types
 
@@ -15,6 +15,7 @@ Contents: 83 instances (83 records, 0 notes)
 - `com.semanticops.site/principle` v1 (6 fields) — A principle or design preference of SRS, stated as a claim with its mechanism.
 - `com.semanticops.site/pattern` v1 (6 fields) — A recurring situation where records do better than prose, with the mechanism and a small invented case.
 - `com.semanticops.site/route-step` v1 (4 fields) — One step of an agent reading route, or one entry of the agent data list.
+- `com.semanticops.site/try-option` v1 (6 fields) — One way to start with SRS, ranked by friction: a title, one sentence, and either a button link or a command to run.
 - `com.semanticops.core/purpose` v1 (2 fields) — A Tier-2 typed record capturing the purpose or mission of a repository. Always available in every conforming SRS repository via the implicit core base package (RFC-018). identityInstanceId on the root container MUST reference a record of this type.
 
 ## Sections

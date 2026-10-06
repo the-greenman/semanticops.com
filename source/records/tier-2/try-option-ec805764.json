@@ -1,0 +1,21 @@
+{
+  "instanceId": "ec805764-44f8-4286-95cf-006559535bd4",
+  "typeId": "cfd7a91d-b1ff-4d7e-9b07-80509c961edb",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "try-option",
+  "fieldValues": {
+    "title": "Run the CLI",
+    "slug": "try-cli",
+    "line": "Download the srs release for Linux x86_64, unpack the sample, then check it and look around.",
+    "action_label": "Run the CLI",
+    "command": "srs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting\nsrs find --repo meeting --text standup"
+  },
+  "createdAt": "2026-10-06T10:23:42.677583267+00:00",
+  "updatedAt": "2026-10-06T10:23:50.490708819+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

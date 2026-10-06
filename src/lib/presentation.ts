@@ -54,8 +54,6 @@ export interface Look {
   ledeAs?: "quote";
   /** Do not repeat the section body: the cards below carry it. */
   body?: false;
-  /** How a section's body is laid out, when it is not plain prose: `options` is the ranked ways to start (TryIt). */
-  body_as?: "options";
   /** A section shown as cards of these concepts (by slug), linked to where they are explained. */
   cards?: string[];
   /** A principle: `headline` (a large quotation) or `pair` (two poles joined by a seam). Unset: a numbered item. */
@@ -76,7 +74,7 @@ const looks: Record<string, Look> = {
   "model-glance": { cards: ["field", "type", "record", "relation", "container", "package"], body: false },
   "one-core": { visual: "CapabilityStack" },
   "agents-as-data": { band: "ink", visual: "TwoSurfaces" },
-  "try-it": { band: "ink", body_as: "options" },
+  "try-it": { band: "ink" },
 
   // ---- patterns: one diagram each. The page and its intro take the defaults of their types.
   "markdown-decays": { visual: "RenameDrift" },
@@ -130,5 +128,5 @@ export const lookTable = () =>
     band: l.band ?? "",
     visual: l.visual ?? "",
     glyph: l.glyph ?? "",
-    form: l.hero ? "hero" : (l.as ?? (l.ledeAs ? "lede as quote" : l.cards ? "cards" : l.body_as ?? "")),
+    form: l.hero ? "hero" : (l.as ?? (l.ledeAs ? "lede as quote" : l.cards ? "cards" : "")),
   }));

@@ -1,84 +1,43 @@
 ---
 import Button from "./Button.astro";
-import Prose from "./Prose.astro";
-import { markdown } from "../lib/markdown";
+import CodeSample from "./CodeSample.astro";
 
 /**
- * The ways to start, ranked by friction, as cards side by side. It lays out the markdown of a
- * section's body: an ordered list whose items open with a bold title ("1. **Open it.** text").
- * The title is the card's heading, the rest is its text (links and code as written), and the
- * first link of the first option, the lowest-friction one, is also set as its button. Text
- * before the list is an introduction. Nothing is written here: change the record, not the
- * component. With no such list it falls back to plain prose.
+ * The ways to start, ranked by friction, as cards side by side. Each option has a title and
+ * one sentence, and an action: a button link when it has a url, a code block when it has a
+ * command. Pass the options in rank order; the records' container order is the rank.
  */
 interface Props {
-  /** The section body, as markdown. */
-  body: string;
+  options: { title: string; line: string; label: string; url?: string; command?: string }[];
   class?: string;
 }
 
-const { body, class: className } = Astro.props;
-
-const item = /^\d+\.[ \t]+\*\*(.+?)\*\*[ \t]*([\s\S]*)$/;
-const lines = body.split("\n");
-const first = lines.findIndex((l) => item.test(l));
-const intro = (first < 0 ? body : lines.slice(0, first).join("\n")).trim();
-const chunks: string[] = [];
-if (first >= 0) for (const l of lines.slice(first)) (item.test(l) ? chunks.push(l) : chunks.length && (chunks[chunks.length - 1] += "\n" + l));
-const options = await Promise.all(
-  chunks.map(async (c, i) => {
-    const m = c.match(item)!;
-    const link = i === 0 ? m[2].match(/\[([^\]]+)\]\(([^)\s]+)\)/) : null;
-    // The button replaces its own link in the text, so the same words are not said twice.
-    const text = link ? m[2].replace(link[0], "").replace(/^[ \t]*[.,;:]\s*/, "").trim() : m[2].trim();
-    return { title: m[1].replace(/[.:]$/, ""), html: text ? await markdown(text) : "", action: link ? { label: link[1], href: link[2] } : undefined };
-  }),
-);
-const introHtml = intro ? await markdown(intro) : "";
+const { options, class: className } = Astro.props;
 ---
 
-{
-  options.length === 0 ? (
-    <Prose class={className}>
-      <Fragment set:html={introHtml} />
-    </Prose>
-  ) : (
-    <div class:list={["tryit", className]}>
-      {introHtml && (
-        <Prose>
-          <Fragment set:html={introHtml} />
-        </Prose>
-      )}
-      <ol class="tryit__list">
-        {options.map((o, i) => (
-          <li class="tryit__option">
-            <span class="tryit__rank t-label">{String(i + 1).padStart(2, "0")}</span>
-            <h3 class="tryit__title">{o.title}</h3>
-            {o.html && (
-              <Prose class="tryit__line">
-                <Fragment set:html={o.html} />
-              </Prose>
-            )}
-            {o.action && (
-              <div class="tryit__actions">
-                <Button href={o.action.href}>{o.action.label}</Button>
-              </div>
-            )}
-          </li>
-        ))}
-      </ol>
-    </div>
-  )
-}
+<ol class:list={["tryit", className]}>
+  {
+    options.map((o, i) => (
+      <li class="tryit__option">
+        <span class="tryit__rank t-label">{String(i + 1).padStart(2, "0")}</span>
+        <h3 class="tryit__title">{o.title}</h3>
+        <p class="tryit__line">{o.line}</p>
+        {o.command && <CodeSample code={o.command} lang="bash" filename={o.label} />}
+        {o.url && (
+          <div class="tryit__actions">
+            <Button href={o.url} variant={i === 0 ? "primary" : "secondary"}>
+              {o.label}
+            </Button>
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ol>
 
 <style>
   @layer components {
     .tryit {
-      display: grid;
-      gap: var(--space-md);
-    }
-
-    .tryit__list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
       gap: var(--space-md);
@@ -90,7 +49,7 @@ const introHtml = intro ? await markdown(intro) : "";
     .tryit__option {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       gap: var(--space-sm);
       min-width: 0;
       padding: var(--space-md) var(--space-sm) var(--space-sm);
@@ -105,8 +64,8 @@ const introHtml = intro ? await markdown(intro) : "";
     }
 
     .tryit__line {
+      margin: 0;
       color: var(--color-muted-strong);
-      font-size: var(--size-base);
     }
 
     .tryit__actions {
@@ -114,6 +73,11 @@ const introHtml = intro ? await markdown(intro) : "";
       flex-wrap: wrap;
       gap: var(--space-xs);
       margin-top: auto;
+    }
+
+    .tryit__option > :global(.codesample) {
+      margin-top: auto;
+      min-width: 0;
     }
   }
 </style>

@@ -7,7 +7,7 @@ SRS is pronounced "source", and this is the pun in practice: these records are t
 ## What is in it
 
 - Namespace `com.semanticops.site`. Root container (the repository identity and navigation): the purpose record, then the six pages in navigation order (home, model, patterns, architecture, principles, projects).
-- Seven Types in `package/types/`: `page`, `section`, `concept`, `project`, `principle`, `pattern` (a generic situation, its symptoms, the SRS mechanism and a small invented case) and `route-step` (one line of `llms.txt`). Every Field in `package/fields/` carries `aiGuidance`: read it before writing a record, it holds the copy rules.
+- Eight Types in `package/types/`: `page`, `section`, `concept`, `project`, `principle`, `pattern` (a generic situation, its symptoms, the SRS mechanism and a small invented case), `try-option` (one ranked way to start, a button link or a command) and `route-step` (one line of `llms.txt`). Every Field in `package/fields/` carries `aiGuidance`: read it before writing a record, it holds the copy rules.
 - One Container per page (`home`, `model`, `patterns`, `architecture`, `principles`, `projects`), anchored on that page's `page` record. A container's ordered outline is the page order. A record can sit in several containers (the four projects appear on home and on the projects page).
 - One Composition per page in `package/compositions/`, declared as a presentation in `manifest.json` with a repository-relative output path (`projections/<page>.md`; nothing is written there, the pipeline places the output in `public/agents/`, so the repository packs into a self-contained `.srs`). One View per Type in `package/views/` controls how a record reads as markdown.
 - Two more Containers, `start-here` and `data`, hold `route-step` records and no page. Their order is the order of the `## Start here` and `## Data` sections of `llms.txt`, so nothing factual is left in the script.
@@ -33,7 +33,7 @@ node scripts/source/ensure-srs-cli.mjs                 # fetch the pinned binary
 S=.bin/srs; R=source
 
 $S repo map --repo $R --pretty                         # orient
-$S type list --repo $R --pretty                        # the seven Types
+$S type list --repo $R --pretty                        # the eight Types
 $S container list --repo $R --pretty                   # the page containers, by title
 $S record list --repo $R --type com.semanticops.site/concept --pretty
 $S type schema --repo $R <typeId> --pretty             # field keys and aiGuidance before writing

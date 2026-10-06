@@ -1,0 +1,45 @@
+{
+  "id": "cfd7a91d-b1ff-4d7e-9b07-80509c961edb",
+  "namespace": "com.semanticops.site",
+  "name": "try-option",
+  "version": 1,
+  "description": "One way to start with SRS, ranked by friction: a title, one sentence, and either a button link or a command to run.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "20a91bc4-e0bf-406d-9f53-9f311ecced27",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "204c63c6-40b2-4330-8e8c-7f4c2a076b25",
+      "order": 4,
+      "required": true
+    },
+    {
+      "fieldId": "02393584-a3b3-4a17-bac6-ff6e215a5e04",
+      "order": 5,
+      "required": false
+    },
+    {
+      "fieldId": "1cd22ece-6ab3-4329-9dd7-53dca85f942f",
+      "order": 6,
+      "required": false
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for one way a reader can try SRS. The records of the Try it section are read in container order, which is the rank: lowest friction first. Give each either an action_url (a button) or a command (a code block), and always a line and an action_label."
+  },
+  "createdAt": "2026-10-06T10:23:27.371639478+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}
