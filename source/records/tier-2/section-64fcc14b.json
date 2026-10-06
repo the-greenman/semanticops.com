@@ -9,9 +9,9 @@
     "slug": "model-intro",
     "eyebrow": "The model",
     "lede": "SRS does all its work with a few constructs. Each is a definition you can read, a file you can inspect and a rule a tool can check.",
-    "body": "Meaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order. Each example is trimmed from the specification, which is itself an SRS repository."
+    "body": "The worked example on the home page is a real repository, and every example below is trimmed from it. A meeting note graduates into a decision, two tasks depend on the decision, and a container puts them in reading order. The specification uses the same mechanisms: it is itself an SRS repository.\n\nMeaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order."
   },
   "createdAt": "2026-10-05T19:18:40.178393306+00:00",
-  "updatedAt": "2026-10-05T19:18:40.178400377+00:00",
+  "updatedAt": "2026-10-06T09:33:31.588193595+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

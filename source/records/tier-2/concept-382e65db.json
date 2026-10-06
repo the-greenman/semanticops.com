@@ -9,10 +9,10 @@
     "slug": "relation",
     "summary": "A typed, binary edge between two instances.",
     "body": "A Relation is first-class: its own file, its own identity, exactly two endpoints. It reads source, type, target, so `A refines B` is stored once, in that direction, and the inverse is derived and never stored. A Relation is a semantic claim about knowledge, not ownership and not control flow, and it never changes the records it joins.\n\nSeven canonical types ship in the core package: `contains`, `depends-on`, `precedes`, `supersedes`, `refines`, `derived-from` and `evidences`. A custom type is written `namespace/name` and needs its own installed definition. `precedes` means semantic order only, where a different order would be wrong.",
-    "example": "{\n  \"relationId\": \"0b02f66a-323c-4cda-be78-366f141c3043\",\n  \"relationType\": \"refines\",\n  \"sourceInstanceId\": \"0750c62f-b419-496d-b64c-ab7c8c4f5404\",\n  \"targetInstanceId\": \"9ee14517-9c12-4d06-b7bb-c5d59684d7f5\"\n}",
+    "example": "{\n  \"relationId\": \"6e23c144-b61c-44de-8964-2a1d8139781e\",\n  \"relationType\": \"depends-on\",\n  \"sourceInstanceId\": \"dda4f664-601c-44cb-8c08-c5cd32f5194f\",\n  \"targetInstanceId\": \"6e37d4fb-440e-4962-8af6-49cddaf63de7\"\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/relation.json"
   },
   "createdAt": "2026-10-05T19:18:41.029643383+00:00",
-  "updatedAt": "2026-10-05T19:18:41.029646572+00:00",
+  "updatedAt": "2026-10-06T09:33:29.619394154+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

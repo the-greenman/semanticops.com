@@ -56,8 +56,8 @@
         "slug": "capability-layering",
         "title": "Capability layering",
         "summary": "Implemented once, consumed identically.",
-        "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.",
-        "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"payload\": {\n    \"diagnostics\": []\n  }\n}",
+        "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.\n\nEvery adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok` and the diagnostics, not the exit code.",
+        "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"payload\": {\n    \"diagnostics\": [],\n    \"summary\": {\n      \"checked\": 5,\n      \"errors\": 0,\n      \"warnings\": 0\n    }\n  }\n}\n\n{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"diagnostics\": [\n    \"[records/tier-2/decision-6e37d4fb.json] missing required field key: title\"\n  ]\n}",
         "spec_link": "https://github.com/the-greenman/srs-rust"
       },
       "relations": [

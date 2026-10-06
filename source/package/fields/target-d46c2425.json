@@ -1,0 +1,15 @@
+{
+  "id": "d46c2425-9c73-4444-a86e-499acd146df4",
+  "namespace": "com.semanticops.site",
+  "name": "target",
+  "version": 1,
+  "description": "Where a route step leads.",
+  "aiGuidance": {
+    "purpose": "An absolute URL or a site-relative path beginning with a slash, such as /agents/model.md. It must resolve on the built site."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T09:32:30.902706405+00:00"
+}

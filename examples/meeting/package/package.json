@@ -1,0 +1,30 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/package-manifest.json",
+  "id": "f62ac372-70c9-4d2a-9b59-f0e0d3d8c9d9",
+  "namespace": "com.example.meeting",
+  "name": "primary",
+  "version": "1.0.0",
+  "title": "primary",
+  "description": "",
+  "status": "active",
+  "createdAt": "2026-01-01T00:00:00Z",
+  "fields": [
+    "fields/title-db25089d.json",
+    "fields/statement-1d1f36c1.json",
+    "fields/reasons-466f519d.json",
+    "fields/owner-0ebea21d.json"
+  ],
+  "types": [
+    "types/decision-ec2e7ef3.json",
+    "types/task-2cd8f150.json"
+  ],
+  "relationTypes": [],
+  "views": [
+    "views/decision-markdown-ddcbc1de.json",
+    "views/task-markdown-0f162ff2.json"
+  ],
+  "compositions": [
+    "compositions/decision-document-120b0d67.json"
+  ],
+  "blueprints": []
+}

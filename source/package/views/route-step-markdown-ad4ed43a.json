@@ -1,0 +1,40 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "ad4ed43a-e7c3-4836-bae7-26b564ad72b9",
+  "namespace": "com.semanticops.site",
+  "name": "route-step-markdown",
+  "version": 1,
+  "description": "Renders a route-step record: identity as the heading, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "d46c2425-9c73-4444-a86e-499acd146df4",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "69aa1f00-7a76-4adf-907e-686f99dc1311",
+      "order": 3,
+      "labelMode": "none"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/route-step"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-06T09:32:31.216530041+00:00",
+  "aiGuidance": {
+    "purpose": "Controls how a route-step reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

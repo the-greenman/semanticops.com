@@ -1,0 +1,16 @@
+{
+  "instanceId": "257a01a6-cdbe-453c-a66b-ba8b31afa6cb",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Page JSON",
+    "slug": "data-page-json",
+    "target": "/agents/home.json",
+    "why": "Each /agents/<page>.json is a rendered projection: ordered flat records with field values and depends-on links, without type and field definitions, aiGuidance, containers and depth, compositions, the manifest, relation ids or $schema. For the full repository, unpack /agents/semanticops.srs."
+  },
+  "createdAt": "2026-10-06T09:33:01.465785418+00:00",
+  "updatedAt": "2026-10-06T09:33:01.465788428+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

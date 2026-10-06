@@ -14,6 +14,9 @@
         "instanceId": "f902a0ee-d308-4711-8b4b-1a722dfeadca"
       },
       {
+        "instanceId": "c95aa0c9-4aa9-415a-94d0-767f17389de2"
+      },
+      {
         "instanceId": "582af71a-eed6-4a38-a1a0-1a9f048c9710"
       },
       {
@@ -60,6 +63,11 @@
       "compositionId": "45a948b8-222d-4910-8292-db0c8e0ed8c9",
       "format": "markdown",
       "outputPath": "projections/projects.md"
+    },
+    {
+      "compositionId": "0d115d67-c4c6-4a8f-99f9-0e826190bdd5",
+      "format": "markdown",
+      "outputPath": "projections/patterns.md"
     }
   ],
   "repositoryId": "0dbab76e-7f8e-4276-8791-c00a8627965d",

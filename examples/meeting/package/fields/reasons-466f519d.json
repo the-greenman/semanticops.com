@@ -1,0 +1,15 @@
+{
+  "id": "466f519d-c7d5-4d2d-90db-623346322ca4",
+  "namespace": "com.example.meeting",
+  "name": "reasons",
+  "version": 1,
+  "description": "Why it was decided.",
+  "aiGuidance": {
+    "purpose": "The reasons behind the decision, in plain sentences."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:29:48.258089441+00:00"
+}

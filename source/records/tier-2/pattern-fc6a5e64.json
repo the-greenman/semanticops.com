@@ -1,0 +1,18 @@
+{
+  "instanceId": "fc6a5e64-4e95-43cf-a694-6888b4183015",
+  "typeId": "9b5f45da-3fd8-432f-9b75-2bba9166db19",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "pattern",
+  "fieldValues": {
+    "title": "Claims that cite their sources",
+    "slug": "claims-with-sources",
+    "pattern": "A team wants its knowledge to be usable: each claim should say where it came from, and a disagreement should be visible instead of buried. They also want AI to help write it without inventing things.",
+    "symptoms": "- A claim in prose has no address, so a source cannot be checked against the sentence it supports.\n- A counter-claim sits in another document, or in someone's memory.\n- Systems that build chunking, embeddings and retrieval into the knowledge schema weld meaning to infrastructure: change the retrieval and the knowledge model moves with it.",
+    "mechanism": "- **A claim is a record.** It is linked to its evidence with `evidences`.\n- **Evidence is a record** that names a source and a quotation from it.\n- **A counter-claim** is another claim with its own source, linked to the first.\n- **Guidance steers AI writing.** Each Field carries `aiGuidance` that says how it is to be written.\n- **Retrieval stays outside.** SRS keeps the semantics in the core and leaves retrieval to a companion layer. `find` is lexical.",
+    "case": "The claim \"Remote standups reduce meeting load\" is evidenced by quotation Q1 of source S1, a survey. A counter-claim, \"Standups shift load to chat\", has its own source S2. A guide page renders the claim, its evidence and the counter-claim together."
+  },
+  "createdAt": "2026-10-06T09:33:00.730454462+00:00",
+  "updatedAt": "2026-10-06T09:33:00.730458915+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

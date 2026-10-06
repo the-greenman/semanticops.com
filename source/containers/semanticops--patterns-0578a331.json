@@ -1,0 +1,28 @@
+{
+  "containerId": "0578a331-04aa-43e7-a356-20b284ba7935",
+  "title": "SemanticOps: patterns",
+  "namespace": "com.semanticops.site",
+  "name": "patterns",
+  "description": "Four ordinary situations where meaning gets lost in prose, and what SRS does about each.",
+  "anchorInstanceId": "c95aa0c9-4aa9-415a-94d0-767f17389de2",
+  "memberInstanceIds": [
+    {
+      "instanceId": "c95aa0c9-4aa9-415a-94d0-767f17389de2"
+    },
+    {
+      "instanceId": "456b1371-ed44-4b3b-ab23-3545250129c7"
+    },
+    {
+      "instanceId": "6ac32e15-0fb5-4897-a9d9-8744f36632d4"
+    },
+    {
+      "instanceId": "fc6a5e64-4e95-43cf-a694-6888b4183015"
+    },
+    {
+      "instanceId": "ee6f532c-7fcf-4775-9f33-bf8c0ecf6917"
+    },
+    {
+      "instanceId": "7042de97-eb2c-4d0c-8f38-bf58972f1bcb"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "instanceId": "6ac32e15-0fb5-4897-a9d9-8744f36632d4",
+  "typeId": "9b5f45da-3fd8-432f-9b75-2bba9166db19",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "pattern",
+  "fieldValues": {
+    "title": "A markdown knowledge base decays",
+    "slug": "markdown-decays",
+    "pattern": "A team keeps its knowledge as markdown notes that people and agents both edit. It is kept in order with real discipline: an index note, aliases, a rename protocol, written load instructions for agents and a validator script.",
+    "symptoms": "Every one of those rules is prose or convention. Nothing refuses a bad state, so bad states get in.\n\n- A rename leaves links pointing at nothing, including inside the navigation notes themselves.\n- A share of notes become orphans that nothing links to.\n- Frontmatter keys and `status` words drift between hand-written notes.\n- The index note falls behind the folder.\n- Nobody can say which note is current.",
+    "mechanism": "- **Immutable ids and a title field.** A rename touches one field. Every edge still targets the id.\n- **Typed fields.** A record with a missing or wrong key is rejected.\n- **Typed relations.** An edge is validated: its target must exist and its type must be installed.\n- **Supersession.** \"Current\" is a query over `supersedes` relations, not a guess.\n- **A generated agent index** replaces hand-kept load instructions.",
+    "case": "Rename \"Decision architecture\" to \"Decision practice\". In markdown, nine links keep the old name. In SRS, one field changes and `srs repo validate` stays clean. Delete a target and validation fails, instead of the page rendering an empty link."
+  },
+  "createdAt": "2026-10-06T09:33:00.668500952+00:00",
+  "updatedAt": "2026-10-06T09:33:00.668509756+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

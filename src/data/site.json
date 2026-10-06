@@ -13,6 +13,11 @@
       "summary": "The SRS model in order: Field, Type, Package, Note, Record, Relation, Container, repository, validation, rendering and identity, each with a real example."
     },
     {
+      "page": "patterns",
+      "title": "Patterns",
+      "summary": "Four ordinary situations where meaning gets lost in prose, and what SRS does about each, mechanism by mechanism."
+    },
+    {
       "page": "architecture",
       "title": "Architecture",
       "summary": "How SRS is layered: a standard independent of any implementation, one core consumed identically by every client, and tool-enforced contracts for agents."

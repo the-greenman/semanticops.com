@@ -1,0 +1,21 @@
+{
+  "containerId": "10052248-c64b-4bf4-9787-229c6cdd828b",
+  "title": "SemanticOps: data",
+  "namespace": "com.semanticops.site",
+  "name": "data",
+  "description": "The data files an agent can fetch, in order.",
+  "memberInstanceIds": [
+    {
+      "instanceId": "707e95c4-f2b5-406a-b52d-7f8abeff79b8"
+    },
+    {
+      "instanceId": "d3474b7b-1a0f-49bb-8130-9cdacef5467c"
+    },
+    {
+      "instanceId": "257a01a6-cdbe-453c-a66b-ba8b31afa6cb"
+    },
+    {
+      "instanceId": "0bebec17-6d2f-4a8c-a021-3f85b12bc616"
+    }
+  ]
+}

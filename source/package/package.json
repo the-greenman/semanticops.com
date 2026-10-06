@@ -27,14 +27,22 @@
     "fields/claim-3c934b62.json",
     "fields/explanation-2d7d565a.json",
     "fields/polea-70c8895f.json",
-    "fields/poleb-fc120bab.json"
+    "fields/poleb-fc120bab.json",
+    "fields/pattern-60d6dfb5.json",
+    "fields/symptoms-4e9745f2.json",
+    "fields/mechanism-9413a3b2.json",
+    "fields/case-8ab3668f.json",
+    "fields/target-d46c2425.json",
+    "fields/why-69aa1f00.json"
   ],
   "types": [
     "types/page-f0a4a712.json",
     "types/section-a17e2e07.json",
     "types/concept-0d32838e.json",
     "types/project-10d77c50.json",
-    "types/principle-a21a7a0c.json"
+    "types/principle-a21a7a0c.json",
+    "types/pattern-9b5f45da.json",
+    "types/route-step-edf627e9.json"
   ],
   "relationTypes": [],
   "views": [
@@ -42,14 +50,17 @@
     "views/section-markdown-9ae6f0a2.json",
     "views/concept-markdown-bde8b8dd.json",
     "views/project-markdown-ab01ce1d.json",
-    "views/principle-markdown-d597c61a.json"
+    "views/principle-markdown-d597c61a.json",
+    "views/pattern-markdown-ff02db55.json",
+    "views/route-step-markdown-ad4ed43a.json"
   ],
   "compositions": [
     "compositions/home-page-21c83e15.json",
     "compositions/model-page-438b9295.json",
     "compositions/architecture-page-b02f0751.json",
     "compositions/principles-page-253c3501.json",
-    "compositions/projects-page-45a948b8.json"
+    "compositions/projects-page-45a948b8.json",
+    "compositions/patterns-page-0d115d67.json"
   ],
   "blueprints": []
 }

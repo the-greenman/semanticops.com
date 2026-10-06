@@ -9,10 +9,10 @@
     "slug": "container",
     "summary": "A declared, ordered selection of records.",
     "body": "A Container is a boundary drawn around records. Membership is declared, never derived: what is in a container is what its `memberInstanceIds` list says, not whatever is reachable through `contains` edges. The list is an ordered outline of entries, each with an `instanceId` and an optional `depth`, so order is data and nesting follows from depth.\n\nA boundary means what it holds, and boundaries are drawn and redrawn: the same record can sit in many containers. A Container's own id is never the source or target of a Relation.",
-    "example": "{\n  \"containerId\": \"6587bc86-9461-43f4-b790-504b2bcbddb5\",\n  \"title\": \"Semantic Record System Specification\",\n  \"identityInstanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\",\n  \"memberInstanceIds\": [\n    {\n      \"instanceId\": \"9288ed3d-dba7-4a3a-9fbb-a77ff919816c\"\n    },\n    {\n      \"instanceId\": \"69010931-a272-452e-b540-fd89d4551b92\"\n    },\n    {\n      \"instanceId\": \"1f57e484-f870-4704-814d-f3f0614c3641\"\n    }\n  ]\n}",
+    "example": "{\n  \"containerId\": \"00b74bf1-f776-4ef0-a9b6-6496cac5c04d\",\n  \"title\": \"Decision document\",\n  \"anchorInstanceId\": \"6e37d4fb-440e-4962-8af6-49cddaf63de7\",\n  \"memberInstanceIds\": [\n    {\n      \"instanceId\": \"6e37d4fb-440e-4962-8af6-49cddaf63de7\"\n    },\n    {\n      \"instanceId\": \"3fc0b3f1-9169-4eac-bb35-6e24d90fbccc\",\n      \"depth\": 1\n    },\n    {\n      \"instanceId\": \"dda4f664-601c-44cb-8c08-c5cd32f5194f\",\n      \"depth\": 1\n    }\n  ]\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/container.json"
   },
   "createdAt": "2026-10-05T19:18:41.088545515+00:00",
-  "updatedAt": "2026-10-05T19:18:41.088551685+00:00",
+  "updatedAt": "2026-10-06T09:33:29.755513984+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

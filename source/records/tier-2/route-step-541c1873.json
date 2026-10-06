@@ -1,0 +1,16 @@
+{
+  "instanceId": "541c1873-dc8c-4463-bd4c-21192d86e8fe",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Try the sample",
+    "slug": "route-sample",
+    "target": "/try/meeting.srs",
+    "why": "Unpack it, run srs repo validate and srs repo map, then read the same facts as records."
+  },
+  "createdAt": "2026-10-06T09:33:01.224373398+00:00",
+  "updatedAt": "2026-10-06T09:33:01.224381960+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

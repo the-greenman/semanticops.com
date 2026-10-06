@@ -1,0 +1,16 @@
+{
+  "instanceId": "c68540fe-7ec5-4ae2-9bbf-b2c598090527",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "The model",
+    "slug": "route-model",
+    "target": "/agents/model.md",
+    "why": "Field, Type, Package, Note, Record, Relation and Container, each with real JSON from the sample."
+  },
+  "createdAt": "2026-10-06T09:33:01.103375845+00:00",
+  "updatedAt": "2026-10-06T09:33:01.103382956+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
