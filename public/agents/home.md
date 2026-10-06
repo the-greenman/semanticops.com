@@ -10,23 +10,34 @@ SRS is an open standard for portable semantic documents that people and AI can b
 
 SRS builds portable semantic documents that both humans and AI can understand and use.
 
-It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning.
+It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning. What survives the move is identity, definitions, relations and context, not appearance.
 
 SRS is pronounced "source". The name is the point. Records are the source, and every document you read is a projection of them.
+
+
+### A meeting becomes a decision and two tasks
+
+One meeting note yields a decision with its reasons and two tasks. The tasks link to the decision, and the decision links back to the note it came from.
+
+The meeting is "Weekly planning, 6 October". From its notes the team captures the decision "Move the weekly standup to Tuesdays", with the reasons "Monday is lost to incident reviews; two people are part-time on Mondays", and two tasks: "Update the calendar invite" and "Tell the support rota". One meeting note can yield one decision, three tasks and two risks. This one yields a decision and two tasks.
+
+Each task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. People receive a readable decision document. An agent receives the same records and relations. Move the folder to another tool and the identity, fields and links come with it.
+
+This is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it).
 
 
 ### Knowledge does not travel intact
 
 The hard part is to transfer a complex unit of knowledge, intact, from one mind or system to another. Not a file, not a message, not a row in a database.
 
-A wall of prose can only be interpreted by a human, and only whole. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.
+Prose leaves structure and relationships to be inferred, by people and agents alike. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.
 
 Two demands pull against each other. The receiver needs depth of context to understand, and no one, human or AI, can take in everything at once. SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand.
 
 
 ### Records are the source. Documents are projections.
 
-Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.
+Records are the source of truth: the authoritative stored representation, not a guarantee that the content is correct, since a record can hold a disputed or mistaken claim. Rendered documents are projections of those records: derived, never authoritative.
 
 Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. A Composition says how records become a document. A Presentation is a repository's declared commitment to render it. The Projection is the file that results, and it can be regenerated at any time.
 
@@ -174,6 +185,17 @@ This site has two surfaces built from one source. People get the pages. Agents g
 Every page is projected from an SRS repository, so an agent never needs to scrape HTML. [/llms.txt](/llms.txt) is the entry point. `/agents/<page>.md` and `/agents/<page>.json` carry each page as markdown and as JSON. [/agents/semanticops.srs](/agents/semanticops.srs) is the whole repository as one portable archive that an SRS client or MCP server can open and query.
 
 The same facts reach two readers. Each surface can be designed for its reader because the meaning lives in the records and not in either surface.
+
+
+### Open the example, in order of effort
+
+Three ways in, from no install to writes that the tools enforce.
+
+1. **Open it in your browser.** [Open the sample in the browser editor](https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs). No install, no account. Or download [meeting.srs](/try/meeting.srs), open [app.mudemocracy.org](https://app.mudemocracy.org) and choose "From this device".
+2. **Run the CLI.** Download the `srs` release for Linux x86_64 from [srs-rust](https://github.com/the-greenman/srs-rust/releases). Run `srs archive unpack meeting.srs --target meeting`, then `srs repo validate`, `srs repo map` and `srs find` against the folder.
+3. **Point your agent at it.** Give it [/llms.txt](/llms.txt) to read, or add `srs mcp serve --repo <folder>` to an MCP client configuration so writes go through the tools.
+
+The people view of the sample is [meeting.md](/try/meeting.md).
 
 
 ### Read it, run it, argue with it

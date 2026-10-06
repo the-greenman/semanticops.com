@@ -1,0 +1,93 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/document-view-output.json",
+  "compositionId": "120b0d67-0074-4a94-98ae-590b677e7f29",
+  "containerId": "00b74bf1-f776-4ef0-a9b6-6496cac5c04d",
+  "generatedAt": "2026-10-06T09:34:33.860345637+00:00",
+  "containerTitle": "Decision document",
+  "sections": [
+    {
+      "sectionId": "entries",
+      "order": 0,
+      "records": [
+        {
+          "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+          "typeId": "ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a",
+          "typeVersion": 1,
+          "typeNamespace": "com.example.meeting",
+          "typeName": "decision",
+          "recordHeading": "Move the weekly standup to Tuesdays",
+          "fields": {
+            "title": "Move the weekly standup to Tuesdays",
+            "statement": "The weekly standup moves from Monday to Tuesday.",
+            "reasons": "Monday is lost to incident reviews. Two people are part-time on Mondays."
+          },
+          "orderedFieldKeys": [
+            "title",
+            "statement",
+            "reasons"
+          ]
+        },
+        {
+          "instanceId": "3fc0b3f1-9169-4eac-bb35-6e24d90fbccc",
+          "typeId": "2cd8f150-fc3a-4536-bd4a-e08cc5d621ad",
+          "typeVersion": 1,
+          "typeNamespace": "com.example.meeting",
+          "typeName": "task",
+          "recordHeading": "Update the calendar invite",
+          "fields": {
+            "title": "Update the calendar invite",
+            "owner": "Sam"
+          },
+          "orderedFieldKeys": [
+            "title",
+            "owner"
+          ],
+          "relations": [
+            {
+              "relationType": "depends-on",
+              "direction": "forward",
+              "label": "Depends on",
+              "targets": [
+                {
+                  "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+                  "displayLabel": "Move the weekly standup to Tuesdays"
+                }
+              ]
+            }
+          ],
+          "depth": 1
+        },
+        {
+          "instanceId": "dda4f664-601c-44cb-8c08-c5cd32f5194f",
+          "typeId": "2cd8f150-fc3a-4536-bd4a-e08cc5d621ad",
+          "typeVersion": 1,
+          "typeNamespace": "com.example.meeting",
+          "typeName": "task",
+          "recordHeading": "Tell the support rota",
+          "fields": {
+            "title": "Tell the support rota",
+            "owner": "Priya"
+          },
+          "orderedFieldKeys": [
+            "title",
+            "owner"
+          ],
+          "relations": [
+            {
+              "relationType": "depends-on",
+              "direction": "forward",
+              "label": "Depends on",
+              "targets": [
+                {
+                  "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+                  "displayLabel": "Move the weekly standup to Tuesdays"
+                }
+              ]
+            }
+          ],
+          "depth": 1
+        }
+      ]
+    }
+  ]
+}

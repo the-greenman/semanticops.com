@@ -25,9 +25,10 @@ src/pages/         index (home), [page] (every other page, from site.json), 404,
 scripts/           check-tokens.mjs, check-copy.mjs, check-links.mjs, lib/tokens.mjs (the token parser)
 plans/             one page per phase
 source/            the SRS repository of facts          (content pipeline owns it)
+examples/meeting/  the sample SRS repository (real, CLI-built; packed to public/try/)
 scripts/source/    the projection scripts               (content pipeline owns it)
 src/data/          JSON projected for the human pages   (generated: never hand-edit)
-public/llms.txt, public/agents/    the agent site        (generated: never hand-edit)
+public/llms.txt, public/agents/, public/try/   the agent site and the downloadable sample   (generated: never hand-edit)
 ```
 
 ## The rules
@@ -68,7 +69,7 @@ Every diagram is composed from the primitives in `components/diagram/` (`Disc`, 
 
 ### 4. Two surfaces from one source
 
-Facts live in `source/` (an SRS repository). `npm run source` regenerates `src/data/`, `public/llms.txt` and `public/agents/` and needs the `srs` binary. **Never hand-edit `src/data/`, `public/agents/` or `public/llms.txt`.** To change a fact, change a record in `source/` through the SRS tools (the MCP server first, the CLI as fallback; never write look-alike JSON by hand), then run `npm run source`. CI re-runs it (`npm run source:check`) and fails on drift. `npm run build` is `astro build` only, so any host can build without the binary.
+Facts live in `source/` (an SRS repository). `npm run source` validates `examples/meeting/` (the sample repository), then regenerates `src/data/`, `public/llms.txt`, `public/agents/` and `public/try/` (the sample as `.srs`, markdown and JSON), and needs the `srs` binary. `llms.txt` is built from the `start-here` and `data` containers of `route-step` records: change a line there, never in the script. **Never hand-edit `src/data/`, `public/agents/`, `public/try/` or `public/llms.txt`**, and change the sample only through the CLI. To change a fact, change a record in `source/` through the SRS tools (the MCP server first, the CLI as fallback; never write look-alike JSON by hand), then run `npm run source`. CI re-runs it (`npm run source:check`) and fails on drift. `npm run build` is `astro build` only, so any host can build without the binary.
 
 ### 5. Copy rules
 

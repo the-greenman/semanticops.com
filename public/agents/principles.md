@@ -10,7 +10,7 @@ The purpose, the governing core, the pairs SRS holds without settling, and the s
 
 SRS exists for one reason: to transfer a complex unit of knowledge, intact, from one mind or system to another.
 
-Not a file, not a message, not a row in a database: a unit of knowledge with its meaning attached, so that the receiver understands it the way the author did. Everything else in the system is in service of that.
+Not a file, not a message, not a row in a database: a unit of knowledge with its meaning attached, It preserves declared meaning and context, giving the receiver a better basis for interpretation. Everything else in the system is in service of that.
 
 Two responsibilities follow. Transfer knowledge in layers, so it can be received without overload. And structure it with shared building blocks, so its meaning can be shared. A Type's required Fields mean a unit of knowledge cannot be transferred half-formed.
 
@@ -91,7 +91,7 @@ What a container holds is what it says it holds, in its own ordered `memberInsta
 
 AI may observe, extract, propose, question, organise, explain and coach. People decide, agree, ratify and remain accountable.
 
-AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and leaves the final say with people. An agent never ratifies.
+In the SemanticOps stance, agents propose and people ratify. AI output is a proposal until a person accepts it. SRS gives agents tools to read and write records and does not enforce this as a tool rule: a repository enforces it through its own governance, or a client can apply a session write guard.
 
 
 ### When two designs both work
