@@ -1,0 +1,31 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "0f162ff2-8a1d-45b6-8de1-9be07fcfa456",
+  "namespace": "com.example.meeting",
+  "name": "task-markdown",
+  "version": 1,
+  "description": "Renders a task: the title as the heading, the owner labelled.",
+  "fieldViews": [
+    {
+      "fieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "0ebea21d-4b44-4e93-ad67-3c283b59d0dd",
+      "order": 2,
+      "displayLabel": "Owner",
+      "labelMode": "inline"
+    }
+  ],
+  "compatibleTypes": [
+    "com.example.meeting/task"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-06T09:30:24.745472539+00:00",
+  "aiGuidance": {
+    "purpose": "Controls how a task reads as markdown. It never changes what the record means."
+  }
+}

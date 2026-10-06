@@ -1,0 +1,53 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "ff02db55-613f-418e-9b9b-cb3b47468218",
+  "namespace": "com.semanticops.site",
+  "name": "pattern-markdown",
+  "version": 1,
+  "description": "Renders a pattern record: identity as the heading, hidden fields still present in the JSON projection.",
+  "fieldViews": [
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 0,
+      "visible": false
+    },
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "60d6dfb5-65c6-4592-878b-d73b75d8bc2c",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "4e9745f2-ac4e-4a43-b382-f9bbc5c7ed8c",
+      "order": 3,
+      "displayLabel": "What goes wrong",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "9413a3b2-bcf3-448b-91bd-b5c54a6e04ba",
+      "order": 4,
+      "displayLabel": "What SRS does",
+      "labelMode": "inline"
+    },
+    {
+      "fieldId": "8ab3668f-398a-4b5e-a5e5-6fa4d712c462",
+      "order": 5,
+      "displayLabel": "Case",
+      "labelMode": "inline"
+    }
+  ],
+  "compatibleTypes": [
+    "com.semanticops.site/pattern"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-06T09:32:31.152068103+00:00",
+  "aiGuidance": {
+    "purpose": "Controls how a pattern reads as markdown for agents. It never changes what the record means, and it hides nothing from the JSON projection."
+  }
+}

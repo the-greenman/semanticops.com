@@ -1,0 +1,102 @@
+---
+import Actor from "./Actor.astro";
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import Page from "./Page.astro";
+import RingNode from "./RingNode.astro";
+import Stop from "./Stop.astro";
+import { wrap } from "./geometry";
+
+/**
+ * A standard kept as records. Decisions are records linked by refines; the published page is
+ * rendered from them, and a drift check renders it again and compares. A hand edit to the page
+ * makes the check fail, drawn as a cross and a word, not a colour.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** The earlier decision and the one that refines it. */
+  first?: string;
+  second?: string;
+  /** Fields of the second decision, shown as rows. */
+  rows?: string[];
+  relation?: string;
+  rendered?: string;
+  check?: string;
+  failed?: string;
+  edit?: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const {
+  number = 5,
+  caption = "The published page is rendered from the records. The drift check renders it again, and a hand edit to the page makes it fail.",
+  id = "dg-records-to-document",
+  first = "D1: Records need stable identity",
+  second = "D2: Use opaque ids",
+  rows = ["cost: ids are unreadable", "review: if tooling cannot resolve ids"],
+  relation = "refines",
+  rendered = "rendered",
+  check = "drift check",
+  failed = "fails: page differs from records",
+  edit = "hand edit",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "Decision records render a document, and a drift check catches a hand edit";
+const desc = `Two vermilion decision records, ${first} and ${second}, are linked by ${relation}; the second carries ${rows.join(" and ")}. An arrow ${rendered} leads to a hollow page, the document. A dashed arrow, the ${check}, leads back from the page to the records. A person has edited one line of the page by hand, so the check ends in a cross and reads: ${failed}.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 390">
+    <Link x1={60} y1={232} x2={60} y2={92} arrow="end" inset={0} insetEnd={0} label={relation} />
+    <Disc cx={60} cy={70} r={22} tone="record" />
+    <text class="dg-text" x={96} y={70} dominant-baseline="central">{first}</text>
+    <Disc cx={60} cy={254} r={22} tone="record" />
+    <text class="dg-text" x={96} y={254} dominant-baseline="central">{second}</text>
+    {rows.map((r, i) => (
+      <>
+        <RingNode cx={80} cy={304 + i * 30} r={8} inner="dot" knockout={0} />
+        <text class="dg-text" x={104} y={304 + i * 30} dominant-baseline="central">{r}</text>
+      </>
+    ))}
+    <Link x1={480} y1={50} x2={480} y2={330} tone="ink" width={1} />
+    <Link x1={480} y1={150} x2={550} y2={150} tone="ink" arrow="end" />
+    <text class="dg-text dg-text--muted" x={515} y={134} text-anchor="middle">{rendered}</text>
+    <Page x={560} y={50} w={130} h={170} lines={7} mark={4} />
+    <Actor kind="human" cx={722} cy={150} r={9} />
+    <text class="dg-text" x={722} y={124} text-anchor="middle">{edit}</text>
+    <Link x1={625} y1={220} x2={625} y2={300} tone="ink" dashed />
+    <Link x1={625} y1={300} x2={486} y2={300} tone="ink" dashed arrow="end" label={check} />
+    <Stop cx={60} cy={366} tone="ink" r={9} />
+    <text class="dg-text dg-text--strong" x={84} y={366} dominant-baseline="central">{failed}</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 700">
+    <Disc cx={30} cy={30} r={18} tone="record" />
+    {wrap(first, 22).map((l, i) => <text class="dg-text" x={64} y={22 + i * 20}>{l}</text>)}
+    <Link x1={30} y1={130} x2={30} y2={52} arrow="end" inset={0} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={92}>{relation}</text>
+    <Disc cx={30} cy={160} r={18} tone="record" />
+    {wrap(second, 22).map((l, i) => <text class="dg-text" x={64} y={152 + i * 20}>{l}</text>)}
+    {rows.map((r, i) => (
+      <>
+        <RingNode cx={50} cy={214 + i * 56} r={8} inner="dot" knockout={0} />
+        {wrap(r, 24).map((l, j) => <text class="dg-text" x={74} y={214 + i * 56 + j * 18 - (wrap(r, 24).length - 1) * 9} dominant-baseline="central">{l}</text>)}
+      </>
+    ))}
+    <Link x1={30} y1={340} x2={30} y2={390} tone="ink" arrow="end" />
+    <text class="dg-text dg-text--muted" x={44} y={366}>{rendered}</text>
+    <Page x={20} y={404} w={120} h={140} lines={7} mark={4} />
+    <Actor kind="human" cx={168} cy={490} r={9} />
+    <text class="dg-text" x={184} y={490} dominant-baseline="central">{edit}</text>
+    <Link x1={80} y1={552} x2={80} y2={606} tone="ink" dashed arrow="end" />
+    <text class="dg-text dg-text--muted" x={96} y={580}>{check}</text>
+    <Stop cx={80} cy={628} tone="ink" r={9} />
+    {wrap(failed, 30).map((l, i) => <text class="dg-text dg-text--strong" x={104} y={628 + i * 20} dominant-baseline="central">{l}</text>)}
+  </Canvas>
+</Figure>

@@ -10,7 +10,9 @@ The SRS model in order: Field, Type, Package, Note, Record, Relation, Container,
 
 SRS does all its work with a few constructs. Each is a definition you can read, a file you can inspect and a rule a tool can check.
 
-Meaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order. Each example is trimmed from the specification, which is itself an SRS repository.
+The worked example on the home page is a real repository, and every example below is trimmed from it. A meeting note graduates into a decision, two tasks depend on the decision, and a container puts them in reading order. The specification uses the same mechanisms: it is itself an SRS repository.
+
+Meaning is defined in Fields and Types, held in Notes and Records, connected by Relations, bounded by Containers and distributed in Packages. What follows is the model in order.
 
 
 ### Field
@@ -22,17 +24,17 @@ A Field has a stable UUID, a namespace, a snake_case name, an integer version an
 Field semantics are immutable. A Field means the same thing everywhere it is used, and a Type cannot override it. Different meaning is a different Field.
 
 **Example (JSON)**: {
-  "id": "d5e6f7a8-b9c0-4d1e-8f3a-4b5c6d7e8f9a",
-  "namespace": "com.semanticops.srs",
-  "name": "description",
+  "id": "1d1f36c1-73a1-482f-b084-4716a914a231",
+  "namespace": "com.example.meeting",
+  "name": "statement",
   "version": 1,
-  "description": "A detailed description of the record.",
+  "description": "What was decided.",
   "aiGuidance": {
-    "purpose": "Descriptions can be multi-paragraph and may include markdown formatting. Explain the what, why, and how."
+    "purpose": "One sentence stating the decision in the present tense."
   },
   "fieldType": {
     "datatype": "string",
-    "format": "markdown"
+    "format": "plain"
   }
 }
 
@@ -48,22 +50,25 @@ A Type lists Fields as assignments: which Field, in what order, and whether it i
 A Record binds to an exact `typeId` and `typeVersion`. When a Type gains a new version, existing Records are not migrated. You write a successor and link it with `supersedes` or `refines`, and the original stays.
 
 **Example (JSON)**: {
-  "id": "3c000001-0000-4000-a000-000000000001",
-  "namespace": "com.semanticops.core",
-  "name": "purpose",
+  "id": "ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a",
+  "namespace": "com.example.meeting",
+  "name": "decision",
   "version": 1,
   "fields": [
     {
-      "fieldId": "3b000001-0000-4000-a000-000000000001",
-      "order": 0,
+      "fieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
       "required": true
     },
     {
-      "fieldId": "3b000002-0000-4000-a000-000000000002",
-      "order": 1,
-      "required": false
+      "fieldId": "1d1f36c1-73a1-482f-b084-4716a914a231",
+      "required": true
+    },
+    {
+      "fieldId": "466f519d-c7d5-4d2d-90db-623346322ca4",
+      "required": true
     }
-  ]
+  ],
+  "identityFieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124"
 }
 
 **Definition**: https://srs.semanticops.com/schema/2.0/type.json
@@ -80,16 +85,19 @@ A Package is the set of definitions a repository uses: Fields, Types, Compositio
 A Package carries definitions only, never records. The records stay with the repository that holds them.
 
 **Example (JSON)**: {
-  "id": "3a000001-0000-4000-a000-000000000001",
-  "namespace": "com.semanticops.core",
-  "name": "core",
+  "id": "f62ac372-70c9-4d2a-9b59-f0e0d3d8c9d9",
+  "namespace": "com.example.meeting",
+  "name": "primary",
   "version": "1.0.0",
   "fields": [
-    "fields/statement-3b000001.json",
-    "fields/title-3b000002.json"
+    "fields/title-db25089d.json",
+    "fields/statement-1d1f36c1.json",
+    "fields/reasons-466f519d.json",
+    "fields/owner-0ebea21d.json"
   ],
   "types": [
-    "types/purpose-3c000001.json"
+    "types/decision-ec2e7ef3.json",
+    "types/task-2cd8f150.json"
   ]
 }
 
@@ -105,16 +113,13 @@ A Note holds named sections of free text and is bound to no Type. It exists so t
 Maturity is a ladder, not a gate. A Note stays a Note for as long as that is useful, and nothing is lost when it becomes something firmer.
 
 **Example (JSON)**: {
-  "instanceId": "c0f7c97d-84a9-48a5-bc4d-41d7ee5f8cd9",
-  "title": "Human Meaning and AI Collaboration",
+  "instanceId": "11111111-1111-4111-8111-111111111111",
+  "title": "Weekly planning, 6 October",
   "sections": [
     {
-      "name": "purpose",
-      "content": "SRS should help humans remember that meaning is their job. AI can assist with extraction, synthesis, critique, comparison, and context assembly, but it cannot become the authority that decides what something means for a community, organization, or domain."
-    },
-    {
-      "name": "human_responsibility",
-      "content": "Meaning is not only pattern recognition. It involves responsibility, context, judgment, values, memory, consent, and commitment. A Record may capture negotiated semantic state, but the negotiation is a human and social act. SRS should make that act more legible, not replace it."
+      "name": "body",
+      "label": "Notes",
+      "content": "Monday is lost to incident reviews, and two people are part-time on Mondays. We agreed to move the weekly standup to Tuesdays. Two follow-ups: update the calendar invite, and tell the support rota."
     }
   ]
 }
@@ -131,14 +136,15 @@ A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, a
 Graduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.
 
 **Example (JSON)**: {
-  "instanceId": "1f1da0e0-acae-4a66-bac3-30ec1ffd75df",
-  "typeId": "2a000004-0000-4000-a000-000000000004",
+  "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+  "typeId": "ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a",
   "typeVersion": 1,
-  "typeNamespace": "com.semanticops.spec",
-  "typeName": "concept",
+  "typeNamespace": "com.example.meeting",
+  "typeName": "decision",
   "fieldValues": {
-    "canonical_key": "record:concepts/semantic-sovereignty",
-    "title": "Semantic sovereignty"
+    "title": "Move the weekly standup to Tuesdays",
+    "statement": "The weekly standup moves from Monday to Tuesday.",
+    "reasons": "Monday is lost to incident reviews. Two people are part-time on Mondays."
   }
 }
 
@@ -156,10 +162,10 @@ A Relation is first-class: its own file, its own identity, exactly two endpoints
 Seven canonical types ship in the core package: `contains`, `depends-on`, `precedes`, `supersedes`, `refines`, `derived-from` and `evidences`. A custom type is written `namespace/name` and needs its own installed definition. `precedes` means semantic order only, where a different order would be wrong.
 
 **Example (JSON)**: {
-  "relationId": "0b02f66a-323c-4cda-be78-366f141c3043",
-  "relationType": "refines",
-  "sourceInstanceId": "0750c62f-b419-496d-b64c-ab7c8c4f5404",
-  "targetInstanceId": "9ee14517-9c12-4d06-b7bb-c5d59684d7f5"
+  "relationId": "6e23c144-b61c-44de-8964-2a1d8139781e",
+  "relationType": "depends-on",
+  "sourceInstanceId": "dda4f664-601c-44cb-8c08-c5cd32f5194f",
+  "targetInstanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7"
 }
 
 **Definition**: https://srs.semanticops.com/schema/2.0/relation.json
@@ -176,18 +182,20 @@ A Container is a boundary drawn around records. Membership is declared, never de
 A boundary means what it holds, and boundaries are drawn and redrawn: the same record can sit in many containers. A Container's own id is never the source or target of a Relation.
 
 **Example (JSON)**: {
-  "containerId": "6587bc86-9461-43f4-b790-504b2bcbddb5",
-  "title": "Semantic Record System Specification",
-  "identityInstanceId": "9288ed3d-dba7-4a3a-9fbb-a77ff919816c",
+  "containerId": "00b74bf1-f776-4ef0-a9b6-6496cac5c04d",
+  "title": "Decision document",
+  "anchorInstanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
   "memberInstanceIds": [
     {
-      "instanceId": "9288ed3d-dba7-4a3a-9fbb-a77ff919816c"
+      "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7"
     },
     {
-      "instanceId": "69010931-a272-452e-b540-fd89d4551b92"
+      "instanceId": "3fc0b3f1-9169-4eac-bb35-6e24d90fbccc",
+      "depth": 1
     },
     {
-      "instanceId": "1f57e484-f870-4704-814d-f3f0614c3641"
+      "instanceId": "dda4f664-601c-44cb-8c08-c5cd32f5194f",
+      "depth": 1
     }
   ]
 }
@@ -216,19 +224,14 @@ The directory tree is authoritative: a file under `records/` is a member. Sovere
 Every repository has a root container, named in the manifest, that is its identity and the top of its navigation.
 
 **Example (JSON)**: {
-  "namespace": "com.semanticops.srs",
-  "repositoryId": "4172fada-bc38-5479-ac18-4be3194a68ca",
-  "title": "Semantic Record System Specification",
-  "packageRefs": [
-    {
-      "mode": "local",
-      "path": "package/base"
-    },
-    {
-      "mode": "local",
-      "path": "package/core"
-    }
-  ]
+  "namespace": "com.example.meeting",
+  "repositoryId": "000973a1-2f84-485c-8350-8811a3f18c1b",
+  "title": "com.example.meeting",
+  "container": {
+    "containerId": "000973a1-2f84-485c-8350-8811a3f18c1b",
+    "title": "com.example.meeting",
+    "identityInstanceId": "b3d88ba0-2245-4a7a-bd44-2b3eff8d6b21"
+  }
 }
 
 **Definition**: https://srs.semanticops.com/schema/2.0/manifest.json
@@ -238,16 +241,30 @@ Every repository has a root container, named in the manifest, that is its identi
 
 Diagnostics are data.
 
-Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so read the diagnostics, not the exit code.
+Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so check `ok` and the diagnostics, not the exit code. Success carries `payload.diagnostics` and a summary. Failure carries a top-level `diagnostics` list.
 
 Identity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.
 
 **Example (JSON)**: {
+  "ok": true,
+  "command": "repo validate",
+  "version": "0.1.0",
+  "payload": {
+    "diagnostics": [],
+    "summary": {
+      "checked": 5,
+      "errors": 0,
+      "warnings": 0
+    }
+  }
+}
+
+{
   "ok": false,
   "command": "repo validate",
   "version": "0.1.0",
   "diagnostics": [
-    "[records/tier-2/page-582af71a.json] missing required field key: eyebrow"
+    "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
   ]
 }
 
@@ -265,26 +282,18 @@ Records are never the document. Three steps lead from one to the other. A **Comp
 Themes wrap content and never replace, suppress or reorder it. Order comes from the container's own outline or from a rule, never from a template. A Projection can be deleted and regenerated, because it was never the source.
 
 **Example (JSON)**: {
-  "id": "3a000005-0000-4000-a000-000000000005",
-  "namespace": "com.semanticops.spec",
-  "name": "spec-glossary",
+  "namespace": "com.example.meeting",
+  "name": "decision-document",
   "version": 1,
   "sections": [
     {
-      "sectionId": "concepts",
-      "title": "Glossary",
-      "order": 0,
+      "sectionId": "entries",
       "source": {
-        "type": "discovery-query",
-        "query": {
-          "typeNamespace": "com.semanticops.spec",
-          "typeName": "concept"
-        }
+        "type": "container-subset",
+        "containerId": "00b74bf1-f776-4ef0-a9b6-6496cac5c04d"
       },
-      "renderViewId": "5c000005-0000-4000-a000-000000000005",
       "ordering": {
-        "fieldId": "1a000001-0000-4000-a000-000000000001",
-        "direction": "asc"
+        "source": "arranged"
       }
     }
   ],
@@ -328,7 +337,7 @@ Every Field, Type, Record, Relation and Container has a UUID. It never changes w
 A version is a positive integer that increments within a UUID lineage. Changing a Field's namespace or name makes a new Field with a new UUID, not a new version. A Record binds to an exact Type version, and a change is an increment, not an edit.
 
 **Example (JSON)**: {
-  "instanceId": "9288ed3d-dba7-4a3a-9fbb-a77ff919816c",
+  "instanceId": "b3d88ba0-2245-4a7a-bd44-2b3eff8d6b21",
   "typeId": "3c000001-0000-4000-a000-000000000001",
   "typeVersion": 1,
   "typeNamespace": "com.semanticops.core",

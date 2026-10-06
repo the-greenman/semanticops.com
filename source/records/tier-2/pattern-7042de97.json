@@ -1,0 +1,18 @@
+{
+  "instanceId": "7042de97-eb2c-4d0c-8f38-bf58972f1bcb",
+  "typeId": "9b5f45da-3fd8-432f-9b75-2bba9166db19",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "pattern",
+  "fieldValues": {
+    "title": "A standard kept as records",
+    "slug": "standard-as-records",
+    "pattern": "A specification is kept as records: sections, invariants, concepts and decisions, each decision with its accepted costs and review triggers. The published document is generated from them.",
+    "symptoms": "- A specification kept as one document drifts from its own parts.\n- A hand edit to the output is not reflected in the source, and nobody notices.\n- A decision loses its reasons, so nobody knows when to reconsider it.",
+    "mechanism": "- **Sections, invariants, concepts and decisions are records**, linked by relations such as `refines`.\n- **The document is a projection.** A Composition renders it, and it can be regenerated at any time.\n- **A drift check** re-renders the document and fails if anyone hand-edited the output.\n- **A decision names its cost and its review trigger**, so reconsidering it is a recorded act.",
+    "case": "Decision D2 \"Use opaque ids\" `refines` D1 \"Records need stable identity\". Its accepted cost is \"ids are unreadable\" and its review trigger is \"if tooling cannot resolve ids\". A hand edit to the rendered page turns the drift check red. The SRS specification itself is maintained this way."
+  },
+  "createdAt": "2026-10-06T09:33:00.853448591+00:00",
+  "updatedAt": "2026-10-06T09:33:00.853455222+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

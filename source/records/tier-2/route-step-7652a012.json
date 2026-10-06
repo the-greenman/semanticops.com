@@ -1,0 +1,16 @@
+{
+  "instanceId": "7652a012-db12-4ba7-a1f3-b6f7b18a4d8c",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Principles",
+    "slug": "route-principles",
+    "target": "/agents/principles.md",
+    "why": "The scope test and the rules behind the design."
+  },
+  "createdAt": "2026-10-06T09:33:01.288434583+00:00",
+  "updatedAt": "2026-10-06T09:33:01.288437356+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

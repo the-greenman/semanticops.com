@@ -1,0 +1,18 @@
+{
+  "instanceId": "ee6f532c-7fcf-4775-9f33-bf8c0ecf6917",
+  "typeId": "9b5f45da-3fd8-432f-9b75-2bba9166db19",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "pattern",
+  "fieldValues": {
+    "title": "An agent annotates and never edits",
+    "slug": "agent-annotates",
+    "pattern": "A person writes the text. An agent helps by adding structure around it: titles for untitled paragraphs, links to sources and problems, counter-claims.",
+    "symptoms": "- When the agent edits the text itself, the author's words change under them.\n- There is no clean way to take the agent's work back out.\n- Edits and annotations end up mixed in one file.",
+    "mechanism": "- **Structure lives in separate records.** Titles, links and counter-claims are records and relations beside the text.\n- **Removal is clean.** Delete the agent's records and the text is byte-identical.\n- **Each annotation is its own record**, so what the agent added can be told apart from what the person wrote.\n- **Enforcement is honest.** SRS gives the mechanism: records, relations, and a session write guard that a client can apply. The rule that agents never edit the text is the repository's own governance, not a tool rule.",
+    "case": "A paragraph has no title. The agent adds a title record, a link to a source and a counter-claim, each as its own record. The paragraph itself is never touched. Remove the three records and the text is exactly what the author wrote."
+  },
+  "createdAt": "2026-10-06T09:33:00.792070554+00:00",
+  "updatedAt": "2026-10-06T09:33:00.792078752+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

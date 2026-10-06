@@ -1,0 +1,15 @@
+{
+  "id": "0ebea21d-4b44-4e93-ad67-3c283b59d0dd",
+  "namespace": "com.example.meeting",
+  "name": "owner",
+  "version": 1,
+  "description": "Who does the task.",
+  "aiGuidance": {
+    "purpose": "A person or team name. Optional."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T09:29:48.332198950+00:00"
+}

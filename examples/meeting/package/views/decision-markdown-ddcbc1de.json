@@ -1,0 +1,36 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/view.json",
+  "id": "ddcbc1de-d55a-4b32-9a3d-f4bfea56c7a7",
+  "namespace": "com.example.meeting",
+  "name": "decision-markdown",
+  "version": 1,
+  "description": "Renders a decision: the title as the heading, the statement as prose, the reasons labelled.",
+  "fieldViews": [
+    {
+      "fieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+      "order": 1,
+      "visible": false
+    },
+    {
+      "fieldId": "1d1f36c1-73a1-482f-b084-4716a914a231",
+      "order": 2,
+      "labelMode": "none"
+    },
+    {
+      "fieldId": "466f519d-c7d5-4d2d-90db-623346322ca4",
+      "order": 3,
+      "displayLabel": "Reasons",
+      "labelMode": "inline"
+    }
+  ],
+  "compatibleTypes": [
+    "com.example.meeting/decision"
+  ],
+  "exportConfig": {
+    "omitEmptyFields": true
+  },
+  "createdAt": "2026-10-06T09:30:24.676503257+00:00",
+  "aiGuidance": {
+    "purpose": "Controls how a decision reads as markdown. It never changes what the record means."
+  }
+}

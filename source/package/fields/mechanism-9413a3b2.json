@@ -1,0 +1,15 @@
+{
+  "id": "9413a3b2-bcf3-448b-91bd-b5c54a6e04ba",
+  "namespace": "com.semanticops.site",
+  "name": "mechanism",
+  "version": 1,
+  "description": "What SRS does about it, mechanism by mechanism.",
+  "aiGuidance": {
+    "purpose": "A list where each item names one SRS mechanism (immutable ids, typed fields, typed relations, supersession, compositions, guidance) and says what it refuses or makes possible. Describe the mechanism, never a product feature or a promise. Say plainly where a rule is the repository's own governance and not a tool rule. Never an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:32:30.784488393+00:00"
+}

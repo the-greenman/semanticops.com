@@ -1,0 +1,21 @@
+{
+  "instanceId": "a8df2ace-64c9-466d-a3ce-2edb3b38a543",
+  "typeId": "cfd7a91d-b1ff-4d7e-9b07-80509c961edb",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "try-option",
+  "fieldValues": {
+    "title": "Point your agent at it",
+    "slug": "try-agent",
+    "line": "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.",
+    "action_label": "Start the MCP server",
+    "command": "srs mcp serve --repo meeting"
+  },
+  "createdAt": "2026-10-06T10:23:42.757014524+00:00",
+  "updatedAt": "2026-10-06T10:23:42.757019020+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

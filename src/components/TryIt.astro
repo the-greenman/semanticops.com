@@ -1,0 +1,89 @@
+---
+import Button from "./Button.astro";
+import CodeSample from "./CodeSample.astro";
+
+/**
+ * The ways to start, ranked by friction, as cards side by side. Each option has a title and
+ * one sentence, and an action: a button link when it has a url, a code block when it has a
+ * command. Pass the options in rank order; the records' container order is the rank.
+ */
+interface Props {
+  options: { title: string; line: string; label: string; url?: string; command?: string }[];
+  class?: string;
+}
+
+const { options, class: className } = Astro.props;
+---
+
+<ol class:list={["tryit", className]}>
+  {
+    options.map((o, i) => (
+      <li class="tryit__option">
+        <span class="tryit__rank t-label">{String(i + 1).padStart(2, "0")}</span>
+        <h3 class="tryit__title">{o.title}</h3>
+        <p class="tryit__line">{o.line}</p>
+        {o.command && <CodeSample code={o.command} lang="bash" filename={o.label} />}
+        {o.url && (
+          <div class="tryit__actions">
+            <Button href={o.url} variant={i === 0 ? "primary" : "secondary"}>
+              {o.label}
+            </Button>
+          </div>
+        )}
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  @layer components {
+    .tryit {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: var(--space-md);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tryit__option {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-sm);
+      min-width: 0;
+      padding: var(--space-md) var(--space-sm) var(--space-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .tryit__title {
+      margin: 0;
+      font-size: var(--size-lg);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .tryit__line {
+      margin: 0;
+      color: var(--color-muted-strong);
+    }
+
+    .tryit__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: auto;
+    }
+
+    /* A command wraps rather than scrolls: a card is narrow. */
+    .tryit :global(pre) {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .tryit__option > :global(.codesample) {
+      margin-top: auto;
+      min-width: 0;
+    }
+  }
+</style>

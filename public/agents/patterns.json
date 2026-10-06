@@ -1,0 +1,80 @@
+{
+  "page": "patterns",
+  "title": "SemanticOps: patterns",
+  "entries": [
+    {
+      "instanceId": "c95aa0c9-4aa9-415a-94d0-767f17389de2",
+      "type": "page",
+      "slug": "patterns",
+      "fields": {
+        "slug": "patterns",
+        "title": "Patterns",
+        "summary": "Four ordinary situations where meaning gets lost in prose, and what SRS does about each, mechanism by mechanism."
+      }
+    },
+    {
+      "instanceId": "456b1371-ed44-4b3b-ab23-3545250129c7",
+      "type": "section",
+      "slug": "patterns-intro",
+      "fields": {
+        "slug": "patterns-intro",
+        "title": "Where records beat prose",
+        "eyebrow": "Patterns",
+        "lede": "Each pattern is an ordinary situation, what goes wrong in it, and the mechanism SRS uses.",
+        "body": "The cases are small and invented. They are not products and not case studies: each is a situation that any team keeping knowledge in text will recognise. Where a rule is a repository's own governance and not something the tools enforce, the pattern says so."
+      }
+    },
+    {
+      "instanceId": "6ac32e15-0fb5-4897-a9d9-8744f36632d4",
+      "type": "pattern",
+      "slug": "markdown-decays",
+      "fields": {
+        "slug": "markdown-decays",
+        "title": "A markdown knowledge base decays",
+        "pattern": "A team keeps its knowledge as markdown notes that people and agents both edit. It is kept in order with real discipline: an index note, aliases, a rename protocol, written load instructions for agents and a validator script.",
+        "symptoms": "Every one of those rules is prose or convention. Nothing refuses a bad state, so bad states get in.\n\n- A rename leaves links pointing at nothing, including inside the navigation notes themselves.\n- A share of notes become orphans that nothing links to.\n- Frontmatter keys and `status` words drift between hand-written notes.\n- The index note falls behind the folder.\n- Nobody can say which note is current.",
+        "mechanism": "- **Immutable ids and a title field.** A rename touches one field. Every edge still targets the id.\n- **Typed fields.** A record with a missing or wrong key is rejected.\n- **Typed relations.** An edge is validated: its target must exist and its type must be installed.\n- **Supersession.** \"Current\" is a query over `supersedes` relations, not a guess.\n- **A generated agent index** replaces hand-kept load instructions.",
+        "case": "Rename \"Decision architecture\" to \"Decision practice\". In markdown, nine links keep the old name. In SRS, one field changes and `srs repo validate` stays clean. Delete a target and validation fails, instead of the page rendering an empty link."
+      }
+    },
+    {
+      "instanceId": "fc6a5e64-4e95-43cf-a694-6888b4183015",
+      "type": "pattern",
+      "slug": "claims-with-sources",
+      "fields": {
+        "slug": "claims-with-sources",
+        "title": "Claims that cite their sources",
+        "pattern": "A team wants its knowledge to be usable: each claim should say where it came from, and a disagreement should be visible instead of buried. They also want AI to help write it without inventing things.",
+        "symptoms": "- A claim in prose has no address, so a source cannot be checked against the sentence it supports.\n- A counter-claim sits in another document, or in someone's memory.\n- Systems that build chunking, embeddings and retrieval into the knowledge schema weld meaning to infrastructure: change the retrieval and the knowledge model moves with it.",
+        "mechanism": "- **A claim is a record.** It is linked to its evidence with `evidences`.\n- **Evidence is a record** that names a source and a quotation from it.\n- **A counter-claim** is another claim with its own source, linked to the first.\n- **Guidance steers AI writing.** Each Field carries `aiGuidance` that says how it is to be written.\n- **Retrieval stays outside.** SRS keeps the semantics in the core and leaves retrieval to a companion layer. `find` is lexical.",
+        "case": "The claim \"Remote standups reduce meeting load\" is evidenced by quotation Q1 of source S1, a survey. A counter-claim, \"Standups shift load to chat\", has its own source S2. A guide page renders the claim, its evidence and the counter-claim together."
+      }
+    },
+    {
+      "instanceId": "ee6f532c-7fcf-4775-9f33-bf8c0ecf6917",
+      "type": "pattern",
+      "slug": "agent-annotates",
+      "fields": {
+        "slug": "agent-annotates",
+        "title": "An agent annotates and never edits",
+        "pattern": "A person writes the text. An agent helps by adding structure around it: titles for untitled paragraphs, links to sources and problems, counter-claims.",
+        "symptoms": "- When the agent edits the text itself, the author's words change under them.\n- There is no clean way to take the agent's work back out.\n- Edits and annotations end up mixed in one file.",
+        "mechanism": "- **Structure lives in separate records.** Titles, links and counter-claims are records and relations beside the text.\n- **Removal is clean.** Delete the agent's records and the text is byte-identical.\n- **Each annotation is its own record**, so what the agent added can be told apart from what the person wrote.\n- **Enforcement is honest.** SRS gives the mechanism: records, relations, and a session write guard that a client can apply. The rule that agents never edit the text is the repository's own governance, not a tool rule.",
+        "case": "A paragraph has no title. The agent adds a title record, a link to a source and a counter-claim, each as its own record. The paragraph itself is never touched. Remove the three records and the text is exactly what the author wrote."
+      }
+    },
+    {
+      "instanceId": "7042de97-eb2c-4d0c-8f38-bf58972f1bcb",
+      "type": "pattern",
+      "slug": "standard-as-records",
+      "fields": {
+        "slug": "standard-as-records",
+        "title": "A standard kept as records",
+        "pattern": "A specification is kept as records: sections, invariants, concepts and decisions, each decision with its accepted costs and review triggers. The published document is generated from them.",
+        "symptoms": "- A specification kept as one document drifts from its own parts.\n- A hand edit to the output is not reflected in the source, and nobody notices.\n- A decision loses its reasons, so nobody knows when to reconsider it.",
+        "mechanism": "- **Sections, invariants, concepts and decisions are records**, linked by relations such as `refines`.\n- **The document is a projection.** A Composition renders it, and it can be regenerated at any time.\n- **A drift check** re-renders the document and fails if anyone hand-edited the output.\n- **A decision names its cost and its review trigger**, so reconsidering it is a recorded act.",
+        "case": "Decision D2 \"Use opaque ids\" `refines` D1 \"Records need stable identity\". Its accepted cost is \"ids are unreadable\" and its review trigger is \"if tooling cannot resolve ids\". A hand edit to the rendered page turns the drift check red. The SRS specification itself is maintained this way."
+      }
+    }
+  ]
+}

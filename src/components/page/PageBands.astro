@@ -1,5 +1,6 @@
 ---
 import Section from "../Section.astro";
+import TryIt from "../TryIt.astro";
 import Entry from "./Entry.astro";
 import type { Band } from "../../lib/bands";
 
@@ -40,6 +41,12 @@ for (const b of bands) {
             <div class="grid grid--xl grid--gap-md">
               {run.items.map((i) => <Entry entry={i.entry} {page} look={i.look} />)}
             </div>
+          ) : run.form === "option" ? (
+            <TryIt
+              options={run.items.flatMap(({ entry }) =>
+                entry.type === "try-option" ? [{ title: entry.fields.title, line: entry.fields.line, label: entry.fields.action_label, url: entry.fields.action_url, command: entry.fields.command }] : [],
+              )}
+            />
           ) : run.form === "principle" ? (
             <div class={run.items.length > 1 ? `grid grid--fit grid--gap-md ${run.items.length % 3 === 0 ? "grid--lg" : "grid--xl"}` : undefined}>
               {run.items.map((i, n) => (

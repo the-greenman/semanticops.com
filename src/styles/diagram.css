@@ -245,3 +245,42 @@
 .figure--motion .dg-fade {
   animation: dg-fade 0.3s ease-out var(--dg-delay) backwards;
 }
+
+/* Page: a sheet of text. Hollow ink is a rendered document; the note tone is free text. */
+.dg-page__sheet {
+  fill: var(--figure-ground);
+  stroke: var(--dg-tone);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.dg-page__fold {
+  fill: none;
+  stroke: var(--dg-tone);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.dg-page__line {
+  stroke: var(--dg-tone);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.dg-page__line--edited {
+  stroke-width: 5;
+  opacity: 1;
+}
+
+/* Actor: who made it, by shape. Neutral ink always. */
+.dg-actor__shape {
+  fill: var(--color-text-strong);
+}
+
+/* Stop: a cross for an end that reaches nothing. */
+.dg-stop__bar {
+  stroke: var(--dg-tone);
+  stroke-width: 3;
+  stroke-linecap: round;
+}

@@ -1,0 +1,15 @@
+{
+  "id": "60d6dfb5-65c6-4592-878b-d73b75d8bc2c",
+  "namespace": "com.semanticops.site",
+  "name": "pattern",
+  "version": 1,
+  "description": "The general situation a pattern describes.",
+  "aiGuidance": {
+    "purpose": "Two or three sentences naming the ordinary situation, generic and invented: no names of real projects, vaults, repositories or editors. Plain words, no marketing language, never an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:32:30.660729155+00:00"
+}

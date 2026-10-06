@@ -1,0 +1,17 @@
+{
+  "instanceId": "456b1371-ed44-4b3b-ab23-3545250129c7",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Where records beat prose",
+    "slug": "patterns-intro",
+    "eyebrow": "Patterns",
+    "lede": "Each pattern is an ordinary situation, what goes wrong in it, and the mechanism SRS uses.",
+    "body": "The cases are small and invented. They are not products and not case studies: each is a situation that any team keeping knowledge in text will recognise. Where a rule is a repository's own governance and not something the tools enforce, the pattern says so."
+  },
+  "createdAt": "2026-10-06T09:33:00.604191887+00:00",
+  "updatedAt": "2026-10-06T09:33:00.604198210+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

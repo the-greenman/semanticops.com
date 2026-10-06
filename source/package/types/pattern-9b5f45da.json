@@ -1,0 +1,45 @@
+{
+  "id": "9b5f45da-3fd8-432f-9b75-2bba9166db19",
+  "namespace": "com.semanticops.site",
+  "name": "pattern",
+  "version": 1,
+  "description": "A recurring situation where records do better than prose, with the mechanism and a small invented case.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "60d6dfb5-65c6-4592-878b-d73b75d8bc2c",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "4e9745f2-ac4e-4a43-b382-f9bbc5c7ed8c",
+      "order": 4,
+      "required": true
+    },
+    {
+      "fieldId": "9413a3b2-bcf3-448b-91bd-b5c54a6e04ba",
+      "order": 5,
+      "required": true
+    },
+    {
+      "fieldId": "8ab3668f-398a-4b5e-a5e5-6fa4d712c462",
+      "order": 6,
+      "required": true
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for one general situation, never for a particular project. The pattern says the situation, the symptoms say what goes wrong, the mechanism says what SRS does and the case is a small invented example a diagram can draw. Follow the copy rules in the Field guidance."
+  },
+  "createdAt": "2026-10-06T09:32:31.028083726+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

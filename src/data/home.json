@@ -21,7 +21,19 @@
         "title": "Portable semantic documents for people and AI",
         "eyebrow": "Semantic Record System",
         "lede": "SRS builds portable semantic documents that both humans and AI can understand and use.",
-        "body": "It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+        "body": "It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning. What survives the move is identity, definitions, relations and context, not appearance.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+      }
+    },
+    {
+      "instanceId": "f5d20eff-18bd-439a-8d01-7c93174a3c87",
+      "type": "section",
+      "slug": "worked-example",
+      "fields": {
+        "slug": "worked-example",
+        "title": "A meeting becomes a decision and two tasks",
+        "eyebrow": "A worked example",
+        "lede": "One meeting note yields a decision with its reasons and two tasks. The tasks link to the decision, and the decision links back to the note it came from.",
+        "body": "The meeting is \"Weekly planning, 6 October\". From its notes the team captures the decision \"Move the weekly standup to Tuesdays\", with the reasons \"Monday is lost to incident reviews; two people are part-time on Mondays\", and two tasks: \"Update the calendar invite\" and \"Tell the support rota\". One meeting note can yield one decision, three tasks and two risks. This one yields a decision and two tasks.\n\nEach task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. People receive a readable decision document. An agent receives the same records and relations. Move the folder to another tool and the identity, fields and links come with it.\n\nThis is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it)."
       }
     },
     {
@@ -33,7 +45,7 @@
         "title": "Knowledge does not travel intact",
         "eyebrow": "The problem",
         "lede": "The hard part is to transfer a complex unit of knowledge, intact, from one mind or system to another. Not a file, not a message, not a row in a database.",
-        "body": "A wall of prose can only be interpreted by a human, and only whole. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.\n\nTwo demands pull against each other. The receiver needs depth of context to understand, and no one, human or AI, can take in everything at once. SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand."
+        "body": "Prose leaves structure and relationships to be inferred, by people and agents alike. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.\n\nTwo demands pull against each other. The receiver needs depth of context to understand, and no one, human or AI, can take in everything at once. SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand."
       }
     },
     {
@@ -44,7 +56,7 @@
         "slug": "idea",
         "title": "Records are the source. Documents are projections.",
         "eyebrow": "The idea",
-        "lede": "Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.",
+        "lede": "Records are the source of truth: the authoritative stored representation, not a guarantee that the content is correct, since a record can hold a disputed or mistaken claim. Rendered documents are projections of those records: derived, never authoritative.",
         "body": "Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. A Composition says how records become a document. A Presentation is a repository's declared commitment to render it. The Projection is the file that results, and it can be regenerated at any time.\n\nThis site works that way. Every page, and every file in the agent section below, is generated from records in an SRS repository."
       }
     },
@@ -247,6 +259,54 @@
         "eyebrow": "For agents",
         "lede": "This site has two surfaces built from one source. People get the pages. Agents get the records.",
         "body": "Every page is projected from an SRS repository, so an agent never needs to scrape HTML. [/llms.txt](/llms.txt) is the entry point. `/agents/<page>.md` and `/agents/<page>.json` carry each page as markdown and as JSON. [/agents/semanticops.srs](/agents/semanticops.srs) is the whole repository as one portable archive that an SRS client or MCP server can open and query.\n\nThe same facts reach two readers. Each surface can be designed for its reader because the meaning lives in the records and not in either surface."
+      }
+    },
+    {
+      "instanceId": "fa887659-4be3-418a-bf36-191e6ef8bb15",
+      "type": "section",
+      "slug": "try-it",
+      "fields": {
+        "slug": "try-it",
+        "title": "Open the example, in order of effort",
+        "eyebrow": "Try it",
+        "lede": "Three ways in, from no install to writes that the tools enforce.",
+        "body": "The people view of the sample is [meeting.md](/try/meeting.md)."
+      }
+    },
+    {
+      "instanceId": "e5d00fd8-b531-4212-8f85-7b55b307b72a",
+      "type": "try-option",
+      "slug": "try-browser",
+      "fields": {
+        "slug": "try-browser",
+        "title": "Open it in your browser",
+        "line": "No install and no account: the sample opens in the browser editor.",
+        "action_url": "https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs",
+        "action_label": "Open the sample"
+      }
+    },
+    {
+      "instanceId": "ec805764-44f8-4286-95cf-006559535bd4",
+      "type": "try-option",
+      "slug": "try-cli",
+      "fields": {
+        "slug": "try-cli",
+        "title": "Run the CLI",
+        "line": "Download the srs release for Linux x86_64, unpack the sample, then check it and look around.",
+        "command": "srs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting\nsrs find --repo meeting --text standup",
+        "action_label": "Run the CLI"
+      }
+    },
+    {
+      "instanceId": "a8df2ace-64c9-466d-a3ce-2edb3b38a543",
+      "type": "try-option",
+      "slug": "try-agent",
+      "fields": {
+        "slug": "try-agent",
+        "title": "Point your agent at it",
+        "line": "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.",
+        "command": "srs mcp serve --repo meeting",
+        "action_label": "Start the MCP server"
       }
     },
     {

@@ -1,0 +1,133 @@
+---
+import Actor from "./Actor.astro";
+import BrokenRing from "./BrokenRing.astro";
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import Page from "./Page.astro";
+import RingNode from "./RingNode.astro";
+import { wrap } from "./geometry";
+
+/**
+ * One meeting, worked through. A note graduates into a decision that carries its reasons as
+ * fields; two tasks depend on the decision; the same records are read two ways, as a document
+ * by people and as records and links by agents.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  note?: string;
+  decision?: string;
+  /** The decision's field rows. A value is shown after the name. */
+  fields?: { name: string; value?: string }[];
+  tasks?: string[];
+  /** The relation from the decision back to the note. */
+  derived?: string;
+  /** The relation from each task to the decision. */
+  depends?: string;
+  people?: string;
+  agents?: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const {
+  number = 1,
+  caption = "One meeting becomes a decision with its reasons and two tasks, read as a document by people and as records and links by agents.",
+  id = "dg-worked-example",
+  note = "Weekly planning, 6 October",
+  decision = "Move the weekly standup to Tuesdays",
+  fields = [{ name: "title" }, { name: "statement" }, { name: "reasons", value: "Monday is lost to incident reviews" }],
+  tasks = ["Update the calendar invite", "Tell the support rota"],
+  derived = "derived-from",
+  depends = "depends-on",
+  people = "People read a decision document",
+  agents = "Agents read the same records and links",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "A meeting becomes a decision and two tasks";
+const desc = `A gold note, ${note}, is kept as written. A vermilion record, ${decision}, points back to it with ${derived}; it carries ${fields.map((f) => f.name).join(", ")} as fields. ${tasks.length} smaller records (${tasks.join("; ")}) each point at the decision with ${depends}. From the same records, people receive a document and agents receive the records and links.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 525">
+    <BrokenRing cx={120} cy={140} r={52} width={2} tone="ink" segments={20} gap={9} />
+    <Link x1={360} y1={140} x2={120} y2={140} arrow="end" label={derived} inset={40} insetEnd={54} />
+    <Disc cx={120} cy={140} r={36} tone="note" knockout={0} />
+    <text class="dg-text dg-text--on-note" x={120} y={140} text-anchor="middle" dominant-baseline="central">note</text>
+    <text class="dg-text" x={120} y={216} text-anchor="middle">{note}</text>
+    <text class="dg-text dg-text--muted" x={120} y={238} text-anchor="middle">kept as written</text>
+    {tasks.map((t, i) => (
+      <>
+        <Link x1={650} y1={130 + i * 90} x2={360} y2={140} arrow="end" width={1.5} inset={24} insetEnd={42} label={i === 0 ? depends : ""} labelAt={0.5} />
+        <Disc cx={650} cy={130 + i * 90} r={20} tone="record" />
+        <text class="dg-text" x={650} y={176 + i * 90} text-anchor="middle">{t}</text>
+      </>
+    ))}
+    <Disc cx={360} cy={140} r={38} tone="record" label={decision} labelPosition="above" />
+    {fields.map((f, i) => (
+      <>
+        <RingNode cx={330} cy={216 + i * 28} r={9} inner="dot" knockout={0} />
+        <text class="dg-text" x={354} y={216 + i * 28} dominant-baseline="central">{f.name}</text>
+        {f.value && <text class="dg-text dg-text--muted" x={354} y={216 + (i + 1) * 28} dominant-baseline="central">{f.value}</text>}
+      </>
+    ))}
+    <Link x1={360} y1={336} x2={360} y2={362} tone="ink" />
+    <text class="dg-text dg-text--muted" x={374} y={350}>read two ways</text>
+    <Link x1={360} y1={362} x2={170} y2={404} tone="ink" arrow="end" />
+    <Link x1={360} y1={362} x2={560} y2={404} tone="ink" arrow="end" />
+    <Actor kind="human" cx={90} cy={438} r={11} />
+    <Page x={120} y={408} w={50} h={64} lines={4} />
+    <text class="dg-text" x={145} y={494} text-anchor="middle">{people}</text>
+    <Actor kind="agent" cx={470} cy={438} r={11} />
+    <Disc cx={520} cy={424} r={9} tone="record" knockout={0} />
+    <Disc cx={590} cy={424} r={9} tone="record" knockout={0} />
+    <Disc cx={555} cy={468} r={9} tone="record" knockout={0} />
+    <Link x1={520} y1={424} x2={590} y2={424} width={1.5} inset={11} />
+    <Link x1={520} y1={424} x2={555} y2={468} width={1.5} inset={11} />
+    <Link x1={590} y1={424} x2={555} y2={468} width={1.5} inset={11} />
+    <text class="dg-text" x={560} y={510} text-anchor="middle">{agents}</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 720">
+    <BrokenRing cx={70} cy={50} r={36} width={2} tone="ink" segments={16} gap={10} />
+    <Disc cx={70} cy={50} r={26} tone="note" knockout={0} />
+    <text class="dg-text dg-text--on-note" x={70} y={50} text-anchor="middle" dominant-baseline="central">note</text>
+    {wrap(note, 18).map((l, i) => <text class="dg-text" x={122} y={36 + i * 20}>{l}</text>)}
+    <text class="dg-text dg-text--muted" x={122} y={76}>kept as written</text>
+    <Link x1={70} y1={170} x2={70} y2={92} arrow="end" inset={0} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={82} y={130}>{derived}</text>
+    <Disc cx={70} cy={200} r={30} tone="record" knockout={0} />
+    {wrap(decision, 20).map((l, i) => <text class="dg-text" x={116} y={184 + i * 20}>{l}</text>)}
+    {fields.map((f, i) => (
+      <>
+        <RingNode cx={130} cy={262 + i * 28} r={8} inner="dot" knockout={0} />
+        <text class="dg-text" x={154} y={262 + i * 28} dominant-baseline="central">{f.name}</text>
+      </>
+    ))}
+    {fields.filter((f) => f.value).map((f) => wrap(f.value ?? "", 18).map((l, i) => <text class="dg-text dg-text--muted" x={154} y={344 + i * 18}>{l}</text>))}
+    <Link x1={22} y1={420 + (tasks.length - 1) * 56} x2={22} y2={200} width={1.5} />
+    <Link x1={22} y1={200} x2={40} y2={200} arrow="end" width={1.5} />
+    <text class="dg-text dg-text--muted" x={34} y={380}>{depends}</text>
+    {tasks.map((t, i) => (
+      <>
+        <Link x1={62} y1={420 + i * 56} x2={22} y2={420 + i * 56} width={1.5} />
+        <Disc cx={80} cy={420 + i * 56} r={18} tone="record" />
+        {wrap(t, 20).map((l, j) => <text class="dg-text" x={112} y={414 + i * 56 + j * 20}>{l}</text>)}
+      </>
+    ))}
+    <Link x1={22} y1={500} x2={22} y2={560} tone="ink" arrow="end" />
+    <text class="dg-text dg-text--muted" x={34} y={536}>read two ways</text>
+    <Actor kind="human" cx={34} cy={610} r={11} />
+    <Page x={58} y={580} w={44} h={58} lines={4} />
+    {wrap(people, 18).map((l, i) => <text class="dg-text" x={118} y={602 + i * 20}>{l}</text>)}
+    <Actor kind="agent" cx={34} cy={684} r={11} />
+    <Disc cx={74} cy={674} r={8} tone="record" knockout={0} />
+    <Disc cx={100} cy={696} r={8} tone="record" knockout={0} />
+    <Link x1={74} y1={674} x2={100} y2={696} width={1.5} inset={10} />
+    {wrap(agents, 18).map((l, i) => <text class="dg-text" x={118} y={676 + i * 20}>{l}</text>)}
+  </Canvas>
+</Figure>

@@ -1,0 +1,25 @@
+{
+  "id": "2cd8f150-fc3a-4536-bd4a-e08cc5d621ad",
+  "namespace": "com.example.meeting",
+  "name": "task",
+  "version": 1,
+  "description": "A piece of work that follows from a decision.",
+  "fields": [
+    {
+      "fieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "0ebea21d-4b44-4e93-ad67-3c283b59d0dd",
+      "order": 2,
+      "required": false
+    }
+  ],
+  "identityFieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+  "aiGuidance": {
+    "purpose": "One task. The owner is optional."
+  },
+  "createdAt": "2026-10-06T09:29:53.488568029+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

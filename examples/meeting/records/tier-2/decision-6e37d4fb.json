@@ -1,0 +1,15 @@
+{
+  "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+  "typeId": "ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a",
+  "typeVersion": 1,
+  "typeNamespace": "com.example.meeting",
+  "typeName": "decision",
+  "fieldValues": {
+    "title": "Move the weekly standup to Tuesdays",
+    "statement": "The weekly standup moves from Monday to Tuesday.",
+    "reasons": "Monday is lost to incident reviews. Two people are part-time on Mondays."
+  },
+  "createdAt": "2026-10-06T09:29:57.399617556+00:00",
+  "updatedAt": "2026-10-06T09:29:57.399621579+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

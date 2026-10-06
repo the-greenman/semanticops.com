@@ -1,0 +1,30 @@
+{
+  "id": "ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a",
+  "namespace": "com.example.meeting",
+  "name": "decision",
+  "version": 1,
+  "description": "A decision taken in a meeting, with its reasons.",
+  "fields": [
+    {
+      "fieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "1d1f36c1-73a1-482f-b084-4716a914a231",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "466f519d-c7d5-4d2d-90db-623346322ca4",
+      "order": 3,
+      "required": true
+    }
+  ],
+  "identityFieldId": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+  "aiGuidance": {
+    "purpose": "One decision and the reasons for it. Link the tasks that follow from it with depends-on."
+  },
+  "createdAt": "2026-10-06T09:29:53.425407248+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

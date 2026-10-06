@@ -8,10 +8,10 @@
     "title": "Records are the source. Documents are projections.",
     "slug": "idea",
     "eyebrow": "The idea",
-    "lede": "Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.",
+    "lede": "Records are the source of truth: the authoritative stored representation, not a guarantee that the content is correct, since a record can hold a disputed or mistaken claim. Rendered documents are projections of those records: derived, never authoritative.",
     "body": "Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. A Composition says how records become a document. A Presentation is a repository's declared commitment to render it. The Projection is the file that results, and it can be regenerated at any time.\n\nThis site works that way. Every page, and every file in the agent section below, is generated from records in an SRS repository."
   },
   "createdAt": "2026-10-05T19:18:39.754391548+00:00",
-  "updatedAt": "2026-10-05T19:18:39.754396224+00:00",
+  "updatedAt": "2026-10-06T09:33:31.342531207+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

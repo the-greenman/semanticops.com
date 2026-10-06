@@ -1,0 +1,15 @@
+{
+  "id": "02393584-a3b3-4a17-bac6-ff6e215a5e04",
+  "namespace": "com.semanticops.site",
+  "name": "action_url",
+  "version": 1,
+  "description": "Where a way of starting leads, as an absolute URL.",
+  "aiGuidance": {
+    "purpose": "An absolute https URL that resolves. Leave it out when the option is a command to run and has no link."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T10:23:21.128660195+00:00"
+}

@@ -8,11 +8,11 @@
     "title": "Validation",
     "slug": "validation",
     "summary": "Diagnostics are data.",
-    "body": "Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so read the diagnostics, not the exit code.\n\nIdentity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.",
-    "example": "{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"diagnostics\": [\n    \"[records/tier-2/page-582af71a.json] missing required field key: eyebrow\"\n  ]\n}",
+    "body": "Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so check `ok` and the diagnostics, not the exit code. Success carries `payload.diagnostics` and a summary. Failure carries a top-level `diagnostics` list.\n\nIdentity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.",
+    "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"payload\": {\n    \"diagnostics\": [],\n    \"summary\": {\n      \"checked\": 5,\n      \"errors\": 0,\n      \"warnings\": 0\n    }\n  }\n}\n\n{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"diagnostics\": [\n    \"[records/tier-2/decision-6e37d4fb.json] missing required field key: title\"\n  ]\n}",
     "spec_link": "https://github.com/the-greenman/srs"
   },
   "createdAt": "2026-10-05T19:18:41.211184286+00:00",
-  "updatedAt": "2026-10-05T19:30:25.713728539+00:00",
+  "updatedAt": "2026-10-06T09:33:30.087726239+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

@@ -9,10 +9,10 @@
     "slug": "rendering-chain",
     "summary": "Composition, Presentation, Projection: how records become documents.",
     "body": "Records are never the document. Three steps lead from one to the other. A **Composition** says how records become a document: which records, in what order, through which views. A **Presentation** is a repository's declared commitment to render a Composition to a named output. A **Projection** is the artifact that results.\n\nThemes wrap content and never replace, suppress or reorder it. Order comes from the container's own outline or from a rule, never from a template. A Projection can be deleted and regenerated, because it was never the source.",
-    "example": "{\n  \"id\": \"3a000005-0000-4000-a000-000000000005\",\n  \"namespace\": \"com.semanticops.spec\",\n  \"name\": \"spec-glossary\",\n  \"version\": 1,\n  \"sections\": [\n    {\n      \"sectionId\": \"concepts\",\n      \"title\": \"Glossary\",\n      \"order\": 0,\n      \"source\": {\n        \"type\": \"discovery-query\",\n        \"query\": {\n          \"typeNamespace\": \"com.semanticops.spec\",\n          \"typeName\": \"concept\"\n        }\n      },\n      \"renderViewId\": \"5c000005-0000-4000-a000-000000000005\",\n      \"ordering\": {\n        \"fieldId\": \"1a000001-0000-4000-a000-000000000001\",\n        \"direction\": \"asc\"\n      }\n    }\n  ],\n  \"exportConfig\": {\n    \"format\": \"markdown\"\n  }\n}",
+    "example": "{\n  \"namespace\": \"com.example.meeting\",\n  \"name\": \"decision-document\",\n  \"version\": 1,\n  \"sections\": [\n    {\n      \"sectionId\": \"entries\",\n      \"source\": {\n        \"type\": \"container-subset\",\n        \"containerId\": \"00b74bf1-f776-4ef0-a9b6-6496cac5c04d\"\n      },\n      \"ordering\": {\n        \"source\": \"arranged\"\n      }\n    }\n  ],\n  \"exportConfig\": {\n    \"format\": \"markdown\"\n  }\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/composition.json"
   },
   "createdAt": "2026-10-05T19:18:41.271478407+00:00",
-  "updatedAt": "2026-10-05T19:18:41.271484444+00:00",
+  "updatedAt": "2026-10-06T09:33:30.411980257+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

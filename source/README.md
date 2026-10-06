@@ -6,11 +6,16 @@ SRS is pronounced "source", and this is the pun in practice: these records are t
 
 ## What is in it
 
-- Namespace `com.semanticops.site`. Root container (the repository identity and navigation): the purpose record, then the five pages in navigation order.
-- Five Types in `package/types/`: `page`, `section`, `concept`, `project`, `principle`. Every Field in `package/fields/` carries `aiGuidance`: read it before writing a record, it holds the copy rules.
-- One Container per page (`home`, `model`, `architecture`, `principles`, `projects`), anchored on that page's `page` record. A container's ordered outline is the page order. A record can sit in several containers (the four projects appear on home and on the projects page).
+- Namespace `com.semanticops.site`. Root container (the repository identity and navigation): the purpose record, then the six pages in navigation order (home, model, patterns, architecture, principles, projects).
+- Eight Types in `package/types/`: `page`, `section`, `concept`, `project`, `principle`, `pattern` (a generic situation, its symptoms, the SRS mechanism and a small invented case), `try-option` (one ranked way to start, a button link or a command) and `route-step` (one line of `llms.txt`). Every Field in `package/fields/` carries `aiGuidance`: read it before writing a record, it holds the copy rules.
+- One Container per page (`home`, `model`, `patterns`, `architecture`, `principles`, `projects`), anchored on that page's `page` record. A container's ordered outline is the page order. A record can sit in several containers (the four projects appear on home and on the projects page).
 - One Composition per page in `package/compositions/`, declared as a presentation in `manifest.json` with a repository-relative output path (`projections/<page>.md`; nothing is written there, the pipeline places the output in `public/agents/`, so the repository packs into a self-contained `.srs`). One View per Type in `package/views/` controls how a record reads as markdown.
+- Two more Containers, `start-here` and `data`, hold `route-step` records and no page. Their order is the order of the `## Start here` and `## Data` sections of `llms.txt`, so nothing factual is left in the script.
 - Relations are only the true canonical ones: `depends-on` between concepts and between projects.
+
+## The sample repository
+
+`examples/meeting/` (outside `source/`) is a real SRS repository in its own namespace, `com.example.meeting`, built only with the CLI: a meeting Note, a `decision` Record graduated from it (`derived-from`), two `task` Records that `depends-on` the decision, and a Container, View and Composition that render a decision document. The invented case is deliberately ordinary; copy that mentions it must stay generic and never name real projects. The Model page's concept examples are real JSON trimmed from its files, set through `srs record update`, so regenerate them if the sample changes. `npm run source` validates it and writes `public/try/meeting.srs` (a deterministic pack that srs-web opens from this device), `meeting.md` (the people view) and `meeting.json`. Change it only with the CLI, then run `npm run source`.
 
 ## Rules
 
@@ -28,7 +33,7 @@ node scripts/source/ensure-srs-cli.mjs                 # fetch the pinned binary
 S=.bin/srs; R=source
 
 $S repo map --repo $R --pretty                         # orient
-$S type list --repo $R --pretty                        # the five Types
+$S type list --repo $R --pretty                        # the eight Types
 $S container list --repo $R --pretty                   # the page containers, by title
 $S record list --repo $R --type com.semanticops.site/concept --pretty
 $S type schema --repo $R <typeId> --pretty             # field keys and aiGuidance before writing
@@ -69,6 +74,6 @@ Mount it in your client's MCP configuration with that command. Read `/agent-inde
 npm run source
 ```
 
-This validates `source/` (any diagnostic fails the build), renders every page, and rewrites `src/data/`, `public/llms.txt` and `public/agents/` (including the `.srs` bundle of this repository and the unmodified `srs repo agent-index` output as `agent-index.md`). Everything is rendered and linted in a staging directory first and swapped in only if it all passes. The lint covers the copy rules and the never-say list, over the page JSON, the markdown, `llms.txt` and the `aiGuidance` of this repository's definitions; `agent-index.md` is raw tool output and is exempt. The output is committed. A clean re-run produces no diff; `node scripts/source/build-source.mjs --check` exits non-zero if the committed output is stale.
+This validates `source/` (any diagnostic fails the build), renders every page, and rewrites `src/data/`, `public/llms.txt`, `public/agents/` and `public/try/` (including the `.srs` bundle of this repository and the unmodified `srs repo agent-index` output as `agent-index.md`). Everything is rendered and linted in a staging directory first and swapped in only if it all passes. The lint covers the copy rules and the never-say list, over the page JSON, the markdown, `llms.txt` and the `aiGuidance` of this repository's definitions; `agent-index.md` is raw tool output and is exempt. The output is committed. A clean re-run produces no diff; `node scripts/source/build-source.mjs --check` exits non-zero if the committed output is stale.
 
 The contract the pages consume is in `src/data/README.md`.

@@ -9,10 +9,10 @@
     "slug": "package",
     "summary": "Fields and Types, distributed together.",
     "body": "A Package is the set of definitions a repository uses: Fields, Types, Compositions and more, indexed in `package.json`. It travels as a single `.srspkg` bundle, so a definition can move between repositories without being retyped. A Package can declare the packages it requires, by package id and SemVer version.\n\nA Package carries definitions only, never records. The records stay with the repository that holds them.",
-    "example": "{\n  \"id\": \"3a000001-0000-4000-a000-000000000001\",\n  \"namespace\": \"com.semanticops.core\",\n  \"name\": \"core\",\n  \"version\": \"1.0.0\",\n  \"fields\": [\n    \"fields/statement-3b000001.json\",\n    \"fields/title-3b000002.json\"\n  ],\n  \"types\": [\n    \"types/purpose-3c000001.json\"\n  ]\n}",
+    "example": "{\n  \"id\": \"f62ac372-70c9-4d2a-9b59-f0e0d3d8c9d9\",\n  \"namespace\": \"com.example.meeting\",\n  \"name\": \"primary\",\n  \"version\": \"1.0.0\",\n  \"fields\": [\n    \"fields/title-db25089d.json\",\n    \"fields/statement-1d1f36c1.json\",\n    \"fields/reasons-466f519d.json\",\n    \"fields/owner-0ebea21d.json\"\n  ],\n  \"types\": [\n    \"types/decision-ec2e7ef3.json\",\n    \"types/task-2cd8f150.json\"\n  ]\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/package-manifest.json"
   },
   "createdAt": "2026-10-05T19:18:40.843930275+00:00",
-  "updatedAt": "2026-10-05T19:18:40.843938339+00:00",
+  "updatedAt": "2026-10-06T09:33:29.212441837+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

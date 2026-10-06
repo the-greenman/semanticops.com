@@ -1,0 +1,15 @@
+{
+  "id": "8ab3668f-398a-4b5e-a5e5-6fa4d712c462",
+  "namespace": "com.semanticops.site",
+  "name": "case",
+  "version": 1,
+  "description": "The small invented example the diagram shows.",
+  "aiGuidance": {
+    "purpose": "One short paragraph with a concrete invented case that a diagram can draw: named records, named relations, one before-and-after. Ordinary content only. Never an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:32:30.843867029+00:00"
+}

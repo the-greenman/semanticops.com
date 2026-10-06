@@ -1,0 +1,15 @@
+{
+  "id": "69aa1f00-7a76-4adf-907e-686f99dc1311",
+  "namespace": "com.semanticops.site",
+  "name": "why",
+  "version": 1,
+  "description": "One line saying why to take this step.",
+  "aiGuidance": {
+    "purpose": "One plain sentence, no trailing list, saying what the reader learns or does at this target. Never an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T09:32:30.962673072+00:00"
+}

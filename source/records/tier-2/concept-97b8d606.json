@@ -9,10 +9,10 @@
     "slug": "note",
     "summary": "Free text with no Type, for capture before structure.",
     "body": "A Note holds named sections of free text and is bound to no Type. It exists so that capture is never blocked by structure: write first, decide later what the knowledge is.\n\nMaturity is a ladder, not a gate. A Note stays a Note for as long as that is useful, and nothing is lost when it becomes something firmer.",
-    "example": "{\n  \"instanceId\": \"c0f7c97d-84a9-48a5-bc4d-41d7ee5f8cd9\",\n  \"title\": \"Human Meaning and AI Collaboration\",\n  \"sections\": [\n    {\n      \"name\": \"purpose\",\n      \"content\": \"SRS should help humans remember that meaning is their job. AI can assist with extraction, synthesis, critique, comparison, and context assembly, but it cannot become the authority that decides what something means for a community, organization, or domain.\"\n    },\n    {\n      \"name\": \"human_responsibility\",\n      \"content\": \"Meaning is not only pattern recognition. It involves responsibility, context, judgment, values, memory, consent, and commitment. A Record may capture negotiated semantic state, but the negotiation is a human and social act. SRS should make that act more legible, not replace it.\"\n    }\n  ]\n}",
+    "example": "{\n  \"instanceId\": \"11111111-1111-4111-8111-111111111111\",\n  \"title\": \"Weekly planning, 6 October\",\n  \"sections\": [\n    {\n      \"name\": \"body\",\n      \"label\": \"Notes\",\n      \"content\": \"Monday is lost to incident reviews, and two people are part-time on Mondays. We agreed to move the weekly standup to Tuesdays. Two follow-ups: update the calendar invite, and tell the support rota.\"\n    }\n  ]\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/note.json"
   },
   "createdAt": "2026-10-05T19:18:40.908945854+00:00",
-  "updatedAt": "2026-10-05T19:18:40.908950735+00:00",
+  "updatedAt": "2026-10-06T09:33:29.351968670+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

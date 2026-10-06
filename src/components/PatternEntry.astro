@@ -1,0 +1,116 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+import Prose from "./Prose.astro";
+import Halves from "./diagram/Halves.astro";
+
+/**
+ * A recurring situation and what SRS does about it. The statement of the pattern leads; under
+ * it the two sides of a held pair, what goes wrong and what SRS does, on either side of one
+ * seam; then the small case the diagram shows (the slot is the diagram). The four texts are
+ * rendered markdown, passed as HTML.
+ */
+interface Props {
+  title: string;
+  /** The small label over the title. */
+  eyebrow?: string;
+  /** The general situation, as HTML. */
+  pattern: string;
+  /** What goes wrong, as HTML. */
+  symptoms: string;
+  /** What SRS does, as HTML. */
+  mechanism: string;
+  /** The invented case the diagram shows, as HTML. */
+  caseHtml?: string;
+  /** The column labels. UI chrome. */
+  labels?: [string, string];
+  level?: "h2" | "h3";
+  id?: string;
+  class?: string;
+}
+
+const { title, eyebrow = "Pattern", pattern, symptoms, mechanism, caseHtml, labels = ["What goes wrong", "What SRS does"], level = "h2", id, class: className } = Astro.props;
+const Heading = level;
+---
+
+<article {id} class:list={["pattern", className]}>
+  <header class="pattern__head">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <Heading class="pattern__title">{title}</Heading>
+    <Prose class="pattern__statement"><Fragment set:html={pattern} /></Prose>
+  </header>
+  <div class="pattern__pair">
+    <section class="pattern__side">
+      <p class="pattern__label t-label">{labels[0]}</p>
+      <Prose><Fragment set:html={symptoms} /></Prose>
+    </section>
+    <svg class="pattern__seam" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <Halves cx={12} cy={12} r={10.75} edge={1.25} seed="dot" />
+    </svg>
+    <section class="pattern__side">
+      <p class="pattern__label t-label">{labels[1]}</p>
+      <Prose><Fragment set:html={mechanism} /></Prose>
+    </section>
+  </div>
+  {caseHtml && <Prose class="pattern__case"><Fragment set:html={caseHtml} /></Prose>}
+  <div class="pattern__diagram"><slot /></div>
+</article>
+
+<style>
+  @layer components {
+    .pattern {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .pattern__head {
+      display: grid;
+      gap: var(--space-xs);
+      justify-items: start;
+    }
+
+    .pattern__title {
+      margin: 0;
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .pattern__statement {
+      font-size: var(--size-lg);
+      color: var(--color-muted-strong);
+    }
+
+    .pattern__pair {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-sm);
+      align-items: start;
+    }
+
+    .pattern__side {
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+      min-width: 0;
+    }
+
+    .pattern__seam {
+      width: var(--space-md);
+      height: var(--space-md);
+      justify-self: center;
+    }
+
+    .pattern__case {
+      color: var(--color-muted-strong);
+    }
+
+    @media (min-width: 800px) {
+      .pattern__pair {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: var(--space-md);
+      }
+
+      .pattern__seam {
+        margin-top: var(--space-md);
+      }
+    }
+  }
+</style>

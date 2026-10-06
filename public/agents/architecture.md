@@ -43,12 +43,29 @@ A capability is implemented once, in the core, and consumed identically by every
 
 The test: if two clients could ever disagree about the answer, the logic is in the wrong place.
 
+Every adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok` and the diagnostics, not the exit code.
+
 **Example (JSON)**: {
   "ok": true,
   "command": "repo validate",
+  "version": "0.1.0",
   "payload": {
-    "diagnostics": []
+    "diagnostics": [],
+    "summary": {
+      "checked": 5,
+      "errors": 0,
+      "warnings": 0
+    }
   }
+}
+
+{
+  "ok": false,
+  "command": "repo validate",
+  "version": "0.1.0",
+  "diagnostics": [
+    "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
+  ]
 }
 
 **Definition**: https://github.com/the-greenman/srs-rust

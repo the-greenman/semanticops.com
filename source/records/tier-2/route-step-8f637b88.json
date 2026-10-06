@@ -1,0 +1,16 @@
+{
+  "instanceId": "8f637b88-3068-4b37-8c26-141b8eb17f4d",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Patterns",
+    "slug": "route-patterns",
+    "target": "/agents/patterns.md",
+    "why": "Four situations where records beat prose, with the mechanism for each."
+  },
+  "createdAt": "2026-10-06T09:33:01.162953336+00:00",
+  "updatedAt": "2026-10-06T09:33:01.162957895+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

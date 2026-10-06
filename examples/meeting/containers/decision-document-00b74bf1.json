@@ -1,0 +1,21 @@
+{
+  "containerId": "00b74bf1-f776-4ef0-a9b6-6496cac5c04d",
+  "title": "Decision document",
+  "namespace": "com.example.meeting",
+  "name": "decision-document",
+  "description": "The decision and the tasks that follow from it, in reading order.",
+  "anchorInstanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",
+  "memberInstanceIds": [
+    {
+      "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7"
+    },
+    {
+      "instanceId": "3fc0b3f1-9169-4eac-bb35-6e24d90fbccc",
+      "depth": 1
+    },
+    {
+      "instanceId": "dda4f664-601c-44cb-8c08-c5cd32f5194f",
+      "depth": 1
+    }
+  ]
+}

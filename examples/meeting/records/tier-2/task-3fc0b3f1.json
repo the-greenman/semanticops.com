@@ -1,0 +1,14 @@
+{
+  "instanceId": "3fc0b3f1-9169-4eac-bb35-6e24d90fbccc",
+  "typeId": "2cd8f150-fc3a-4536-bd4a-e08cc5d621ad",
+  "typeVersion": 1,
+  "typeNamespace": "com.example.meeting",
+  "typeName": "task",
+  "fieldValues": {
+    "title": "Update the calendar invite",
+    "owner": "Sam"
+  },
+  "createdAt": "2026-10-06T09:30:03.067417791+00:00",
+  "updatedAt": "2026-10-06T09:30:03.067422430+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
