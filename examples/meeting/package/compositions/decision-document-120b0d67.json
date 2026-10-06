@@ -1,0 +1,42 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/composition.json",
+  "id": "120b0d67-0074-4a94-98ae-590b677e7f29",
+  "namespace": "com.example.meeting",
+  "name": "decision-document",
+  "version": 1,
+  "description": "The decision document: the container's entries in its own order and depth.",
+  "sections": [
+    {
+      "sectionId": "entries",
+      "order": 0,
+      "source": {
+        "type": "container-subset",
+        "containerId": "00b74bf1-f776-4ef0-a9b6-6496cac5c04d"
+      },
+      "typeDispatch": {
+        "com.example.meeting/decision": "ddcbc1de-d55a-4b32-9a3d-f4bfea56c7a7",
+        "com.example.meeting/task": "0f162ff2-8a1d-45b6-8de1-9be07fcfa456"
+      },
+      "ordering": {
+        "source": "arranged"
+      },
+      "emptyBehavior": "hide",
+      "relationsPresentation": {
+        "include": [
+          {
+            "relationType": "depends-on",
+            "directions": "forward",
+            "forwardLabel": "Depends on"
+          }
+        ]
+      }
+    }
+  ],
+  "exportConfig": {
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:30:24.819750410+00:00",
+  "aiGuidance": {
+    "purpose": "Projects the decision document. Order and nesting come from the container."
+  }
+}

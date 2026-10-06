@@ -1,0 +1,15 @@
+{
+  "id": "db25089d-c5f1-4c4c-88bc-9ffd491d7124",
+  "namespace": "com.example.meeting",
+  "name": "title",
+  "version": 1,
+  "description": "The record's heading.",
+  "aiGuidance": {
+    "purpose": "A short sentence-case name for the record."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T09:29:48.109195203+00:00"
+}

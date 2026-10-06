@@ -1,0 +1,15 @@
+{
+  "id": "1d1f36c1-73a1-482f-b084-4716a914a231",
+  "namespace": "com.example.meeting",
+  "name": "statement",
+  "version": 1,
+  "description": "What was decided.",
+  "aiGuidance": {
+    "purpose": "One sentence stating the decision in the present tense."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "plain"
+  },
+  "createdAt": "2026-10-06T09:29:48.190757300+00:00"
+}
