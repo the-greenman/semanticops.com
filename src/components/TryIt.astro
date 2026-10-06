@@ -1,15 +1,15 @@
 ---
 import Button from "./Button.astro";
-import CodeSample from "./CodeSample.astro";
 import Prose from "./Prose.astro";
 import { markdown } from "../lib/markdown";
 
 /**
  * The ways to start, ranked by friction, as cards side by side. It lays out the markdown of a
- * section's body, one option per `###` heading: the heading is the option's title, a paragraph
- * that is only a link becomes its button, a fenced code block becomes a CodeSample, and any
- * other text is its one line. Nothing is written here: change the record, not the component.
- * With no `###` headings it falls back to plain prose.
+ * section's body: an ordered list whose items open with a bold title ("1. **Open it.** text").
+ * The title is the card's heading, the rest is its text (links and code as written), and the
+ * first link of the first option, the lowest-friction one, is also set as its button. Text
+ * before the list is an introduction. Nothing is written here: change the record, not the
+ * component. With no such list it falls back to plain prose.
  */
 interface Props {
   /** The section body, as markdown. */
@@ -19,17 +19,19 @@ interface Props {
 
 const { body, class: className } = Astro.props;
 
-const parts = body.split(/^###[ \t]+/m);
-const intro = parts[0].trim();
+const item = /^\d+\.[ \t]+\*\*(.+?)\*\*[ \t]*([\s\S]*)$/;
+const lines = body.split("\n");
+const first = lines.findIndex((l) => item.test(l));
+const intro = (first < 0 ? body : lines.slice(0, first).join("\n")).trim();
+const chunks: string[] = [];
+if (first >= 0) for (const l of lines.slice(first)) (item.test(l) ? chunks.push(l) : chunks.length && (chunks[chunks.length - 1] += "\n" + l));
 const options = await Promise.all(
-  parts.slice(1).map(async (chunk) => {
-    const [title, ...rest] = chunk.split("\n");
-    let text = rest.join("\n");
-    const code = text.match(/```(\w+)?[ \t]*\n([\s\S]*?)```/);
-    if (code) text = text.replace(code[0], "");
-    const actions = [...text.matchAll(/^\[([^\]]+)\]\(([^)\s]+)\)[ \t]*$/gm)].map((m) => ({ label: m[1], href: m[2] }));
-    text = text.replace(/^\[[^\]]+\]\([^)\s]+\)[ \t]*$/gm, "").trim();
-    return { title: title.trim(), html: text ? await markdown(text) : "", actions, code: code ? { lang: code[1], code: code[2].replace(/\n$/, "") } : undefined };
+  chunks.map(async (c, i) => {
+    const m = c.match(item)!;
+    const link = i === 0 ? m[2].match(/\[([^\]]+)\]\(([^)\s]+)\)/) : null;
+    // The button replaces its own link in the text, so the same words are not said twice.
+    const text = link ? m[2].replace(link[0], "").replace(/^[ \t]*[.,;:]\s*/, "").trim() : m[2].trim();
+    return { title: m[1].replace(/[.:]$/, ""), html: text ? await markdown(text) : "", action: link ? { label: link[1], href: link[2] } : undefined };
   }),
 );
 const introHtml = intro ? await markdown(intro) : "";
@@ -57,14 +59,9 @@ const introHtml = intro ? await markdown(intro) : "";
                 <Fragment set:html={o.html} />
               </Prose>
             )}
-            {o.code && <CodeSample code={o.code.code} lang={(o.code.lang ?? "bash") as "bash"} />}
-            {o.actions.length > 0 && (
+            {o.action && (
               <div class="tryit__actions">
-                {o.actions.map((a) => (
-                  <Button href={a.href} variant={i === 0 ? "primary" : "secondary"}>
-                    {a.label}
-                  </Button>
-                ))}
+                <Button href={o.action.href}>{o.action.label}</Button>
               </div>
             )}
           </li>
@@ -99,11 +96,6 @@ const introHtml = intro ? await markdown(intro) : "";
       padding: var(--space-md) var(--space-sm) var(--space-sm);
       border: 1px solid var(--card-border);
       background: var(--card-bg);
-    }
-
-    .tryit__option > :global(.codesample) {
-      align-self: stretch;
-      min-width: 0;
     }
 
     .tryit__title {

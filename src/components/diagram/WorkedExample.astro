@@ -54,40 +54,43 @@ const desc = `A gold note, ${note}, is kept as written. A vermilion record, ${de
 ---
 
 <Figure {number} {caption} {grid} {motion}>
-  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 430">
-    <BrokenRing cx={120} cy={120} r={52} width={2} tone="ink" segments={20} gap={9} />
-    <Link x1={380} y1={120} x2={120} y2={120} arrow="end" label={derived} inset={40} insetEnd={54} />
-    <Disc cx={120} cy={120} r={36} tone="note" knockout={0} />
-    <text class="dg-text dg-text--on-note" x={120} y={120} text-anchor="middle" dominant-baseline="central">note</text>
-    <text class="dg-text" x={120} y={196} text-anchor="middle">{note}</text>
-    <text class="dg-text dg-text--muted" x={120} y={218} text-anchor="middle">kept as written</text>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 525">
+    <BrokenRing cx={120} cy={140} r={52} width={2} tone="ink" segments={20} gap={9} />
+    <Link x1={360} y1={140} x2={120} y2={140} arrow="end" label={derived} inset={40} insetEnd={54} />
+    <Disc cx={120} cy={140} r={36} tone="note" knockout={0} />
+    <text class="dg-text dg-text--on-note" x={120} y={140} text-anchor="middle" dominant-baseline="central">note</text>
+    <text class="dg-text" x={120} y={216} text-anchor="middle">{note}</text>
+    <text class="dg-text dg-text--muted" x={120} y={238} text-anchor="middle">kept as written</text>
     {tasks.map((t, i) => (
       <>
-        <Link x1={640} y1={50 + i * 120} x2={380} y2={120} arrow="end" width={1.5} inset={24} insetEnd={42} label={i === 0 ? depends : ""} labelAt={0.45} />
-        <Disc cx={640} cy={50 + i * 120} r={20} tone="record" />
-        <text class="dg-text" x={640} y={96 + i * 120} text-anchor="middle">{t}</text>
+        <Link x1={650} y1={130 + i * 90} x2={360} y2={140} arrow="end" width={1.5} inset={24} insetEnd={42} label={i === 0 ? depends : ""} labelAt={0.5} />
+        <Disc cx={650} cy={130 + i * 90} r={20} tone="record" />
+        <text class="dg-text" x={650} y={176 + i * 90} text-anchor="middle">{t}</text>
       </>
     ))}
-    <Disc cx={380} cy={120} r={38} tone="record" label={decision} labelPosition="above" />
+    <Disc cx={360} cy={140} r={38} tone="record" label={decision} labelPosition="above" />
     {fields.map((f, i) => (
       <>
-        <RingNode cx={354} cy={198 + i * 28} r={9} inner="dot" knockout={0} />
-        <text class="dg-text" x={372} y={198 + i * 28} dominant-baseline="central">{f.name}{f.value ? <tspan class="dg-text--muted">{`: ${f.value}`}</tspan> : null}</text>
+        <RingNode cx={330} cy={216 + i * 28} r={9} inner="dot" knockout={0} />
+        <text class="dg-text" x={354} y={216 + i * 28} dominant-baseline="central">{f.name}</text>
+        {f.value && <text class="dg-text dg-text--muted" x={354} y={216 + (i + 1) * 28} dominant-baseline="central">{f.value}</text>}
       </>
     ))}
-    <Link x1={380} y1={290} x2={190} y2={332} tone="ink" arrow="end" label="rendered" />
-    <Link x1={380} y1={290} x2={580} y2={332} tone="ink" arrow="end" label="served as data" />
-    <Actor kind="human" cx={110} cy={366} r={11} />
-    <Page x={140} y={334} w={50} h={64} lines={4} />
-    <text class="dg-text" x={165} y={424} text-anchor="middle">{people}</text>
-    <Actor kind="agent" cx={500} cy={366} r={11} />
-    <Disc cx={540} cy={348} r={9} tone="record" knockout={0} />
-    <Disc cx={600} cy={348} r={9} tone="record" knockout={0} />
-    <Disc cx={570} cy={392} r={9} tone="record" knockout={0} />
-    <Link x1={540} y1={348} x2={600} y2={348} width={1.5} inset={11} />
-    <Link x1={540} y1={348} x2={570} y2={392} width={1.5} inset={11} />
-    <Link x1={600} y1={348} x2={570} y2={392} width={1.5} inset={11} />
-    <text class="dg-text" x={580} y={424} text-anchor="middle">{agents}</text>
+    <Link x1={360} y1={336} x2={360} y2={362} tone="ink" />
+    <text class="dg-text dg-text--muted" x={374} y={350}>read two ways</text>
+    <Link x1={360} y1={362} x2={170} y2={404} tone="ink" arrow="end" />
+    <Link x1={360} y1={362} x2={560} y2={404} tone="ink" arrow="end" />
+    <Actor kind="human" cx={90} cy={438} r={11} />
+    <Page x={120} y={408} w={50} h={64} lines={4} />
+    <text class="dg-text" x={145} y={494} text-anchor="middle">{people}</text>
+    <Actor kind="agent" cx={470} cy={438} r={11} />
+    <Disc cx={520} cy={424} r={9} tone="record" knockout={0} />
+    <Disc cx={590} cy={424} r={9} tone="record" knockout={0} />
+    <Disc cx={555} cy={468} r={9} tone="record" knockout={0} />
+    <Link x1={520} y1={424} x2={590} y2={424} width={1.5} inset={11} />
+    <Link x1={520} y1={424} x2={555} y2={468} width={1.5} inset={11} />
+    <Link x1={590} y1={424} x2={555} y2={468} width={1.5} inset={11} />
+    <text class="dg-text" x={560} y={510} text-anchor="middle">{agents}</text>
   </Canvas>
   <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 720">
     <BrokenRing cx={70} cy={50} r={36} width={2} tone="ink" segments={16} gap={10} />
@@ -102,13 +105,13 @@ const desc = `A gold note, ${note}, is kept as written. A vermilion record, ${de
     {fields.map((f, i) => (
       <>
         <RingNode cx={130} cy={262 + i * 28} r={8} inner="dot" knockout={0} />
-        <text class="dg-text" x={146} y={262 + i * 28} dominant-baseline="central">{f.name}</text>
+        <text class="dg-text" x={154} y={262 + i * 28} dominant-baseline="central">{f.name}</text>
       </>
     ))}
-    {fields.filter((f) => f.value).map((f) => wrap(f.value ?? "", 20).map((l, i) => <text class="dg-text dg-text--muted" x={146} y={344 + i * 18}>{l}</text>))}
-    <Link x1={22} y1={420} x2={22} y2={200} width={1.5} />
+    {fields.filter((f) => f.value).map((f) => wrap(f.value ?? "", 18).map((l, i) => <text class="dg-text dg-text--muted" x={154} y={344 + i * 18}>{l}</text>))}
+    <Link x1={22} y1={420 + (tasks.length - 1) * 56} x2={22} y2={200} width={1.5} />
     <Link x1={22} y1={200} x2={40} y2={200} arrow="end" width={1.5} />
-    <text class="dg-text dg-text--muted" x={34} y={300}>{depends}</text>
+    <text class="dg-text dg-text--muted" x={34} y={380}>{depends}</text>
     {tasks.map((t, i) => (
       <>
         <Link x1={62} y1={420 + i * 56} x2={22} y2={420 + i * 56} width={1.5} />

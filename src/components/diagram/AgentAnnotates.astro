@@ -47,7 +47,7 @@ const wy = (i: number) => 70 + i * 80;
 ---
 
 <Figure {number} {caption} {grid} {motion}>
-  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 340">
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 360">
     <Page x={40} y={40} w={170} h={190} lines={8} tone="note" />
     <Actor kind="human" cx={28} cy={28} r={12} />
     <text class="dg-text" x={125} y={256} text-anchor="middle">{text}</text>
@@ -59,9 +59,9 @@ const wy = (i: number) => 70 + i * 80;
         <text class="dg-text" x={510} y={wy(i) + 20} dominant-baseline="central">{a}</text>
       </>
     ))}
-    <Actor kind="human" cx={20} cy={312} r={9} label={human} />
-    <Actor kind="agent" cx={140} cy={312} r={9} label={agent} />
-    <text class="dg-text dg-text--muted" x={260} y={312} dominant-baseline="central">{unchanged}</text>
+    <Actor kind="human" cx={20} cy={300} r={9} label={human} />
+    <Actor kind="agent" cx={140} cy={300} r={9} label={agent} />
+    <text class="dg-text dg-text--muted" x={0} y={346} dominant-baseline="central">{unchanged}</text>
   </Canvas>
   <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 560">
     <Page x={50} y={40} w={150} h={150} lines={7} tone="note" />

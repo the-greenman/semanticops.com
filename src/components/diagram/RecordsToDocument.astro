@@ -53,27 +53,28 @@ const desc = `Two vermilion decision records, ${first} and ${second}, are linked
 ---
 
 <Figure {number} {caption} {grid} {motion}>
-  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 400">
-    <Link x1={60} y1={240} x2={60} y2={92} arrow="end" inset={26} insetEnd={26} label={relation} />
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 390">
+    <Link x1={60} y1={232} x2={60} y2={92} arrow="end" inset={0} insetEnd={0} label={relation} />
     <Disc cx={60} cy={70} r={22} tone="record" />
     <text class="dg-text" x={96} y={70} dominant-baseline="central">{first}</text>
-    <Disc cx={60} cy={260} r={22} tone="record" />
-    <text class="dg-text" x={96} y={250} dominant-baseline="central">{second}</text>
+    <Disc cx={60} cy={254} r={22} tone="record" />
+    <text class="dg-text" x={96} y={254} dominant-baseline="central">{second}</text>
     {rows.map((r, i) => (
       <>
-        <RingNode cx={110} cy={298 + i * 28} r={8} inner="dot" knockout={0} />
-        <text class="dg-text" x={128} y={298 + i * 28} dominant-baseline="central">{r}</text>
+        <RingNode cx={80} cy={304 + i * 30} r={8} inner="dot" knockout={0} />
+        <text class="dg-text" x={104} y={304 + i * 30} dominant-baseline="central">{r}</text>
       </>
     ))}
-    <Link x1={400} y1={120} x2={540} y2={120} tone="ink" arrow="end" label={rendered} inset={0} insetEnd={0} />
-    <Page x={560} y={50} w={150} h={180} lines={7} mark={4} />
-    <Actor kind="human" cx={742} cy={170} r={9} />
-    <text class="dg-text" x={720} y={206} text-anchor="end">{edit}</text>
-    <Link x1={600} y1={320} x2={440} y2={320} tone="ink" dashed arrow="end" label={check} inset={0} insetEnd={0} />
-    <Link x1={640} y1={236} x2={640} y2={296} tone="ink" dashed />
-    <Link x1={640} y1={296} x2={600} y2={320} tone="ink" dashed />
-    <Stop cx={430} cy={320} tone="ink" r={9} />
-    <text class="dg-text dg-text--strong" x={400} y={366}>{failed}</text>
+    <Link x1={480} y1={50} x2={480} y2={330} tone="ink" width={1} />
+    <Link x1={480} y1={150} x2={550} y2={150} tone="ink" arrow="end" />
+    <text class="dg-text dg-text--muted" x={515} y={134} text-anchor="middle">{rendered}</text>
+    <Page x={560} y={50} w={130} h={170} lines={7} mark={4} />
+    <Actor kind="human" cx={722} cy={150} r={9} />
+    <text class="dg-text" x={722} y={124} text-anchor="middle">{edit}</text>
+    <Link x1={625} y1={220} x2={625} y2={300} tone="ink" dashed />
+    <Link x1={625} y1={300} x2={486} y2={300} tone="ink" dashed arrow="end" label={check} />
+    <Stop cx={60} cy={366} tone="ink" r={9} />
+    <text class="dg-text dg-text--strong" x={84} y={366} dominant-baseline="central">{failed}</text>
   </Canvas>
   <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 700">
     <Disc cx={30} cy={30} r={18} tone="record" />
@@ -85,7 +86,7 @@ const desc = `Two vermilion decision records, ${first} and ${second}, are linked
     {rows.map((r, i) => (
       <>
         <RingNode cx={50} cy={214 + i * 56} r={8} inner="dot" knockout={0} />
-        {wrap(r, 24).map((l, j) => <text class="dg-text" x={68} y={214 + i * 56 + j * 18 - (wrap(r, 24).length - 1) * 9} dominant-baseline="central">{l}</text>)}
+        {wrap(r, 24).map((l, j) => <text class="dg-text" x={74} y={214 + i * 56 + j * 18 - (wrap(r, 24).length - 1) * 9} dominant-baseline="central">{l}</text>)}
       </>
     ))}
     <Link x1={30} y1={340} x2={30} y2={390} tone="ink" arrow="end" />

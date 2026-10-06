@@ -135,28 +135,9 @@ const demoEntries: Entry[] = [
 ];
 const demoBands = toBands(demoEntries, "styleguide");
 
-const tryItBody = `### Open the sample in your browser
-
-No install, no account.
-
-[Open the sample](https://app.mudemocracy.org/)
-
-### Run the command line tool
-
-Unpack the sample, check it, then look around.
-
-\`\`\`bash
-srs repo validate
-srs repo map
-\`\`\`
-
-### Point your agent at it
-
-Read /llms.txt, or give your agent tools that enforce the rules.
-
-\`\`\`bash
-srs mcp serve --repo ./meeting
-\`\`\``;
+const tryItBody = `1. **Open it in your browser.** [Open the sample in the browser editor](https://app.mudemocracy.org/). No install, no account.
+2. **Run the CLI.** Run \`srs repo validate\`, then \`srs repo map\` and \`srs find\` against the unpacked folder.
+3. **Point your agent at it.** Give it [/llms.txt](/llms.txt) to read, or add \`srs mcp serve --repo <folder>\` to an MCP client configuration for writes the tools enforce.`;
 const patternSample = {
   pattern: await markdown("A folder of markdown notes that people and agents both edit. Every rule about it is a convention."),
   symptoms: await markdown("- A rename leaves links pointing at nothing.\n- Some notes are linked from nowhere.\n- Nobody can say which note is current."),
@@ -517,7 +498,7 @@ const relationJson = `{
   <!-- TRY IT -->
   <Section id="tryit" variant="ink">
     <SectionHeader eyebrow="Components" title="TryIt">
-      The ways to start, ranked by friction, on an ink band. It lays out a section body written as markdown: one option per ### heading, a paragraph that is only a link becomes its button, a fenced code block becomes a CodeSample, other text is its one line.
+      The ways to start, ranked by friction, on an ink band. It lays out a section body written as markdown: an ordered list whose items open with a bold title. The first link of the first option becomes its button; the rest of each item is its text, with code as written.
     </SectionHeader>
     <TryIt body={tryItBody} />
   </Section>

@@ -55,22 +55,24 @@ const desc = `Left: two notes link to ${oldName} by name. After the note is rena
   <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 380">
     <text class="dg-text dg-text--caps dg-text--strong" x={10} y={20}>{notesTitle}</text>
     <text class="dg-text dg-text--caps dg-text--strong" x={420} y={20}>{recordsTitle}</text>
-    <Link x1={380} y1={44} x2={380} y2={300} tone="ink" width={1} />
-    <Disc cx={50} cy={100} r={16} tone="note" />
-    <Disc cx={50} cy={260} r={16} tone="note" />
-    <Link x1={50} y1={100} x2={190} y2={150} dashed inset={22} insetEnd={0} />
-    <Link x1={50} y1={260} x2={190} y2={210} dashed inset={22} insetEnd={0} />
-    <Stop cx={190} cy={150} />
-    <Stop cx={190} cy={210} />
-    <text class="dg-text" x={190} y={180} text-anchor="middle">{`[[${oldName}]]`}</text>
-    <Disc cx={320} cy={180} r={22} tone="note" label={newName} labelPosition="below" />
-    <text class="dg-text dg-text--muted" x={320} y={236} text-anchor="middle">renamed, nothing links in</text>
+    <Link x1={396} y1={44} x2={396} y2={300} tone="ink" width={1} />
+    <Disc cx={40} cy={100} r={16} tone="note" />
+    <Disc cx={40} cy={260} r={16} tone="note" />
+    <Link x1={40} y1={100} x2={140} y2={150} dashed inset={22} insetEnd={0} />
+    <Link x1={40} y1={260} x2={140} y2={210} dashed inset={22} insetEnd={0} />
+    <Stop cx={140} cy={150} />
+    <Stop cx={140} cy={210} />
+    <text class="dg-text" x={140} y={180} text-anchor="middle">{`[[${oldName}]]`}</text>
+    <Disc cx={270} cy={180} r={22} tone="note" />
+    {wrap(newName, 9).map((l, i) => <text class="dg-text" x={302} y={164 + i * 24} dominant-baseline="central">{l}</text>)}
+    <text class="dg-text dg-text--muted" x={302} y={216}>renamed</text>
     <Disc cx={430} cy={100} r={16} tone="record" />
     <Disc cx={430} cy={260} r={16} tone="record" />
-    <Link x1={430} y1={100} x2={650} y2={180} arrow="end" inset={22} insetEnd={30} label={relation} />
-    <Link x1={430} y1={260} x2={650} y2={180} arrow="end" inset={22} insetEnd={30} />
-    <Disc cx={650} cy={180} r={22} tone="record" label={newName} labelPosition="below" />
-    <text class="dg-text dg-text--muted" x={650} y={236} text-anchor="middle">{recordId}</text>
+    <Link x1={430} y1={100} x2={590} y2={180} arrow="end" inset={22} insetEnd={30} label={relation} />
+    <Link x1={430} y1={260} x2={590} y2={180} arrow="end" inset={22} insetEnd={30} />
+    <Disc cx={590} cy={180} r={22} tone="record" />
+    {wrap(newName, 9).map((l, i) => <text class="dg-text" x={622} y={164 + i * 24} dominant-baseline="central">{l}</text>)}
+    <text class="dg-text dg-text--muted" x={622} y={216}>{recordId}</text>
     <text class="dg-text" x={10} y={348}>{notesResult}</text>
     <text class="dg-text" x={420} y={348}>{recordsResult}</text>
   </Canvas>
@@ -78,11 +80,11 @@ const desc = `Left: two notes link to ${oldName} by name. After the note is rena
     <text class="dg-text dg-text--caps dg-text--strong" x={0} y={16}>{notesTitle}</text>
     <Disc cx={30} cy={70} r={14} tone="note" />
     <Disc cx={30} cy={170} r={14} tone="note" />
-    <Link x1={30} y1={70} x2={150} y2={100} dashed inset={20} insetEnd={0} />
-    <Link x1={30} y1={170} x2={150} y2={140} dashed inset={20} insetEnd={0} />
-    <Stop cx={150} cy={100} />
-    <Stop cx={150} cy={140} />
-    {wrap(`[[${oldName}]]`, 12).map((l, i) => <text class="dg-text" x={174} y={112 + i * 20}>{l}</text>)}
+    <Link x1={30} y1={70} x2={120} y2={100} dashed inset={20} insetEnd={0} />
+    <Link x1={30} y1={170} x2={120} y2={140} dashed inset={20} insetEnd={0} />
+    <Stop cx={120} cy={100} />
+    <Stop cx={120} cy={140} />
+    {wrap(`[[${oldName}]]`, 14).map((l, i) => <text class="dg-text" x={140} y={112 + i * 20}>{l}</text>)}
     <Disc cx={290} cy={120} r={18} tone="note" />
     {wrap(newName, 10).map((l, i) => <text class="dg-text dg-text--muted" x={290} y={160 + i * 18} text-anchor="middle">{l}</text>)}
     {wrap(notesResult, 34).map((l, i) => <text class="dg-text" x={0} y={226 + i * 20}>{l}</text>)}

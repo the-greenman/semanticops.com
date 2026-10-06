@@ -15,7 +15,7 @@ Facts live **once**, as an SRS repository in `source/`. Records are the source o
 
 ```
 src/styles/        tokens.css, tokens-components.css, base.css, utilities.css, diagram.css, index.css
-src/components/    one component per file; diagram/ holds the primitives and the six diagrams
+src/components/    one component per file; diagram/ holds the primitives and the eleven diagrams
 src/components/styleguide/   specimen helpers used only by /styleguide
 src/components/page/         the assemblers: PageBands (entries to bands) and Entry (one record)
 src/layouts/Base.astro       page shell
@@ -47,7 +47,7 @@ Every visible fact comes from `src/data/*.json` (see `src/data/README.md`); the 
 
 - **`src/lib/content.ts`** types the data contract and loads it. It never reorders or filters to change the order. `linkTo(slug, fromPage)` resolves a relation target to an anchor or to its owning page.
 - **`src/lib/presentation.ts`, the presentation map, is the one place a slug is paired with how it is shown**: the band surface (`paper`, `page`, `ink`), a diagram (named, from the `visuals` table), a glyph, a lede as a quotation, a principle as a headline or a pair, the hero. `page:slug` overrides it for one page. A slug with no entry takes the default of its entry type. Never choose a component or a diagram by slug anywhere else.
-- **`src/lib/bands.ts`** groups the flat entry list into bands (a section, a concept, or an entry whose look names a surface opens one; the entries after it are its items) and alternates paper and page; ink only where the map asks. **`components/page/PageBands.astro`** lays them out and numbers the figures; **`components/page/Entry.astro`** draws one record by type and look and gives it `id={slug}`.
+- **`src/lib/bands.ts`** groups the flat entry list into bands (a section, a concept, a pattern, or an entry whose look names a surface opens one; the entries after it are its items) and alternates paper and page; ink only where the map asks. **`components/page/PageBands.astro`** lays them out and numbers the figures; **`components/page/Entry.astro`** draws one record by type and look and gives it `id={slug}`.
 - `src/pages/[page].astro` is the one dynamic route (page header, an "on this page" index when a page has four or more bands, the bands, "Keep reading"). `src/pages/index.astro` composes only the hero by hand (which record is the hero, and the pages its buttons lead to, are the `hero` and `actions` looks in the map) and hands the rest to `PageBands`. Bands are computed once per page (`toBands`) and passed to `PageBands`; `closingSurface` gives the ground of a band that follows them.
 
 **To add a page:** add its records, a container and a composition in `source/` (see `source/README.md`), then `npm run source`. It appears at `/<slug>` and in the nav. **To change how a record looks:** add or change one line in `presentation.ts`. **To add a new kind of look** (a new diagram pairing is only a line; a new component is not): add the component and its specimen first, then reference it from the map. If a record reads wrongly, change the record through the SRS tools, never the component.
@@ -65,7 +65,7 @@ Every visible fact comes from `src/data/*.json` (see `src/data/README.md`); the 
 
 ### 3a. Diagrams
 
-Every diagram is composed from the primitives in `components/diagram/` (`Disc`, `RingNode`, `BrokenRing`, `Link`, `Target`, `Knockout`, `Halves`, `Cluster`, inside `Figure` and `Canvas`). **A diagram never draws its own circles or lines.** Each draws a wide and a narrow layout switched by the figure's container query, so no text is under 11px on screen. Each has `role="img"`, a `<title>` and a `<desc>`. Labels are props. Motion is CSS only, opt-in per figure (`motion`), and removed under `prefers-reduced-motion`. Containers are broken rings, never closed circles. Every label sits on a ground-coloured halo (`--dg-halo`) wide enough to bridge a word space, so the dot grid never shows through a run of text. Ink bands carry a hairline (`--rule-band`) that resolves against the page, so they part from the dark page too.
+Every diagram is composed from the primitives in `components/diagram/` (`Disc`, `RingNode`, `BrokenRing`, `Link`, `Target`, `Knockout`, `Halves`, `Cluster`, `Page`, `Actor`, `Stop`, inside `Figure` and `Canvas`). Who made a thing is told by shape, never hue: `Actor` is a circle for a person and a notched square for an agent. A relation or check that reaches nothing is a dashed `Link` ending in a `Stop` cross, so the state reads without colour. **A diagram never draws its own circles or lines.** Each draws a wide and a narrow layout switched by the figure's container query, so no text is under 11px on screen. Each has `role="img"`, a `<title>` and a `<desc>`. Labels are props. Motion is CSS only, opt-in per figure (`motion`), and removed under `prefers-reduced-motion`. Containers are broken rings, never closed circles. Every label sits on a ground-coloured halo (`--dg-halo`) wide enough to bridge a word space, so the dot grid never shows through a run of text. Ink bands carry a hairline (`--rule-band`) that resolves against the page, so they part from the dark page too.
 
 ### 4. Two surfaces from one source
 

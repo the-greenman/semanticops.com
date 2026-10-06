@@ -27,6 +27,7 @@ interface Props {
   evidences?: string;
   counters?: string;
   guide?: string;
+  rendered?: string;
   grid?: boolean;
   motion?: boolean;
 }
@@ -45,6 +46,7 @@ const {
   evidences = "evidences",
   counters = "counters",
   guide = "guide page",
+  rendered = "rendered",
   grid = true,
   motion = false,
 } = Astro.props;
@@ -66,14 +68,14 @@ const desc = `Top row: ${source} gives quotation ${quotation}, which evidences t
     <RingNode cx={70} cy={290} r={20} tone="ink" inner="dot" label={counterSource} labelPosition="below" />
     <Disc cx={250} cy={290} r={13} tone="record" label={counterQuotation} labelPosition="above" />
     <Disc cx={440} cy={290} r={28} tone="record" />
-    {wrap(claim, 18).map((l, i) => <text class="dg-text" x={440} y={150 + i * 18} text-anchor="middle">{l}</text>)}
-    {wrap(counter, 18).map((l, i) => <text class="dg-text" x={440} y={340 + i * 18} text-anchor="middle">{l}</text>)}
-    <Link x1={500} y1={195} x2={570} y2={195} tone="ink" arrow="end" inset={0} label="" />
+    {wrap(claim, 24).map((l, i) => <text class="dg-text" x={440} y={52 - (wrap(claim, 24).length - 1) * 20 + i * 20} text-anchor="middle">{l}</text>)}
+    {wrap(counter, 24).map((l, i) => <text class="dg-text" x={440} y={340 + i * 20} text-anchor="middle">{l}</text>)}
+    <Link x1={474} y1={100} x2={584} y2={150} tone="ink" arrow="end" label={rendered} />
+    <Link x1={474} y1={290} x2={584} y2={240} tone="ink" arrow="end" />
     <Page x={590} y={110} w={150} h={170} lines={7} />
     <text class="dg-text dg-text--muted" x={665} y={310} text-anchor="middle">{guide}</text>
-    <text class="dg-text dg-text--muted" x={535} y={180} text-anchor="middle">rendered</text>
   </Canvas>
-  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 720">
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 730">
     <RingNode cx={30} cy={30} r={16} tone="ink" inner="dot" />
     {wrap(source, 22).map((l, i) => <text class="dg-text" x={62} y={30 + i * 18} dominant-baseline="central">{l}</text>)}
     <Link x1={30} y1={90} x2={30} y2={46} arrow="end" inset={13} insetEnd={0} />
@@ -99,6 +101,6 @@ const desc = `Top row: ${source} gives quotation ${quotation}, which evidences t
     <Link x1={200} y1={500} x2={200} y2={540} tone="ink" arrow="end" />
     <text class="dg-text dg-text--muted" x={212} y={522}>rendered</text>
     <Page x={140} y={560} w={120} h={130} lines={6} />
-    <text class="dg-text dg-text--muted" x={280} y={640}>{guide}</text>
+    <text class="dg-text dg-text--muted" x={200} y={712} text-anchor="middle">{guide}</text>
   </Canvas>
 </Figure>
