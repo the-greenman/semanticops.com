@@ -1,0 +1,36 @@
+---
+import { labelAt } from "./geometry";
+
+/**
+ * Who made a thing, told by shape and never by colour: a person is a circle, an agent is a
+ * square with a notch. Always neutral ink, so it never competes with the five meanings.
+ * Draw it as a badge beside the thing it vouches for.
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  /** Half the width: a circle's radius, a square's half side. */
+  r: number;
+  kind: "human" | "agent";
+  label?: string;
+  labelPosition?: "below" | "above" | "right" | "left";
+  class?: string;
+}
+
+const { cx, cy, r, kind, label = "", labelPosition = "right", class: className } = Astro.props;
+const place = labelAt(cx, cy, r, labelPosition);
+const n = r * 0.55;
+// The notch: a V cut into the top edge.
+const agent = `M${cx - r} ${cy - r}H${cx - n}L${cx} ${cy - r + n}L${cx + n} ${cy - r}H${cx + r}V${cy + r}H${cx - r}Z`;
+---
+
+<g class:list={["dg-actor", `dg-actor--${kind}`, className]}>
+  {kind === "human" ? <circle class="dg-actor__shape" {cx} {cy} {r}></circle> : <path class="dg-actor__shape" d={agent}></path>}
+  {
+    label && (
+      <text class="dg-text" x={place.x} y={place.y} text-anchor={place.anchor} dominant-baseline={place.base}>
+        {label}
+      </text>
+    )
+  }
+</g>

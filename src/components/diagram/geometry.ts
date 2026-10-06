@@ -64,3 +64,14 @@ export function labelAt(cx: number, cy: number, r: number, position: LabelPositi
       return { x: cx, y: cy + r + 20, anchor: "middle", base: "auto" };
   }
 }
+
+/** Break a label into lines of at most `max` characters, on word spaces: for the narrow layouts, where a label cannot run wide. */
+export function wrap(text: string, max: number): string[] {
+  const lines: string[] = [];
+  for (const word of text.split(/\s+/)) {
+    const last = lines[lines.length - 1];
+    if (last !== undefined && (last + " " + word).length <= max) lines[lines.length - 1] = last + " " + word;
+    else lines.push(word);
+  }
+  return lines;
+}

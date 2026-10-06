@@ -1,0 +1,84 @@
+---
+import Actor from "./Actor.astro";
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import Page from "./Page.astro";
+import { wrap } from "./geometry";
+
+/**
+ * A person writes the words; an agent adds structure around them in separate records and
+ * never touches the text. Who made what is told by shape (a person is a circle, an agent is a
+ * notched square), so the text can be read with the agent's records or without them.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** What the person wrote. */
+  text?: string;
+  /** What the agent adds, one record each. */
+  additions?: string[];
+  human?: string;
+  agent?: string;
+  /** The line under the figure: what removing the agent's records leaves. */
+  unchanged?: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const {
+  number = 4,
+  caption = "The person's paragraph is free text. The agent's titles, sources and counter-claims are separate records that point at it.",
+  id = "agent-annotates",
+  text = "Paragraph",
+  additions = ["Title", "Link to a source", "Counter-claim"],
+  human = "person",
+  agent = "agent",
+  unchanged = "Remove the agent's records and the text is byte for byte the same.",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "A person writes, an agent annotates";
+const desc = `A gold page of text, marked with a circle for a person, is the ${text.toLowerCase()} the ${human} wrote. ${additions.length} vermilion records (${additions.join(", ")}), each marked with a notched square for an ${agent}, point at it. The text itself is not changed: ${unchanged}`;
+const wy = (i: number) => 70 + i * 80;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 340">
+    <Page x={40} y={40} w={170} h={190} lines={8} tone="note" />
+    <Actor kind="human" cx={28} cy={28} r={12} />
+    <text class="dg-text" x={125} y={256} text-anchor="middle">{text}</text>
+    {additions.map((a, i) => (
+      <>
+        <Link x1={440} y1={wy(i) + 20} x2={218} y2={120 + i * 40} arrow="end" width={1.5} inset={22} insetEnd={0} />
+        <Disc cx={440} cy={wy(i) + 20} r={18} tone="record" />
+        <Actor kind="agent" cx={482} cy={wy(i) + 2} r={9} />
+        <text class="dg-text" x={510} y={wy(i) + 20} dominant-baseline="central">{a}</text>
+      </>
+    ))}
+    <Actor kind="human" cx={20} cy={312} r={9} label={human} />
+    <Actor kind="agent" cx={140} cy={312} r={9} label={agent} />
+    <text class="dg-text dg-text--muted" x={260} y={312} dominant-baseline="central">{unchanged}</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 560">
+    <Page x={50} y={40} w={150} h={150} lines={7} tone="note" />
+    <Actor kind="human" cx={50} cy={34} r={11} />
+    <text class="dg-text" x={216} y={120}>{text}</text>
+    <Link x1={16} y1={220 + (additions.length - 1) * 70} x2={16} y2={115} width={1.5} />
+    <Link x1={16} y1={115} x2={46} y2={115} arrow="end" width={1.5} />
+    {additions.map((a, i) => (
+      <>
+        <Link x1={50} y1={220 + i * 70} x2={16} y2={220 + i * 70} width={1.5} />
+        <Disc cx={70} cy={220 + i * 70} r={18} tone="record" />
+        <Actor kind="agent" cx={104} cy={206 + i * 70} r={9} />
+        {wrap(a, 18).map((l, j) => <text class="dg-text" x={124} y={222 + i * 70 + j * 18 - (wrap(a, 18).length - 1) * 9} dominant-baseline="central">{l}</text>)}
+      </>
+    ))}
+    <Actor kind="human" cx={20} cy={470} r={9} label={human} />
+    <Actor kind="agent" cx={140} cy={470} r={9} label={agent} />
+    {wrap(unchanged, 34).map((l, i) => <text class="dg-text dg-text--muted" x={0} y={510 + i * 20}>{l}</text>)}
+  </Canvas>
+</Figure>

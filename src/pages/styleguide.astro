@@ -47,6 +47,17 @@ import RelationSentence from "../components/diagram/RelationSentence.astro";
 import RingNode from "../components/diagram/RingNode.astro";
 import Target from "../components/diagram/Target.astro";
 import TwoSurfaces from "../components/diagram/TwoSurfaces.astro";
+import PatternEntry from "../components/PatternEntry.astro";
+import TryIt from "../components/TryIt.astro";
+import Actor from "../components/diagram/Actor.astro";
+import AgentAnnotates from "../components/diagram/AgentAnnotates.astro";
+import ClaimChain from "../components/diagram/ClaimChain.astro";
+import Page from "../components/diagram/Page.astro";
+import RecordsToDocument from "../components/diagram/RecordsToDocument.astro";
+import RenameDrift from "../components/diagram/RenameDrift.astro";
+import Stop from "../components/diagram/Stop.astro";
+import WorkedExample from "../components/diagram/WorkedExample.astro";
+import { markdown } from "../lib/markdown";
 import ColourTable from "../components/styleguide/ColourTable.astro";
 import MarkRow from "../components/styleguide/MarkRow.astro";
 import Specimen from "../components/styleguide/Specimen.astro";
@@ -87,6 +98,7 @@ const toc = [
   ["cards", "Cards"],
   ["assembly", "Page assembly"],
   ["marks", "Marks"],
+  ["tryit", "TryIt"],
   ["primitives", "Diagram primitives"],
   ["diagrams", "Diagrams"],
   ["checks", "Checks"],
@@ -123,6 +135,34 @@ const demoEntries: Entry[] = [
 ];
 const demoBands = toBands(demoEntries, "styleguide");
 
+const tryItBody = `### Open the sample in your browser
+
+No install, no account.
+
+[Open the sample](https://app.mudemocracy.org/)
+
+### Run the command line tool
+
+Unpack the sample, check it, then look around.
+
+\`\`\`bash
+srs repo validate
+srs repo map
+\`\`\`
+
+### Point your agent at it
+
+Read /llms.txt, or give your agent tools that enforce the rules.
+
+\`\`\`bash
+srs mcp serve --repo ./meeting
+\`\`\``;
+const patternSample = {
+  pattern: await markdown("A folder of markdown notes that people and agents both edit. Every rule about it is a convention."),
+  symptoms: await markdown("- A rename leaves links pointing at nothing.\n- Some notes are linked from nowhere.\n- Nobody can say which note is current."),
+  mechanism: await markdown("- Records have ids that never change, and a title field.\n- A relation is a typed edge whose target must exist.\n- Supersession makes current a question you can ask."),
+  case: await markdown("Rename one note: nine links break in markdown. In records, one field changes."),
+};
 const recordJson = `{
   "instanceId": "7c2e9f41-3b8a-4d6e-a1f0-52c9e8d3b764",
   "typeId": "2a000004-0000-4000-a000-000000000004",
@@ -293,7 +333,7 @@ const relationJson = `{
           items={[
             { href: "#cards", title: "Cards", summary: "Containers for one idea, one record or one project." },
             { href: "#marks", title: "Marks", summary: "The SRS mark and the SemanticOps mark, at the sizes they have to work at." },
-            { href: "#diagrams", title: "Diagrams", summary: "Six diagrams, each composed from the primitives." },
+            { href: "#diagrams", title: "Diagrams", summary: "Eleven diagrams, each composed from the primitives." },
           ]}
         />
       </Specimen>
@@ -466,7 +506,20 @@ const relationJson = `{
           <p>Graduation turns a Note into one or more Records, each linked to its Note by a <code>derived-from</code> relation. The Note is preserved.</p>
         </ConceptEntry>
       </Specimen>
+      <Specimen layout="bare" title="PatternEntry" note="A recurring situation and what SRS does about it: the statement, then what goes wrong and what SRS does as the two sides of a held pair, then the case and its diagram (the slot). For a pattern record; the four texts are rendered markdown." code={`<PatternEntry title="Notes decay" pattern={html} symptoms={html} mechanism={html} caseHtml={html}><RenameDrift number={2} id="fig" /></PatternEntry>`}>
+        <PatternEntry title="Markdown decays" pattern={patternSample.pattern} symptoms={patternSample.symptoms} mechanism={patternSample.mechanism} caseHtml={patternSample.case} level="h3">
+          <RenameDrift number={13} id="sg-pattern-entry" />
+        </PatternEntry>
+      </Specimen>
     </div>
+  </Section>
+
+  <!-- TRY IT -->
+  <Section id="tryit" variant="ink">
+    <SectionHeader eyebrow="Components" title="TryIt">
+      The ways to start, ranked by friction, on an ink band. It lays out a section body written as markdown: one option per ### heading, a paragraph that is only a link becomes its button, a fenced code block becomes a CodeSample, other text is its one line.
+    </SectionHeader>
+    <TryIt body={tryItBody} />
   </Section>
 
   <!-- PAGE ASSEMBLY -->
@@ -609,6 +662,30 @@ const relationJson = `{
         <span class="cluster"><Glyph kind="part" size={28} /><span class="t-label">part</span></span>
         <span class="cluster"><Glyph kind="derived" size={28} /><span class="t-label">derived</span></span>
       </Specimen>
+      <Specimen title="Page" note="A sheet of text with a folded corner. A hollow ink page is a rendered document (derived output); the note tone is free text. mark sets one line off, heavier, for text changed by hand." code={`<Page x={10} y={10} w={60} h={80} lines={5} mark={3} />`}>
+        <Canvas id="sg-page" viewBox="0 0 420 130" title="Pages" desc="Three pages of text: a plain ink page, a gold page of free text and an ink page with one line drawn heavier, as if edited by hand.">
+          <Page x={20} y={10} w={60} h={80} lines={5} />
+          <text class="dg-text" x={50} y={112} text-anchor="middle">document</text>
+          <Page x={170} y={10} w={60} h={80} lines={5} tone="note" />
+          <text class="dg-text" x={200} y={112} text-anchor="middle">free text</text>
+          <Page x={320} y={10} w={60} h={80} lines={5} mark={3} />
+          <text class="dg-text" x={350} y={112} text-anchor="middle">hand edit</text>
+        </Canvas>
+      </Specimen>
+      <Specimen title="Actor" note="Who made a thing, told by shape and never by colour: a person is a circle, an agent is a square with a notch. Always neutral ink. Draw it as a badge beside what it vouches for." code={`<Actor kind="agent" cx={20} cy={20} r={10} label="agent" />`}>
+        <Canvas id="sg-actor" viewBox="0 0 300 80" title="Actors" desc="A solid ink circle labelled person and a solid ink square with a notch in its top edge labelled agent.">
+          <Actor kind="human" cx={30} cy={36} r={12} label="person" />
+          <Actor kind="agent" cx={170} cy={36} r={12} label="agent" />
+        </Canvas>
+      </Specimen>
+      <Specimen title="Stop" note="A cross where something reaches nothing: a relation whose target is gone, or a check that fails. A shape, so the state reads without colour. Pair it with a dashed Link or a label." code={`<Stop cx={100} cy={30} />`}>
+        <Canvas id="sg-stop" viewBox="0 0 380 90" title="Stops" desc="A dashed khaki line ending in a cross, and a dashed ink line ending in a larger ink cross.">
+          <Link x1={10} y1={40} x2={150} y2={40} dashed inset={0} />
+          <Stop cx={160} cy={40} />
+          <Link x1={210} y1={40} x2={340} y2={40} dashed tone="ink" />
+          <Stop cx={352} cy={40} tone="ink" r={9} />
+        </Canvas>
+      </Specimen>
       <Specimen layout="grid" title="Figure and Canvas" note="Figure is the chrome: a plate with an optional dot-grid ground, a mono figure number and a caption. The plate is a size container, so a diagram picks its wide or narrow layout from the room it has. Canvas is the svg: role img, title and description. motion plays the drawing-in on load (CSS only, off under reduced motion): a boundary draws, its parts pop in, the relations draw, then an arrowhead appears only after its line. Use it above the fold. Every label inside a Canvas sits on a ground-coloured halo (--dg-halo) wide enough to bridge a word space, so the dot grid never reads as a middot." code={`<Figure number={7} caption="A caption." grid motion><Canvas ...>...</Canvas></Figure>`}>
         <Figure number={7} caption="With the dot-grid ground." size="narrow">
           <Canvas id="sg-figure-a" viewBox="0 0 240 90" title="A record on a figure" desc="One record disc on a dot-grid plate.">
@@ -627,7 +704,7 @@ const relationJson = `{
   <!-- DIAGRAMS -->
   <Section id="diagrams">
     <SectionHeader eyebrow="Diagrams" title="Diagrams">
-      Six diagrams, each composed from the primitives, each with a wide layout and a stacked narrow one that stays legible at 375px. Labels are props: Phase 2 feeds real content in. Resize the window to see the layouts switch.
+      Eleven diagrams, each composed from the primitives, each with a wide layout and a stacked narrow one that stays legible at 375px. Labels are props: the records feed real content in. Resize the window to see the layouts switch.
     </SectionHeader>
     <div class="stack stack--md">
       <Specimen layout="bare" title="HeroCluster" note="The signature visual: a repository drawn as a broken ring, one record opening into its own cluster, and that into another. Layered and drillable. Every record carries its label, the one that opens included. It plays its drawing-in on load as one sequence: the ring, the records, the relations, then the cluster that opens. The narrow layout turns it so the same record opens downward. Props: labels (six record names), caption." code={`<HeroCluster labels={["decision", "claim", "task", "source", "risk", "rule"]} />`}>
@@ -648,6 +725,21 @@ const relationJson = `{
       <Specimen layout="bare" title="TwoSurfaces" note="One source, projected twice: the human site and the agent site, drawn as the two halves of one disc. Props: source, human, agent, project." code={`<TwoSurfaces />`}>
         <TwoSurfaces number={6} id="sg-two" />
       </Specimen>
+      <Specimen layout="bare" title="WorkedExample" note="One meeting, worked through: a note graduates into a decision that carries its reasons, two tasks depend on it, and the same records are read as a document by people and as records and links by agents. Props: note, decision, fields, tasks, derived, depends, people, agents." code={`<WorkedExample tasks={["Update the calendar invite", "Tell the support rota"]} />`}>
+        <WorkedExample number={7} id="sg-worked" />
+      </Specimen>
+      <Specimen layout="bare" title="RenameDrift" note="A rename in two kinds of knowledge base. Notes link by name, so links to the old name become dashed lines ending in a cross. Records link by id, so solid arrows still land. Props: oldName, newName, notesResult, recordsResult." code={`<RenameDrift oldName="Decision architecture" newName="Decision practice" />`}>
+        <RenameDrift number={8} id="sg-rename" />
+      </Specimen>
+      <Specimen layout="bare" title="ClaimChain" note="A claim that shows its working: quotations from sources evidence a claim and its counter-claim, and a guide page is rendered from the chain. Props: claim, counter, source, counterSource, the relation labels, guide." code={`<ClaimChain claim="Remote standups reduce meeting load" />`}>
+        <ClaimChain number={9} id="sg-claims" />
+      </Specimen>
+      <Specimen layout="bare" title="AgentAnnotates" note="A person writes the words and an agent adds records around them. Who made what is told by shape (circle, notched square), and the text is unchanged. Props: text, additions, human, agent, unchanged." code={`<AgentAnnotates additions={["Title", "Link to a source"]} />`}>
+        <AgentAnnotates number={10} id="sg-annotates" />
+      </Specimen>
+      <Specimen layout="bare" title="RecordsToDocument" note="Decision records render a document, and a drift check renders it again. A hand edit makes the check fail, drawn as a cross and a word. Props: first, second, rows, relation, rendered, check, failed, edit." code={`<RecordsToDocument />`}>
+        <RecordsToDocument number={11} id="sg-records" />
+      </Specimen>
     </div>
   </Section>
 
@@ -655,7 +747,8 @@ const relationJson = `{
     <SectionHeader eyebrow="Diagrams" title="On an ink band">
       The same diagram on ink: the band re-resolves the diagram colours to their lit values, and knockouts follow the ground.
     </SectionHeader>
-    <HeroCluster number={9} id="sg-hero-ink" motion={false} />
+    <HeroCluster number={12} id="sg-hero-ink" motion={false} />
+    <div class="stack stack--md"><RenameDrift number={14} id="sg-rename-ink" /><RecordsToDocument number={15} id="sg-records-ink" /></div>
   </Section>
 
   <!-- CHECKS -->

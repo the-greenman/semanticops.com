@@ -1,5 +1,5 @@
 /**
- * From a flat list of entries to bands. A band is a section, a concept, or any entry whose look
+ * From a flat list of entries to bands. A band is a section, a concept, a pattern, or any entry whose look
  * asks for a surface of its own; the entries that follow it, up to the next band, are its items.
  * Order is never changed: this only decides where one band ends and the next begins, and which
  * ground each one sits on.
@@ -40,7 +40,7 @@ export function toBands(entries: Entry[], page: string): Band[] {
   let concepts = 0;
   for (const entry of entries) {
     const look = lookFor(page, entry.slug);
-    const opens = bands.length === 0 || entry.type === "section" || entry.type === "concept" || look.band !== undefined;
+    const opens = bands.length === 0 || entry.type === "section" || entry.type === "concept" || entry.type === "pattern" || look.band !== undefined;
     if (opens) {
       const surface: Surface = look.band ?? closingSurface(bands);
       const number = entry.type === "concept" ? String(++concepts).padStart(2, "0") : undefined;

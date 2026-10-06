@@ -1,0 +1,39 @@
+---
+import type { Tone } from "./tones";
+
+/**
+ * A page: a sheet with a folded corner and lines of text. A hollow ink page is a rendered
+ * document (derived output, never authoritative); a page in the note tone is free text.
+ * `mark` redraws one line heavier and offset, for text someone changed by hand.
+ */
+interface Props {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  /** Lines of text drawn on the page. */
+  lines?: number;
+  /** Which line (0-based) was edited by hand: drawn heavier, and set off from the others. */
+  mark?: number;
+  tone?: Tone;
+  class?: string;
+}
+
+const { x, y, w, h, lines = 4, mark, tone = "ink", class: className } = Astro.props;
+const fold = Math.min(w, h) * 0.22;
+const pad = w * 0.16;
+const top = y + fold + h * 0.1;
+const step = (y + h - pad - top) / Math.max(1, lines - 1);
+const rows = Array.from({ length: lines }, (_, i) => ({
+  y: top + i * step,
+  // The last line is short, like the end of a paragraph.
+  x2: x + w - pad - (i === lines - 1 ? w * 0.3 : 0),
+  edited: i === mark,
+}));
+---
+
+<g class:list={["dg-page", `dg-tone--${tone}`, className]}>
+  <path class="dg-page__sheet" d={`M${x} ${y}H${x + w - fold}L${x + w} ${y + fold}V${y + h}H${x}Z`}></path>
+  <path class="dg-page__fold" d={`M${x + w - fold} ${y}V${y + fold}H${x + w}`}></path>
+  {rows.map((r) => <line class:list={["dg-page__line", r.edited && "dg-page__line--edited"]} x1={x + pad} y1={r.y} x2={r.x2} y2={r.y}></line>)}
+</g>

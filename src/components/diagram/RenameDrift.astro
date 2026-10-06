@@ -1,0 +1,100 @@
+---
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import Stop from "./Stop.astro";
+import { wrap } from "./geometry";
+
+/**
+ * A rename, in two kinds of knowledge base. Notes link by name: rename one and the links
+ * to its old name point at nothing (dashed, ending in a cross). Records link by id: the
+ * rename changes one field and every edge still reaches its target.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  /** The name before the rename, as the notes still spell it. */
+  oldName?: string;
+  newName?: string;
+  /** Labels over the two kinds. */
+  notesTitle?: string;
+  recordsTitle?: string;
+  /** What each side is left with. */
+  notesResult?: string;
+  recordsResult?: string;
+  /** The short id shown on the renamed record. */
+  recordId?: string;
+  relation?: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const {
+  number = 2,
+  caption = "Rename one thing. Notes link by name, so the links break. Records link by id, so nothing does.",
+  id = "rename-drift",
+  oldName = "Decision architecture",
+  newName = "Decision practice",
+  notesTitle = "Notes linked by name",
+  recordsTitle = "Records linked by id",
+  notesResult = "Links to the old name point at nothing",
+  recordsResult = "One field changed. Every link still lands",
+  recordId = "id 7c2e9f41",
+  relation = "depends-on",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "A rename breaks links between notes but not between records";
+const desc = `Left: two notes link to ${oldName} by name. After the note is renamed ${newName}, both links are dashed lines that end in a cross, pointing at nothing, and the renamed note has no links in. Right: two records link by id to one record. The title field changes to ${newName}; both solid arrows still reach it.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 380">
+    <text class="dg-text dg-text--caps dg-text--strong" x={10} y={20}>{notesTitle}</text>
+    <text class="dg-text dg-text--caps dg-text--strong" x={420} y={20}>{recordsTitle}</text>
+    <Link x1={380} y1={44} x2={380} y2={300} tone="ink" width={1} />
+    <Disc cx={50} cy={100} r={16} tone="note" />
+    <Disc cx={50} cy={260} r={16} tone="note" />
+    <Link x1={50} y1={100} x2={190} y2={150} dashed inset={22} insetEnd={0} />
+    <Link x1={50} y1={260} x2={190} y2={210} dashed inset={22} insetEnd={0} />
+    <Stop cx={190} cy={150} />
+    <Stop cx={190} cy={210} />
+    <text class="dg-text" x={190} y={180} text-anchor="middle">{`[[${oldName}]]`}</text>
+    <Disc cx={320} cy={180} r={22} tone="note" label={newName} labelPosition="below" />
+    <text class="dg-text dg-text--muted" x={320} y={236} text-anchor="middle">renamed, nothing links in</text>
+    <Disc cx={430} cy={100} r={16} tone="record" />
+    <Disc cx={430} cy={260} r={16} tone="record" />
+    <Link x1={430} y1={100} x2={650} y2={180} arrow="end" inset={22} insetEnd={30} label={relation} />
+    <Link x1={430} y1={260} x2={650} y2={180} arrow="end" inset={22} insetEnd={30} />
+    <Disc cx={650} cy={180} r={22} tone="record" label={newName} labelPosition="below" />
+    <text class="dg-text dg-text--muted" x={650} y={236} text-anchor="middle">{recordId}</text>
+    <text class="dg-text" x={10} y={348}>{notesResult}</text>
+    <text class="dg-text" x={420} y={348}>{recordsResult}</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 600">
+    <text class="dg-text dg-text--caps dg-text--strong" x={0} y={16}>{notesTitle}</text>
+    <Disc cx={30} cy={70} r={14} tone="note" />
+    <Disc cx={30} cy={170} r={14} tone="note" />
+    <Link x1={30} y1={70} x2={150} y2={100} dashed inset={20} insetEnd={0} />
+    <Link x1={30} y1={170} x2={150} y2={140} dashed inset={20} insetEnd={0} />
+    <Stop cx={150} cy={100} />
+    <Stop cx={150} cy={140} />
+    {wrap(`[[${oldName}]]`, 12).map((l, i) => <text class="dg-text" x={174} y={112 + i * 20}>{l}</text>)}
+    <Disc cx={290} cy={120} r={18} tone="note" />
+    {wrap(newName, 10).map((l, i) => <text class="dg-text dg-text--muted" x={290} y={160 + i * 18} text-anchor="middle">{l}</text>)}
+    {wrap(notesResult, 34).map((l, i) => <text class="dg-text" x={0} y={226 + i * 20}>{l}</text>)}
+    <Link x1={0} y1={284} x2={340} y2={284} tone="ink" width={1} />
+    <text class="dg-text dg-text--caps dg-text--strong" x={0} y={316}>{recordsTitle}</text>
+    <Disc cx={30} cy={370} r={14} tone="record" />
+    <Disc cx={30} cy={470} r={14} tone="record" />
+    <Link x1={30} y1={370} x2={270} y2={420} arrow="end" inset={20} insetEnd={26} label={relation} labelAt={0.4} />
+    <Link x1={30} y1={470} x2={270} y2={420} arrow="end" inset={20} insetEnd={26} />
+    <Disc cx={290} cy={420} r={18} tone="record" />
+    {wrap(newName, 10).map((l, i) => <text class="dg-text dg-text--muted" x={290} y={460 + i * 18} text-anchor="middle">{l}</text>)}
+    <text class="dg-text dg-text--muted" x={290} y={500} text-anchor="middle">{recordId}</text>
+    {wrap(recordsResult, 34).map((l, i) => <text class="dg-text" x={0} y={540 + i * 20}>{l}</text>)}
+  </Canvas>
+</Figure>

@@ -1,0 +1,127 @@
+---
+import Button from "./Button.astro";
+import CodeSample from "./CodeSample.astro";
+import Prose from "./Prose.astro";
+import { markdown } from "../lib/markdown";
+
+/**
+ * The ways to start, ranked by friction, as cards side by side. It lays out the markdown of a
+ * section's body, one option per `###` heading: the heading is the option's title, a paragraph
+ * that is only a link becomes its button, a fenced code block becomes a CodeSample, and any
+ * other text is its one line. Nothing is written here: change the record, not the component.
+ * With no `###` headings it falls back to plain prose.
+ */
+interface Props {
+  /** The section body, as markdown. */
+  body: string;
+  class?: string;
+}
+
+const { body, class: className } = Astro.props;
+
+const parts = body.split(/^###[ \t]+/m);
+const intro = parts[0].trim();
+const options = await Promise.all(
+  parts.slice(1).map(async (chunk) => {
+    const [title, ...rest] = chunk.split("\n");
+    let text = rest.join("\n");
+    const code = text.match(/```(\w+)?[ \t]*\n([\s\S]*?)```/);
+    if (code) text = text.replace(code[0], "");
+    const actions = [...text.matchAll(/^\[([^\]]+)\]\(([^)\s]+)\)[ \t]*$/gm)].map((m) => ({ label: m[1], href: m[2] }));
+    text = text.replace(/^\[[^\]]+\]\([^)\s]+\)[ \t]*$/gm, "").trim();
+    return { title: title.trim(), html: text ? await markdown(text) : "", actions, code: code ? { lang: code[1], code: code[2].replace(/\n$/, "") } : undefined };
+  }),
+);
+const introHtml = intro ? await markdown(intro) : "";
+---
+
+{
+  options.length === 0 ? (
+    <Prose class={className}>
+      <Fragment set:html={introHtml} />
+    </Prose>
+  ) : (
+    <div class:list={["tryit", className]}>
+      {introHtml && (
+        <Prose>
+          <Fragment set:html={introHtml} />
+        </Prose>
+      )}
+      <ol class="tryit__list">
+        {options.map((o, i) => (
+          <li class="tryit__option">
+            <span class="tryit__rank t-label">{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="tryit__title">{o.title}</h3>
+            {o.html && (
+              <Prose class="tryit__line">
+                <Fragment set:html={o.html} />
+              </Prose>
+            )}
+            {o.code && <CodeSample code={o.code.code} lang={(o.code.lang ?? "bash") as "bash"} />}
+            {o.actions.length > 0 && (
+              <div class="tryit__actions">
+                {o.actions.map((a) => (
+                  <Button href={a.href} variant={i === 0 ? "primary" : "secondary"}>
+                    {a.label}
+                  </Button>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
+<style>
+  @layer components {
+    .tryit {
+      display: grid;
+      gap: var(--space-md);
+    }
+
+    .tryit__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: var(--space-md);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tryit__option {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      min-width: 0;
+      padding: var(--space-md) var(--space-sm) var(--space-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .tryit__option > :global(.codesample) {
+      align-self: stretch;
+      min-width: 0;
+    }
+
+    .tryit__title {
+      margin: 0;
+      font-size: var(--size-lg);
+      letter-spacing: var(--tracking-snug);
+    }
+
+    .tryit__line {
+      color: var(--color-muted-strong);
+      font-size: var(--size-base);
+    }
+
+    .tryit__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: auto;
+    }
+  }
+</style>

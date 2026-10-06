@@ -1,0 +1,104 @@
+---
+import Canvas from "./Canvas.astro";
+import Disc from "./Disc.astro";
+import Figure from "./Figure.astro";
+import Link from "./Link.astro";
+import Page from "./Page.astro";
+import RingNode from "./RingNode.astro";
+import { wrap } from "./geometry";
+
+/**
+ * A claim that shows its working. A quotation is taken from a source and evidences the
+ * claim; a counter-claim stands against it with its own source; a guide page is rendered
+ * from the chain. Every edge is a typed relation, and the page is derived output.
+ */
+interface Props {
+  number?: number;
+  caption?: string;
+  id?: string;
+  claim?: string;
+  counter?: string;
+  source?: string;
+  counterSource?: string;
+  quotation?: string;
+  counterQuotation?: string;
+  /** Relation labels: quotation to source, quotation to claim, counter-claim to claim. */
+  quotedFrom?: string;
+  evidences?: string;
+  counters?: string;
+  guide?: string;
+  grid?: boolean;
+  motion?: boolean;
+}
+
+const {
+  number = 3,
+  caption = "A claim cites a quotation from a source, and a counter-claim stands against it with its own source. A guide page is rendered from the chain.",
+  id = "claim-chain",
+  claim = "Remote standups reduce meeting load",
+  counter = "Standups shift load to chat",
+  source = "S1: a survey",
+  counterSource = "S2: an interview study",
+  quotation = "Q1",
+  counterQuotation = "Q2",
+  quotedFrom = "derived-from",
+  evidences = "evidences",
+  counters = "counters",
+  guide = "guide page",
+  grid = true,
+  motion = false,
+} = Astro.props;
+
+const title = "A claim, its evidence and its counter-claim";
+const desc = `Top row: ${source} gives quotation ${quotation}, which evidences the claim "${claim}". Bottom row: ${counterSource} gives ${counterQuotation}, which evidences the counter-claim "${counter}", and the counter-claim points at the claim with ${counters}. A ${guide} on the right is rendered from the chain.`;
+---
+
+<Figure {number} {caption} {grid} {motion}>
+  <Canvas layout="wide" {id} {title} {desc} viewBox="0 0 760 400">
+    <Link x1={250} y1={100} x2={70} y2={100} arrow="end" inset={14} insetEnd={22} label={quotedFrom} />
+    <Link x1={250} y1={100} x2={440} y2={100} arrow="end" inset={14} insetEnd={34} label={evidences} />
+    <Link x1={250} y1={290} x2={70} y2={290} arrow="end" inset={14} insetEnd={22} label={quotedFrom} />
+    <Link x1={250} y1={290} x2={440} y2={290} arrow="end" inset={14} insetEnd={34} label={evidences} />
+    <Link x1={440} y1={290} x2={440} y2={100} arrow="end" inset={34} insetEnd={34} label={counters} />
+    <RingNode cx={70} cy={100} r={20} tone="ink" inner="dot" label={source} labelPosition="below" />
+    <Disc cx={250} cy={100} r={13} tone="record" label={quotation} labelPosition="above" />
+    <Disc cx={440} cy={100} r={28} tone="record" />
+    <RingNode cx={70} cy={290} r={20} tone="ink" inner="dot" label={counterSource} labelPosition="below" />
+    <Disc cx={250} cy={290} r={13} tone="record" label={counterQuotation} labelPosition="above" />
+    <Disc cx={440} cy={290} r={28} tone="record" />
+    {wrap(claim, 18).map((l, i) => <text class="dg-text" x={440} y={150 + i * 18} text-anchor="middle">{l}</text>)}
+    {wrap(counter, 18).map((l, i) => <text class="dg-text" x={440} y={340 + i * 18} text-anchor="middle">{l}</text>)}
+    <Link x1={500} y1={195} x2={570} y2={195} tone="ink" arrow="end" inset={0} label="" />
+    <Page x={590} y={110} w={150} h={170} lines={7} />
+    <text class="dg-text dg-text--muted" x={665} y={310} text-anchor="middle">{guide}</text>
+    <text class="dg-text dg-text--muted" x={535} y={180} text-anchor="middle">rendered</text>
+  </Canvas>
+  <Canvas layout="narrow" {id} {title} {desc} viewBox="0 0 340 720">
+    <RingNode cx={30} cy={30} r={16} tone="ink" inner="dot" />
+    {wrap(source, 22).map((l, i) => <text class="dg-text" x={62} y={30 + i * 18} dominant-baseline="central">{l}</text>)}
+    <Link x1={30} y1={90} x2={30} y2={46} arrow="end" inset={13} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={66}>{quotedFrom}</text>
+    <Disc cx={30} cy={100} r={13} tone="record" />
+    <text class="dg-text" x={56} y={100} dominant-baseline="central">{quotation}</text>
+    <Link x1={30} y1={113} x2={30} y2={168} arrow="end" insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={140}>{evidences}</text>
+    <Disc cx={30} cy={196} r={26} tone="record" />
+    {wrap(claim, 18).map((l, i) => <text class="dg-text" x={72} y={184 + i * 18}>{l}</text>)}
+    <Link x1={30} y1={290} x2={30} y2={222} arrow="end" inset={0} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={260}>{counters}</text>
+    <Disc cx={30} cy={316} r={26} tone="record" />
+    {wrap(counter, 18).map((l, i) => <text class="dg-text" x={72} y={304 + i * 18}>{l}</text>)}
+    <Link x1={30} y1={390} x2={30} y2={342} arrow="end" inset={0} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={366}>{evidences}</text>
+    <Disc cx={30} cy={400} r={13} tone="record" />
+    <text class="dg-text" x={56} y={400} dominant-baseline="central">{counterQuotation}</text>
+    <Link x1={30} y1={413} x2={30} y2={450} arrow="end" inset={0} insetEnd={0} />
+    <text class="dg-text dg-text--muted" x={44} y={432}>{quotedFrom}</text>
+    <RingNode cx={30} cy={470} r={16} tone="ink" inner="dot" />
+    {wrap(counterSource, 22).map((l, i) => <text class="dg-text" x={62} y={470 + i * 18} dominant-baseline="central">{l}</text>)}
+    <Link x1={200} y1={500} x2={200} y2={540} tone="ink" arrow="end" />
+    <text class="dg-text dg-text--muted" x={212} y={522}>rendered</text>
+    <Page x={140} y={560} w={120} h={130} lines={6} />
+    <text class="dg-text dg-text--muted" x={280} y={640}>{guide}</text>
+  </Canvas>
+</Figure>

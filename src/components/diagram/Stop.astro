@@ -1,0 +1,25 @@
+---
+import type { Tone } from "./tones";
+
+/**
+ * An end that reaches nothing: a cross where a relation points at a target that is not
+ * there, or where a check fails. It is a shape, so the state reads without colour. Pair it
+ * with a dashed Link (a claim with no target) or a label ("fails").
+ */
+interface Props {
+  cx: number;
+  cy: number;
+  /** Half the width of the cross. */
+  r?: number;
+  tone?: Tone;
+  class?: string;
+}
+
+const { cx, cy, r = 7, tone = "relation", class: className } = Astro.props;
+---
+
+<g class:list={["dg-stop", `dg-tone--${tone}`, className]}>
+  <circle class="dg-knockout" {cx} {cy} r={r + 4}></circle>
+  <line class="dg-stop__bar" x1={cx - r} y1={cy - r} x2={cx + r} y2={cy + r}></line>
+  <line class="dg-stop__bar" x1={cx - r} y1={cy + r} x2={cx + r} y2={cy - r}></line>
+</g>

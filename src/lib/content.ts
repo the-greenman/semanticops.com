@@ -42,7 +42,9 @@ export type PrincipleRecord = Base<
   { slug: string; title: string; claim: string; explanation: string; pole_a?: string; pole_b?: string }
 >;
 
-export type Entry = SectionRecord | ConceptRecord | ProjectRecord | PrincipleRecord;
+export type PatternRecord = Base<"pattern", { slug: string; title: string; pattern: string; symptoms: string; mechanism: string; case?: string }>;
+
+export type Entry = SectionRecord | ConceptRecord | ProjectRecord | PrincipleRecord | PatternRecord;
 export type EntryType = Entry["type"];
 
 interface PageFile {

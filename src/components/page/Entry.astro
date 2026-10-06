@@ -2,10 +2,12 @@
 import ConceptCard from "../ConceptCard.astro";
 import ConceptEntry from "../ConceptEntry.astro";
 import PrincipleItem from "../PrincipleItem.astro";
+import PatternEntry from "../PatternEntry.astro";
 import ProjectCard from "../ProjectCard.astro";
 import Prose from "../Prose.astro";
 import Quote from "../Quote.astro";
 import SectionHeader from "../SectionHeader.astro";
+import TryIt from "../TryIt.astro";
 import { displayUrl, findConcept, linkTo, pageOf, type Entry, type Relation } from "../../lib/content";
 import { markdown, markdownInline } from "../../lib/markdown";
 import { lookFor, visuals, type Look } from "../../lib/presentation";
@@ -42,8 +44,13 @@ const linked = (relations: Relation[] = []) =>
 
 // Markdown fields, rendered once, here.
 const ledeHtml = entry.type === "section" ? await markdownInline(entry.fields.lede) : "";
+const options = entry.type === "section" && look.body_as === "options" && !!entry.fields.body;
 const bodyHtml =
-  entry.type === "section" ? (entry.fields.body && look.body !== false ? await markdown(entry.fields.body) : "") : entry.type === "concept" ? await markdown(entry.fields.body) : "";
+  entry.type === "section" ? (entry.fields.body && look.body !== false && !options ? await markdown(entry.fields.body) : "") : entry.type === "concept" ? await markdown(entry.fields.body) : "";
+const patternHtml =
+  entry.type === "pattern"
+    ? { pattern: await markdown(entry.fields.pattern), symptoms: await markdown(entry.fields.symptoms), mechanism: await markdown(entry.fields.mechanism), case: entry.fields.case ? await markdown(entry.fields.case) : "" }
+    : undefined;
 const explanationHtml = entry.type === "principle" ? await markdown(entry.fields.explanation) : "";
 // A held pair names its two sides in two fields: shown as a pair only when the look asks and both are set.
 const poles = entry.type === "principle" && look.as === "pair" && entry.fields.pole_a && entry.fields.pole_b ? ([entry.fields.pole_a, entry.fields.pole_b] as [string, string]) : undefined;
@@ -80,6 +87,7 @@ const cards = (look.cards ?? []).flatMap((slug) => findConcept(slug) ?? []);
           <Fragment set:html={ledeHtml} />
         </SectionHeader>
       )}
+      {options && entry.type === "section" && <TryIt body={entry.fields.body ?? ""} />}
       {cards.length > 0 && (
         <div class="grid grid--lg grid--gap-md">
           {cards.map((c) => (
@@ -91,6 +99,14 @@ const cards = (look.cards ?? []).flatMap((slug) => findConcept(slug) ?? []);
       )}
       {Visual && <Visual number={figure} id={`fig-${entry.slug}`} />}
     </div>
+  )
+}
+
+{
+  entry.type === "pattern" && patternHtml && (
+    <PatternEntry id={anchor} {level} title={entry.fields.title} pattern={patternHtml.pattern} symptoms={patternHtml.symptoms} mechanism={patternHtml.mechanism} caseHtml={patternHtml.case}>
+      {Visual && <Visual number={figure} id={`fig-${entry.slug}`} />}
+    </PatternEntry>
   )
 }
 
