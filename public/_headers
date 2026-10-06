@@ -7,7 +7,11 @@
 /agents/*
   Access-Control-Allow-Origin: *
 
+# The sample is opened cross-origin by the browser editor (app.mudemocracy.org/?open=...).
+/try/*
+  Access-Control-Allow-Origin: *
+
 # .srs is the SRS ZIP archive (ext:repository). It has no registered media type, and the
 # extension is unknown to the host, so name the container format.
-/agents/*.srs
+/*.srs
   Content-Type: application/zip
