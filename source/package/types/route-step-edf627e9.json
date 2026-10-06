@@ -1,0 +1,35 @@
+{
+  "id": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "namespace": "com.semanticops.site",
+  "name": "route-step",
+  "version": 1,
+  "description": "One step of an agent reading route, or one entry of the agent data list.",
+  "fields": [
+    {
+      "fieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+      "order": 1,
+      "required": true
+    },
+    {
+      "fieldId": "36b6e082-f7e1-4966-a6ca-91722d006256",
+      "order": 2,
+      "required": true
+    },
+    {
+      "fieldId": "d46c2425-9c73-4444-a86e-499acd146df4",
+      "order": 3,
+      "required": true
+    },
+    {
+      "fieldId": "69aa1f00-7a76-4adf-907e-686f99dc1311",
+      "order": 4,
+      "required": true
+    }
+  ],
+  "identityFieldId": "d5fcce40-0710-4b13-a3e3-9d43ad53be63",
+  "aiGuidance": {
+    "purpose": "Use for one line of llms.txt. A container of route steps is read in its own order: the start-here container is the agent reading route and the data container is the list of data files."
+  },
+  "createdAt": "2026-10-06T09:32:31.088911754+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/type.json"
+}

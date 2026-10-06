@@ -1,0 +1,15 @@
+{
+  "id": "4e9745f2-ac4e-4a43-b382-f9bbc5c7ed8c",
+  "namespace": "com.semanticops.site",
+  "name": "symptoms",
+  "version": 1,
+  "description": "What goes wrong in the situation.",
+  "aiGuidance": {
+    "purpose": "A short list of concrete failures, stated as facts about the situation and not about any named product. Claim only what was observed; never claim duplicates or staleness unless the pattern says so. Never an em dash."
+  },
+  "fieldType": {
+    "datatype": "string",
+    "format": "markdown"
+  },
+  "createdAt": "2026-10-06T09:32:30.724764708+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "containerId": "145efac5-af8a-4ed9-bbbc-d7ea2bb3f38d",
+  "title": "SemanticOps: start here",
+  "namespace": "com.semanticops.site",
+  "name": "start-here",
+  "description": "The agent reading route: where to read first, in order.",
+  "memberInstanceIds": [
+    {
+      "instanceId": "683b4033-c4be-43db-a078-70a8e860d99d"
+    },
+    {
+      "instanceId": "c68540fe-7ec5-4ae2-9bbf-b2c598090527"
+    },
+    {
+      "instanceId": "8f637b88-3068-4b37-8c26-141b8eb17f4d"
+    },
+    {
+      "instanceId": "541c1873-dc8c-4463-bd4c-21192d86e8fe"
+    },
+    {
+      "instanceId": "7652a012-db12-4ba7-a1f3-b6f7b18a4d8c"
+    }
+  ]
+}

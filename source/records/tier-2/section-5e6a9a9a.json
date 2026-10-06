@@ -9,9 +9,9 @@
     "slug": "purpose",
     "eyebrow": "Purpose",
     "lede": "SRS exists for one reason: to transfer a complex unit of knowledge, intact, from one mind or system to another.",
-    "body": "Not a file, not a message, not a row in a database: a unit of knowledge with its meaning attached, so that the receiver understands it the way the author did. Everything else in the system is in service of that.\n\nTwo responsibilities follow. Transfer knowledge in layers, so it can be received without overload. And structure it with shared building blocks, so its meaning can be shared. A Type's required Fields mean a unit of knowledge cannot be transferred half-formed."
+    "body": "Not a file, not a message, not a row in a database: a unit of knowledge with its meaning attached, It preserves declared meaning and context, giving the receiver a better basis for interpretation. Everything else in the system is in service of that.\n\nTwo responsibilities follow. Transfer knowledge in layers, so it can be received without overload. And structure it with shared building blocks, so its meaning can be shared. A Type's required Fields mean a unit of knowledge cannot be transferred half-formed."
   },
   "createdAt": "2026-10-05T19:18:40.297849319+00:00",
-  "updatedAt": "2026-10-05T19:18:40.297855533+00:00",
+  "updatedAt": "2026-10-06T09:33:31.209743572+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

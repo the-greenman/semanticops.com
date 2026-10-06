@@ -9,10 +9,10 @@
     "slug": "repository",
     "summary": "Plain JSON files in git, one file per record and per relation.",
     "body": "A directory is an SRS repository when it contains a `.srs/` marker. The files are the repository:\n\n```\n.srs/             marker\nmanifest.json     identity, package references, root container\npackage/          Field, Type and Composition definitions\nrecords/          one JSON file per Note or Record\nrelations/        one JSON file per Relation\n```\n\nThe directory tree is authoritative: a file under `records/` is a member. Sovereignty is structural, not aspirational. This is a folder. It diffs in git, opens in any editor and needs no service to read.\n\nEvery repository has a root container, named in the manifest, that is its identity and the top of its navigation.",
-    "example": "{\n  \"namespace\": \"com.semanticops.srs\",\n  \"repositoryId\": \"4172fada-bc38-5479-ac18-4be3194a68ca\",\n  \"title\": \"Semantic Record System Specification\",\n  \"packageRefs\": [\n    {\n      \"mode\": \"local\",\n      \"path\": \"package/base\"\n    },\n    {\n      \"mode\": \"local\",\n      \"path\": \"package/core\"\n    }\n  ]\n}",
+    "example": "{\n  \"namespace\": \"com.example.meeting\",\n  \"repositoryId\": \"000973a1-2f84-485c-8350-8811a3f18c1b\",\n  \"title\": \"com.example.meeting\",\n  \"container\": {\n    \"containerId\": \"000973a1-2f84-485c-8350-8811a3f18c1b\",\n    \"title\": \"com.example.meeting\",\n    \"identityInstanceId\": \"b3d88ba0-2245-4a7a-bd44-2b3eff8d6b21\"\n  }\n}",
     "spec_link": "https://srs.semanticops.com/schema/2.0/manifest.json"
   },
   "createdAt": "2026-10-05T19:18:41.149406340+00:00",
-  "updatedAt": "2026-10-05T19:18:41.149411755+00:00",
+  "updatedAt": "2026-10-06T09:33:29.890703476+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

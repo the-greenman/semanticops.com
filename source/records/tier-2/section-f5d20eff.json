@@ -1,0 +1,17 @@
+{
+  "instanceId": "f5d20eff-18bd-439a-8d01-7c93174a3c87",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "A meeting becomes a decision and two tasks",
+    "slug": "worked-example",
+    "eyebrow": "A worked example",
+    "lede": "One meeting note yields a decision with its reasons and two tasks. The tasks link to the decision, and the decision links back to the note it came from.",
+    "body": "The meeting is \"Weekly planning, 6 October\". From its notes the team captures the decision \"Move the weekly standup to Tuesdays\", with the reasons \"Monday is lost to incident reviews; two people are part-time on Mondays\", and two tasks: \"Update the calendar invite\" and \"Tell the support rota\". One meeting note can yield one decision, three tasks and two risks. This one yields a decision and two tasks.\n\nEach task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. People receive a readable decision document. An agent receives the same records and relations. Move the folder to another tool and the identity, fields and links come with it.\n\nThis is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it)."
+  },
+  "createdAt": "2026-10-06T09:33:00.917332147+00:00",
+  "updatedAt": "2026-10-06T09:33:00.917339822+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

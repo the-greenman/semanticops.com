@@ -1,0 +1,15 @@
+{
+  "instanceId": "c95aa0c9-4aa9-415a-94d0-767f17389de2",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Patterns",
+    "slug": "patterns",
+    "summary": "Four ordinary situations where meaning gets lost in prose, and what SRS does about each, mechanism by mechanism."
+  },
+  "createdAt": "2026-10-06T09:33:00.540818762+00:00",
+  "updatedAt": "2026-10-06T09:33:00.540824265+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

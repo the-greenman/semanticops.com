@@ -1,0 +1,16 @@
+{
+  "instanceId": "0bebec17-6d2f-4a8c-a021-3f85b12bc616",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Sample repository",
+    "slug": "data-sample",
+    "target": "/try/meeting.srs",
+    "why": "A small real SRS repository: a meeting note, the decision taken from it and two tasks. Its people view is /try/meeting.md."
+  },
+  "createdAt": "2026-10-06T09:33:01.525171314+00:00",
+  "updatedAt": "2026-10-06T09:33:01.525177757+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
