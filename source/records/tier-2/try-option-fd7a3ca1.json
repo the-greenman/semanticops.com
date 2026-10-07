@@ -1,0 +1,17 @@
+{
+  "instanceId": "fd7a3ca1-8738-421f-b5f9-58866864e281",
+  "typeId": "cfd7a91d-b1ff-4d7e-9b07-80509c961edb",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "try-option",
+  "fieldValues": {
+    "title": "Give your coding agent a memory",
+    "slug": "try-memory",
+    "line": "Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes.",
+    "action_label": "Install the skill",
+    "command": "curl -fsSLO https://skill.semanticops.com/srs-memory/install.sh\nbash install.sh"
+  },
+  "createdAt": "2026-10-07T10:33:51.189093151+00:00",
+  "updatedAt": "2026-10-07T10:33:51.189100180+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

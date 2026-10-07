@@ -218,6 +218,14 @@ Give your agent /llms.txt to read, or start the MCP server so its writes go thro
 srs mcp serve --repo meeting
 
 
+### Give your coding agent a memory
+
+Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes.
+
+curl -fsSLO https://skill.semanticops.com/srs-memory/install.sh
+bash install.sh
+
+
 ### Read it, run it, argue with it
 
 The standard is open and in a formation phase, so the useful contributions are early ones.

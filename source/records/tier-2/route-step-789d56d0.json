@@ -1,0 +1,16 @@
+{
+  "instanceId": "789d56d0-c261-4d3b-ab01-3096f3cc732b",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "Agent memory skill",
+    "slug": "route-memory-skill",
+    "target": "https://skill.semanticops.com/srs-memory/SKILL.md",
+    "why": "A skill that keeps a codebase's decisions, conventions and known traps in an SRS repository, with its setup script, session hook and package beside it."
+  },
+  "createdAt": "2026-10-07T10:33:51.319158453+00:00",
+  "updatedAt": "2026-10-07T10:33:51.319165260+00:00",
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
