@@ -5,13 +5,13 @@
   "typeNamespace": "com.semanticops.site",
   "typeName": "section",
   "fieldValues": {
-    "title": "muDemocracy",
+    "title": "μDemocracy",
     "slug": "first-consumer",
     "eyebrow": "First consumer",
-    "lede": "muDemocracy is the first consumer of SRS.",
-    "body": "It uses the standard for decision practice, which makes it the first test of whether the model holds up outside the specification. What muDemocracy needs from SRS is what SRS is tested against. Visit [mudemocracy.org](https://mudemocracy.org)."
+    "lede": "μDemocracy is the first consumer of SRS.",
+    "body": "It uses the standard for decision practice, which makes it the first test of whether the model holds up outside the specification. What μDemocracy needs from SRS is what SRS is tested against. Visit [mudemocracy.org](https://mudemocracy.org)."
   },
   "createdAt": "2026-10-05T19:18:40.597008080+00:00",
-  "updatedAt": "2026-10-05T19:18:40.597015069+00:00",
+  "updatedAt": "2026-10-07T19:37:36.145755752+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }
