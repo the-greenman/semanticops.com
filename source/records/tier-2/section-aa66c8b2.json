@@ -1,0 +1,21 @@
+{
+  "instanceId": "aa66c8b2-935e-4dfa-9e01-29141a5d1fbc",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Define what you need. The definitions travel with the data.",
+    "slug": "how-you-work",
+    "eyebrow": "The working process",
+    "lede": "SRS does not ship a fixed schema. You define the types your work needs, when it needs them, and those definitions live in the repository beside the records that use them. Anyone who receives the folder, person or agent, receives the vocabulary needed to read it.",
+    "body": "1. **Capture.** Start with notes: loose, untyped, as written.\n2. **Define.** When a shape emerges, define a Type for it from reusable Fields: a decision has a statement and reasons; a risk has a likelihood and an owner.\n3. **Graduate.** Promote a note into a record bound to a type. The note is kept; the record links back to it.\n4. **Relate.** Link records with typed relations: `depends-on`, `derived-from`, `supersedes`.\n5. **Read two ways.** Compose records into documents for people. Let agents query the same records directly.\n6. **Share the vocabulary.** Bundle Fields and Types as a Package so another group can start from yours, or fork it.\n\nTypes are versioned, so the vocabulary can change as the work does without breaking the records written under the old one."
+  },
+  "createdAt": "2026-10-07T19:33:51.206031548+00:00",
+  "updatedAt": "2026-10-07T19:34:19.541825995+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

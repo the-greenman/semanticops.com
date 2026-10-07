@@ -7,7 +7,7 @@
 /agents/*
   Access-Control-Allow-Origin: *
 
-# The sample is opened cross-origin by the browser editor (app.mudemocracy.org/?open=...).
+# The sample is opened cross-origin by the browser editor (app.semanticops.com/?open=...).
 /try/*
   Access-Control-Allow-Origin: *
 

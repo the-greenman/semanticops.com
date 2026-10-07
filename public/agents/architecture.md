@@ -13,6 +13,15 @@ Meaning, expression and operation are separate planes, and each layer works with
 SRS is built so that the standard, the engine and the clients can each be replaced without rewriting the others. This page explains the layering, how agents use it, and why a tool is a safer door than a file.
 
 
+### Compared with
+
+What you get over the usual alternatives, and what you keep.
+
+- **Instead of Markdown with frontmatter:** you get typed fields and relations an agent can query, and you keep plain files, readable in any editor.
+- **Instead of a database (SQLite, Postgres, Notion):** you get the same queryable structure, and you keep no server, no vendor and files in git.
+- **Instead of JSON-LD or RDF:** you get a small model and readable documents, and you keep your own types, not a global ontology.
+
+
 ### Spec independence
 
 The standard stays valid with no implementation present.
@@ -39,7 +48,7 @@ This site follows the same pattern. Its facts are records in a repository, and e
 
 Implemented once, consumed identically.
 
-A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.
+A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. There is no server to run and no database to host. The core works directly on the files. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.
 
 The test: if two clients could ever disagree about the answer, the logic is in the wrong place.
 

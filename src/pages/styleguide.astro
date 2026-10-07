@@ -136,7 +136,7 @@ const demoEntries: Entry[] = [
 const demoBands = toBands(demoEntries, "styleguide");
 
 const tryOptions = [
-  { title: "Open it in your browser", line: "No install and no account: the sample opens in the browser editor.", label: "Open the sample", url: "https://app.mudemocracy.org/" },
+  { title: "Open it in your browser", line: "No install and no account: the sample opens in the browser editor.", label: "Open the sample", url: "https://app.semanticops.com/" },
   { title: "Run the CLI", line: "Unpack the sample, then check it and look around.", label: "Run the CLI", command: "srs repo validate --repo meeting\nsrs repo map --repo meeting" },
   { title: "Point your agent at it", line: "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.", label: "Start the MCP server", command: "srs mcp serve --repo meeting" },
 ];
@@ -190,7 +190,7 @@ const relationJson = `{
       Three tiers. Primitives are raw values, read only inside tokens.css. Semantic tokens carry meaning and are what components read. Component tokens sit on :root and re-resolve inside ink bands. These tables are parsed from the token files at build time, so they cannot drift.
     </SectionHeader>
     <div class="stack stack--md">
-      <Specimen layout="bare" title="Colour primitives" note="Paper and ink from the muDemocracy system, plus a diagram palette from the the-organization.com family with lit variants for dark. Components never read these.">
+      <Specimen layout="bare" title="Colour primitives" note="Paper and ink from the μDemocracy system, plus a diagram palette from the the-organization.com family with lit variants for dark. Components never read these.">
         <div class="grid grid--gap-md">
           {colourPrimitives.map(([name, value]) => <Swatch name={name} value={value} />)}
         </div>

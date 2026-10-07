@@ -9,9 +9,9 @@
     "slug": "one-core",
     "eyebrow": "One core, many surfaces",
     "lede": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics.",
-    "body": "The core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service as a command line with a stable JSON contract, as WebAssembly bindings and as an MCP server. Clients, a browser editor and a VS Code extension, add presentation on top.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place. See [architecture](/architecture)."
+    "body": "The core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service as a command line with a stable JSON contract, as WebAssembly bindings and as an MCP server. Clients, a browser editor and a VS Code extension, add presentation on top. There is no server to run and no database to host: the core works directly on the files.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place. See [architecture](/architecture)."
   },
   "createdAt": "2026-10-05T19:18:39.873526054+00:00",
-  "updatedAt": "2026-10-05T19:18:39.873529102+00:00",
+  "updatedAt": "2026-10-07T19:33:52.470745995+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

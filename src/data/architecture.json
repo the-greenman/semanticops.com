@@ -25,6 +25,17 @@
       }
     },
     {
+      "instanceId": "56f5d8bc-a999-4782-9786-17c8bd00a4cf",
+      "type": "concept",
+      "slug": "compared-with",
+      "fields": {
+        "slug": "compared-with",
+        "title": "Compared with",
+        "summary": "What you get over the usual alternatives, and what you keep.",
+        "body": "- **Instead of Markdown with frontmatter:** you get typed fields and relations an agent can query, and you keep plain files, readable in any editor.\n- **Instead of a database (SQLite, Postgres, Notion):** you get the same queryable structure, and you keep no server, no vendor and files in git.\n- **Instead of JSON-LD or RDF:** you get a small model and readable documents, and you keep your own types, not a global ontology."
+      }
+    },
+    {
       "instanceId": "81279595-537f-4b6d-b539-83b53d81b9a8",
       "type": "concept",
       "slug": "spec-independence",
@@ -56,7 +67,7 @@
         "slug": "capability-layering",
         "title": "Capability layering",
         "summary": "Implemented once, consumed identically.",
-        "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.\n\nEvery adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok` and the diagnostics, not the exit code.",
+        "body": "A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics. There is no server to run and no database to host. The core works directly on the files. From the inside out: the core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service: a CLI with a stable JSON envelope, WebAssembly bindings and an MCP server. Clients such as a browser editor and a VS Code extension sit on the adapters.\n\nThe test: if two clients could ever disagree about the answer, the logic is in the wrong place.\n\nEvery adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok` and the diagnostics, not the exit code.",
         "example": "{\n  \"ok\": true,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"payload\": {\n    \"diagnostics\": [],\n    \"summary\": {\n      \"checked\": 5,\n      \"errors\": 0,\n      \"warnings\": 0\n    }\n  }\n}\n\n{\n  \"ok\": false,\n  \"command\": \"repo validate\",\n  \"version\": \"0.1.0\",\n  \"diagnostics\": [\n    \"[records/tier-2/decision-6e37d4fb.json] missing required field key: title\"\n  ]\n}",
         "spec_link": "https://github.com/the-greenman/srs-rust"
       },

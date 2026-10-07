@@ -87,11 +87,11 @@ A thin VS Code extension over the srs binary. Tree and navigator views, validati
 **Depends on**: srs-rust
 
 
-### muDemocracy
+### μDemocracy
 
-muDemocracy is the first consumer of SRS.
+μDemocracy is the first consumer of SRS.
 
-It uses the standard for decision practice, which makes it the first test of whether the model holds up outside the specification. What muDemocracy needs from SRS is what SRS is tested against. Visit [mudemocracy.org](https://mudemocracy.org).
+It uses the standard for decision practice, which makes it the first test of whether the model holds up outside the specification. What μDemocracy needs from SRS is what SRS is tested against. Visit [mudemocracy.org](https://mudemocracy.org).
 
 
 ### Where it is going
