@@ -9,6 +9,7 @@
 - [Patterns](/agents/patterns.md): Four situations where records beat prose, with the mechanism for each.
 - [Try the sample](/try/meeting.srs): Unpack it, run srs repo validate and srs repo map, then read the same facts as records.
 - [Principles](/agents/principles.md): The scope test and the rules behind the design.
+- [Agent memory skill](https://skill.semanticops.com/srs-memory/SKILL.md): A skill that keeps a codebase's decisions, conventions and known traps in an SRS repository, with its setup script, session hook and package beside it.
 
 ## Pages
 
