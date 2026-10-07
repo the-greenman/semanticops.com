@@ -198,7 +198,7 @@ The people view of the sample is [meeting.md](/try/meeting.md).
 
 No install and no account: the sample opens in the browser editor.
 
-https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs
+https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs
 
 
 ### Run the CLI

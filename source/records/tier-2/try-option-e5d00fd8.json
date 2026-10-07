@@ -9,10 +9,10 @@
     "slug": "try-browser",
     "line": "No install and no account: the sample opens in the browser editor.",
     "action_label": "Open the sample",
-    "action_url": "https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs"
+    "action_url": "https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs"
   },
   "createdAt": "2026-10-06T10:23:42.599499589+00:00",
-  "updatedAt": "2026-10-06T10:23:42.599506156+00:00",
+  "updatedAt": "2026-10-07T12:23:56.654489518+00:00",
   "createdBy": {
     "kind": "ai",
     "id": "claude-code"

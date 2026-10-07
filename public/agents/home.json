@@ -281,7 +281,7 @@
         "slug": "try-browser",
         "title": "Open it in your browser",
         "line": "No install and no account: the sample opens in the browser editor.",
-        "action_url": "https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs",
+        "action_url": "https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs",
         "action_label": "Open the sample"
       }
     },
