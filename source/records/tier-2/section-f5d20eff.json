@@ -9,9 +9,9 @@
     "slug": "worked-example",
     "eyebrow": "A worked example",
     "lede": "One meeting note yields a decision with its reasons and two tasks. The tasks link to the decision, and the decision links back to the note it came from.",
-    "body": "The meeting is \"Weekly planning, 6 October\". From its notes the team captures the decision \"Move the weekly standup to Tuesdays\", with the reasons \"Monday is lost to incident reviews; two people are part-time on Mondays\", and two tasks: \"Update the calendar invite\" and \"Tell the support rota\". One meeting note can yield one decision, three tasks and two risks. This one yields a decision and two tasks.\n\nEach task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. People receive a readable decision document. An agent receives the same records and relations. Move the folder to another tool and the identity, fields and links come with it.\n\nThis is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it)."
+    "body": "The meeting is \"Weekly planning, 6 October\". From its notes the team captures the decision \"Move the weekly standup to Tuesdays\", with the reasons \"Monday is lost to incident reviews; two people are part-time on Mondays\", and two tasks: \"Update the calendar invite\" and \"Tell the support rota\".\n\nEach task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. A person opens the folder and reads a decision document. An agent opens the same folder and queries it like a datastore: find every task that depends on this decision, or every decision derived from this meeting. Nothing is copied between the two. Move the folder to another tool and the types, fields and links come with it.\n\nThe types used here (meeting note, decision, task) are not built into SRS. They were defined for this job, and their definitions sit in the same folder as the records.\n\nThis is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it)."
   },
   "createdAt": "2026-10-06T09:33:00.917332147+00:00",
-  "updatedAt": "2026-10-06T09:33:00.917339822+00:00",
+  "updatedAt": "2026-10-07T19:33:51.199284734+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

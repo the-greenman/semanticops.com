@@ -43,7 +43,7 @@ Field semantics are immutable. A Field means the same thing everywhere it is use
 
 ### Type
 
-A versioned composition of Fields.
+A versioned composition of Fields, defined by you and stored in the repository.
 
 A Type lists Fields as assignments: which Field, in what order, and whether it is required. Required Fields are how a Type asks its questions, so a unit of knowledge cannot be transferred half-formed. A display label on an assignment is rendering only and never changes what the Field means.
 
@@ -134,6 +134,8 @@ Knowledge bound to a Type, and how a Note becomes one.
 A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, and `fieldValues` maps Field names to values. The Record also carries `typeNamespace` and `typeName` as hints. If they disagree with the resolved Type, the `typeId` wins and the Record is invalid.
 
 Graduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.
+
+A Record is the authoritative stored representation of a claim, not a guarantee that the claim is correct. A record can hold a disputed or mistaken claim.
 
 **Example (JSON)**: {
   "instanceId": "6e37d4fb-440e-4962-8af6-49cddaf63de7",

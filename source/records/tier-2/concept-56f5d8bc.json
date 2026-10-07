@@ -1,0 +1,20 @@
+{
+  "instanceId": "56f5d8bc-a999-4782-9786-17c8bd00a4cf",
+  "typeId": "0d32838e-6eef-4648-a5dd-3d16bd93c584",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "concept",
+  "fieldValues": {
+    "title": "Compared with",
+    "slug": "compared-with",
+    "summary": "What you get over the usual alternatives, and what you keep.",
+    "body": "- **Instead of Markdown with frontmatter:** you get typed fields and relations an agent can query, and you keep plain files, readable in any editor.\n- **Instead of a database (SQLite, Postgres, Notion):** you get the same queryable structure, and you keep no server, no vendor and files in git.\n- **Instead of JSON-LD or RDF:** you get a small model and readable documents, and you keep your own types, not a global ontology."
+  },
+  "createdAt": "2026-10-07T19:33:52.477394310+00:00",
+  "updatedAt": "2026-10-07T19:33:52.477398744+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

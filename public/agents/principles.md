@@ -28,7 +28,7 @@ SRS preserves semantic sovereignty through portable data.
 
 Meaning stays under the control of the people who made it, and moves between tools, implementations and time without captivity or silent loss. Portability alone is not enough: data that travels without a stable identity, its relations or interpretable semantics has lost the meaning it carried.
 
-Three principles follow. The openness of the spec is the mechanism for all three: an open, implementable standard is what makes the data portable and the decisions the group's own.
+The principles below follow from it. The openness of the spec is the mechanism for all of them: an open, implementable standard is what makes the data portable and the decisions the group's own.
 
 
 ### No engineered control hierarchy

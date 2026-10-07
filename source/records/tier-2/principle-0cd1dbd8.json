@@ -8,9 +8,9 @@
     "claim": "SRS preserves semantic sovereignty through portable data.",
     "title": "The governing core",
     "slug": "governing-core",
-    "explanation": "Meaning stays under the control of the people who made it, and moves between tools, implementations and time without captivity or silent loss. Portability alone is not enough: data that travels without a stable identity, its relations or interpretable semantics has lost the meaning it carried.\n\nThree principles follow. The openness of the spec is the mechanism for all three: an open, implementable standard is what makes the data portable and the decisions the group's own."
+    "explanation": "Meaning stays under the control of the people who made it, and moves between tools, implementations and time without captivity or silent loss. Portability alone is not enough: data that travels without a stable identity, its relations or interpretable semantics has lost the meaning it carried.\n\nThe principles below follow from it. The openness of the spec is the mechanism for all of them: an open, implementable standard is what makes the data portable and the decisions the group's own."
   },
   "createdAt": "2026-10-05T19:18:42.182860839+00:00",
-  "updatedAt": "2026-10-05T19:18:42.182867639+00:00",
+  "updatedAt": "2026-10-07T19:33:52.978667383+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

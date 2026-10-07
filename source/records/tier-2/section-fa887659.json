@@ -8,10 +8,10 @@
     "title": "Open the example, in order of effort",
     "slug": "try-it",
     "eyebrow": "Try it",
-    "lede": "Three ways in, from no install to writes that the tools enforce.",
+    "lede": "Four ways in, from no install to an agent that keeps its own memory.",
     "body": "The people view of the sample is [meeting.md](/try/meeting.md)."
   },
   "createdAt": "2026-10-06T09:33:00.979846221+00:00",
-  "updatedAt": "2026-10-06T10:23:58.046507727+00:00",
+  "updatedAt": "2026-10-07T19:33:53.111700664+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

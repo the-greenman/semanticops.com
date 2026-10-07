@@ -6,11 +6,11 @@
 SRS is an open standard for portable semantic documents that people and AI can both understand and use. This site is generated from the records of an SRS repository.
 
 
-### Portable semantic documents for people and AI
+### A document for people. A datastore for agents.
 
-SRS builds portable semantic documents that both humans and AI can understand and use.
+SRS is an open format for knowledge. You define the types you need, write records, and link them. People read the result as a document. Agents query it as data. It is plain files: no database, no server, no lock-in.
 
-It is an open standard for knowledge that people and software can inspect, understand, move and continue using without dependence on the system that created it. Informally: a PDF for meaning. What survives the move is identity, definitions, relations and context, not appearance.
+Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it.
 
 SRS is pronounced "source". The name is the point. Records are the source, and every document you read is a projection of them.
 
@@ -19,11 +19,27 @@ SRS is pronounced "source". The name is the point. Records are the source, and e
 
 One meeting note yields a decision with its reasons and two tasks. The tasks link to the decision, and the decision links back to the note it came from.
 
-The meeting is "Weekly planning, 6 October". From its notes the team captures the decision "Move the weekly standup to Tuesdays", with the reasons "Monday is lost to incident reviews; two people are part-time on Mondays", and two tasks: "Update the calendar invite" and "Tell the support rota". One meeting note can yield one decision, three tasks and two risks. This one yields a decision and two tasks.
+The meeting is "Weekly planning, 6 October". From its notes the team captures the decision "Move the weekly standup to Tuesdays", with the reasons "Monday is lost to incident reviews; two people are part-time on Mondays", and two tasks: "Update the calendar invite" and "Tell the support rota".
 
-Each task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. People receive a readable decision document. An agent receives the same records and relations. Move the folder to another tool and the identity, fields and links come with it.
+Each task `depends-on` the decision. The decision is `derived-from` the meeting note, and the note is kept. A person opens the folder and reads a decision document. An agent opens the same folder and queries it like a datastore: find every task that depends on this decision, or every decision derived from this meeting. Nothing is copied between the two. Move the folder to another tool and the types, fields and links come with it.
+
+The types used here (meeting note, decision, task) are not built into SRS. They were defined for this job, and their definitions sit in the same folder as the records.
 
 This is a real SRS repository, and every example on the [model page](/model) is trimmed from it. [Try it yourself](#try-it).
+
+
+### Define what you need. The definitions travel with the data.
+
+SRS does not ship a fixed schema. You define the types your work needs, when it needs them, and those definitions live in the repository beside the records that use them. Anyone who receives the folder, person or agent, receives the vocabulary needed to read it.
+
+1. **Capture.** Start with notes: loose, untyped, as written.
+2. **Define.** When a shape emerges, define a Type for it from reusable Fields: a decision has a statement and reasons; a risk has a likelihood and an owner.
+3. **Graduate.** Promote a note into a record bound to a type. The note is kept; the record links back to it.
+4. **Relate.** Link records with typed relations: `depends-on`, `derived-from`, `supersedes`.
+5. **Read two ways.** Compose records into documents for people. Let agents query the same records directly.
+6. **Share the vocabulary.** Bundle Fields and Types as a Package so another group can start from yours, or fork it.
+
+Types are versioned, so the vocabulary can change as the work does without breaking the records written under the old one.
 
 
 ### Knowledge does not travel intact
@@ -32,24 +48,39 @@ The hard part is to transfer a complex unit of knowledge, intact, from one mind 
 
 Prose leaves structure and relationships to be inferred, by people and agents alike. A database row can be queried, but the meaning around it stays behind. The context of a collaboration is usually lost the moment it leaves the room: the decision survives, while the reasons, the objections and the dependencies do not.
 
+So we keep two copies: a document people can read and a database software can query. They drift apart, and the database usually lives on someone else's infrastructure. SRS keeps one copy, in files you hold, that serves both.
+
 Two demands pull against each other. The receiver needs depth of context to understand, and no one, human or AI, can take in everything at once. SRS keeps both. Knowledge is layered and drillable: a meaningful surface that can be entered progressively, deeper on demand.
 
 
 ### Records are the source. Documents are projections.
 
-Records are the source of truth: the authoritative stored representation, not a guarantee that the content is correct, since a record can hold a disputed or mistaken claim. Rendered documents are projections of those records: derived, never authoritative.
+Records are the source of truth: the authoritative stored representation. Rendered documents are projections of those records: derived, never authoritative.
 
-Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. A Composition says how records become a document. A Presentation is a repository's declared commitment to render it. The Projection is the file that results, and it can be regenerated at any time.
+Instead of writing a document and hoping its structure can be recovered later, SRS captures knowledge as small, typed, addressable records with explicit relations between them. You decide how records become a document, and the document can be regenerated at any time. Edits go into the records, never into the output.
 
 This site works that way. Every page, and every file in the agent section below, is generated from records in an SRS repository.
 
 
+### Self-governance needs a record no one else holds
+
+Groups that govern themselves keep their memory in files they own, in types they defined.
+
+Groups that govern themselves (co-ops, collectives, communities, teams) make decisions together. More and more, they make them alongside agents that draft, summarise and act.
+
+If the record of those decisions lives inside a platform, the platform holds the memory, sets the vocabulary and can take both away. SRS keeps the record in plain files the group owns, in types the group defined, readable by every participant, human or not.
+
+Decision sovereignty is the property this protects: the group decides what it decided, why, and what follows from it, and can show it later.
+
+SRS was first built to support [μDemocracy](https://mudemocracy.org), and stands on its own.
+
+
 ### Six constructs, each small
 
-A small set of constructs does all the work.
+Six small constructs. You use the first two to define your own vocabulary, and the rest to fill and organise it.
 
 - **Field**: the smallest unit of meaning, with a stable identity and guidance for AI.
-- **Type**: a versioned composition of Fields that says which questions a record must answer.
+- **Type**: a versioned composition of Fields that says which questions a record must answer. You define it and it is stored in the repository.
 - **Record**: knowledge bound to a Type. A **Note** is its free-text precursor.
 - **Relation**: a typed, binary edge between two records, read as source, type, target.
 - **Container**: a declared, ordered selection of records. A boundary means what it holds.
@@ -62,7 +93,7 @@ The [model page](/model) takes each in turn, with real examples.
 
 A capability is implemented once, in the core, and consumed identically by every client. Clients add presentation, never semantics.
 
-The core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service as a command line with a stable JSON contract, as WebAssembly bindings and as an MCP server. Clients, a browser editor and a VS Code extension, add presentation on top.
+The core holds types and validation and does no I/O. One repository service wraps it. Adapters expose that service as a command line with a stable JSON contract, as WebAssembly bindings and as an MCP server. Clients, a browser editor and a VS Code extension, add presentation on top. There is no server to run and no database to host: the core works directly on the files.
 
 The test: if two clients could ever disagree about the answer, the logic is in the wrong place. See [architecture](/architecture).
 
@@ -71,7 +102,7 @@ The test: if two clients could ever disagree about the answer, the logic is in t
 
 Four projects share one standard, and each does one job.
 
-Each project is described by the kind of technology it is. The [projects page](/projects) says where each fits.
+The [projects page](/projects) says where each fits.
 
 
 ### srs
@@ -152,7 +183,7 @@ A thin VS Code extension over the srs binary. Tree and navigator views, validati
 
 When two designs both work, these choose between them.
 
-One governing idea and a short list of pairs that SRS refuses to settle. All of them are on the [principles page](/principles).
+One governing idea, and the principles that follow from it. All of them are on the [principles page](/principles).
 
 
 ### The governing core
@@ -161,7 +192,7 @@ SRS preserves semantic sovereignty through portable data.
 
 Meaning stays under the control of the people who made it, and moves between tools, implementations and time without captivity or silent loss. Portability alone is not enough: data that travels without a stable identity, its relations or interpretable semantics has lost the meaning it carried.
 
-Three principles follow. The openness of the spec is the mechanism for all three: an open, implementable standard is what makes the data portable and the decisions the group's own.
+The principles below follow from it. The openness of the spec is the mechanism for all of them: an open, implementable standard is what makes the data portable and the decisions the group's own.
 
 
 ### Depth without overload
@@ -189,21 +220,21 @@ The same facts reach two readers. Each surface can be designed for its reader be
 
 ### Open the example, in order of effort
 
-Three ways in, from no install to writes that the tools enforce.
+Four ways in, from no install to an agent that keeps its own memory.
 
 The people view of the sample is [meeting.md](/try/meeting.md).
 
 
 ### Open it in your browser
 
-No install and no account: the sample opens in the browser editor.
+No install and no account: the sample opens in the browser editor (the μDemocracy editor, built on srs-web). The files stay on your device.
 
 https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs
 
 
 ### Run the CLI
 
-Download the srs release for Linux x86_64, unpack the sample, then check it and look around.
+Download the [srs release](https://github.com/the-greenman/srs-rust/releases/latest) (other platforms: build from source), unpack the sample, then check it and look around.
 
 srs archive unpack meeting.srs --target meeting
 srs repo validate --repo meeting
@@ -213,14 +244,14 @@ srs find --repo meeting --text standup
 
 ### Point your agent at it
 
-Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.
+Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools. A first question to ask it: every task that depends on the standup decision.
 
 srs mcp serve --repo meeting
 
 
 ### Give your coding agent a memory
 
-Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes.
+Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes. The script writes only into .claude/skills/srs-memory/ in your project and prints the next steps.
 
 curl -fsSLO https://skill.semanticops.com/srs-memory/install.sh
 bash install.sh
@@ -236,5 +267,7 @@ The specification, the reference engine, the browser editor and the VS Code exte
 - [srs-rust](https://github.com/the-greenman/srs-rust): the reference engine and CLI
 - [srs-web](https://github.com/the-greenman/srs-web): the browser editor
 - [srs-vscode](https://github.com/the-greenman/srs-vscode): the VS Code extension
+
+Tell us what types you defined: the vocabularies people build are the best evidence of what the standard needs.
 
 

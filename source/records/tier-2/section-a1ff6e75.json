@@ -1,0 +1,21 @@
+{
+  "instanceId": "a1ff6e75-aaeb-43a7-94dd-78b3fee7001f",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Self-governance needs a record no one else holds",
+    "slug": "why",
+    "eyebrow": "Why",
+    "lede": "Groups that govern themselves keep their memory in files they own, in types they defined.",
+    "body": "Groups that govern themselves (co-ops, collectives, communities, teams) make decisions together. More and more, they make them alongside agents that draft, summarise and act.\n\nIf the record of those decisions lives inside a platform, the platform holds the memory, sets the vocabulary and can take both away. SRS keeps the record in plain files the group owns, in types the group defined, readable by every participant, human or not.\n\nDecision sovereignty is the property this protects: the group decides what it decided, why, and what follows from it, and can show it later.\n\nSRS was first built to support [μDemocracy](https://mudemocracy.org), and stands on its own."
+  },
+  "createdAt": "2026-10-07T19:33:51.844065868+00:00",
+  "updatedAt": "2026-10-07T19:33:51.844071968+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

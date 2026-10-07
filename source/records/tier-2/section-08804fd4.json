@@ -9,9 +9,9 @@
     "slug": "get-involved",
     "eyebrow": "Get involved",
     "lede": "The standard is open and in a formation phase, so the useful contributions are early ones.",
-    "body": "The specification, the reference engine, the browser editor and the VS Code extension are public on GitHub. Read the records, run `srs repo validate` on your own folder, and open an issue where the standard is unclear or wrong.\n\n- [srs](https://github.com/the-greenman/srs): the specification\n- [srs-rust](https://github.com/the-greenman/srs-rust): the reference engine and CLI\n- [srs-web](https://github.com/the-greenman/srs-web): the browser editor\n- [srs-vscode](https://github.com/the-greenman/srs-vscode): the VS Code extension"
+    "body": "The specification, the reference engine, the browser editor and the VS Code extension are public on GitHub. Read the records, run `srs repo validate` on your own folder, and open an issue where the standard is unclear or wrong.\n\n- [srs](https://github.com/the-greenman/srs): the specification\n- [srs-rust](https://github.com/the-greenman/srs-rust): the reference engine and CLI\n- [srs-web](https://github.com/the-greenman/srs-web): the browser editor\n- [srs-vscode](https://github.com/the-greenman/srs-vscode): the VS Code extension\n\nTell us what types you defined: the vocabularies people build are the best evidence of what the standard needs."
   },
   "createdAt": "2026-10-05T19:18:40.117878412+00:00",
-  "updatedAt": "2026-10-05T19:18:40.117884301+00:00",
+  "updatedAt": "2026-10-07T19:33:53.743330591+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }
