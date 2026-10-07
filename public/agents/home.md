@@ -227,9 +227,9 @@ The people view of the sample is [meeting.md](/try/meeting.md).
 
 ### Open it in your browser
 
-No install and no account: the sample opens in the browser editor (the μDemocracy editor, built on srs-web). The files stay on your device.
+No install and no account: the sample opens in the browser editor, built on srs-web. The files stay on your device.
 
-https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs
+https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs
 
 
 ### Run the CLI

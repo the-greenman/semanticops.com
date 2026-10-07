@@ -7,12 +7,12 @@
   "fieldValues": {
     "title": "Open it in your browser",
     "slug": "try-browser",
-    "line": "No install and no account: the sample opens in the browser editor (the μDemocracy editor, built on srs-web). The files stay on your device.",
+    "line": "No install and no account: the sample opens in the browser editor, built on srs-web. The files stay on your device.",
     "action_label": "Open the sample",
-    "action_url": "https://app.mudemocracy.org/?open=https://semanticops.com/try/meeting.srs"
+    "action_url": "https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs"
   },
   "createdAt": "2026-10-06T10:23:42.599499589+00:00",
-  "updatedAt": "2026-10-07T19:33:53.234273546+00:00",
+  "updatedAt": "2026-10-07T19:38:15.418735795+00:00",
   "createdBy": {
     "kind": "ai",
     "id": "claude-code"
