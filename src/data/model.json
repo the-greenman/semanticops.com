@@ -44,7 +44,7 @@
       "fields": {
         "slug": "type",
         "title": "Type",
-        "summary": "A versioned composition of Fields.",
+        "summary": "A versioned composition of Fields, defined by you and stored in the repository.",
         "body": "A Type lists Fields as assignments: which Field, in what order, and whether it is required. Required Fields are how a Type asks its questions, so a unit of knowledge cannot be transferred half-formed. A display label on an assignment is rendering only and never changes what the Field means.\n\nA Record binds to an exact `typeId` and `typeVersion`. When a Type gains a new version, existing Records are not migrated. You write a successor and link it with `supersedes` or `refines`, and the original stays.",
         "example": "{\n  \"id\": \"ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a\",\n  \"namespace\": \"com.example.meeting\",\n  \"name\": \"decision\",\n  \"version\": 1,\n  \"fields\": [\n    {\n      \"fieldId\": \"db25089d-c5f1-4c4c-88bc-9ffd491d7124\",\n      \"required\": true\n    },\n    {\n      \"fieldId\": \"1d1f36c1-73a1-482f-b084-4716a914a231\",\n      \"required\": true\n    },\n    {\n      \"fieldId\": \"466f519d-c7d5-4d2d-90db-623346322ca4\",\n      \"required\": true\n    }\n  ],\n  \"identityFieldId\": \"db25089d-c5f1-4c4c-88bc-9ffd491d7124\"\n}",
         "spec_link": "https://srs.semanticops.com/schema/2.0/type.json"
@@ -98,7 +98,7 @@
         "slug": "record",
         "title": "Record and graduation",
         "summary": "Knowledge bound to a Type, and how a Note becomes one.",
-        "body": "A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, and `fieldValues` maps Field names to values. The Record also carries `typeNamespace` and `typeName` as hints. If they disagree with the resolved Type, the `typeId` wins and the Record is invalid.\n\nGraduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.",
+        "body": "A Record is an instance of a Type. `typeId` and `typeVersion` select the Type, and `fieldValues` maps Field names to values. The Record also carries `typeNamespace` and `typeName` as hints. If they disagree with the resolved Type, the `typeId` wins and the Record is invalid.\n\nGraduation turns a Note into one or more Records. Each new Record is linked to its Note by a `derived-from` relation, and the Note is preserved. One meeting note can yield one decision, three tasks and two risks.\n\nA Record is the authoritative stored representation of a claim, not a guarantee that the claim is correct. A record can hold a disputed or mistaken claim.",
         "example": "{\n  \"instanceId\": \"6e37d4fb-440e-4962-8af6-49cddaf63de7\",\n  \"typeId\": \"ec2e7ef3-00a5-4a55-8617-a3f1def4cd6a\",\n  \"typeVersion\": 1,\n  \"typeNamespace\": \"com.example.meeting\",\n  \"typeName\": \"decision\",\n  \"fieldValues\": {\n    \"title\": \"Move the weekly standup to Tuesdays\",\n    \"statement\": \"The weekly standup moves from Monday to Tuesday.\",\n    \"reasons\": \"Monday is lost to incident reviews. Two people are part-time on Mondays.\"\n  }\n}",
         "spec_link": "https://srs.semanticops.com/schema/2.0/record.json"
       },

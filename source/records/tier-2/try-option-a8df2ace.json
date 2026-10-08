@@ -7,12 +7,12 @@
   "fieldValues": {
     "title": "Point your agent at it",
     "slug": "try-agent",
-    "line": "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools.",
+    "line": "Give your agent /llms.txt to read, or start the MCP server so its writes go through the tools. A first question to ask it: every task that depends on the standup decision.",
     "action_label": "Start the MCP server",
     "command": "srs mcp serve --repo meeting"
   },
   "createdAt": "2026-10-06T10:23:42.757014524+00:00",
-  "updatedAt": "2026-10-06T10:23:42.757019020+00:00",
+  "updatedAt": "2026-10-07T19:33:53.484804802+00:00",
   "createdBy": {
     "kind": "ai",
     "id": "claude-code"

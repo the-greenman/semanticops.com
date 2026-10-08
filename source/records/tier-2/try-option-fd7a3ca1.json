@@ -7,11 +7,11 @@
   "fieldValues": {
     "title": "Give your coding agent a memory",
     "slug": "try-memory",
-    "line": "Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes.",
+    "line": "Install a skill that keeps your project's decisions, conventions and known traps in an SRS repository your agent reads and writes. The script writes only into .claude/skills/srs-memory/ in your project and prints the next steps.",
     "action_label": "Install the skill",
     "command": "curl -fsSLO https://skill.semanticops.com/srs-memory/install.sh\nbash install.sh"
   },
   "createdAt": "2026-10-07T10:33:51.189093151+00:00",
-  "updatedAt": "2026-10-07T10:33:51.189100180+00:00",
+  "updatedAt": "2026-10-07T19:33:53.615353347+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

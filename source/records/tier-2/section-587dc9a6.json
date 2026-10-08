@@ -9,9 +9,9 @@
     "slug": "projects-glance",
     "eyebrow": "The projects",
     "lede": "Four projects share one standard, and each does one job.",
-    "body": "Each project is described by the kind of technology it is. The [projects page](/projects) says where each fits."
+    "body": "The [projects page](/projects) says where each fits."
   },
   "createdAt": "2026-10-05T19:18:39.935219810+00:00",
-  "updatedAt": "2026-10-05T19:18:39.935223732+00:00",
+  "updatedAt": "2026-10-07T19:33:52.722708206+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

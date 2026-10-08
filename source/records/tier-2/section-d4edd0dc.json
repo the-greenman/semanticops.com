@@ -8,10 +8,10 @@
     "title": "Six constructs, each small",
     "slug": "model-glance",
     "eyebrow": "The model",
-    "lede": "A small set of constructs does all the work.",
-    "body": "- **Field**: the smallest unit of meaning, with a stable identity and guidance for AI.\n- **Type**: a versioned composition of Fields that says which questions a record must answer.\n- **Record**: knowledge bound to a Type. A **Note** is its free-text precursor.\n- **Relation**: a typed, binary edge between two records, read as source, type, target.\n- **Container**: a declared, ordered selection of records. A boundary means what it holds.\n- **Package**: the Fields and Types a repository uses, distributed together.\n\nThe [model page](/model) takes each in turn, with real examples."
+    "lede": "Six small constructs. You use the first two to define your own vocabulary, and the rest to fill and organise it.",
+    "body": "- **Field**: the smallest unit of meaning, with a stable identity and guidance for AI.\n- **Type**: a versioned composition of Fields that says which questions a record must answer. You define it and it is stored in the repository.\n- **Record**: knowledge bound to a Type. A **Note** is its free-text precursor.\n- **Relation**: a typed, binary edge between two records, read as source, type, target.\n- **Container**: a declared, ordered selection of records. A boundary means what it holds.\n- **Package**: the Fields and Types a repository uses, distributed together.\n\nThe [model page](/model) takes each in turn, with real examples."
   },
   "createdAt": "2026-10-05T19:18:39.814379080+00:00",
-  "updatedAt": "2026-10-05T19:18:39.814382047+00:00",
+  "updatedAt": "2026-10-07T19:33:52.093275117+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

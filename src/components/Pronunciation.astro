@@ -3,8 +3,8 @@ import RingNode from "./diagram/RingNode.astro";
 
 /**
  * The name lockup: "srs", pronounced "source". The o of source is a ring in the record
- * colour, because records are the source. The ring is decorative; the word is spoken
- * to assistive tech as plain text.
+ * colour, because records are the source. The ring is decorative; the lockup is one image
+ * labelled "srs, pronounced source", so assistive tech never reads the split letters.
  */
 interface Props {
   /** "lg" for the front door, "md" in running content. */
@@ -15,12 +15,11 @@ interface Props {
 const { size = "lg", class: className } = Astro.props;
 ---
 
-<div class:list={["pron", `pron--${size}`, className]}>
+<div class:list={["pron", `pron--${size}`, className]} role="img" aria-label="srs, pronounced source">
   <span class="pron__name">srs</span>
   <span class="pron__say">
     <span class="pron__label">pronounced</span>
     <span class="pron__sound" aria-hidden="true">s<svg class="pron__o" viewBox="0 0 24 24" focusable="false"><RingNode cx={12} cy={12} r={10} tone="record" inner="none" fill="open" knockout={0} /></svg>urce</span>
-    <span class="sr-only">source</span>
   </span>
 </div>
 
