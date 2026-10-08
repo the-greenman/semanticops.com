@@ -1,0 +1,39 @@
+name: Task or feature
+description: A job to do or a capability to build
+
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it answers
+      description: "Answers: SP-nn from the SemanticOps problem register, or 'No affirmed problem yet:' and one line describing the problem"
+      placeholder: "SP-5: Readers need to understand how records compose into documents"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-to-do
+    attributes:
+      label: What to do
+      description: The concrete job in plain terms
+      placeholder: "Add component/Composition.astro to show how records nest in containers"
+    validations:
+      required: true
+
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: The measurable acceptance criteria
+      placeholder: "Composition displays in /styleguide with specimen; the diagram shows a three-level tree of records"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: duplicate-check
+    attributes:
+      label: Duplicate check
+      description: "Before filing: search open and parked issues across the-greenman repos, including muDemocracy.org"
+      options:
+        - label: "I searched open and parked issues across the-greenman repos, including muDemocracy.org, for work answering the same problem"
+          required: true
