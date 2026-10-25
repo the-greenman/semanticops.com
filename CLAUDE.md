@@ -104,3 +104,7 @@ Run the first three before every commit, and `npm run check:links` after any cha
 ## Process
 
 Plan, implement, self-review the diff (DRY, tokens only, `@layer components`, no em dashes, accessibility), update docs, dogfood: build, check, typecheck, check:links, and look at `/styleguide` and every page at 1440 and 390 wide in light and dark (and confirm no horizontal scroll at 320). Work in a fresh worktree, never in the main checkout. Commit in logical steps with a plain, SSH-signed `git commit` (run `bash /home/greenman/dev/semanticops/check-signing.sh` first and expect `KEY_OK`; never bypass signing). Push branches only; the owner reviews the diff, then opens the PR. Default branch is `main`.
+
+## Narrative explorations
+
+When the owner explains the work, or starts describing a problem or a remedy, capture their words verbatim as a Tier-0 vignette in their conversation's container (srs-programme, Narrative explorations `80b283ef`) before acting, unprompted, and derive records from it as suggestions with `derived-from`. The practice is the clerk handbook chapter *Narrative explorations: how meaning grows* (decision 77e04b19); the brief injected by srs-context carries the rule.
