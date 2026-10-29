@@ -1,0 +1,20 @@
+{
+  "instanceId": "fbb4a0ef-e168-4796-b852-5e2836049743",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "semanticops.com",
+    "slug": "site-explanation",
+    "target": "https://semanticops.com/llms.txt",
+    "why": "The explanation: what SRS is, its model, its patterns and its projects."
+  },
+  "createdAt": "2026-10-29T10:43:37.421975484+00:00",
+  "updatedAt": "2026-10-29T10:43:37.421982410+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

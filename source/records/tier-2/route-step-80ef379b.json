@@ -1,0 +1,20 @@
+{
+  "instanceId": "80ef379b-fa64-4fc6-91fc-587a90a5145f",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "app.semanticops.com",
+    "slug": "site-app",
+    "target": "https://app.semanticops.com",
+    "why": "The browser editor: open and edit a repository with nothing to install."
+  },
+  "createdAt": "2026-10-29T10:43:38.022898654+00:00",
+  "updatedAt": "2026-10-29T10:43:38.022906569+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

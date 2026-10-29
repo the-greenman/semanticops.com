@@ -1,0 +1,20 @@
+{
+  "instanceId": "5e1a96e7-2a93-4ea6-9e18-b16883736a9d",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "mudemocracy.org",
+    "slug": "site-mudemocracy",
+    "target": "https://mudemocracy.org",
+    "why": "Decision practice, and the first consumer of SRS."
+  },
+  "createdAt": "2026-10-29T10:43:38.170388112+00:00",
+  "updatedAt": "2026-10-29T10:43:38.170395192+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

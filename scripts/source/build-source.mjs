@@ -24,6 +24,14 @@ const LLMS = join(REPO_ROOT, "public", "llms.txt");
 const MARKER = "generated from source/ by scripts/source/build-source.mjs; do not edit";
 const BUNDLE_NAME = "semanticops.srs";
 const INDEX_NAME = "agent-index.md";
+// The Get running block is the one cross-site standard every SemanticOps llms.txt opens with, kept
+// byte-identical on every site (srs-context decision d871837a, story semanticops.com#44). Its install
+// line has no link, so it does not fit the route-step shape; it is a shared constant, not a site fact.
+const GET_RUNNING = `## Get running
+
+- Install the srs engine: \`curl -fsSL https://engine.semanticops.com/install.sh | sh\`
+- [First five minutes](https://engine.semanticops.com/start.md): CLI, MCP server, output contract
+- [SemanticOps sites](https://semanticops.com/llms.txt): every site and what it is for`;
 
 const fail = (msg) => {
   console.error(msg);
@@ -121,8 +129,8 @@ function build() {
   });
   const site = { title: identity.title, purpose: identity.statement, pages: sitePages };
 
-  // 5. llms.txt (llmstxt convention): every line comes from the records (the start-here and data
-  // containers hold route-step records) or from the page list
+  // 5. llms.txt (llmstxt convention): every line comes from the records (the start-here, sites and
+  // data containers hold route-step records) or from the page list, except GET_RUNNING below
   const stepsOf = (title) => {
     const c = srs("container", "list").containers.find((x) => x.title === title);
     if (!c) fail(`container "${title}" not found in source/`);
@@ -134,6 +142,8 @@ function build() {
     "",
     `> ${site.purpose}`,
     "",
+    GET_RUNNING,
+    "",
     "## Start here",
     "",
     ...stepsOf(`${site.title}: start here`).map(line),
@@ -141,6 +151,10 @@ function build() {
     "## Pages",
     "",
     ...site.pages.map((p) => `- [${p.title}](/agents/${p.page}.md): ${p.summary} ([JSON](/agents/${p.page}.json))`),
+    "",
+    "## Sites",
+    "",
+    ...stepsOf(`${site.title}: sites`).map(line),
     "",
     "## Data",
     "",

@@ -1,15 +1,18 @@
 # Response headers for Cloudflare Workers static assets (other static hosts read this format too).
-# The agent site is public, read-only data: let browser-based agents fetch it from any origin.
+# Headers from every matching rule are combined, and a header set by two rules gets both values
+# joined, so each header is set by one rule only.
 
-/llms.txt
+# The site is public, read-only data: browser-based agents fetch /llms.txt, /agents/*, the .md
+# pages and the sample (/try/*, opened by app.semanticops.com/?open=...) from any origin.
+/*
   Access-Control-Allow-Origin: *
 
-/agents/*
-  Access-Control-Allow-Origin: *
+# Workers send text types without a charset, and the agent markdown and llms.txt carry non-ASCII.
+/*.md
+  Content-Type: text/markdown; charset=utf-8
 
-# The sample is opened cross-origin by the browser editor (app.semanticops.com/?open=...).
-/try/*
-  Access-Control-Allow-Origin: *
+/*.txt
+  Content-Type: text/plain; charset=utf-8
 
 # .srs is the SRS ZIP archive (ext:repository). It has no registered media type, and the
 # extension is unknown to the host, so name the container format.

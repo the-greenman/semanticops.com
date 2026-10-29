@@ -12,6 +12,8 @@ SemanticOps is four projects that share one standard.
 
 The standard says what a repository is. The engine implements it once, and the two editors add presentation on top of that engine. All four are public.
 
+The engine has its own site, [engine.semanticops.com](https://engine.semanticops.com): how to install srs, the CLI and the MCP server.
+
 
 ### srs
 

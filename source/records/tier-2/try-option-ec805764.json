@@ -7,12 +7,12 @@
   "fieldValues": {
     "title": "Run the CLI",
     "slug": "try-cli",
-    "line": "Download the [srs release](https://github.com/the-greenman/srs-rust/releases/latest) (other platforms: build from source), unpack the sample, then check it and look around.",
+    "line": "Install the srs engine with one line (the [engine site](https://engine.semanticops.com) covers other platforms), unpack the sample, then check it and look around.",
     "action_label": "Run the CLI",
-    "command": "srs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting\nsrs find --repo meeting --text standup"
+    "command": "curl -fsSL https://engine.semanticops.com/install.sh | sh\nsrs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting"
   },
   "createdAt": "2026-10-06T10:23:42.677583267+00:00",
-  "updatedAt": "2026-10-07T19:33:53.354465053+00:00",
+  "updatedAt": "2026-10-29T10:43:52.559578879+00:00",
   "createdBy": {
     "kind": "ai",
     "id": "claude-code"
