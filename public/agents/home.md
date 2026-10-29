@@ -234,12 +234,12 @@ https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs
 
 ### Run the CLI
 
-Download the [srs release](https://github.com/the-greenman/srs-rust/releases/latest) (other platforms: build from source), unpack the sample, then check it and look around.
+Install the srs engine with one line, unpack the sample, then check it and look around.
 
+curl -fsSL https://engine.semanticops.com/install.sh | sh
 srs archive unpack meeting.srs --target meeting
 srs repo validate --repo meeting
 srs repo map --repo meeting
-srs find --repo meeting --text standup
 
 
 ### Point your agent at it

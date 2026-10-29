@@ -316,8 +316,8 @@
       "fields": {
         "slug": "try-cli",
         "title": "Run the CLI",
-        "line": "Download the [srs release](https://github.com/the-greenman/srs-rust/releases/latest) (other platforms: build from source), unpack the sample, then check it and look around.",
-        "command": "srs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting\nsrs find --repo meeting --text standup",
+        "line": "Install the srs engine with one line, unpack the sample, then check it and look around.",
+        "command": "curl -fsSL https://engine.semanticops.com/install.sh | sh\nsrs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting",
         "action_label": "Run the CLI"
       }
     },

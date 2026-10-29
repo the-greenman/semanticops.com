@@ -1,0 +1,27 @@
+{
+  "containerId": "f05714b3-457e-476d-bd3a-d0004593da52",
+  "title": "SemanticOps: sites",
+  "namespace": "com.semanticops.site",
+  "name": "sites",
+  "description": "Every SemanticOps site and what it is for, in the order of the Sites section of llms.txt.",
+  "memberInstanceIds": [
+    {
+      "instanceId": "fbb4a0ef-e168-4796-b852-5e2836049743"
+    },
+    {
+      "instanceId": "8d3fe05f-b809-4b07-930c-b5e235a3038c"
+    },
+    {
+      "instanceId": "bf2b687b-1d2e-4b5b-a4bb-daa69b389237"
+    },
+    {
+      "instanceId": "5db3a4ca-8924-4880-b89a-f2719416b5db"
+    },
+    {
+      "instanceId": "80ef379b-fa64-4fc6-91fc-587a90a5145f"
+    },
+    {
+      "instanceId": "5e1a96e7-2a93-4ea6-9e18-b16883736a9d"
+    }
+  ]
+}

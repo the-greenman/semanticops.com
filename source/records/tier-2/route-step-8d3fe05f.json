@@ -1,0 +1,20 @@
+{
+  "instanceId": "8d3fe05f-b809-4b07-930c-b5e235a3038c",
+  "typeId": "edf627e9-9ee2-4814-bb57-465a7056e156",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "route-step",
+  "fieldValues": {
+    "title": "srs.semanticops.com",
+    "slug": "site-spec",
+    "target": "https://srs.semanticops.com/llms.txt",
+    "why": "The normative SRS specification, one page per concept."
+  },
+  "createdAt": "2026-10-29T10:43:37.574208786+00:00",
+  "updatedAt": "2026-10-29T10:43:37.574214356+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

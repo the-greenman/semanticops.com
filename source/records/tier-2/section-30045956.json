@@ -9,9 +9,9 @@
     "slug": "projects-intro",
     "eyebrow": "Projects",
     "lede": "SemanticOps is four projects that share one standard.",
-    "body": "The standard says what a repository is. The engine implements it once, and the two editors add presentation on top of that engine. All four are public."
+    "body": "The standard says what a repository is. The engine implements it once, and the two editors add presentation on top of that engine. All four are public.\n\nThe engine has its own site, [engine.semanticops.com](https://engine.semanticops.com): how to install srs, the CLI and the MCP server."
   },
   "createdAt": "2026-10-05T19:18:40.537164869+00:00",
-  "updatedAt": "2026-10-05T19:18:40.537168356+00:00",
+  "updatedAt": "2026-10-29T10:43:52.478736819+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }
