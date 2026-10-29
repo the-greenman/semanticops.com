@@ -243,7 +243,7 @@ Every repository has a root container, named in the manifest, that is its identi
 
 Diagnostics are data.
 
-Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so check `ok` and the diagnostics, not the exit code. Success carries `payload.diagnostics` and a summary. Failure carries a top-level `diagnostics` list.
+Validation checks every file against its schema, every Record against its Type and every reference against the repository. Problems come back as a list of diagnostics: structured data that a tool or an agent can act on. A command that ran exits with code 0 whether or not the data is valid, so check `ok` and the diagnostics, not the exit code. Success carries `payload.diagnostics` and a summary. Failure carries the same payload, the diagnostics again as plain lines, and an `errors` list in which every entry has a stable `code`: branch on the code, never on the message text.
 
 Identity conflicts are fatal: a duplicate id, or a reference to an id that does not exist, stops the repository from loading. Informational conflicts resolve to the declared authority, and say so.
 
@@ -256,7 +256,8 @@ Identity conflicts are fatal: a duplicate id, or a reference to an id that does 
     "summary": {
       "checked": 5,
       "errors": 0,
-      "warnings": 0
+      "warnings": 0,
+      "advisories": 0
     }
   }
 }
@@ -265,8 +266,29 @@ Identity conflicts are fatal: a duplicate id, or a reference to an id that does 
   "ok": false,
   "command": "repo validate",
   "version": "0.1.0",
+  "payload": {
+    "diagnostics": [
+      {
+        "severity": "error",
+        "path": "records/tier-2/decision-6e37d4fb.json",
+        "message": "missing required field key: title"
+      }
+    ],
+    "summary": {
+      "checked": 5,
+      "errors": 1,
+      "warnings": 0,
+      "advisories": 0
+    }
+  },
   "diagnostics": [
     "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
+  ],
+  "errors": [
+    {
+      "code": "unclassified",
+      "message": "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
+    }
   ]
 }
 

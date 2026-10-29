@@ -52,7 +52,7 @@ A capability is implemented once, in the core, and consumed identically by every
 
 The test: if two clients could ever disagree about the answer, the logic is in the wrong place.
 
-Every adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok` and the diagnostics, not the exit code.
+Every adapter answers in the same envelope. A command that ran exits with code 0 either way, so check `ok`, not the exit code. A failure names each problem with a stable `code`, and a WebAssembly error or an MCP tool error carries the same code.
 
 **Example (JSON)**: {
   "ok": true,
@@ -63,7 +63,8 @@ Every adapter answers in the same envelope. A command that ran exits with code 0
     "summary": {
       "checked": 5,
       "errors": 0,
-      "warnings": 0
+      "warnings": 0,
+      "advisories": 0
     }
   }
 }
@@ -72,8 +73,29 @@ Every adapter answers in the same envelope. A command that ran exits with code 0
   "ok": false,
   "command": "repo validate",
   "version": "0.1.0",
+  "payload": {
+    "diagnostics": [
+      {
+        "severity": "error",
+        "path": "records/tier-2/decision-6e37d4fb.json",
+        "message": "missing required field key: title"
+      }
+    ],
+    "summary": {
+      "checked": 5,
+      "errors": 1,
+      "warnings": 0,
+      "advisories": 0
+    }
+  },
   "diagnostics": [
     "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
+  ],
+  "errors": [
+    {
+      "code": "unclassified",
+      "message": "[records/tier-2/decision-6e37d4fb.json] missing required field key: title"
+    }
   ]
 }
 
@@ -95,9 +117,9 @@ Each layer works without the layers above it. Meaning is complete without any ex
 
 The same tools for a person's client and for an agent.
 
-`srs mcp serve` runs an MCP server over a repository. Its tools include `find`, `read`, `record_create`, `record_update`, `record_transition`, `relation_create`, `note_create`, `note_graduate`, container edits and `repo_validate`. Its resources include a repository map, the navigation and an agent index: a one-page orientation that tells a cold agent what is here.
+`srs mcp serve` runs an MCP server over a repository. Its tools include `find`, `similar`, `neighbours`, `read`, `record_create`, `record_update`, `record_transition`, `relation_create`, `note_create`, `note_graduate`, container edits, attachments, protocol runs and `repo_validate`. Its resources include a repository map, the navigation and an agent index: a one-page orientation that tells a cold agent what is here.
 
-The same tools run in the browser over WebAssembly, so an agent in the editor and an agent on the command line meet one contract. `find` and `similar` are lexical: they match words, not embeddings.
+The same tools run in the browser over WebAssembly, so an agent in the editor and an agent on the command line meet one contract. When several agents share one open document, each can see where the others are looking and what has changed since the last save. `find` and `similar` are lexical: they match words, not embeddings.
 
 **Example (JSON)**: {
   "name": "find",
@@ -125,9 +147,17 @@ The defence is to make the tool the only door. A write goes through a tool that 
   "content": [
     {
       "type": "text",
-      "text": "relation validation failed for relation fb01853f-0177-46c2-9fb3-4feb6ea244b1: E1UnknownRelationType: E1: relation type 'owns' is not installed in the package"
+      "text": "relation validation failed for relation a145746d-dde0-4e91-9070-64a8bf3d1143: relation-type-unknown: E1: relation type 'owns' is not installed in the package"
     }
   ],
+  "structuredContent": {
+    "code": "relation-validation",
+    "message": "relation validation failed for relation a145746d-dde0-4e91-9070-64a8bf3d1143: relation-type-unknown: E1: relation type 'owns' is not installed in the package",
+    "details": {
+      "relationId": "a145746d-dde0-4e91-9070-64a8bf3d1143",
+      "message": "relation-type-unknown: E1: relation type 'owns' is not installed in the package"
+    }
+  },
   "isError": true
 }
 

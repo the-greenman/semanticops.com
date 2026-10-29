@@ -57,7 +57,7 @@ A library-first reference implementation. The core holds types and validation. O
 
 Edit SRS repositories entirely client-side, on storage you own.
 
-An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.
+An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and opens a repository in the editor that suits it: a repository explorer, governance records, guides or essays written as structured paragraphs. Its agents panel connects MCP agents to the document you have open.
 
 **Audience**: People who work with structured knowledge and want it to stay theirs.
 

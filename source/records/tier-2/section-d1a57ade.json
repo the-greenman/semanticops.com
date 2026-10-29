@@ -9,9 +9,9 @@
     "slug": "hero",
     "eyebrow": "SemanticOps: operations that manage meaning",
     "lede": "SRS is an open format for knowledge. You define the types you need, write records, and link them. People read the result as a document. Agents query it as data. It is plain files: no database, no server, no lock-in.",
-    "body": "Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+    "body": "Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it."
   },
   "createdAt": "2026-10-05T19:18:39.619597825+00:00",
-  "updatedAt": "2026-10-07T19:33:51.066046863+00:00",
+  "updatedAt": "2026-10-29T20:50:20.024274712+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }
