@@ -16,6 +16,7 @@ import OnThisPage from "../components/OnThisPage.astro";
 import PageLinks from "../components/PageLinks.astro";
 import Lede from "../components/Lede.astro";
 import Quote from "../components/Quote.astro";
+import Pronunciation from "../components/Pronunciation.astro";
 import Prose from "../components/Prose.astro";
 import PrincipleItem from "../components/PrincipleItem.astro";
 import ProjectCard from "../components/ProjectCard.astro";
@@ -389,6 +390,10 @@ const relationJson = `{
         <Quote size="xl">SRS preserves semantic sovereignty through portable data.</Quote>
         <Quote size="lg" cite="The governing core">SRS preserves semantic sovereignty through portable data.</Quote>
         <Quote cite="Standing principle">Records are the source of truth. Rendered documents are projections of those records: derived, never authoritative.</Quote>
+      </Specimen>
+      <Specimen layout="stack" title="Pronunciation" note="The name lockup: srs, pronounced source. The o is a ring in the record colour, because records are the source. size lg for the front door, md in running content." code={`<Pronunciation size="lg" />`}>
+        <Pronunciation size="lg" />
+        <Pronunciation size="md" />
       </Specimen>
     </div>
   </Section>
