@@ -316,7 +316,7 @@
       "fields": {
         "slug": "try-cli",
         "title": "Run the CLI",
-        "line": "Install the srs engine with one line (the [engine site](https://engine.semanticops.com) covers other platforms), unpack the sample, then check it and look around.",
+        "line": "Install the srs engine with one line, unpack the sample, then check it and look around.",
         "command": "curl -fsSL https://engine.semanticops.com/install.sh | sh\nsrs archive unpack meeting.srs --target meeting\nsrs repo validate --repo meeting\nsrs repo map --repo meeting",
         "action_label": "Run the CLI"
       }

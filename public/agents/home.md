@@ -234,7 +234,7 @@ https://app.semanticops.com/?open=https://semanticops.com/try/meeting.srs
 
 ### Run the CLI
 
-Install the srs engine with one line (the [engine site](https://engine.semanticops.com) covers other platforms), unpack the sample, then check it and look around.
+Install the srs engine with one line, unpack the sample, then check it and look around.
 
 curl -fsSL https://engine.semanticops.com/install.sh | sh
 srs archive unpack meeting.srs --target meeting
