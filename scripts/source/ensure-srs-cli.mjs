@@ -10,8 +10,8 @@ import { join } from "node:path";
 import { REPO_ROOT, VENDORED_SRS_BIN } from "./lib-srs.mjs";
 
 const RELEASE_URL =
-  "https://github.com/the-greenman/srs-rust/releases/download/v0.1.0-build.470/srs-x86_64-unknown-linux-gnu.tar.gz";
-const SHA256 = "64777447585976e7fb0ce54bf05dd787558c1327c56cdb76cefdd1990e305a19";
+  "https://github.com/the-greenman/srs-rust/releases/download/v0.1.0-build.580/srs-x86_64-unknown-linux-gnu.tar.gz";
+const SHA256 = "f9f09c1b26ab0992ef3230b4e185e78aa3c479fd6e2d46de48aac98559eac901";
 const BIN_DIR = join(REPO_ROOT, ".bin");
 const PIN_MARKER = join(BIN_DIR, "srs.pin");
 const PIN = `${RELEASE_URL}\nsha256:${SHA256}\n`;
