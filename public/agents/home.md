@@ -12,8 +12,6 @@ SRS is an open format for knowledge. You define the types you need, write record
 
 Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it.
 
-SRS is pronounced "source". The name is the point. Records are the source, and every document you read is a projection of them.
-
 
 ### A meeting becomes a decision and two tasks
 
@@ -147,7 +145,7 @@ A library-first reference implementation. The core holds types and validation. O
 
 Edit SRS repositories entirely client-side, on storage you own.
 
-An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.
+An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and opens a repository in the editor that suits it: a repository explorer, governance records, guides or essays written as structured paragraphs. Its agents panel connects MCP agents to the document you have open.
 
 **Audience**: People who work with structured knowledge and want it to stay theirs.
 

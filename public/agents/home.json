@@ -21,7 +21,7 @@
         "title": "A document for people. A datastore for agents.",
         "eyebrow": "SemanticOps: operations that manage meaning",
         "lede": "SRS is an open format for knowledge. You define the types you need, write records, and link them. People read the result as a document. Agents query it as data. It is plain files: no database, no server, no lock-in.",
-        "body": "Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it.\n\nSRS is pronounced \"source\". The name is the point. Records are the source, and every document you read is a projection of them."
+        "body": "Informally, a PDF for meaning. Move the folder to another tool, another machine or another decade, and the identity, types, relations and context come with it."
       }
     },
     {
@@ -175,7 +175,7 @@
         "name": "srs-web",
         "kind": "Browser editor",
         "tagline": "Edit SRS repositories entirely client-side, on storage you own.",
-        "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.",
+        "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and opens a repository in the editor that suits it: a repository explorer, governance records, guides or essays written as structured paragraphs. Its agents panel connects MCP agents to the document you have open.",
         "audience": "People who work with structured knowledge and want it to stay theirs.",
         "makes_possible": "Reading and editing a repository with nothing to install, while the files stay in your own storage.",
         "repository": "https://github.com/the-greenman/srs-web",

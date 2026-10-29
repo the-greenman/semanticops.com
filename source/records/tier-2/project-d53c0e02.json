@@ -9,13 +9,13 @@
     "slug": "srs-web",
     "kind": "Browser editor",
     "tagline": "Edit SRS repositories entirely client-side, on storage you own.",
-    "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and includes an agents panel.",
+    "summary": "An opinionated browser editor, thin over the WASM core. It works against local files, Dropbox, Google Drive and GitHub, and opens a repository in the editor that suits it: a repository explorer, governance records, guides or essays written as structured paragraphs. Its agents panel connects MCP agents to the document you have open.",
     "audience": "People who work with structured knowledge and want it to stay theirs.",
     "makes_possible": "Reading and editing a repository with nothing to install, while the files stay in your own storage.",
     "repository": "https://github.com/the-greenman/srs-web",
     "licence": "Apache-2.0"
   },
   "createdAt": "2026-10-05T19:18:42.002784039+00:00",
-  "updatedAt": "2026-10-05T19:18:42.002788012+00:00",
+  "updatedAt": "2026-10-29T20:50:20.571633847+00:00",
   "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
 }

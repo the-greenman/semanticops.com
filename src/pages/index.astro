@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import AgentEdition from "../components/AgentEdition.astro";
 import Button from "../components/Button.astro";
-import Pronunciation from "../components/Pronunciation.astro";
+import Wordmark from "../components/Wordmark.astro";
 import Prose from "../components/Prose.astro";
 import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
@@ -33,7 +33,7 @@ const bands = toBands(homePage.entries.filter((e) => e !== hero), homePage.key);
       <div class="stack stack--md">
         <div class="cluster cluster--md">
           <SrsMark variant="halves" size={56} />
-          <Pronunciation size="md" />
+          <Wordmark name="srs" size="md" />
         </div>
         <SectionHeader level="h1" eyebrow={hero.fields.eyebrow} title={hero.fields.title}>
           <Fragment set:html={await markdownInline(hero.fields.lede)} />
