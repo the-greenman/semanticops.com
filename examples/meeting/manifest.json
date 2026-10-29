@@ -1,17 +1,7 @@
 {
-  "container": {
-    "containerId": "000973a1-2f84-485c-8350-8811a3f18c1b",
-    "title": "com.example.meeting",
-    "identityInstanceId": "b3d88ba0-2245-4a7a-bd44-2b3eff8d6b21",
-    "memberInstanceIds": [
-      {
-        "instanceId": "b3d88ba0-2245-4a7a-bd44-2b3eff8d6b21"
-      }
-    ]
-  },
   "$schema": "https://srs.semanticops.com/schema/2.0/manifest.json",
   "createdAt": "2026-10-06T09:29:38.216610229+00:00",
-  "dataModelRevision": 9,
+  "dataModelRevision": 11,
   "namespace": "com.example.meeting",
   "renderedPresentations": [
     {
@@ -22,5 +12,6 @@
   ],
   "repositoryId": "000973a1-2f84-485c-8350-8811a3f18c1b",
   "srsVersion": "2.0-draft",
-  "title": "com.example.meeting"
+  "title": "com.example.meeting",
+  "rootContainerId": "000973a1-2f84-485c-8350-8811a3f18c1b"
 }
