@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+// Writes the brand kit to public/brand/ and its index to public/brand/brand.json, which the
+// /brand page reads. Run by hand with `npm run brand` and commit the output: it needs
+// rsvg-convert and ImageMagick (magick), so hosts only ever serve the files.
+// The mark geometry is the one in src/components/diagram/Halves.astro and the colours are read
+// from tokens.css. Change the mark there and here together.
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+
+const OUT = "public/brand";
+const tokens = readFileSync("src/styles/tokens.css", "utf8");
+const hex = (name) => tokens.match(new RegExp(`--${name}: (#[0-9a-f]{6})`))[1];
+const c = { black: hex("black"), paper: hex("paper"), lit: hex("paper-lit"), night: hex("night"), vermilion: hex("vermilion"), vermilionLit: hex("vermilion-lit") };
+
+// "SemanticOps" as outlines, so no file depends on a font: IBM Plex Sans (Semantic 400, Ops 700)
+// at 100 units, tracked -2 like the Wordmark component, baseline at y=0, drawn with opentype.js.
+const WORDMARK = { d: "M28.90 1.20L28.90 1.20Q20.50 1.20 14.45-2.05Q8.40-5.30 4.20-11L4.20-11L10.40-16.20Q14.10-11.30 18.60-8.75Q23.10-6.20 29.20-6.20L29.20-6.20Q36.70-6.20 40.65-9.80Q44.60-13.40 44.60-19.40L44.60-19.40Q44.60-22.70 43.30-25Q42-27.30 39.15-28.85Q36.30-30.40 31.70-31.40L31.70-31.40L26-32.70Q19.70-34.20 15.30-36.60Q10.90-39 8.60-42.80Q6.30-46.60 6.30-51.90L6.30-51.90Q6.30-58.10 9.20-62.35Q12.10-66.60 17.35-68.80Q22.60-71 29.40-71L29.40-71Q37.30-71 42.95-68.10Q48.60-65.20 52.50-59.60L52.50-59.60L46.20-55Q43.40-59 39.25-61.30Q35.10-63.60 29-63.60L29-63.60Q22.30-63.60 18.45-60.70Q14.60-57.80 14.60-52.20L14.60-52.20Q14.60-48.90 16.05-46.70Q17.50-44.50 20.40-43.05Q23.30-41.60 27.70-40.60L27.70-40.60L33.40-39.30Q40.20-37.80 44.50-35.20Q48.80-32.60 50.85-28.80Q52.90-25 52.90-19.80L52.90-19.80Q52.90-13.40 50-8.70Q47.10-4 41.75-1.40Q36.40 1.20 28.90 1.20ZM84 1.20L84 1.20Q77 1.20 71.80-2.15Q66.60-5.50 63.70-11.55Q60.80-17.60 60.80-25.80L60.80-25.80Q60.80-34 63.70-40.05Q66.60-46.10 71.80-49.45Q77-52.80 84-52.80L84-52.80Q90.90-52.80 95.90-49.55Q100.90-46.30 103.60-40.60Q106.30-34.90 106.30-27.60L106.30-27.60L106.30-23.80L69.20-23.80L69.20-21.40Q69.20-14.70 73.25-10.25Q77.30-5.80 84.50-5.80L84.50-5.80Q89.40-5.80 93.05-8.10Q96.70-10.40 98.70-14.70L98.70-14.70L104.40-10.60Q101.90-5.40 96.60-2.10Q91.30 1.20 84 1.20ZM84-46.10L84-46.10Q79.70-46.10 76.35-44.10Q73-42.10 71.10-38.55Q69.20-35 69.20-30.50L69.20-30.50L69.20-29.80L97.70-29.80L97.70-30.90Q97.70-35.50 96-38.90Q94.30-42.30 91.20-44.20Q88.10-46.10 84-46.10ZM125.50-35.80L125.50 0L117.50 0L117.50-51.60L125.50-51.60L125.50-43.20L125.90-43.20Q127.60-47.20 130.70-50Q133.80-52.80 139.80-52.80L139.80-52.80Q144.90-52.80 149.20-50.35Q153.50-47.90 155.60-42.30L155.60-42.30L155.80-42.30Q157.20-46.50 161.05-49.65Q164.90-52.80 171.50-52.80L171.50-52.80Q179.40-52.80 183.85-47.65Q188.30-42.50 188.30-33.10L188.30-33.10L188.30 0L180.30 0L180.30-31.70Q180.30-38.50 177.60-42.05Q174.90-45.60 169-45.60L169-45.60Q165.90-45.60 163.10-44.55Q160.30-43.50 158.60-41.30Q156.90-39.10 156.90-35.80L156.90-35.80L156.90 0L148.90 0L148.90-31.70Q148.90-38.60 146.20-42.10Q143.50-45.60 137.80-45.60L137.80-45.60Q134.70-45.60 131.85-44.55Q129-43.50 127.25-41.30Q125.50-39.10 125.50-35.80L125.50-35.80ZM244.80-7L244.80 0L240.30 0Q237.10 0 235.10-1.35Q233.10-2.70 232.20-5.10L232.20-5.10Q231.60-6.60 231.40-8.40L231.40-8.40L230.90-8.40Q229.30-3.70 225.35-1.25Q221.40 1.20 216 1.20L216 1.20Q207.80 1.20 203.25-3Q198.70-7.20 198.70-14.40L198.70-14.40Q198.70-19.30 201.10-22.65Q203.50-26 208.35-27.75Q213.20-29.50 220.70-29.50L220.70-29.50L230.90-29.50L230.90-34.60Q230.90-40.10 227.90-43Q224.90-45.90 218.70-45.90L218.70-45.90Q214.10-45.90 210.90-43.80Q207.70-41.70 205.60-38.20L205.60-38.20L200.80-42.70Q202.90-46.80 207.50-49.80Q212.10-52.80 219.10-52.80L219.10-52.80Q228.40-52.80 233.65-48.20Q238.90-43.60 238.90-35.40L238.90-35.40L238.90-7L244.80-7ZM230.90-15L230.90-23.50L220.30-23.50Q213.50-23.50 210.30-21.50Q207.10-19.50 207.10-15.70L207.10-15.70L207.10-13.60Q207.10-9.80 209.90-7.70Q212.70-5.60 217.30-5.60L217.30-5.60Q221.30-5.60 224.35-6.85Q227.40-8.10 229.15-10.25Q230.90-12.40 230.90-15L230.90-15ZM262.20-35.80L262.20 0L254.20 0L254.20-51.60L262.20-51.60L262.20-43.20L262.60-43.20Q264.50-47.60 267.95-50.20Q271.40-52.80 277.20-52.80L277.20-52.80Q285.20-52.80 289.85-47.65Q294.50-42.50 294.50-33.10L294.50-33.10L294.50 0L286.50 0L286.50-31.70Q286.50-38.60 283.55-42.10Q280.60-45.60 274.80-45.60L274.80-45.60Q271.60-45.60 268.70-44.55Q265.80-43.50 264-41.30Q262.20-39.10 262.20-35.80L262.20-35.80ZM330.40-7L330.40 0L320.40 0Q316.30 0 314.10-2.40Q311.90-4.80 311.90-8.50L311.90-8.50L311.90-44.60L303.40-44.60L303.40-51.60L308.20-51.60Q310.80-51.60 311.75-52.65Q312.70-53.70 312.70-56.30L312.70-56.30L312.70-65.90L319.90-65.90L319.90-51.60L331.20-51.60L331.20-44.60L319.90-44.60L319.90-7L330.40-7ZM346.10-63.70L346.10-63.70Q343.60-63.70 342.40-64.95Q341.20-66.20 341.20-68.20L341.20-68.20L341.20-69.50Q341.20-71.50 342.40-72.75Q343.60-74 346.10-74L346.10-74Q348.70-74 349.85-72.75Q351-71.50 351-69.50L351-69.50L351-68.20Q351-66.20 349.85-64.95Q348.70-63.70 346.10-63.70ZM350.10 0L342.10 0L342.10-51.60L350.10-51.60L350.10 0ZM384.30 1.20L384.30 1.20Q373.40 1.20 367.35-6.10Q361.30-13.40 361.30-25.80L361.30-25.80Q361.30-38.20 367.35-45.50Q373.40-52.80 384.30-52.80L384.30-52.80Q392-52.80 396.70-49.40Q401.40-46 403.60-40.70L403.60-40.70L396.90-37.30Q395.50-41.30 392.25-43.50Q389-45.70 384.30-45.70L384.30-45.70Q377.20-45.70 373.55-41.35Q369.90-37 369.90-30.20L369.90-30.20L369.90-21.40Q369.90-14.70 373.55-10.30Q377.20-5.90 384.30-5.90L384.30-5.90Q389.20-5.90 392.70-8.20Q396.20-10.50 398.30-14.90L398.30-14.90L404.10-11Q401.60-5.50 396.65-2.15Q391.70 1.20 384.30 1.20ZM440.60 1.20L440.60 1.20Q431.40 1.20 424.45-2.90Q417.50-7 413.70-15.05Q409.90-23.10 409.90-34.90L409.90-34.90Q409.90-46.80 413.70-54.80Q417.50-62.80 424.45-66.90Q431.40-71 440.60-71L440.60-71Q449.90-71 456.80-66.90Q463.70-62.80 467.50-54.80Q471.30-46.80 471.30-34.90L471.30-34.90Q471.30-23.10 467.50-15.05Q463.70-7 456.80-2.90Q449.90 1.20 440.60 1.20ZM440.60-12.30L440.60-12.30Q445.20-12.30 448.45-14.35Q451.70-16.40 453.45-20.30Q455.20-24.20 455.20-29.70L455.20-29.70L455.20-40.10Q455.20-45.70 453.45-49.55Q451.70-53.40 448.45-55.45Q445.20-57.50 440.60-57.50L440.60-57.50Q436.10-57.50 432.80-55.45Q429.50-53.40 427.75-49.55Q426.00-45.70 426.00-40.10L426.00-40.10L426.00-29.70Q426.00-24.20 427.75-20.30Q429.50-16.40 432.80-14.35Q436.10-12.30 440.60-12.30ZM496.00 20L481.20 20L481.20-52.50L496.00-52.50L496.00-43.70L496.50-43.70Q497.60-48.10 501.55-50.90Q505.50-53.70 510.60-53.70L510.60-53.70Q517.30-53.70 521.75-50.55Q526.20-47.40 528.50-41.30Q530.80-35.20 530.80-26.30L530.80-26.30Q530.80-17.40 528.50-11.25Q526.20-5.10 521.75-1.95Q517.30 1.20 510.60 1.20L510.60 1.20Q505.50 1.20 501.55-1.65Q497.60-4.50 496.50-8.80L496.50-8.80L496.00-8.80L496.00 20ZM505.70-10.80L505.70-10.80Q509.90-10.80 512.65-13.80Q515.40-16.80 515.40-21.70L515.40-21.70L515.40-30.80Q515.40-35.80 512.65-38.75Q509.90-41.70 505.70-41.70L505.70-41.70Q502.90-41.70 500.70-40.80Q498.50-39.90 497.25-38.15Q496.00-36.40 496.00-34L496.00-34L496.00-18.50Q496.00-16.10 497.25-14.35Q498.50-12.60 500.70-11.70Q502.90-10.80 505.70-10.80ZM557.80 1.20L557.80 1.20Q550.20 1.20 545-1.25Q539.80-3.70 535.70-8.20L535.70-8.20L544.40-17Q547.20-13.90 550.60-12.10Q554-10.30 558.30-10.30L558.30-10.30Q562.70-10.30 564.40-11.65Q566.10-13 566.10-15.30L566.10-15.30Q566.10-17.30 564.85-18.30Q563.60-19.30 560.80-19.70L560.80-19.70L555.10-20.40Q549.20-21.20 545.25-23.20Q541.30-25.20 539.35-28.55Q537.40-31.90 537.40-36.60L537.40-36.60Q537.40-44.20 542.90-48.95Q548.40-53.70 557.80-53.70L557.80-53.70Q563.30-53.70 567.10-52.75Q570.90-51.80 573.75-49.95Q576.60-48.10 579.20-45.50L579.20-45.50L570.70-36.80Q568.20-39.30 565.05-40.75Q561.90-42.20 558.60-42.20L558.60-42.20Q554.90-42.20 553.25-41Q551.60-39.80 551.60-37.80L551.60-37.80Q551.60-35.70 552.75-34.55Q553.90-33.40 557.10-32.90L557.10-32.90L563-32.10Q571.60-31 575.95-27.05Q580.30-23.10 580.30-16.30L580.30-16.30Q580.30-11.30 577.50-7.30Q574.70-3.30 569.65-1.05Q564.60 1.20 557.80 1.20Z", x: 4.2, y: -74, width: 576.1, height: 94 };
+
+const REGION = "M12 1.25A10.75 10.75 0 0 1 12 22.75A5.375 5.375 0 0 0 12 12A5.375 5.375 0 0 1 12 1.25Z";
+const SEED_UP = "M12 5.12a1.505 1.505 0 1 0 0 3.01a1.505 1.505 0 1 0 0-3.01Z";
+const fullMark = (ink, paper, line) =>
+  `<circle cx="12" cy="12" r="10.75" fill="${paper}"/><path d="${REGION}" fill="${ink}"/><path d="M12 1.25A5.375 5.375 0 0 0 12 12A5.375 5.375 0 0 1 12 22.75" fill="none" stroke="${line}"/><circle cx="12" cy="6.625" r="1.505" fill="${paper}"/><circle cx="12" cy="17.375" r="1.505" fill="${ink}"/><circle cx="12" cy="12" r="10.75" fill="none" stroke="${ink}" stroke-width="1.25"/>`;
+// One colour: the paper half and the upper seed are real holes, so it sits on any ground.
+const monoMark = (ink) =>
+  `<path fill-rule="evenodd" d="${REGION}${SEED_UP}" fill="${ink}"/><circle cx="12" cy="17.375" r="1.505" fill="${ink}"/><circle cx="12" cy="12" r="10.75" fill="none" stroke="${ink}" stroke-width="1.25"/>`;
+
+const VARIANTS = {
+  light: { title: "For light grounds", ground: "paper", mark: fullMark(c.black, c.paper, c.vermilion), text: c.black },
+  dark: { title: "For dark grounds", ground: "ink", mark: fullMark(c.lit, c.night, c.vermilionLit), text: c.lit },
+  black: { title: "One colour, black", ground: "paper", mark: monoMark("#000000"), text: "#000000" },
+  white: { title: "One colour, white", ground: "ink", mark: monoMark("#ffffff"), text: "#ffffff" },
+};
+
+const svg = (w, h, body) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}">${body}</svg>\n`;
+const place = (x, y, scale, body) => `<g transform="translate(${x} ${y}) scale(${scale})">${body}</g>`;
+const wordmark = (x, y, scale, fill) => place(x, y, scale, `<path d="${WORDMARK.d}" fill="${fill}"/>`);
+
+// The lockup, in a box 100 tall: the mark, then the name with its capitals centred on the mark.
+const FONT = 0.62;
+const LOCKUP_W = 100 + 22 + Math.ceil(WORDMARK.width * FONT);
+const lockupBody = (v) => place(0, 0, 100 / 24, v.mark) + wordmark(122 - WORDMARK.x * FONT, 71.6, FONT, v.text);
+
+rmSync(OUT, { recursive: true, force: true });
+mkdirSync(OUT, { recursive: true });
+const tmp = mkdtempSync(join(tmpdir(), "brand-"));
+
+/** Write an svg and its PNGs at the given pixel widths; return the download links. */
+function emit(name, source, widths) {
+  writeFileSync(join(OUT, `${name}.svg`), source);
+  const svgPath = join(OUT, `${name}.svg`);
+  const files = [{ href: `/brand/${name}.svg`, label: "SVG" }];
+  for (const w of widths) {
+    execFileSync("rsvg-convert", ["-w", String(w), "-o", join(OUT, `${name}-${w}.png`), svgPath]);
+    files.push({ href: `/brand/${name}-${w}.png`, label: `${w} PNG` });
+  }
+  return files;
+}
+
+const each = (kind, keys, source, widths) =>
+  keys.map((key) => ({ title: VARIANTS[key].title, ground: VARIANTS[key].ground, preview: `/brand/semanticops-${kind}-${key}.svg`, files: emit(`semanticops-${kind}-${key}`, source(VARIANTS[key]), widths) }));
+
+const icon = (ground, v) => svg(24, 24, `<rect width="24" height="24" fill="${ground}"/>` + place(3.84, 3.84, 0.68, v.mark));
+const card = (ground, v) => svg(1200, 630, `<rect width="1200" height="630" fill="${ground}"/>` + place((1200 - LOCKUP_W * 2) / 2, 215, 2, lockupBody(v)));
+const grounded = (kind, widths, source) =>
+  [
+    { key: "paper", title: "Paper ground", ground: "paper", fill: c.paper, v: VARIANTS.light },
+    { key: "ink", title: "Ink ground", ground: "ink", fill: c.black, v: VARIANTS.dark },
+  ].map((g) => ({ title: g.title, ground: g.ground, preview: `/brand/semanticops-${kind}-${g.key}.svg`, files: emit(`semanticops-${kind}-${g.key}`, source(g.fill, g.v), widths) }));
+
+const groups = [
+  { id: "app-icon", title: "App icon", note: "A square with a solid ground and room around the mark, so a platform can round or mask the corners. Use it for OAuth apps, store listings and avatars. Most forms take the 512 or 1024 PNG. The 180 and 192 are the sizes iOS and Android ask for.", items: grounded("app-icon", [180, 192, 512, 1024], icon) },
+  { id: "mark", title: "Mark", note: "The mark alone on a transparent ground. Use it where the name is already set beside it, or where space is tight.", items: each("mark", ["light", "dark", "black", "white"], (v) => svg(24, 24, v.mark), [64, 256, 512, 1024]) },
+  { id: "lockup", title: "Lockup", note: "The mark and the name on a transparent ground. Use it in headers, sponsor lists and anywhere the name has to be read.", items: each("lockup", ["light", "dark", "black", "white"], (v) => svg(LOCKUP_W, 100, lockupBody(v)), [480, 960, 1920]) },
+  { id: "wordmark", title: "Wordmark", note: "The name alone, as outlines, so it needs no font installed.", items: each("wordmark", ["light", "dark"], (v) => svg(Math.ceil(WORDMARK.width), 94, wordmark(-WORDMARK.x, 74, 1, v.text)), [480, 960]) },
+  { id: "social-card", title: "Social card", note: "1200 by 630, the size link previews and repository social images expect.", items: grounded("social-card", [1200], card) },
+];
+
+// One icon file with the small sizes browsers and desktop apps pick from.
+const small = [16, 32, 48].map((w) => {
+  const p = join(tmp, `${w}.png`);
+  execFileSync("rsvg-convert", ["-w", String(w), "-o", p, join(OUT, "semanticops-mark-light.svg")]);
+  return p;
+});
+execFileSync("magick", [...small, join(OUT, "favicon.ico")]);
+rmSync(tmp, { recursive: true });
+groups.find((g) => g.id === "mark").items[0].files.push({ href: "/brand/favicon.ico", label: "ICO" });
+
+const colours = [
+  { name: "Ink", value: c.black, note: "The dark half, and the ground of a dark surface" },
+  { name: "Paper", value: c.paper, note: "The light half, and the ground of a light surface" },
+  { name: "Vermilion", value: c.vermilion, note: "The S line on light, and the one brand colour for a form that asks for an accent" },
+  { name: "Vermilion, lit", value: c.vermilionLit, note: "The S line on dark" },
+];
+
+writeFileSync(join(OUT, "brand.json"), JSON.stringify({ groups, colours }, null, 2) + "\n");

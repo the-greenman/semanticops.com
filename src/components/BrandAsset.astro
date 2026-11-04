@@ -1,0 +1,69 @@
+---
+/**
+ * One brand asset: a preview on the ground it is made for, its name, and a link for each
+ * file. The ground is fixed, not themed, because the asset's colours are. Used by /brand.
+ */
+interface Props {
+  title: string;
+  /** What the asset is, for the preview's alt text and the links' accessible names. */
+  name: string;
+  ground: string;
+  preview: string;
+  files: { href: string; label: string }[];
+}
+
+const { title, name, ground, preview, files } = Astro.props;
+---
+
+<article class="brand-asset">
+  <div class:list={["brand-asset__stage", `brand-asset__stage--${ground}`]}>
+    <img class="brand-asset__preview" src={preview} alt={`${name}, ${title}`} loading="lazy" />
+  </div>
+  <h3 class="brand-asset__title">{title}</h3>
+  <ul class="cluster brand-asset__files">
+    {files.map((f) => <li><a href={f.href} download aria-label={`${name}, ${title}, ${f.label}`}>{f.label}</a></li>)}
+  </ul>
+</article>
+
+<style>
+  @layer components {
+    .brand-asset {
+      display: grid;
+      gap: var(--space-xs);
+      min-width: 0;
+    }
+
+    .brand-asset__stage {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 3 / 2;
+      padding: var(--space-sm);
+      border: 1px solid var(--color-line);
+    }
+
+    .brand-asset__stage--paper {
+      background: var(--color-fixed-paper);
+    }
+
+    .brand-asset__stage--ink {
+      background: var(--color-fixed-ink);
+    }
+
+    .brand-asset__preview {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+    }
+
+    .brand-asset__title {
+      margin: 0;
+      font-size: var(--size-base);
+    }
+
+    .brand-asset__files {
+      font-family: var(--font-mono);
+      font-size: var(--size-sm);
+    }
+  }
+</style>

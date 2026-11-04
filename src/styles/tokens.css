@@ -68,6 +68,8 @@
   --color-ground: var(--paper); /* what a diagram sits on; knockout gaps are drawn in this colour */
   --color-ink-bg: var(--black);
   --color-ink-edge: var(--black); /* the edge of an ink band, read against the page it sits on: invisible on paper (the band is its own colour) */
+  --color-fixed-paper: var(--paper); /* a light ground that stays light in every scheme: previews of brand assets */
+  --color-fixed-ink: var(--black); /* the dark counterpart, the same in every scheme */
 
   /* Text */
   --color-text: var(--ink);
@@ -182,6 +184,8 @@
     --color-ground: var(--night);
     --color-ink-bg: var(--black);
     --color-ink-edge: var(--grey-4); /* on the dark page a black band barely parts from night: a quiet hairline does it */
+    --color-fixed-paper: var(--paper); /* a light ground that stays light in every scheme: previews of brand assets */
+    --color-fixed-ink: var(--black); /* the dark counterpart, the same in every scheme */
 
     --color-text: var(--paper);
     --color-text-strong: var(--paper-lit);
@@ -215,6 +219,8 @@
   --color-ground: var(--night);
   --color-ink-bg: var(--black);
   --color-ink-edge: var(--grey-4); /* on the dark page a black band barely parts from night: a quiet hairline does it */
+  --color-fixed-paper: var(--paper); /* a light ground that stays light in every scheme: previews of brand assets */
+  --color-fixed-ink: var(--black); /* the dark counterpart, the same in every scheme */
 
   --color-text: var(--paper);
   --color-text-strong: var(--paper-lit);
