@@ -4,6 +4,7 @@ import type { Entry } from "../lib/content";
 import { toBands } from "../lib/bands";
 import { lookTable } from "../lib/presentation";
 import AgentEdition from "../components/AgentEdition.astro";
+import BrandAsset from "../components/BrandAsset.astro";
 import Button from "../components/Button.astro";
 import Chip from "../components/Chip.astro";
 import CodeSample from "../components/CodeSample.astro";
@@ -563,6 +564,10 @@ const relationJson = `{
         <Wordmark name="srs" size="lg" />
         <span class="cluster cluster--md"><SrsMark variant="halves" size={40} /><Wordmark size="lg" /></span>
         <span class="cluster cluster--md"><SemanticOpsMark variant="network" size={40} /><Wordmark size="lg" /></span>
+      </Specimen>
+      <Specimen layout="grid" title="BrandAsset" note="One downloadable asset on /brand: a preview on the fixed ground it is made for, and a link per file. ground is paper or ink, and does not follow the theme." code={`<BrandAsset name="SemanticOps mark" title="For dark grounds" ground="ink" preview="/brand/semanticops-mark-dark.svg" files={[{ href: "/brand/semanticops-mark-dark.svg", label: "SVG" }]} />`}>
+        <BrandAsset name="SemanticOps mark" title="For light grounds" ground="paper" preview="/brand/semanticops-mark-light.svg" files={[{ href: "/brand/semanticops-mark-light.svg", label: "SVG" }]} />
+        <BrandAsset name="SemanticOps mark" title="For dark grounds" ground="ink" preview="/brand/semanticops-mark-dark.svg" files={[{ href: "/brand/semanticops-mark-dark.svg", label: "SVG" }]} />
       </Specimen>
     </div>
   </Section>

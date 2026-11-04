@@ -1,0 +1,32 @@
+---
+import brand from "../../public/brand/brand.json";
+import Base from "../layouts/Base.astro";
+import BrandAsset from "../components/BrandAsset.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Swatch from "../components/styleguide/Swatch.astro";
+---
+
+<Base title="Brand assets" description="SemanticOps logos and icons for apps, registrations and listings." noindex>
+  <Section width="wide" variant="page">
+    <SectionHeader level="h1" eyebrow="Identity" title="Brand assets">
+      Logos and icons for apps, registrations and listings. Download a file, or paste its address where a form asks for a URL.
+    </SectionHeader>
+  </Section>
+  {
+    brand.groups.map((group, i) => (
+      <Section id={group.id} width="wide" variant={i % 2 ? "page" : "paper"}>
+        <SectionHeader title={group.title}>{group.note}</SectionHeader>
+        <div class="grid grid--md">
+          {group.items.map((item) => <BrandAsset name={`SemanticOps ${group.title.toLowerCase()}`} {...item} />)}
+        </div>
+      </Section>
+    ))
+  }
+  <Section id="colours" width="wide" variant="page">
+    <SectionHeader title="Colours">For a form that asks for a brand colour.</SectionHeader>
+    <div class="grid grid--md">
+      {brand.colours.map((c) => <Swatch {...c} />)}
+    </div>
+  </Section>
+</Base>

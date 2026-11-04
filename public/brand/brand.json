@@ -1,0 +1,387 @@
+{
+  "groups": [
+    {
+      "id": "app-icon",
+      "title": "App icon",
+      "note": "A square with a solid ground and room around the mark, so a platform can round or mask the corners. Use it for OAuth apps, store listings and avatars. Most forms take the 512 or 1024 PNG. The 180 and 192 are the sizes iOS and Android ask for.",
+      "items": [
+        {
+          "title": "Paper ground",
+          "ground": "paper",
+          "preview": "/brand/semanticops-app-icon-paper.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-app-icon-paper.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-paper-180.png",
+              "label": "180 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-paper-192.png",
+              "label": "192 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-paper-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-paper-1024.png",
+              "label": "1024 PNG"
+            }
+          ]
+        },
+        {
+          "title": "Ink ground",
+          "ground": "ink",
+          "preview": "/brand/semanticops-app-icon-ink.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-app-icon-ink.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-ink-180.png",
+              "label": "180 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-ink-192.png",
+              "label": "192 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-ink-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-app-icon-ink-1024.png",
+              "label": "1024 PNG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark",
+      "title": "Mark",
+      "note": "The mark alone on a transparent ground. Use it where the name is already set beside it, or where space is tight.",
+      "items": [
+        {
+          "title": "For light grounds",
+          "ground": "paper",
+          "preview": "/brand/semanticops-mark-light.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-mark-light.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-mark-light-64.png",
+              "label": "64 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-light-256.png",
+              "label": "256 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-light-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-light-1024.png",
+              "label": "1024 PNG"
+            },
+            {
+              "href": "/brand/favicon.ico",
+              "label": "ICO"
+            }
+          ]
+        },
+        {
+          "title": "For dark grounds",
+          "ground": "ink",
+          "preview": "/brand/semanticops-mark-dark.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-mark-dark.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-mark-dark-64.png",
+              "label": "64 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-dark-256.png",
+              "label": "256 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-dark-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-dark-1024.png",
+              "label": "1024 PNG"
+            }
+          ]
+        },
+        {
+          "title": "One colour, black",
+          "ground": "paper",
+          "preview": "/brand/semanticops-mark-black.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-mark-black.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-mark-black-64.png",
+              "label": "64 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-black-256.png",
+              "label": "256 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-black-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-black-1024.png",
+              "label": "1024 PNG"
+            }
+          ]
+        },
+        {
+          "title": "One colour, white",
+          "ground": "ink",
+          "preview": "/brand/semanticops-mark-white.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-mark-white.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-mark-white-64.png",
+              "label": "64 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-white-256.png",
+              "label": "256 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-white-512.png",
+              "label": "512 PNG"
+            },
+            {
+              "href": "/brand/semanticops-mark-white-1024.png",
+              "label": "1024 PNG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lockup",
+      "title": "Lockup",
+      "note": "The mark and the name on a transparent ground. Use it in headers, sponsor lists and anywhere the name has to be read.",
+      "items": [
+        {
+          "title": "For light grounds",
+          "ground": "paper",
+          "preview": "/brand/semanticops-lockup-light.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-lockup-light.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-light-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-light-960.png",
+              "label": "960 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-light-1920.png",
+              "label": "1920 PNG"
+            }
+          ]
+        },
+        {
+          "title": "For dark grounds",
+          "ground": "ink",
+          "preview": "/brand/semanticops-lockup-dark.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-lockup-dark.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-dark-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-dark-960.png",
+              "label": "960 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-dark-1920.png",
+              "label": "1920 PNG"
+            }
+          ]
+        },
+        {
+          "title": "One colour, black",
+          "ground": "paper",
+          "preview": "/brand/semanticops-lockup-black.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-lockup-black.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-black-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-black-960.png",
+              "label": "960 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-black-1920.png",
+              "label": "1920 PNG"
+            }
+          ]
+        },
+        {
+          "title": "One colour, white",
+          "ground": "ink",
+          "preview": "/brand/semanticops-lockup-white.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-lockup-white.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-white-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-white-960.png",
+              "label": "960 PNG"
+            },
+            {
+              "href": "/brand/semanticops-lockup-white-1920.png",
+              "label": "1920 PNG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wordmark",
+      "title": "Wordmark",
+      "note": "The name alone, as outlines, so it needs no font installed.",
+      "items": [
+        {
+          "title": "For light grounds",
+          "ground": "paper",
+          "preview": "/brand/semanticops-wordmark-light.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-wordmark-light.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-wordmark-light-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-wordmark-light-960.png",
+              "label": "960 PNG"
+            }
+          ]
+        },
+        {
+          "title": "For dark grounds",
+          "ground": "ink",
+          "preview": "/brand/semanticops-wordmark-dark.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-wordmark-dark.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-wordmark-dark-480.png",
+              "label": "480 PNG"
+            },
+            {
+              "href": "/brand/semanticops-wordmark-dark-960.png",
+              "label": "960 PNG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "social-card",
+      "title": "Social card",
+      "note": "1200 by 630, the size link previews and repository social images expect.",
+      "items": [
+        {
+          "title": "Paper ground",
+          "ground": "paper",
+          "preview": "/brand/semanticops-social-card-paper.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-social-card-paper.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-social-card-paper-1200.png",
+              "label": "1200 PNG"
+            }
+          ]
+        },
+        {
+          "title": "Ink ground",
+          "ground": "ink",
+          "preview": "/brand/semanticops-social-card-ink.svg",
+          "files": [
+            {
+              "href": "/brand/semanticops-social-card-ink.svg",
+              "label": "SVG"
+            },
+            {
+              "href": "/brand/semanticops-social-card-ink-1200.png",
+              "label": "1200 PNG"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "colours": [
+    {
+      "name": "Ink",
+      "value": "#1a1a1a",
+      "note": "The dark half, and the ground of a dark surface"
+    },
+    {
+      "name": "Paper",
+      "value": "#f4f2ee",
+      "note": "The light half, and the ground of a light surface"
+    },
+    {
+      "name": "Vermilion",
+      "value": "#cc3300",
+      "note": "The S line on light, and the one brand colour for a form that asks for an accent"
+    },
+    {
+      "name": "Vermilion, lit",
+      "value": "#ff7f56",
+      "note": "The S line on dark"
+    }
+  ]
+}
