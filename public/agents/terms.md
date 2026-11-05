@@ -10,7 +10,9 @@ The terms for using the SemanticOps services: free and as is, your content stays
 
 These terms are between you and The-Organization.com Ltd, and by using the services you accept them.
 
-They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: hello@semanticops.com. The [privacy policy](/privacy) explains how data is handled.
+They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: contact@the-organization.com. The [privacy policy](/privacy) explains how data is handled.
+
+The-Organization.com Ltd is registered in England and Wales, company number 10684651. Registered office: 646 Commercial Road, London, England, E14 7HA.
 
 
 ### Free, as is
@@ -46,6 +48,13 @@ We may revoke a key or block access at any time, for example after misuse.
 Keep your own copies of anything that matters. The editor's recovery copy is a convenience, not a backup.
 
 As far as the law allows, we are not liable for lost data or for indirect or consequential loss. Nothing in these terms limits a liability the law does not allow us to limit, or your rights as a consumer.
+
+
+### Governing law
+
+These terms are governed by the law of England and Wales, and its courts have jurisdiction.
+
+If you use the services as a consumer, you keep the mandatory protections of the country where you live, and you can bring a claim in its courts.
 
 
 ### Changes to these terms

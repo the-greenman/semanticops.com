@@ -1,0 +1,20 @@
+{
+  "instanceId": "3d576b7b-9191-41ec-a094-1196145e8ea1",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Governing law",
+    "slug": "terms-law",
+    "lede": "These terms are governed by the law of England and Wales, and its courts have jurisdiction.",
+    "body": "If you use the services as a consumer, you keep the mandatory protections of the country where you live, and you can bring a claim in its courts."
+  },
+  "createdAt": "2026-11-05T20:24:01.600121260+00:00",
+  "updatedAt": "2026-11-05T20:24:01.600129258+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

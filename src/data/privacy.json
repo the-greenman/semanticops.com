@@ -20,7 +20,7 @@
         "slug": "privacy-who",
         "title": "Who we are",
         "lede": "The-Organization.com Ltd runs these services and is the controller of the personal data described here.",
-        "body": "This policy covers semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Contact: hello@semanticops.com.\n\nWe do not sell personal data, show advertising, or make automated decisions about you."
+        "body": "This policy covers semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Contact: contact@the-organization.com.\n\nThe-Organization.com Ltd is registered in England and Wales, company number 10684651. Registered office: 646 Commercial Road, London, England, E14 7HA.\n\nWe do not sell personal data, show advertising, or make automated decisions about you."
       }
     },
     {
@@ -74,8 +74,8 @@
       "fields": {
         "slug": "privacy-rights",
         "title": "Your rights",
-        "lede": "You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email hello@semanticops.com.",
-        "body": "You can also complain to your data protection authority."
+        "lede": "You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email contact@the-organization.com.",
+        "body": "You can also complain to the UK Information Commissioner's Office at [ico.org.uk](https://ico.org.uk) or to your local data protection authority."
       }
     },
     {

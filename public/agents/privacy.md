@@ -10,7 +10,9 @@ Who runs the SemanticOps services, what data they handle, who else handles it, a
 
 The-Organization.com Ltd runs these services and is the controller of the personal data described here.
 
-This policy covers semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Contact: hello@semanticops.com.
+This policy covers semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Contact: contact@the-organization.com.
+
+The-Organization.com Ltd is registered in England and Wales, company number 10684651. Registered office: 646 Commercial Road, London, England, E14 7HA.
 
 We do not sell personal data, show advertising, or make automated decisions about you.
 
@@ -61,9 +63,9 @@ We keep a peer link registration until you ask us to delete it. Everything else 
 
 ### Your rights
 
-You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email hello@semanticops.com.
+You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email contact@the-organization.com.
 
-You can also complain to your data protection authority.
+You can also complain to the UK Information Commissioner's Office at [ico.org.uk](https://ico.org.uk) or to your local data protection authority.
 
 
 ### Changes to this policy

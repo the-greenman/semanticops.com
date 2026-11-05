@@ -20,7 +20,7 @@
         "slug": "terms-agreement",
         "title": "These terms",
         "lede": "These terms are between you and The-Organization.com Ltd, and by using the services you accept them.",
-        "body": "They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: hello@semanticops.com. The [privacy policy](/privacy) explains how data is handled."
+        "body": "They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: contact@the-organization.com. The [privacy policy](/privacy) explains how data is handled.\n\nThe-Organization.com Ltd is registered in England and Wales, company number 10684651. Registered office: 646 Commercial Road, London, England, E14 7HA."
       }
     },
     {
@@ -75,6 +75,17 @@
         "title": "Our liability",
         "lede": "Keep your own copies of anything that matters. The editor's recovery copy is a convenience, not a backup.",
         "body": "As far as the law allows, we are not liable for lost data or for indirect or consequential loss. Nothing in these terms limits a liability the law does not allow us to limit, or your rights as a consumer."
+      }
+    },
+    {
+      "instanceId": "3d576b7b-9191-41ec-a094-1196145e8ea1",
+      "type": "section",
+      "slug": "terms-law",
+      "fields": {
+        "slug": "terms-law",
+        "title": "Governing law",
+        "lede": "These terms are governed by the law of England and Wales, and its courts have jurisdiction.",
+        "body": "If you use the services as a consumer, you keep the mandatory protections of the country where you live, and you can bring a claim in its courts."
       }
     },
     {

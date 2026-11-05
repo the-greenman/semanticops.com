@@ -7,11 +7,11 @@
   "fieldValues": {
     "title": "Your rights",
     "slug": "privacy-rights",
-    "lede": "You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email hello@semanticops.com.",
-    "body": "You can also complain to your data protection authority."
+    "lede": "You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email contact@the-organization.com.",
+    "body": "You can also complain to the UK Information Commissioner's Office at [ico.org.uk](https://ico.org.uk) or to your local data protection authority."
   },
   "createdAt": "2026-11-05T20:17:21.088183172+00:00",
-  "updatedAt": "2026-11-05T20:17:41.138210948+00:00",
+  "updatedAt": "2026-11-05T20:24:01.524103758+00:00",
   "createdBy": {
     "kind": "ai",
     "id": "claude-code"
