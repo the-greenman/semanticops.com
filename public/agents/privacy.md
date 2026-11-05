@@ -23,7 +23,7 @@ The editor runs in your browser. Your documents stay there and wherever you choo
 
 **In your browser.** The editor keeps a recovery copy of the open document, your recent documents, the name you give it, and your agent and relay settings in browser storage. They stay on your device until you clear the site's data. The editor sets no cookies and carries no analytics.
 
-**GitHub.** If you sign in, the sign-in code and later the refresh token pass through our server, because GitHub requires a secret to exchange them. Our server forwards them to GitHub, returns the result to your browser and stores nothing. The access you grant covers public and private repositories you can reach, and the editor uses it from your browser to find, read and save the repositories you open.
+**GitHub.** If you sign in, the sign-in code and later the refresh token pass through our server, because GitHub requires a secret to exchange them. Our server forwards them to GitHub, returns the result to your browser, and neither stores them nor writes them to its logs. The access you grant covers public and private repositories you can reach, and the editor uses it from your browser to find, read and save the repositories you open.
 
 **Dropbox and Google Drive.** If you connect one, your browser talks to that provider directly. Dropbox access covers reading and writing your files. Google Drive access covers only the files you open or create with the editor, and Google's sign-in scripts load when you use it. Our use of information from Google APIs follows the Google API Services User Data Policy, including its Limited Use requirements.
 
