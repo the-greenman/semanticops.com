@@ -1,0 +1,19 @@
+{
+  "instanceId": "43391258-be57-474f-b10c-13db0682c7b6",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Terms of service",
+    "slug": "terms",
+    "summary": "The terms for using the SemanticOps services: free and as is, your content stays yours, and what is not allowed. In force from 5 November 2026."
+  },
+  "createdAt": "2026-11-05T20:17:21.399302464+00:00",
+  "updatedAt": "2026-11-05T20:17:21.399308725+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

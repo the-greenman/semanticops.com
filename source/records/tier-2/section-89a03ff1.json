@@ -1,0 +1,20 @@
+{
+  "instanceId": "89a03ff1-2bf5-42db-88dc-b96f91c262c0",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "These terms",
+    "slug": "terms-agreement",
+    "lede": "These terms are between you and The-Organization.com Ltd, and by using the services you accept them.",
+    "body": "They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: hello@semanticops.com. The [privacy policy](/privacy) explains how data is handled."
+  },
+  "createdAt": "2026-11-05T20:17:21.536550294+00:00",
+  "updatedAt": "2026-11-05T20:17:42.542793453+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

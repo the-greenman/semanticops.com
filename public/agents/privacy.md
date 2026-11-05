@@ -1,0 +1,75 @@
+<!-- generated from source/ by scripts/source/build-source.mjs; do not edit -->
+# SemanticOps: privacy
+
+### Privacy policy
+
+Who runs the SemanticOps services, what data they handle, who else handles it, and your rights over it. In force from 5 November 2026.
+
+
+### Who we are
+
+The-Organization.com Ltd runs these services and is the controller of the personal data described here.
+
+This policy covers semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Contact: hello@semanticops.com.
+
+We do not sell personal data, show advertising, or make automated decisions about you.
+
+
+### The editor
+
+The editor runs in your browser. Your documents stay there and wherever you choose to save them, and they do not reach our servers.
+
+**In your browser.** The editor keeps a recovery copy of the open document, your recent documents, the name you give it, and your agent and relay settings in browser storage. They stay on your device until you clear the site's data. The editor sets no cookies and carries no analytics.
+
+**GitHub.** If you sign in, the sign-in code and later the refresh token pass through our server, because GitHub requires a secret to exchange them. Our server forwards them to GitHub, returns the result to your browser and stores nothing. The access you grant covers public and private repositories you can reach, and the editor uses it from your browser to find, read and save the repositories you open.
+
+**Dropbox and Google Drive.** If you connect one, your browser talks to that provider directly. Dropbox access covers reading and writing your files. Google Drive access covers only the files you open or create with the editor, and Google's sign-in scripts load when you use it. Our use of information from Google APIs follows the Google API Services User Data Policy, including its Limited Use requirements.
+
+Sign-in tokens are held in the page's memory and are not written to browser storage. You can revoke access at any time in your account at the provider.
+
+**Opening a link.** A link that opens a document from another site makes your browser fetch it from that site, which sees your request as it would any other.
+
+**Request logs.** Cloudflare handles every request to the editor, including your IP address, browser details and the address requested, which can include a document link. We keep these logs to run and debug the service, and they are deleted automatically within about a week.
+
+
+### Agents and the relay
+
+When you connect an AI agent to a document, what it reads and writes passes through our relay. The relay stores none of it.
+
+**Connected agents.** The relay carries requests between your browser and the agent, with all logging switched off. The agent's provider handles what the agent receives, under that provider's own terms, so choose an agent you trust with the document.
+
+**Peer link keys.** If you register for a key, we store your name and email address, the terms version you accepted and when, a one-way hash of your key (never the key itself), and how many channels your key creates each week. We use these to run access to the service and to contact you about it. We also keep a weekly count of channels created from the editor, which is not linked to any person.
+
+**Peer link messages.** Messages pass through the relay without being stored or logged. A room's messages live only in the host's own process.
+
+
+### Who else handles data
+
+Cloudflare hosts the services and the relay's database. Resend sends our emails.
+
+GitHub, Dropbox, Google and your agent's provider act under their own policies when you choose to use them.
+
+These companies may process data outside your country, including in the United States, under the safeguards they offer.
+
+
+### Why we may use it, and for how long
+
+We use this data to provide the service you asked for, and we rely on our legitimate interest in keeping the service running and secure for request logs.
+
+We keep a peer link registration until you ask us to delete it. Everything else is covered above: browser data stays with you, and request logs expire on their own.
+
+
+### Your rights
+
+You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email hello@semanticops.com.
+
+You can also complain to your data protection authority.
+
+
+### Changes to this policy
+
+We publish changes on this page with a new date.
+
+We email people who hold a peer link key about changes that matter to them.
+
+

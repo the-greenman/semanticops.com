@@ -1,0 +1,19 @@
+{
+  "instanceId": "2c13e1d7-c9f5-4361-bef0-d795a24f9f76",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Keys and links are credentials",
+    "slug": "terms-credentials",
+    "lede": "Keep your keys, connector links and room links private. Anyone holding a room link can read and post in that room."
+  },
+  "createdAt": "2026-11-05T20:17:21.951600670+00:00",
+  "updatedAt": "2026-11-05T20:17:21.951605984+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

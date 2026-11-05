@@ -1,0 +1,20 @@
+{
+  "instanceId": "04e1720d-d2be-4017-b8ed-b24df4fed162",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Your rights",
+    "slug": "privacy-rights",
+    "lede": "You can ask to see, correct, delete or move your data, or object to or restrict how we use it. Email hello@semanticops.com.",
+    "body": "You can also complain to your data protection authority."
+  },
+  "createdAt": "2026-11-05T20:17:21.088183172+00:00",
+  "updatedAt": "2026-11-05T20:17:41.138210948+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

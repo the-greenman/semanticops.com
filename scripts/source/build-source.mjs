@@ -127,7 +127,14 @@ function build() {
     const { slug, title, summary } = o.data.entries[0].fields;
     return { page: slug, title, summary };
   });
-  const site = { title: identity.title, purpose: identity.statement, pages: sitePages };
+  // Rendered pages outside the root container are policies: a route and a footer link, not a nav section.
+  const policies = outputs
+    .filter((o) => !nav.sections.some((s) => s.instanceId === o.data.entries[0].instanceId))
+    .map((o) => {
+      const { slug, title, summary } = o.data.entries[0].fields;
+      return { page: slug, title, summary };
+    });
+  const site = { title: identity.title, purpose: identity.statement, pages: sitePages, policies };
 
   // 5. llms.txt (llmstxt convention): every line comes from the records (the start-here, sites and
   // data containers hold route-step records) or from the page list, except GET_RUNNING below
@@ -151,6 +158,10 @@ function build() {
     "## Pages",
     "",
     ...site.pages.map((p) => `- [${p.title}](/agents/${p.page}.md): ${p.summary} ([JSON](/agents/${p.page}.json))`),
+    "",
+    "## Policies",
+    "",
+    ...site.policies.map((p) => `- [${p.title}](/agents/${p.page}.md): ${p.summary} ([JSON](/agents/${p.page}.json))`),
     "",
     "## Sites",
     "",

@@ -1,0 +1,20 @@
+{
+  "instanceId": "49fd8f31-f377-4877-a38b-bc392560c092",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Acceptable use",
+    "slug": "terms-use",
+    "lede": "No unlawful content, no abuse of other people or of the services, and no attempts to get around limits or access controls.",
+    "body": "We may revoke a key or block access at any time, for example after misuse."
+  },
+  "createdAt": "2026-11-05T20:17:22.095236001+00:00",
+  "updatedAt": "2026-11-05T20:17:22.095250942+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

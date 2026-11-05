@@ -1,4 +1,5 @@
 {
+  "rootContainerId": "0dbab76e-7f8e-4276-8791-c00a8627965d",
   "$schema": "https://srs.semanticops.com/schema/2.0/manifest.json",
   "createdAt": "2026-10-05T19:18:37.454098047+00:00",
   "dataModelRevision": 11,
@@ -40,10 +41,19 @@
       "compositionId": "0d115d67-c4c6-4a8f-99f9-0e826190bdd5",
       "format": "markdown",
       "outputPath": "projections/patterns.md"
+    },
+    {
+      "compositionId": "087c8d22-45cc-4b8d-b49d-0bca5d2b354e",
+      "format": "markdown",
+      "outputPath": "projections/privacy.md"
+    },
+    {
+      "compositionId": "11159bf2-1b5c-4f11-9655-a0cb0788c122",
+      "format": "markdown",
+      "outputPath": "projections/terms.md"
     }
   ],
   "repositoryId": "0dbab76e-7f8e-4276-8791-c00a8627965d",
   "srsVersion": "2.0-draft",
-  "title": "SemanticOps",
-  "rootContainerId": "0dbab76e-7f8e-4276-8791-c00a8627965d"
+  "title": "SemanticOps"
 }

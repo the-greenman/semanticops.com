@@ -59,6 +59,7 @@ export interface SiteFile {
   title: string;
   purpose: string;
   pages: { page: string; title: string; summary: string }[];
+  policies: { page: string; title: string; summary: string }[];
 }
 
 // ---- loading -------------------------------------------------------------------------
@@ -97,8 +98,10 @@ function load(key: string): Page {
 
 /** Every page, in navigation order. */
 export const pages: Page[] = site.pages.map((p) => load(p.page));
+/** The policy pages: a route and a footer link, outside the navigation. */
+export const policyPages: Page[] = site.policies.map((p) => load(p.page));
 /** A page by key, or undefined: for lookups that must tolerate a key that is not a page (the styleguide's demo). */
-export const findPage = (key: string): Page | undefined => pages.find((p) => p.key === key);
+export const findPage = (key: string): Page | undefined => [...pages, ...policyPages].find((p) => p.key === key);
 /** A page by key. A key that is not in site.json is a mistake in the presentation map, so it stops the build. */
 export const getPage = (key: string): Page => {
   const page = findPage(key);
@@ -115,6 +118,8 @@ const navItem = (p: Page) => ({ href: p.href, label: site.pages.find((s) => s.pa
 export const headerNav = contentPages.map(navItem);
 /** Footer nav: every page. */
 export const footerNav = pages.map(navItem);
+/** Footer policies. */
+export const footerPolicies = policyPages.map((p) => ({ href: p.href, label: p.title }));
 
 /** The repositories, from the project records (deduplicated: a project can sit on several pages). */
 export const repositories = [

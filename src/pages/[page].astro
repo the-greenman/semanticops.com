@@ -7,11 +7,11 @@ import Section from "../components/Section.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import PageBands from "../components/page/PageBands.astro";
 import { INDEX_MIN_BANDS, closingSurface, indexOf, toBands } from "../lib/bands";
-import { agentEdition, contentPages, getPage, site } from "../lib/content";
+import { agentEdition, contentPages, getPage, policyPages, site } from "../lib/content";
 
 /** One route for every page with its own address: a page added in source/ appears here with no new file. */
 export function getStaticPaths() {
-  return contentPages.map((p) => ({ params: { page: p.key } }));
+  return [...contentPages, ...policyPages].map((p) => ({ params: { page: p.key } }));
 }
 
 const page = getPage(Astro.params.page);

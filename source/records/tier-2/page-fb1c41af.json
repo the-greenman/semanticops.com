@@ -1,0 +1,19 @@
+{
+  "instanceId": "fb1c41af-5bf4-4319-b7db-0ddc575213ba",
+  "typeId": "f0a4a712-f691-4ece-ba4f-fddad4e08169",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "page",
+  "fieldValues": {
+    "title": "Privacy policy",
+    "slug": "privacy",
+    "summary": "Who runs the SemanticOps services, what data they handle, who else handles it, and your rights over it. In force from 5 November 2026."
+  },
+  "createdAt": "2026-11-05T20:17:20.217931132+00:00",
+  "updatedAt": "2026-11-05T20:17:20.217938230+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

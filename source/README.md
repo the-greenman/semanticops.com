@@ -11,6 +11,7 @@ SRS is pronounced "source", and this is the pun in practice: these records are t
 - One Container per page (`home`, `model`, `patterns`, `architecture`, `principles`, `projects`), anchored on that page's `page` record. A container's ordered outline is the page order. A record can sit in several containers (the four projects appear on home and on the projects page).
 - One Composition per page in `package/compositions/`, declared as a presentation in `manifest.json` with a repository-relative output path (`projections/<page>.md`; nothing is written there, the pipeline places the output in `public/agents/`, so the repository packs into a self-contained `.srs`). One View per Type in `package/views/` controls how a record reads as markdown.
 - Three more Containers, `start-here`, `sites` and `data`, hold `route-step` records and no page. Their order is the order of the `## Start here`, `## Sites` and `## Data` sections of `llms.txt`, so nothing factual is left in the script. (`llms.txt` opens with a `## Get running` block that is the same on every SemanticOps site; the script holds it as a shared constant.)
+- Two policy pages, `privacy` and `terms`, have a container and composition like any page but are not in the root container, so they get a route, a footer link and a `## Policies` section in `llms.txt`, and no nav entry. When either changes, change its date in the page summary.
 - Relations are only the true canonical ones: `depends-on` between concepts and between projects.
 
 ## The sample repository

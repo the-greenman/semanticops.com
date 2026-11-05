@@ -1,0 +1,20 @@
+{
+  "instanceId": "4fc13031-1660-473e-b9d0-8f1ac00e99bb",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Who else handles data",
+    "slug": "privacy-others",
+    "lede": "Cloudflare hosts the services and the relay's database. Resend sends our emails.",
+    "body": "GitHub, Dropbox, Google and your agent's provider act under their own policies when you choose to use them.\n\nThese companies may process data outside your country, including in the United States, under the safeguards they offer."
+  },
+  "createdAt": "2026-11-05T20:17:20.798199421+00:00",
+  "updatedAt": "2026-11-05T20:17:20.798206094+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

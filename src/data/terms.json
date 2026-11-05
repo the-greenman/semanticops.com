@@ -1,0 +1,103 @@
+{
+  "page": "terms",
+  "title": "SemanticOps: terms",
+  "entries": [
+    {
+      "instanceId": "43391258-be57-474f-b10c-13db0682c7b6",
+      "type": "page",
+      "slug": "terms",
+      "fields": {
+        "slug": "terms",
+        "title": "Terms of service",
+        "summary": "The terms for using the SemanticOps services: free and as is, your content stays yours, and what is not allowed. In force from 5 November 2026."
+      }
+    },
+    {
+      "instanceId": "89a03ff1-2bf5-42db-88dc-b96f91c262c0",
+      "type": "section",
+      "slug": "terms-agreement",
+      "fields": {
+        "slug": "terms-agreement",
+        "title": "These terms",
+        "lede": "These terms are between you and The-Organization.com Ltd, and by using the services you accept them.",
+        "body": "They cover semanticops.com, the editor at app.semanticops.com, essay.semanticops.com and app.mudemocracy.org, and the relay at relay.semanticops.com. Questions: hello@semanticops.com. The [privacy policy](/privacy) explains how data is handled."
+      }
+    },
+    {
+      "instanceId": "f680a12f-410b-4ee5-9fc8-bb8261f895be",
+      "type": "section",
+      "slug": "terms-as-is",
+      "fields": {
+        "slug": "terms-as-is",
+        "title": "Free, as is",
+        "lede": "The services are free for now, with no warranty and no guaranteed availability. They may change or stop.",
+        "body": "The relay may become a paid service. People who hold a key will be told before that happens."
+      }
+    },
+    {
+      "instanceId": "5438d99c-0294-412a-8ee8-93baecd3d8f9",
+      "type": "section",
+      "slug": "terms-content",
+      "fields": {
+        "slug": "terms-content",
+        "title": "Your content is yours",
+        "lede": "We claim no rights over your documents or messages, and you are responsible for what you and your guests create and send.",
+        "body": "The same goes for what an AI agent you connect writes into your documents, and for what you do with an account at GitHub, Dropbox, Google or an agent's provider, under that company's terms.\n\nSemanticOps software is open source under its own licences, which these terms do not change."
+      }
+    },
+    {
+      "instanceId": "2c13e1d7-c9f5-4361-bef0-d795a24f9f76",
+      "type": "section",
+      "slug": "terms-credentials",
+      "fields": {
+        "slug": "terms-credentials",
+        "title": "Keys and links are credentials",
+        "lede": "Keep your keys, connector links and room links private. Anyone holding a room link can read and post in that room."
+      }
+    },
+    {
+      "instanceId": "49fd8f31-f377-4877-a38b-bc392560c092",
+      "type": "section",
+      "slug": "terms-use",
+      "fields": {
+        "slug": "terms-use",
+        "title": "Acceptable use",
+        "lede": "No unlawful content, no abuse of other people or of the services, and no attempts to get around limits or access controls.",
+        "body": "We may revoke a key or block access at any time, for example after misuse."
+      }
+    },
+    {
+      "instanceId": "81654be2-8888-43ad-b192-9f97ae2ed7bd",
+      "type": "section",
+      "slug": "terms-liability",
+      "fields": {
+        "slug": "terms-liability",
+        "title": "Our liability",
+        "lede": "Keep your own copies of anything that matters. The editor's recovery copy is a convenience, not a backup.",
+        "body": "As far as the law allows, we are not liable for lost data or for indirect or consequential loss. Nothing in these terms limits a liability the law does not allow us to limit, or your rights as a consumer."
+      }
+    },
+    {
+      "instanceId": "991d7030-397c-43db-9cc7-02f32a589763",
+      "type": "section",
+      "slug": "terms-changes",
+      "fields": {
+        "slug": "terms-changes",
+        "title": "Changes to these terms",
+        "lede": "We publish changes on this page with a new date, and using the services afterwards means you accept them.",
+        "body": "We email people who hold a peer link key about changes that matter to them."
+      }
+    },
+    {
+      "instanceId": "aa818ecb-3ef7-4c8c-970b-d929d932960c",
+      "type": "section",
+      "slug": "terms-earlier",
+      "fields": {
+        "slug": "terms-earlier",
+        "title": "Earlier version",
+        "lede": "Peer link keys registered before 5 November 2026 accepted the terms below, version 2026-10-29.",
+        "body": "These terms cover keys for creating channels on relay.semanticops.com, which peer link rooms use.\n\n- **Free, as is.** The service is free for now, with no warranty and no guaranteed availability. It may change or stop. It may become a paid service; registrants will be told before that happens.\n- **Your key and links are credentials.** Keep them private. Anyone holding a room link can read and post in that room.\n- **Acceptable use.** No unlawful content, no abuse of other people or of the service, no attempts to get around limits or access controls.\n- **Revocation.** We may revoke a key at any time, for example after misuse.\n- **Your rooms are yours.** Messages live in the host's own process; you are responsible for what you and your guests send."
+      }
+    }
+  ]
+}

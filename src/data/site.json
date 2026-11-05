@@ -32,5 +32,17 @@
       "title": "Projects",
       "summary": "The four SemanticOps projects as kinds of technology: the standard, the reference engine, the browser editor and the VS Code extension."
     }
+  ],
+  "policies": [
+    {
+      "page": "privacy",
+      "title": "Privacy policy",
+      "summary": "Who runs the SemanticOps services, what data they handle, who else handles it, and your rights over it. In force from 5 November 2026."
+    },
+    {
+      "page": "terms",
+      "title": "Terms of service",
+      "summary": "The terms for using the SemanticOps services: free and as is, your content stays yours, and what is not allowed. In force from 5 November 2026."
+    }
   ]
 }

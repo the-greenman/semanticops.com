@@ -1,0 +1,20 @@
+{
+  "instanceId": "c9669a11-40e0-4d71-bb26-1b7c48b106b2",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Changes to this policy",
+    "slug": "privacy-changes",
+    "lede": "We publish changes on this page with a new date.",
+    "body": "We email people who hold a peer link key about changes that matter to them."
+  },
+  "createdAt": "2026-11-05T20:17:21.232108003+00:00",
+  "updatedAt": "2026-11-05T20:17:21.232121644+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
