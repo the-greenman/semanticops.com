@@ -31,18 +31,18 @@ Sign-in tokens are held in the page's memory and are not written to browser stor
 
 **Opening a link.** A link that opens a document from another site makes your browser fetch it from that site, which sees your request as it would any other.
 
-**Request logs.** Cloudflare handles every request to the editor. Each log entry can hold your IP address, your approximate location worked out from it (country, region, city, postcode and coordinates), your network provider, your browser and connection details, the request headers, and the full address requested, which can include a document link. We keep these logs to run and debug the service, and they are deleted automatically within about a week.
+**Request logs.** Cloudflare handles every request to our services. Its traffic log records your IP address and country, the page or file requested and the response, and is kept for up to 31 days. Logs of the editor's server can also hold your approximate location worked out from your IP address (region, city, postcode and coordinates), your network provider, your browser and connection details, the request headers and the full address requested, and are kept for up to 7 days. We use these logs to run, secure and debug the services, and they are deleted automatically.
 
 
 ### Agents and the relay
 
 When you connect an AI agent to a document, what it reads and writes passes through our relay. The relay stores none of it.
 
-**Connected agents.** The relay carries requests between your browser and the agent, with all logging switched off. The agent's provider handles what the agent receives, under that provider's own terms, so choose an agent you trust with the document.
+**Connected agents.** The relay carries requests between your browser and the agent. Its own logging is switched off, but Cloudflare's traffic log, described above, still records each request, including the address requested. The agent's provider handles what the agent receives, under that provider's own terms, so choose an agent you trust with the document.
 
 **Peer link keys.** If you register for a key, we store your name and email address, the terms version you accepted and when, a one-way hash of your key (never the key itself), and how many channels your key creates each week. We use these to run access to the service and to contact you about it. We also keep a weekly count of channels created from the editor, which is not linked to any person.
 
-**Peer link messages.** Messages pass through the relay without being stored or logged. A room's messages live only in the host's own process.
+**Peer link messages.** Message content passes through the relay without being stored or logged. A room's messages live only in the host's own process.
 
 
 ### Who else handles data
