@@ -31,7 +31,7 @@ Sign-in tokens are held in the page's memory and are not written to browser stor
 
 **Opening a link.** A link that opens a document from another site makes your browser fetch it from that site, which sees your request as it would any other.
 
-**Request logs.** Cloudflare handles every request to the editor, including your IP address, browser details and the address requested, which can include a document link. We keep these logs to run and debug the service, and they are deleted automatically within about a week.
+**Request logs.** Cloudflare handles every request to the editor. Each log entry can hold your IP address, your approximate location worked out from it (country, region, city, postcode and coordinates), your network provider, your browser and connection details, the request headers, and the full address requested, which can include a document link. We keep these logs to run and debug the service, and they are deleted automatically within about a week.
 
 
 ### Agents and the relay
