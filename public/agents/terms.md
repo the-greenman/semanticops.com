@@ -64,16 +64,3 @@ We publish changes on this page with a new date, and using the services afterwar
 We email people who hold a peer link key about changes that matter to them.
 
 
-### Earlier version
-
-Peer link keys registered before 5 November 2026 accepted the terms below, version 2026-10-29.
-
-These terms cover keys for creating channels on relay.semanticops.com, which peer link rooms use.
-
-- **Free, as is.** The service is free for now, with no warranty and no guaranteed availability. It may change or stop. It may become a paid service; registrants will be told before that happens.
-- **Your key and links are credentials.** Keep them private. Anyone holding a room link can read and post in that room.
-- **Acceptable use.** No unlawful content, no abuse of other people or of the service, no attempts to get around limits or access controls.
-- **Revocation.** We may revoke a key at any time, for example after misuse.
-- **Your rooms are yours.** Messages live in the host's own process; you are responsible for what you and your guests send.
-
-
