@@ -1,0 +1,20 @@
+{
+  "instanceId": "cf5ad0e4-7288-4aee-90c5-2bacb2272d7f",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Agents and the relay",
+    "slug": "privacy-relay",
+    "lede": "When you connect an AI agent to a document, what it reads and writes passes through our relay. The relay stores none of it.",
+    "body": "**Connected agents.** The relay carries requests between your browser and the agent. Its own logging is switched off, but Cloudflare's traffic log, described above, still records each request, including the address requested. The agent's provider handles what the agent receives, under that provider's own terms, so choose an agent you trust with the document.\n\n**Peer link keys.** If you register for a key, we store your name and email address, the terms version you accepted and when, a one-way hash of your key (never the key itself), and how many channels your key creates each week. We use these to run access to the service and to contact you about it. We also keep a weekly count of channels created from the editor, which is not linked to any person.\n\n**Peer link messages.** Message content passes through the relay without being stored or logged. A room's messages live only in the host's own process."
+  },
+  "createdAt": "2026-11-05T20:17:20.654565291+00:00",
+  "updatedAt": "2026-11-05T20:34:37.550304081+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

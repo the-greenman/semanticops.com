@@ -1,0 +1,20 @@
+{
+  "instanceId": "f680a12f-410b-4ee5-9fc8-bb8261f895be",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Free, as is",
+    "slug": "terms-as-is",
+    "lede": "The services are free for now, with no warranty and no guaranteed availability. They may change or stop.",
+    "body": "The relay may become a paid service. People who hold a key will be told before that happens."
+  },
+  "createdAt": "2026-11-05T20:17:21.674508547+00:00",
+  "updatedAt": "2026-11-05T20:17:21.674518848+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

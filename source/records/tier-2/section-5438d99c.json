@@ -1,0 +1,20 @@
+{
+  "instanceId": "5438d99c-0294-412a-8ee8-93baecd3d8f9",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Your content is yours",
+    "slug": "terms-content",
+    "lede": "We claim no rights over your documents or messages, and you are responsible for what you and your guests create and send.",
+    "body": "The same goes for what an AI agent you connect writes into your documents, and for what you do with an account at GitHub, Dropbox, Google or an agent's provider, under that company's terms.\n\nSemanticOps software is open source under its own licences, which these terms do not change."
+  },
+  "createdAt": "2026-11-05T20:17:21.812859548+00:00",
+  "updatedAt": "2026-11-05T20:17:21.812867361+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

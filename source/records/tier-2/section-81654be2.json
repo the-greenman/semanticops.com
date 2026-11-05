@@ -1,0 +1,20 @@
+{
+  "instanceId": "81654be2-8888-43ad-b192-9f97ae2ed7bd",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Our liability",
+    "slug": "terms-liability",
+    "lede": "Keep your own copies of anything that matters. The editor's recovery copy is a convenience, not a backup.",
+    "body": "As far as the law allows, we are not liable for lost data or for indirect or consequential loss. Nothing in these terms limits a liability the law does not allow us to limit, or your rights as a consumer."
+  },
+  "createdAt": "2026-11-05T20:17:22.235669337+00:00",
+  "updatedAt": "2026-11-05T20:17:22.235677707+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,20 @@
+{
+  "instanceId": "991d7030-397c-43db-9cc7-02f32a589763",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Changes to these terms",
+    "slug": "terms-changes",
+    "lede": "We publish changes on this page with a new date, and using the services afterwards means you accept them.",
+    "body": "We email people who hold a peer link key about changes that matter to them."
+  },
+  "createdAt": "2026-11-05T20:17:22.377425817+00:00",
+  "updatedAt": "2026-11-05T20:17:22.377433425+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

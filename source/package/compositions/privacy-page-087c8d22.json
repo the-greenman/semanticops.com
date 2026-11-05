@@ -1,0 +1,42 @@
+{
+  "$schema": "https://srs.semanticops.com/schema/2.0/composition.json",
+  "id": "087c8d22-45cc-4b8d-b49d-0bca5d2b354e",
+  "namespace": "com.semanticops.site",
+  "name": "privacy-page",
+  "version": 1,
+  "description": "The privacy page: the entries of its container, in the container's own order and depth.",
+  "sections": [
+    {
+      "sectionId": "entries",
+      "order": 0,
+      "source": {
+        "type": "container-subset",
+        "containerId": "47e115df-c708-486e-83ea-76c7baac13d5"
+      },
+      "typeDispatch": {
+        "com.semanticops.site/page": "bf437791-6496-43bc-8cb6-26c4855d2c28",
+        "com.semanticops.site/section": "9ae6f0a2-df52-49c3-9d9a-169c78770b34"
+      },
+      "ordering": {
+        "source": "arranged"
+      },
+      "emptyBehavior": "hide",
+      "relationsPresentation": {
+        "include": [
+          {
+            "relationType": "depends-on",
+            "directions": "forward",
+            "forwardLabel": "Depends on"
+          }
+        ]
+      }
+    }
+  ],
+  "exportConfig": {
+    "format": "markdown"
+  },
+  "createdAt": "2026-11-05T20:17:21.367574472+00:00",
+  "aiGuidance": {
+    "purpose": "Projects the privacy page. Order and nesting come from the page container, never from this Composition."
+  }
+}

@@ -26,6 +26,11 @@
 - [Principles](/agents/principles.md): The purpose, the governing core, the pairs SRS holds without settling, and the scope test that keeps the standard small. ([JSON](/agents/principles.json))
 - [Projects](/agents/projects.md): The four SemanticOps projects as kinds of technology: the standard, the reference engine, the browser editor and the VS Code extension. ([JSON](/agents/projects.json))
 
+## Policies
+
+- [Privacy policy](/agents/privacy.md): Who runs the SemanticOps services, what data they handle, who else handles it, and your rights over it. In force from 5 November 2026. ([JSON](/agents/privacy.json))
+- [Terms of service](/agents/terms.md): The terms for using the SemanticOps services: free and as is, your content stays yours, and what is not allowed. In force from 5 November 2026. ([JSON](/agents/terms.json))
+
 ## Sites
 
 - [semanticops.com](https://semanticops.com/llms.txt): The explanation: what SRS is, its model, its patterns and its projects.

@@ -1,12 +1,12 @@
 ---
-import { agentEntry, footerNav, repositories } from "../lib/content";
+import { agentEntry, footerNav, footerPolicies, repositories } from "../lib/content";
 import SrsMark from "./SrsMark.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Wordmark from "./Wordmark.astro";
 
 /**
  * The site footer, on an ink band. Credit to the-organization.com (text and link until
- * the official asset arrives), the pages and the repositories (both from the data), the
+ * the official asset arrives), the pages, policies and repositories (all from the data), the
  * agent edition entry point, and the theme control.
  */
 const elsewhere = [{ href: agentEntry, label: "Agent edition" }, ...repositories.map((r) => ({ href: r.href, label: r.name }))];
@@ -26,6 +26,10 @@ const elsewhere = [{ href: agentEntry, label: "Agent edition" }, ...repositories
     <nav class="site-footer__col" aria-label="Site">
       <p class="eyebrow">Site</p>
       <ul>{footerNav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </nav>
+    <nav class="site-footer__col" aria-label="Policies">
+      <p class="eyebrow">Policies</p>
+      <ul>{footerPolicies.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
     </nav>
     <nav class="site-footer__col" aria-label="Elsewhere">
       <p class="eyebrow">Elsewhere</p>
@@ -87,7 +91,7 @@ const elsewhere = [{ href: agentEntry, label: "Agent edition" }, ...repositories
 
     @media (min-width: 720px) {
       .site-footer__inner {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-template-columns: 2fr repeat(4, 1fr);
         gap: var(--space-lg);
       }
     }

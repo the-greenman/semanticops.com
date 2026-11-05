@@ -1,0 +1,20 @@
+{
+  "instanceId": "5a5a69db-b7ca-4f49-a714-0e0a1d2c730f",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "The editor",
+    "slug": "privacy-editor",
+    "lede": "The editor runs in your browser. Your documents stay there and wherever you choose to save them, and they do not reach our servers.",
+    "body": "**In your browser.** The editor keeps a recovery copy of the open document, your recent documents, the name you give it, and your agent and relay settings in browser storage. They stay on your device until you clear the site's data. The editor sets no cookies and carries no analytics.\n\n**GitHub.** If you sign in, the sign-in code and later the refresh token pass through our server, because GitHub requires a secret to exchange them. Our server forwards them to GitHub, returns the result to your browser, and neither stores them nor writes them to its logs. The access you grant covers public and private repositories you can reach, and the editor uses it from your browser to find, read and save the repositories you open.\n\n**Dropbox and Google Drive.** If you connect one, your browser talks to that provider directly. Dropbox access covers reading and writing your files. Google Drive access covers only the files you open or create with the editor, and Google's sign-in scripts load when you use it. Our use of information from Google APIs follows the Google API Services User Data Policy, including its Limited Use requirements.\n\nSign-in tokens are held in the page's memory and are not written to browser storage. You can revoke access at any time in your account at the provider.\n\n**Opening a link.** A link that opens a document from another site makes your browser fetch it from that site, which sees your request as it would any other.\n\n**Request logs.** Cloudflare handles every request to our services. Its traffic log records your IP address and country, the page or file requested and the response, and is kept for up to 31 days. Logs of the editor's server can also hold your approximate location worked out from your IP address (region, city, postcode and coordinates), your network provider, your browser and connection details, the request headers and the full address requested, and are kept for up to 7 days. We use these logs to run, secure and debug the services, and they are deleted automatically."
+  },
+  "createdAt": "2026-11-05T20:17:20.506891150+00:00",
+  "updatedAt": "2026-11-05T20:36:43.341962935+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

@@ -1,0 +1,20 @@
+{
+  "instanceId": "beed8422-626f-4f27-b139-91b414b87c6a",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "Why we may use it, and for how long",
+    "slug": "privacy-basis",
+    "lede": "We use this data to provide the service you asked for, and we rely on our legitimate interest in keeping the service running and secure for request logs.",
+    "body": "We keep a peer link registration until you ask us to delete it. Everything else is covered above: browser data stays with you, and request logs expire on their own."
+  },
+  "createdAt": "2026-11-05T20:17:20.943109742+00:00",
+  "updatedAt": "2026-11-05T20:17:20.943116336+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}
