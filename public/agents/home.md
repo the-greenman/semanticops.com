@@ -96,6 +96,17 @@ The core holds types and validation and does no I/O. One repository service wrap
 The test: if two clients could ever disagree about the answer, the logic is in the wrong place. See [architecture](/architecture).
 
 
+### Not every job needs the biggest model
+
+SRS writes the structure down, in the data. So a small model can take a small job and have its work checked, and the large model is kept for the work that needs judgement.
+
+Hand an agent a page of markdown and it has to work out the structure for itself: which line is a decision, and which task depends on it. A large model usually manages. A small one often guesses.
+
+In SRS the structure is written down. A record has a type. The type says which fields it needs, and each field says what goes in it. A relation has a type too. So you can give a small model one type and one job, like tagging meeting notes or sorting tasks. When it writes through the tools, the write is checked before it is saved. If it gets the shape wrong, it is told.
+
+The work that needs judgement goes to a larger model, or to a person. They all work on the same files. And because the meaning is in the records, you can swap one model for another, or run one on your own machine. The records stay the same.
+
+
 ### A standard, an engine and two editors
 
 Four projects share one standard, and each does one job.
