@@ -15,7 +15,7 @@ Facts live **once**, as an SRS repository in `source/`. Records are the source o
 
 ```
 src/styles/        tokens.css, tokens-components.css, base.css, utilities.css, diagram.css, index.css
-src/components/    one component per file; diagram/ holds the primitives and the eleven diagrams
+src/components/    one component per file; diagram/ holds the primitives and the thirteen diagrams
 src/components/styleguide/   specimen helpers used only by /styleguide
 src/components/page/         the assemblers: PageBands (entries to bands) and Entry (one record)
 src/layouts/Base.astro       page shell

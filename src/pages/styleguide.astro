@@ -52,6 +52,8 @@ import PatternEntry from "../components/PatternEntry.astro";
 import TryIt from "../components/TryIt.astro";
 import Actor from "../components/diagram/Actor.astro";
 import AgentAnnotates from "../components/diagram/AgentAnnotates.astro";
+import AgentMemory from "../components/diagram/AgentMemory.astro";
+import EssayAsRecords from "../components/diagram/EssayAsRecords.astro";
 import ClaimChain from "../components/diagram/ClaimChain.astro";
 import Page from "../components/diagram/Page.astro";
 import RecordsToDocument from "../components/diagram/RecordsToDocument.astro";
@@ -727,6 +729,12 @@ const relationJson = `{
       </Specimen>
       <Specimen layout="bare" title="RecordsToDocument" note="Decision records render a document, and a drift check renders it again. A hand edit makes the check fail, drawn as a cross and a word. Props: first, second, rows, relation, rendered, check, failed, edit." code={`<RecordsToDocument />`}>
         <RecordsToDocument number={11} id="sg-records" />
+      </Specimen>
+      <Specimen layout="bare" title="EssayAsRecords" note="A real essay as records: a container of paragraph records in order, written by a person, with a quotation, two sources and an agent's comment as records of their own that point at a paragraph. The published page takes only the paragraphs. Props: essay, quotation, source, counterSource, the relation labels, comment, site." code={`<EssayAsRecords essay="Rebuilding Small Democracy" />`}>
+        <EssayAsRecords number={12} id="sg-essay" />
+      </Specimen>
+      <Specimen layout="bare" title="AgentMemory" note="A real project memory written by agents: a system map container of component records, with a decision, a convention and a trap as records of their own that point at a component. The trap points at two. Props: map, first, second, decision, convention, trap, the kind labels, appliesTo." code={`<AgentMemory first="srs-rust" second="srs" />`}>
+        <AgentMemory number={13} id="sg-memory" />
       </Specimen>
     </div>
   </Section>

@@ -12,9 +12,11 @@
  */
 import type { GlyphKind } from "../components/types";
 import AgentAnnotates from "../components/diagram/AgentAnnotates.astro";
+import AgentMemory from "../components/diagram/AgentMemory.astro";
 import CapabilityStack from "../components/diagram/CapabilityStack.astro";
 import MaturityLadder from "../components/diagram/MaturityLadder.astro";
 import ClaimChain from "../components/diagram/ClaimChain.astro";
+import EssayAsRecords from "../components/diagram/EssayAsRecords.astro";
 import ProjectionFan from "../components/diagram/ProjectionFan.astro";
 import RelationSentence from "../components/diagram/RelationSentence.astro";
 import RecordsToDocument from "../components/diagram/RecordsToDocument.astro";
@@ -31,8 +33,10 @@ export type Surface = "paper" | "page" | "ink";
  */
 export const visuals = {
   AgentAnnotates,
+  AgentMemory,
   CapabilityStack,
   ClaimChain,
+  EssayAsRecords,
   MaturityLadder,
   ProjectionFan,
   RecordsToDocument,
@@ -81,6 +85,9 @@ const looks: Record<string, Look> = {
   "claims-with-sources": { visual: "ClaimChain" },
   "agent-annotates": { visual: "AgentAnnotates" },
   "standard-as-records": { visual: "RecordsToDocument" },
+  // A real repository, after the invented cases.
+  "essay-as-records": { visual: "EssayAsRecords" },
+  "agent-memory": { visual: "AgentMemory" },
 
   // ---- model: the concepts as chapters, a glyph each where the idea has one in the vocabulary
   field: { glyph: "field" },
