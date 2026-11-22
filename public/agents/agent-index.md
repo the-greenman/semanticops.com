@@ -26,3 +26,9 @@ Contents: 117 instances (117 records, 0 notes)
 - **Architecture** (`582af71a-eed6-4a38-a1a0-1a9f048c9710`, type `page`)
 - **Principles** (`92d6197a-4325-41fd-b236-bd12997e86c8`, type `page`)
 - **Projects** (`de391831-5aac-4610-a23f-b2982489c4d7`, type `page`)
+
+## Suggested Entry Points
+
+- `records/tier-2/purpose-85d1e87f.json` (srs://0dbab76e-7f8e-4276-8791-c00a8627965d/record/85d1e87f-d0cd-481c-a883-d45d9357daff)
+- `records/tier-2/page-e84378a8.json` (srs://0dbab76e-7f8e-4276-8791-c00a8627965d/record/e84378a8-016b-4cfc-871c-ca594aa2986b)
+- `records/tier-2/page-f902a0ee.json` (srs://0dbab76e-7f8e-4276-8791-c00a8627965d/record/f902a0ee-d308-4711-8b4b-1a722dfeadca)

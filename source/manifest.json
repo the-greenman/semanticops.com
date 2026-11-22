@@ -1,6 +1,15 @@
 {
   "rootContainerId": "0dbab76e-7f8e-4276-8791-c00a8627965d",
   "$schema": "https://srs.semanticops.com/schema/2.0/manifest.json",
+  "aiGuidance": {
+    "summary": "The facts of the semanticops.com website, authored once as records and projected into a human site and agent data. Maintained through SRS tools, never by hand. Read the purpose record first.",
+    "suggestedEntryPoints": [
+      "records/tier-2/purpose-85d1e87f.json",
+      "records/tier-2/page-e84378a8.json",
+      "records/tier-2/page-f902a0ee.json"
+    ],
+    "navigationHints": "Areas, in order: home, model, patterns, architecture, principles, projects, each a container anchored on its com.semanticops.site/page record; privacy and terms exist but are not in the root container. Content types: section, concept, project, principle, pattern, try-option, route-step. A record's slug is a key the site picks components by: unique, kebab-case, never renamed. Layout is the container outline, so order is data; never relate page members with contains (the renderer drops them). Only depends-on is used, between concepts and between projects. The containers start-here, sites and data hold route-step records that become llms.txt. Read a Field's aiGuidance before writing: it carries the copy rules (no em dashes, no counts or issue numbers). After any change run npm run source and commit the regenerated output; src/data and public/agents are generated."
+  },
   "createdAt": "2026-10-05T19:18:37.454098047+00:00",
   "dataModelRevision": 11,
   "declaredExtensions": [
