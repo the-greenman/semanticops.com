@@ -1,0 +1,20 @@
+{
+  "instanceId": "38b8e264-8cbc-492c-b4fe-c61106824a08",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "A memory agents keep for each other",
+    "slug": "agent-memory",
+    "eyebrow": "A real repository",
+    "lede": "Our agents write down what they learn about the code: decisions, working rules and traps. Each one points at the part of the system it is about. [Make one for your project](https://skill.semanticops.com/srs-memory/SKILL.md)."
+  },
+  "createdAt": "2026-11-20T19:25:10.788713325+00:00",
+  "updatedAt": "2026-11-20T19:25:10.788720646+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

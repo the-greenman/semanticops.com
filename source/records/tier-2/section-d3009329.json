@@ -1,0 +1,20 @@
+{
+  "instanceId": "d3009329-6ce0-46ca-a0fd-3f2e11c8eb4b",
+  "typeId": "a17e2e07-6dd3-4f47-b71b-080cd7f7918d",
+  "typeVersion": 1,
+  "typeNamespace": "com.semanticops.site",
+  "typeName": "section",
+  "fieldValues": {
+    "title": "An essay, stored as records",
+    "slug": "essay-as-records",
+    "eyebrow": "A real repository",
+    "lede": "[Rebuilding Small Democracy](https://mudemocracy.org/ideas/rebuilding-small-democracy) is an essay on the μ.democracy site. The page you read there is built from these records."
+  },
+  "createdAt": "2026-11-20T18:39:14.631447941+00:00",
+  "updatedAt": "2026-11-20T18:39:14.631454297+00:00",
+  "createdBy": {
+    "kind": "ai",
+    "id": "claude-code"
+  },
+  "$schema": "https://srs.semanticops.com/schema/2.0/record.json"
+}

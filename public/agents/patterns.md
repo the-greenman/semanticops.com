@@ -10,7 +10,7 @@ Four ordinary situations where meaning gets lost in prose, and what SRS does abo
 
 Each pattern is an ordinary situation, what goes wrong in it, and the mechanism SRS uses.
 
-The cases are small and invented. They are not products and not case studies: each is a situation that any team keeping knowledge in text will recognise. Where a rule is a repository's own governance and not something the tools enforce, the pattern says so.
+The first four cases are small and invented. Each is a situation that any team keeping knowledge in text will recognise. The cases after them are real, and each one links to something you can open. Where a rule is a repository's own governance and not something the tools enforce, the pattern says so.
 
 
 ### A markdown knowledge base decays
@@ -88,5 +88,15 @@ A specification is kept as records: sections, invariants, concepts and decisions
 - **A decision names its cost and its review trigger**, so reconsidering it is a recorded act.
 
 **Case**: Decision D2 "Use opaque ids" `refines` D1 "Records need stable identity". Its accepted cost is "ids are unreadable" and its review trigger is "if tooling cannot resolve ids". A hand edit to the rendered page turns the drift check red. The SRS specification itself is maintained this way.
+
+
+### An essay, stored as records
+
+[Rebuilding Small Democracy](https://mudemocracy.org/ideas/rebuilding-small-democracy) is an essay on the μ.democracy site. The page you read there is built from these records.
+
+
+### A memory agents keep for each other
+
+Our agents write down what they learn about the code: decisions, working rules and traps. Each one points at the part of the system it is about. [Make one for your project](https://skill.semanticops.com/srs-memory/SKILL.md).
 
 
